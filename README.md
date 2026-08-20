@@ -6,9 +6,10 @@ alemán y norteamericano.
 
 ## Ver el diseño
 
-Abrí **`swiss-protech-web.html`** en cualquier navegador. Es un archivo autónomo:
-trae las seis pantallas sobre un canvas con zoom y desplazamiento, sin necesidad de
-servidor ni dependencias.
+Abrí **`index.html`** en cualquier navegador, o entrá a la URL del deploy. Es un
+archivo autónomo: trae las seis pantallas sobre un canvas con zoom y desplazamiento,
+sin servidor ni dependencias. Cada pantalla se puede abrir a pantalla completa y
+exportar como PNG o PDF desde la barra superior.
 
 ## Pantallas
 
