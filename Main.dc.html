@@ -17,91 +17,77 @@
     h1, h2, h3, h4 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
     p { margin: 0; }
 
-    /* ================= escenario de producto ================= */
-    .stage { position: relative; perspective: 1500px; perspective-origin: 50% 38%; }
+    /* ================= escenario de producto (claro) ================= */
+    .stage { position: relative; }
 
-    /* anillos orbitales finos, apenas perceptibles */
-    .orbit { position: absolute; left: 50%; top: 46%; border-radius: 50%;
-             border: 1px solid rgba(114,197,194,.15); pointer-events: none; }
+    .orbit { position: absolute; left: 50%; top: 48%; border-radius: 50%;
+             border: 1px solid rgba(0,149,161,.20); pointer-events: none; }
     .orbit.o1 { width: 430px; height: 430px; margin: -215px 0 0 -215px;
-                animation: orb 32s linear infinite; }
+                animation: orb 36s linear infinite; }
     .orbit.o2 { width: 580px; height: 580px; margin: -290px 0 0 -290px;
-                border-color: rgba(114,197,194,.08); animation: orb 52s linear infinite reverse; }
+                border-color: rgba(0,149,161,.10); animation: orb 58s linear infinite reverse; }
     .orbit::after { content: ""; position: absolute; top: -3px; left: 50%; margin-left: -3px;
-                    width: 6px; height: 6px; border-radius: 50%; background: #72C5C2;
-                    box-shadow: 0 0 16px 4px rgba(114,197,194,.55); }
+                    width: 6px; height: 6px; border-radius: 50%; background: #0095A1;
+                    box-shadow: 0 0 12px 3px rgba(0,149,161,.35); }
     @keyframes orb { from { transform: rotateX(76deg) rotateZ(0deg); }
                      to   { transform: rotateX(76deg) rotateZ(360deg); } }
     .orbit.o1, .orbit.o2 { transform: rotateX(76deg); }
 
-    .aura { position: absolute; left: 50%; top: 44%; width: 620px; height: 620px;
-            margin: -310px 0 0 -310px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,149,161,.26), transparent 62%);
-            filter: blur(34px); animation: breathe 9s ease-in-out infinite; pointer-events: none; }
-    @keyframes breathe { 0%,100% { opacity: .6; } 50% { opacity: .9; } }
+    .aura { position: absolute; left: 50%; top: 46%; width: 640px; height: 640px;
+            margin: -320px 0 0 -320px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,149,161,.13), transparent 62%);
+            filter: blur(40px); animation: breathe 10s ease-in-out infinite; pointer-events: none; }
+    @keyframes breathe { 0%,100% { opacity: .7; } 50% { opacity: 1; } }
 
-    /* el producto: quieto, con deriva mínima y reflejo en el piso */
+    .floor { position: absolute; left: 50%; top: 65%; width: 520px; height: 1px;
+             margin-left: -260px; pointer-events: none;
+             background: linear-gradient(90deg, transparent, rgba(0,149,161,.26), transparent); }
+
     .slot { position: absolute; inset: 0; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            transition: opacity .85s cubic-bezier(.4,0,.2,1), transform .85s cubic-bezier(.4,0,.2,1); }
-    .drift { animation: drift 9s ease-in-out infinite; }
-    @keyframes drift { 0%,100% { transform: translateY(-7px); } 50% { transform: translateY(7px); } }
+            transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1); }
+    .drift { animation: drift 10s ease-in-out infinite; }
+    @keyframes drift { 0%,100% { transform: translateY(-6px); } 50% { transform: translateY(6px); } }
     .shot { width: 320px; height: 320px; object-fit: contain; display: block;
-            filter: drop-shadow(0 44px 46px rgba(0,0,0,.62)); }
-    .refl-box { width: 320px; height: 132px; overflow: hidden; margin-top: 2px;
-                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 78%);
-                mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 78%); }
+            filter: drop-shadow(0 34px 34px rgba(16,34,42,.26)); }
+    .refl-box { width: 320px; height: 116px; overflow: hidden; margin-top: 2px;
+                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.34), transparent 76%);
+                mask-image: linear-gradient(to bottom, rgba(0,0,0,.34), transparent 76%); }
     .refl { width: 320px; height: 320px; object-fit: contain; display: block;
-            transform: scaleY(-1); opacity: .55; filter: blur(.6px); }
+            transform: scaleY(-1); opacity: .38; filter: blur(.7px); }
 
-    /* horizonte que apoya el producto */
-    .floor { position: absolute; left: 50%; top: 63%; width: 520px; height: 1px;
-             margin-left: -260px; pointer-events: none;
-             background: linear-gradient(90deg, transparent, rgba(114,197,194,.28), transparent); }
-
-    /* barrido técnico */
-    .scan { position: absolute; left: 50%; top: 46%; width: 380px; height: 1px;
+    .scan { position: absolute; left: 50%; top: 48%; width: 380px; height: 1px;
             margin-left: -190px; pointer-events: none;
-            background: linear-gradient(90deg, transparent, rgba(114,197,194,.55), transparent);
-            animation: scan 9s cubic-bezier(.6,0,.4,1) infinite; }
-    @keyframes scan { 0%, 62% { opacity: 0; transform: translateY(-160px); }
-                      66% { opacity: 1; }
-                      92% { opacity: 0; transform: translateY(160px); }
-                      100% { opacity: 0; transform: translateY(160px); } }
+            background: linear-gradient(90deg, transparent, rgba(0,149,161,.45), transparent);
+            animation: scan 10s cubic-bezier(.6,0,.4,1) infinite; }
+    @keyframes scan { 0%, 64% { opacity: 0; transform: translateY(-150px); }
+                      68% { opacity: 1; }
+                      93% { opacity: 0; transform: translateY(150px); }
+                      100% { opacity: 0; transform: translateY(150px); } }
 
-    /* selector de producto del hero */
-    .thumb { cursor: pointer; transition: border-color .3s, background .3s, transform .3s; }
-    .thumb:hover { border-color: rgba(114,197,194,.5); transform: translateY(-2px); }
+    .thumb { cursor: pointer; transition: border-color .3s, background .3s; }
+    .thumb:hover { border-color: rgba(0,149,161,.55); }
 
     /* ================= interacciones sobrias ================= */
     .card { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .35s; }
     .card:hover { transform: translateY(-5px); border-color: #0095A1;
-                  box-shadow: 0 20px 38px -20px rgba(16,34,42,.30); }
+                  box-shadow: 0 20px 38px -20px rgba(16,34,42,.28); }
     .card-img { transition: transform .5s cubic-bezier(.4,0,.2,1); }
     .card:hover .card-img { transform: scale(1.05); }
 
-    .step { transition: transform .35s cubic-bezier(.4,0,.2,1), border-color .35s, background .35s; }
-    .step:hover { transform: translateY(-5px); border-color: rgba(0,149,161,.6);
-                  background: rgba(0,149,161,.06); }
-    .step-n { transition: background .35s, color .35s, border-color .35s; }
-    .step:hover .step-n { background: #0095A1; color: #fff; border-color: #0095A1; }
-
-    .rail { position: absolute; left: 0; right: 0; top: 46px; height: 1px;
-            background: linear-gradient(90deg, rgba(0,149,161,0), rgba(0,149,161,.55) 14%,
-                        rgba(0,149,161,.55) 86%, rgba(0,149,161,0)); }
-    .rail::after { content: ""; position: absolute; top: -2px; left: 0; width: 120px; height: 5px;
-                   border-radius: 99px; background: linear-gradient(90deg, transparent, #72C5C2, transparent);
-                   animation: run 11s cubic-bezier(.5,0,.5,1) infinite; }
-    @keyframes run { 0% { left: 0%; opacity: 0; } 8% { opacity: .9; }
-                     92% { opacity: .9; } 100% { left: 92%; opacity: 0; } }
+    .step { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .35s; }
+    .step:hover { transform: translateY(-5px); border-color: #0095A1;
+                  box-shadow: 0 20px 38px -20px rgba(16,34,42,.24); }
+    .step-n { transition: background .35s, color .35s; }
+    .step:hover .step-n { background: #0095A1; color: #FFFFFF; }
 
     .prov { transition: border-color .3s, color .3s, background .3s; }
     .prov:hover { background: rgba(0,149,161,.07); border-color: #0095A1; color: #0095A1; }
 
     .btn-p { transition: background .28s, box-shadow .28s; }
-    .btn-p:hover { background: #007C87; box-shadow: 0 12px 26px -12px rgba(0,149,161,.7); }
+    .btn-p:hover { background: #007C87; box-shadow: 0 12px 26px -12px rgba(0,149,161,.55); }
     .btn-g { transition: border-color .28s, color .28s, background .28s; }
-    .btn-g:hover { border-color: rgba(114,197,194,.6); background: rgba(255,255,255,.05); }
+    .btn-g:hover { border-color: #0095A1; color: #0095A1; background: rgba(0,149,161,.05); }
 
     .navlink { position: relative; transition: color .25s; }
     .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
@@ -109,17 +95,18 @@
     .navlink:hover { color: #0095A1; }
     .navlink:hover::after { right: 0; }
 
-    .brand-l { filter: grayscale(1) brightness(1.7); opacity: .62;
-               transition: filter .35s, opacity .35s, transform .35s; }
-    .brand-l:hover { filter: none; opacity: 1; transform: scale(1.05); }
+    .brand-l { transition: filter .35s, opacity .35s; }
+    .brand-l:hover { filter: none !important; opacity: 1 !important; }
 
-    .grid-bg { background-image:
-        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
-      background-size: 62px 62px; }
+    .mesh { background-image:
+        linear-gradient(rgba(16,34,42,.030) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16,34,42,.030) 1px, transparent 1px);
+      background-size: 64px 64px;
+      -webkit-mask-image: radial-gradient(circle at 62% 44%, #000 0%, transparent 74%);
+      mask-image: radial-gradient(circle at 62% 44%, #000 0%, transparent 74%); }
 
     @media (prefers-reduced-motion: reduce) {
-      .orbit, .aura, .drift, .scan, .rail::after { animation: none; }
+      .orbit, .aura, .drift, .scan { animation: none; }
       .card, .card-img, .step, .btn-p, .btn-g, .slot { transition: none; }
     }
   </style>
@@ -163,27 +150,25 @@
     </div>
   </div>
 
-  <!-- ================= HERO ================= -->
-  <div class="grid-bg" style="position: relative; background:
-       radial-gradient(1100px 620px at 78% 34%, #163B44 0%, transparent 62%),
-       linear-gradient(155deg, #10222A 0%, #0A171D 58%, #06131A 100%); overflow: hidden;">
+  <!-- ================= HERO (claro) ================= -->
+  <div style="position: relative; background:
+       linear-gradient(168deg, #FFFFFF 0%, #F6FAFB 46%, #E8F1F3 100%); overflow: hidden;">
+    <div class="mesh" style="position: absolute; inset: 0;"></div>
 
-    <div style="position: absolute; top: -180px; right: -140px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.20), transparent 70%); filter: blur(50px);"></div>
+    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 78px 40px 84px; display: grid; grid-template-columns: 1fr 620px; gap: 56px; align-items: center;">
 
-    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 92px 40px 100px; display: grid; grid-template-columns: 1fr 620px; gap: 56px; align-items: center;">
-
-      <div style="display: flex; flex-direction: column; gap: 30px;">
-        <div style="display: inline-flex; align-items: center; gap: 11px; align-self: flex-start; border: 1px solid rgba(114,197,194,.34); background: rgba(0,149,161,.11); color: #72C5C2; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 9px 17px; border-radius: 99px;">
-          <span style="width: 6px; height: 6px; border-radius: 50%; background: #72C5C2; display: block;"></span>
+      <div style="display: flex; flex-direction: column; gap: 28px;">
+        <div style="display: inline-flex; align-items: center; gap: 11px; align-self: flex-start; border: 1px solid rgba(0,149,161,.28); background: rgba(0,149,161,.07); color: #007C87; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 9px 17px; border-radius: 99px;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: {{accent}}; display: block;"></span>
           Representantes exclusivos en Argentina
         </div>
 
-        <h1 style="font-size: 60px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.035em; line-height: 1.04; text-wrap: balance;">
+        <h1 style="font-size: 58px; font-weight: 800; color: #10222A; letter-spacing: -0.035em; line-height: 1.05; text-wrap: balance;">
           Implantes ortopédicos<br>con trazabilidad<br>
           <span style="color: {{accent}};">de punta a punta.</span>
         </h1>
 
-        <p style="font-size: 18px; line-height: 1.65; color: #C6D0D4; max-width: 52ch; font-weight: 300;">
+        <p style="font-size: 17.5px; line-height: 1.68; color: #5A6570; max-width: 52ch; font-weight: 400;">
           Más de 25 años importando prótesis de cadera y rodilla de origen alemán y
           norteamericano. Cada implante sale de nuestro depósito identificado, controlado
           y esterilizado, y llega acompañado hasta el quirófano.
@@ -194,24 +179,23 @@
             Ver catálogo de productos
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
           </a>
-          <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.26); color: #FFFFFF; font-size: 15px; font-weight: 500; padding: 16px 28px; border-radius: 4px;">
+          <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 500; padding: 16px 28px; border-radius: 4px; background: #FFFFFF;">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
             Cómo trabajamos
           </a>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 13px; padding-top: 8px;">
-          <span style="font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: #69727D; font-weight: 600; white-space: nowrap;">Representamos a</span>
-          <span style="flex-grow: 1; height: 1px; background: rgba(255,255,255,.12); display: block;"></span>
-          <img src="link.png" alt="LINK" class="brand-l" style="height: 21px; width: auto;">
-          <img src="advita.png" alt="Advita Ortho" class="brand-l" style="height: 21px; width: auto;">
-          <img src="heraeus.png" alt="Heraeus" class="brand-l" style="height: 17px; width: auto;">
+        <div style="display: flex; align-items: center; gap: 18px; padding-top: 10px;">
+          <span style="font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: #A7A9AC; font-weight: 700; white-space: nowrap;">Representamos a</span>
+          <img src="link.png" alt="LINK" class="brand-l" style="height: 20px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+          <img src="advita.png" alt="Advita Ortho" class="brand-l" style="height: 22px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+          <img src="heraeus.png" alt="Heraeus" class="brand-l" style="height: 18px; width: auto; filter: grayscale(1) contrast(1.6) brightness(.55); opacity: .8;">
         </div>
       </div>
 
       <!-- presentación de producto -->
-      <div style="display: flex; flex-direction: column; gap: 22px;">
-        <div class="stage" style="position: relative; height: 500px;">
+      <div style="display: flex; flex-direction: column; gap: 26px;">
+        <div class="stage" style="position: relative; height: 460px;">
           <div class="aura"></div>
           <div class="orbit o2"></div>
           <div class="orbit o1"></div>
@@ -239,31 +223,32 @@
 
           <div class="floor"></div>
           <div class="scan"></div>
-
-          <!-- rótulo del producto en foco -->
-          <div style="position: absolute; left: 0; bottom: 4px; display: flex; flex-direction: column; gap: 5px;">
-            <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #72C5C2;">{{linea}}</span>
-            <span style="font-size: 16px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">{{nombre}}</span>
-            <span style="font-size: 12.5px; color: #69727D;">{{marca}}</span>
-          </div>
         </div>
 
-        <!-- selector -->
-        <div style="display: flex; align-items: center; gap: 10px; justify-content: flex-end;">
-          <span class="thumb" onClick="{{v0}}" style="{{t0}}"><img src="mobilelink.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
-          <span class="thumb" onClick="{{v1}}" style="{{t1}}"><img src="endomodel-mod.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
-          <span class="thumb" onClick="{{v2}}" style="{{t2}}"><img src="lubinus-spii.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
-          <span class="thumb" onClick="{{v3}}" style="{{t3}}"><img src="optetrak-logic.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
-          <span class="thumb" onClick="{{v4}}" style="{{t4}}"><img src="palamix-gun.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
-          <span style="flex-grow: 1;"></span>
-          <span style="font-size: 11.5px; color: #69727D; letter-spacing: .06em;">21 productos · 3 líneas</span>
+        <!-- rótulo y selector, centrados -->
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+            <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: {{accent}};">{{linea}}</span>
+            <span style="font-size: 18px; font-weight: 700; color: #10222A; letter-spacing: -0.025em;">{{nombre}}</span>
+            <span style="font-size: 12.5px; color: #8A929A;">{{marca}}</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="thumb" onClick="{{v0}}" style="{{t0}}"><img src="mobilelink.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
+            <span class="thumb" onClick="{{v1}}" style="{{t1}}"><img src="endomodel-mod.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
+            <span class="thumb" onClick="{{v2}}" style="{{t2}}"><img src="lubinus-spii.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
+            <span class="thumb" onClick="{{v3}}" style="{{t3}}"><img src="optetrak-logic.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
+            <span class="thumb" onClick="{{v4}}" style="{{t4}}"><img src="palamix-gun.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
+          </div>
+
+          <span style="font-size: 11.5px; color: #A7A9AC; letter-spacing: .07em;">21 productos en catálogo · 3 líneas</span>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ================= CREDENCIALES ================= -->
-  <div style="background: #FFFFFF; border-bottom: 1px solid #E3E7E9;">
+  <div style="background: #FFFFFF; border-top: 1px solid #E3E7E9; border-bottom: 1px solid #E3E7E9;">
     <div style="max-width: 1240px; margin: 0 auto; padding: 44px 40px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px;">
       <div style="display: flex; flex-direction: column; gap: 6px; border-left: 3px solid {{accent}}; padding-left: 20px;">
         <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">+25</span>
@@ -292,12 +277,12 @@
         <div style="display: flex; flex-direction: column; gap: 15px;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">Catálogo</span>
           <h2 style="font-size: 42px; color: #10222A; letter-spacing: -0.03em;">Tres líneas, veintiún soluciones</h2>
-          <p style="font-size: 16.5px; color: #69727D; max-width: 62ch; line-height: 1.6; font-weight: 300;">
+          <p style="font-size: 16.5px; color: #69727D; max-width: 62ch; line-height: 1.6;">
             Cada producto tiene su ficha con indicaciones, tipo de fijación y marca de origen.
             Filtrable por línea y por fabricante.
           </p>
         </div>
-        <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 9px; border: 1px solid #CBD2D6; color: #10222A; font-size: 14px; font-weight: 600; padding: 13px 24px; border-radius: 4px; white-space: nowrap;">
+        <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 9px; border: 1px solid #CBD2D6; color: #10222A; font-size: 14px; font-weight: 600; padding: 13px 24px; border-radius: 4px; white-space: nowrap; background: #FFFFFF;">
           Ver los 21 productos
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
         </a>
@@ -360,80 +345,65 @@
     </div>
   </div>
 
-  <!-- ================= EL PROCESO ================= -->
-  <div class="grid-bg" style="position: relative; background: linear-gradient(165deg, #10222A 0%, #0A171D 100%); padding: 100px 0; overflow: hidden;">
-    <div style="position: absolute; bottom: -240px; left: -160px; width: 620px; height: 620px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.16), transparent 70%); filter: blur(56px);"></div>
+  <!-- ================= EL PROCESO (claro) ================= -->
+  <div style="background: #FFFFFF; padding: 96px 0; border-top: 1px solid #E3E7E9;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
 
-    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 0 40px;">
-
-      <div style="display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center; margin-bottom: 66px;">
-        <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #72C5C2;">Nuestro proceso</span>
-        <h2 style="font-size: 42px; color: #FFFFFF; letter-spacing: -0.03em; max-width: 20ch;">Un implante no se entrega. Se acompaña.</h2>
-        <p style="font-size: 16.5px; color: #A7A9AC; max-width: 68ch; line-height: 1.65; font-weight: 300;">
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center; margin-bottom: 54px;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">Nuestro proceso</span>
+        <h2 style="font-size: 42px; color: #10222A; letter-spacing: -0.03em; max-width: 20ch;">Un implante no se entrega. Se acompaña.</h2>
+        <p style="font-size: 16.5px; color: #69727D; max-width: 68ch; line-height: 1.65;">
           Cada pieza que sale de nuestro depósito queda registrada, controlada y esterilizada
           bajo protocolo. Este es el circuito completo, y es la razón por la que un centro
           elige a Swiss Protech.
         </p>
       </div>
 
-      <div style="position: relative;">
-        <div class="rail"></div>
-        <div style="position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px;">
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px;">
 
-          <div class="stepw">
-            <div class="step" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
-              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">01</span>
-              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Depósito e identificación</h3>
-              <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
-                Cada pieza ingresa con su lote y su número de serie cargados en el sistema.
-              </p>
-            </div>
-          </div>
-
-          <div class="stepw">
-            <div class="step" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
-              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">02</span>
-              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Control y preparación</h3>
-              <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
-                Verificación de integridad, vencimiento y correspondencia con la cirugía programada.
-              </p>
-            </div>
-          </div>
-
-          <div class="stepw">
-            <div class="step" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
-              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">03</span>
-              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Esterilización</h3>
-              <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
-                Protocolo con registro trazable de cada ciclo, según normativa ANMAT.
-              </p>
-            </div>
-          </div>
-
-          <div class="stepw">
-            <div class="step" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
-              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">04</span>
-              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Traslado controlado</h3>
-              <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
-                Logística propia hasta el centro, con seguimiento del envío en todo momento.
-              </p>
-            </div>
-          </div>
-
-          <div class="stepw">
-            <div class="step" style="border: 1px solid rgba(0,149,161,.42); background: rgba(0,149,161,.10); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
-              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: {{accent}}; border: 1px solid rgba(114,197,194,.6); color: #FFFFFF; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">05</span>
-              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Entrega en quirófano</h3>
-              <p style="font-size: 13.5px; color: #C6D0D4; line-height: 1.62; text-align: center;">
-                Acompañamiento técnico en el acto quirúrgico, con instrumental completo.
-              </p>
-            </div>
-          </div>
-
+        <div class="step" style="border: 1px solid #E3E7E9; background: #FFFFFF; border-radius: 6px; padding: 28px 24px 26px; display: flex; flex-direction: column; gap: 13px; height: 100%;">
+          <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: {{accent}}; background: rgba(0,149,161,.09); padding: 6px 11px; border-radius: 3px; align-self: flex-start;">01</span>
+          <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Depósito e identificación</h3>
+          <p style="font-size: 13.5px; color: #69727D; line-height: 1.62;">
+            Cada pieza ingresa con su lote y su número de serie cargados en el sistema.
+          </p>
         </div>
+
+        <div class="step" style="border: 1px solid #E3E7E9; background: #FFFFFF; border-radius: 6px; padding: 28px 24px 26px; display: flex; flex-direction: column; gap: 13px; height: 100%;">
+          <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: {{accent}}; background: rgba(0,149,161,.09); padding: 6px 11px; border-radius: 3px; align-self: flex-start;">02</span>
+          <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Control y preparación</h3>
+          <p style="font-size: 13.5px; color: #69727D; line-height: 1.62;">
+            Verificación de integridad, vencimiento y correspondencia con la cirugía programada.
+          </p>
+        </div>
+
+        <div class="step" style="border: 1px solid #E3E7E9; background: #FFFFFF; border-radius: 6px; padding: 28px 24px 26px; display: flex; flex-direction: column; gap: 13px; height: 100%;">
+          <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: {{accent}}; background: rgba(0,149,161,.09); padding: 6px 11px; border-radius: 3px; align-self: flex-start;">03</span>
+          <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Esterilización</h3>
+          <p style="font-size: 13.5px; color: #69727D; line-height: 1.62;">
+            Protocolo con registro trazable de cada ciclo, según normativa ANMAT.
+          </p>
+        </div>
+
+        <div class="step" style="border: 1px solid #E3E7E9; background: #FFFFFF; border-radius: 6px; padding: 28px 24px 26px; display: flex; flex-direction: column; gap: 13px; height: 100%;">
+          <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: {{accent}}; background: rgba(0,149,161,.09); padding: 6px 11px; border-radius: 3px; align-self: flex-start;">04</span>
+          <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Traslado controlado</h3>
+          <p style="font-size: 13.5px; color: #69727D; line-height: 1.62;">
+            Logística propia hasta el centro, con seguimiento del envío en todo momento.
+          </p>
+        </div>
+
+        <div class="step" style="border: 1px solid rgba(0,149,161,.42); background: rgba(0,149,161,.05); border-radius: 6px; padding: 28px 24px 26px; display: flex; flex-direction: column; gap: 13px; height: 100%;">
+          <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: #FFFFFF; background: {{accent}}; padding: 6px 11px; border-radius: 3px; align-self: flex-start;">05</span>
+          <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Entrega en quirófano</h3>
+          <p style="font-size: 13.5px; color: #5A6570; line-height: 1.62;">
+            Acompañamiento técnico en el acto quirúrgico, con instrumental completo.
+          </p>
+        </div>
+
       </div>
 
-      <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 56px;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 52px;">
         <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #fff; font-size: 15px; font-weight: 600; padding: 15px 30px; border-radius: 4px;">
           Ver el proceso completo
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
@@ -443,7 +413,7 @@
   </div>
 
   <!-- ================= REPRESENTACIONES ================= -->
-  <div style="background: #FFFFFF; padding: 96px 0;">
+  <div style="background: #F7F8F9; padding: 96px 0;">
     <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
 
       <div style="display: grid; grid-template-columns: 400px 1fr; gap: 64px; align-items: start;">
@@ -451,7 +421,7 @@
         <div style="display: flex; flex-direction: column; gap: 17px;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">Representaciones</span>
           <h2 style="font-size: 38px; color: #10222A; letter-spacing: -0.03em;">Fabricantes que elegimos representar</h2>
-          <p style="font-size: 16px; color: #69727D; line-height: 1.65; font-weight: 300;">
+          <p style="font-size: 16px; color: #69727D; line-height: 1.65;">
             Somos representantes exclusivos en Argentina de compañías líderes en tecnología
             médica de origen alemán y norteamericano.
           </p>
@@ -510,35 +480,35 @@
   </div>
 
   <!-- ================= COBERTURA + PORTAL ================= -->
-  <div style="background: #F7F8F9; padding: 90px 0;">
+  <div style="background: #FFFFFF; padding: 90px 0; border-top: 1px solid #E3E7E9;">
     <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1fr 420px; gap: 40px; align-items: stretch;">
 
-      <div style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; padding: 44px 46px; display: flex; flex-direction: column; gap: 26px;">
+      <div style="background: #F7F8F9; border: 1px solid #E3E7E9; border-radius: 6px; padding: 44px 46px; display: flex; flex-direction: column; gap: 26px;">
         <div style="display: flex; flex-direction: column; gap: 13px;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">Cobertura</span>
           <h2 style="font-size: 32px; color: #10222A; letter-spacing: -0.03em;">Presencia en todo el país</h2>
-          <p style="font-size: 15.5px; color: #69727D; line-height: 1.62; font-weight: 300; max-width: 60ch;">
+          <p style="font-size: 15.5px; color: #69727D; line-height: 1.62; max-width: 60ch;">
             Sedes en CABA y Rosario, con entrega y acompañamiento técnico en 17 provincias.
           </p>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 9px;">
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">CABA</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Buenos Aires</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Rosario</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Santa Fe</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Córdoba</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Entre Ríos</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Corrientes</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Misiones</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Chaco</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Jujuy</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Salta</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Tucumán</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Mendoza</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">San Juan</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">San Luis</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Neuquén</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Chubut</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">CABA</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Buenos Aires</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Rosario</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Santa Fe</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Córdoba</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Entre Ríos</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Corrientes</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Misiones</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Chaco</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Jujuy</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Salta</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Tucumán</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Mendoza</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">San Juan</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">San Luis</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Neuquén</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Chubut</span>
         </div>
       </div>
 
@@ -549,7 +519,7 @@
             <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
           </span>
           <h3 style="font-size: 25px; color: #FFFFFF; letter-spacing: -0.025em; line-height: 1.2;">Portal de educación médica</h3>
-          <p style="font-size: 14.5px; color: #A7A9AC; line-height: 1.65; font-weight: 300;">
+          <p style="font-size: 14.5px; color: #A7A9AC; line-height: 1.65;">
             Técnicas quirúrgicas por producto, material descargable y webinars.
             Acceso exclusivo para profesionales registrados y activados.
           </p>
@@ -557,7 +527,7 @@
             <a href="#" class="btn-p" style="display: flex; align-items: center; justify-content: center; gap: 9px; background: {{accent}}; color: #fff; font-size: 14.5px; font-weight: 600; padding: 14px 22px; border-radius: 4px;">
               Registrarme como médico
             </a>
-            <a href="#" class="btn-g" style="display: flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid rgba(255,255,255,.24); color: #FFFFFF; font-size: 14.5px; font-weight: 500; padding: 14px 22px; border-radius: 4px;">
+            <a href="#" style="display: flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid rgba(255,255,255,.24); color: #FFFFFF; font-size: 14.5px; font-weight: 500; padding: 14px 22px; border-radius: 4px;">
               Ya tengo cuenta
             </a>
           </div>
@@ -572,7 +542,7 @@
     <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 48px;">
       <div style="display: flex; flex-direction: column; gap: 12px;">
         <h2 style="font-size: 34px; color: #FFFFFF; letter-spacing: -0.03em;">¿Necesitás asesoramiento técnico?</h2>
-        <p style="font-size: 16px; color: rgba(255,255,255,.86); line-height: 1.6; font-weight: 300; max-width: 60ch;">
+        <p style="font-size: 16px; color: rgba(255,255,255,.88); line-height: 1.6; max-width: 60ch;">
           Contanos si escribís como médico, como financiador o como paciente, y la consulta
           llega directo a quien corresponde.
         </p>
@@ -596,7 +566,7 @@
 
         <div style="display: flex; flex-direction: column; gap: 18px;">
           <img src="logo-blanco.png" alt="Swiss Protech" style="height: 40px; width: auto; align-self: flex-start;">
-          <p style="font-size: 13.5px; color: #69727D; line-height: 1.65; font-weight: 300;">
+          <p style="font-size: 13.5px; color: #69727D; line-height: 1.65;">
             Importación y comercialización de implantes ortopédicos de origen alemán
             y norteamericano. Habilitados por el Ministerio de Salud de la Nación y A.N.M.A.T.
           </p>
@@ -659,9 +629,9 @@ class Component extends DCLogic {
       v['s' + k] = k === i
         ? 'opacity:1;transform:scale(1);'
         : 'opacity:0;transform:scale(.94);pointer-events:none;';
-      v['t' + k] = 'width:56px;height:56px;border-radius:6px;display:flex;align-items:center;'
-        + 'justify-content:center;border:1px solid ' + (k === i ? 'rgba(114,197,194,.75)' : 'rgba(255,255,255,.12)')
-        + ';background:' + (k === i ? 'rgba(0,149,161,.16)' : 'rgba(255,255,255,.035)') + ';';
+      v['t' + k] = 'width:54px;height:54px;border-radius:6px;display:flex;align-items:center;'
+        + 'justify-content:center;border:1px solid ' + (k === i ? '#0095A1' : '#DDE3E5')
+        + ';background:' + (k === i ? 'rgba(0,149,161,.07)' : '#FFFFFF') + ';';
       v['v' + k] = ((n) => () => { clearInterval(this.t); this.setState({ i: n }); })(k);
     }
     return v;

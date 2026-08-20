@@ -24,28 +24,28 @@
               transform-style: preserve-3d; }
     .obj { transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2,.75,.25,1); }
     .obj img { width: 300px; height: 300px; object-fit: contain;
-               filter: drop-shadow(0 42px 46px rgba(0,0,0,.6)); display: block;
+               filter: drop-shadow(0 34px 36px rgba(16,34,42,.26)); display: block;
                animation: fl 9s ease-in-out infinite; }
     @keyframes fl { 0%,100% { transform: translateY(-6px); } 50% { transform: translateY(6px); } }
 
     .disc { position: absolute; bottom: 74px; left: 50%; margin-left: -190px;
             width: 380px; height: 380px; border-radius: 50%;
-            border: 1px solid rgba(114,197,194,.16);
+            border: 1px solid rgba(0,149,161,.20);
             transform: rotateX(78deg); animation: dspin 34s linear infinite; }
     .disc::before { content: ""; position: absolute; top: -3px; left: 50%; margin-left: -3px;
-            width: 6px; height: 6px; border-radius: 50%; background: #72C5C2;
-            box-shadow: 0 0 14px 4px rgba(114,197,194,.5); }
+            width: 6px; height: 6px; border-radius: 50%; background: #0095A1;
+            box-shadow: 0 0 12px 3px rgba(0,149,161,.35); }
     .disc.d2 { width: 480px; height: 480px; margin-left: -240px; bottom: 26px;
-            border-color: rgba(114,197,194,.08); animation-duration: 56s; animation-direction: reverse; }
+            border-color: rgba(0,149,161,.10); animation-duration: 56s; animation-direction: reverse; }
     @keyframes dspin { to { transform: rotateX(78deg) rotateZ(360deg); } }
 
     .beam { position: absolute; inset: 0; margin: auto; width: 460px; height: 460px;
-            border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.24), transparent 62%);
-            filter: blur(36px); animation: bp 9s ease-in-out infinite; }
+            border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.12), transparent 62%);
+            filter: blur(40px); animation: bp 9s ease-in-out infinite; }
     @keyframes bp { 0%,100% { opacity: .6; } 50% { opacity: .9; } }
 
     .vbtn { cursor: pointer; transition: background .25s, border-color .25s; }
-    .vbtn:hover { background: rgba(0,149,161,.22); border-color: rgba(114,197,194,.6); }
+    .vbtn:hover { background: rgba(0,149,161,.07); border-color: #0095A1; }
 
     .tabb { cursor: pointer; transition: color .25s, border-color .25s; }
     .btn-p { transition: background .28s, box-shadow .28s; }
@@ -93,8 +93,9 @@
 
     <!-- VISOR 3D -->
     <div class="viewer" style="position: relative; background:
-         radial-gradient(680px 480px at 50% 40%, #16333C 0%, transparent 64%),
-         linear-gradient(165deg, #10222A 0%, #06131A 100%); height: 720px; overflow: hidden;">
+         radial-gradient(660px 460px at 50% 40%, #FFFFFF 0%, transparent 66%),
+         linear-gradient(168deg, #F7FAFB 0%, #E7EFF1 100%); min-height: 720px; overflow: hidden;
+         border-right: 1px solid #E3E7E9;">
 
       <div class="podium">
         <div class="beam"></div>
@@ -105,27 +106,27 @@
         </div>
       </div>
 
-      <span style="position: absolute; top: 28px; left: 30px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #72C5C2; border: 1px solid rgba(114,197,194,.34); background: rgba(0,149,161,.12); padding: 7px 14px; border-radius: 99px;">Vista 3D</span>
+      <span style="position: absolute; top: 28px; left: 30px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}}; border: 1px solid rgba(0,149,161,.28); background: rgba(0,149,161,.07); padding: 7px 14px; border-radius: 99px;">Vista 3D</span>
 
       <!-- controles -->
-      <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; background: rgba(6,19,26,.78); border: 1px solid rgba(255,255,255,.12); padding: 9px; border-radius: 99px; backdrop-filter: blur(10px);">
-        <span class="vbtn" onClick="{{girarIzq}}" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center;">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"></path><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
+      <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.92); border: 1px solid #DDE6E8; padding: 9px; border-radius: 99px; backdrop-filter: blur(10px); box-shadow: 0 6px 18px -8px rgba(16,34,42,.22);">
+        <span class="vbtn" onClick="{{girarIzq}}" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid #DDE6E8; background: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#10222A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"></path><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
         </span>
-        <span class="vbtn" onClick="{{acercar}}" style="height: 40px; padding: 0 18px; border-radius: 99px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #FFFFFF; font-weight: 500;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"></path></svg>
+        <span class="vbtn" onClick="{{acercar}}" style="height: 40px; padding: 0 18px; border-radius: 99px; border: 1px solid #DDE6E8; background: #FFFFFF; display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #10222A; font-weight: 500;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"></path></svg>
           {{zoomTxt}}
         </span>
-        <span class="vbtn" onClick="{{reset}}" style="height: 40px; padding: 0 18px; border-radius: 99px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #FFFFFF; font-weight: 500;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>
+        <span class="vbtn" onClick="{{reset}}" style="height: 40px; padding: 0 18px; border-radius: 99px; border: 1px solid #DDE6E8; background: #FFFFFF; display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #10222A; font-weight: 500;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>
           Centrar
         </span>
-        <span class="vbtn" onClick="{{girarDer}}" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center;">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"></path><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg>
+        <span class="vbtn" onClick="{{girarDer}}" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid #DDE6E8; background: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#10222A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"></path><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg>
         </span>
       </div>
 
-      <span style="position: absolute; bottom: 34px; right: 30px; font-size: 11.5px; color: #69727D; letter-spacing: .05em;">{{angTxt}}</span>
+      <span style="position: absolute; bottom: 34px; right: 30px; font-size: 11.5px; color: #8A929A; letter-spacing: .05em;">{{angTxt}}</span>
     </div>
 
     <!-- DATOS -->

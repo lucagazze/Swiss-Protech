@@ -17,24 +17,28 @@
     h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.14; }
     p { margin: 0; }
 
-    .stage { perspective: 900px; }
-    .ring { position: relative; width: 230px; height: 230px; margin: 0 auto;
-            transform-style: preserve-3d; animation: spin 30s linear infinite; }
-    .ring-i { position: absolute; inset: 0; margin: auto; width: 150px; height: 150px; }
-    .ring-i img { width: 100%; height: 100%; object-fit: contain;
-                  filter: drop-shadow(0 18px 26px rgba(0,0,0,.55)); }
-    @keyframes spin { to { transform: rotateY(-360deg); } }
+    .stage { position: relative; }
+    .halo { position: absolute; left: 50%; top: 48%; width: 250px; height: 250px;
+            margin: -125px 0 0 -125px; border-radius: 50%; border: 1px solid rgba(0,149,161,.20);
+            transform: rotateX(76deg); animation: hspin 36s linear infinite; }
+    @keyframes hspin { to { transform: rotateX(76deg) rotateZ(360deg); } }
+    .glow { position: absolute; left: 50%; top: 46%; width: 320px; height: 320px;
+            margin: -160px 0 0 -160px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,149,161,.13), transparent 62%);
+            filter: blur(28px); }
+    .drift { animation: drift 10s ease-in-out infinite; }
+    @keyframes drift { 0%,100% { transform: translateY(-5px); } 50% { transform: translateY(5px); } }
+    .shot { width: 210px; height: 210px; object-fit: contain; display: block;
+            filter: drop-shadow(0 26px 28px rgba(16,34,42,.24)); }
+    .refl-box { width: 210px; height: 76px; overflow: hidden; margin-top: 2px;
+                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.34), transparent 76%);
+                mask-image: linear-gradient(to bottom, rgba(0,0,0,.34), transparent 76%); }
+    .refl { width: 210px; height: 210px; object-fit: contain; display: block;
+            transform: scaleY(-1); opacity: .38; }
+    .floor { position: absolute; left: 50%; top: 66%; width: 260px; height: 1px; margin-left: -130px;
+             background: linear-gradient(90deg, transparent, rgba(0,149,161,.26), transparent); }
 
-    .halo { position: absolute; inset: 0; margin: auto; width: 262px; height: 262px;
-            border-radius: 50%; border: 1px solid rgba(0,149,161,.32);
-            transform: rotateX(74deg); animation: hspin 20s linear infinite; }
-    @keyframes hspin { to { transform: rotateX(74deg) rotateZ(360deg); } }
-    .glow { position: absolute; inset: 0; margin: auto; width: 300px; height: 300px;
-            border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.34), transparent 66%);
-            filter: blur(20px); animation: pulse 7s ease-in-out infinite; }
-    @keyframes pulse { 0%,100% { opacity: .55; } 50% { opacity: .95; } }
-
-    @media (prefers-reduced-motion: reduce) { .ring, .halo, .glow { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .halo, .drift { animation: none; } }
   </style>
 </helmet>
 
@@ -55,32 +59,33 @@
 
   <!-- HERO -->
   <div style="position: relative; background:
-       radial-gradient(420px 320px at 50% 72%, #163B44 0%, transparent 64%),
-       linear-gradient(165deg, #10222A 0%, #06131A 100%); padding: 34px 20px 30px; overflow: hidden;">
+       linear-gradient(168deg, #FFFFFF 0%, #F6FAFB 48%, #E8F1F3 100%); padding: 34px 20px 30px; overflow: hidden;">
 
     <div style="display: flex; flex-direction: column; gap: 18px;">
-      <div style="display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; border: 1px solid rgba(114,197,194,.34); background: rgba(0,149,161,.11); color: #72C5C2; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 7px 13px; border-radius: 99px;">
-        <span style="width: 5px; height: 5px; border-radius: 50%; background: #72C5C2; display: block;"></span>
+      <div style="display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; border: 1px solid rgba(0,149,161,.28); background: rgba(0,149,161,.07); color: #007C87; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 7px 13px; border-radius: 99px;">
+        <span style="width: 5px; height: 5px; border-radius: 50%; background: {{accent}}; display: block;"></span>
         Representantes exclusivos
       </div>
 
-      <h1 style="font-size: 32px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.03em; line-height: 1.1;">
+      <h1 style="font-size: 32px; font-weight: 800; color: #10222A; letter-spacing: -0.03em; line-height: 1.1;">
         Implantes con trazabilidad <span style="color: {{accent}};">de punta a punta.</span>
       </h1>
 
-      <p style="font-size: 15px; line-height: 1.62; color: #C6D0D4; font-weight: 300;">
+      <p style="font-size: 15px; line-height: 1.62; color: #5A6570;">
         Más de 25 años importando prótesis de cadera y rodilla de origen alemán y norteamericano.
       </p>
 
-      <div class="stage" style="position: relative; height: 260px; display: flex; align-items: center; justify-content: center; margin: 4px 0;">
+      <div class="stage" style="position: relative; height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 4px 0;">
         <div class="glow"></div>
         <div class="halo"></div>
-        <div class="ring">
-          <div class="ring-i" style="transform: rotateY(0deg) translateZ(170px);"><img src="mobilelink.png" alt="MobileLink"></div>
-          <div class="ring-i" style="transform: rotateY(90deg) translateZ(170px);"><img src="endomodel-mod.png" alt="Endomodel"></div>
-          <div class="ring-i" style="transform: rotateY(180deg) translateZ(170px);"><img src="uni-sled.png" alt="Uni Sled"></div>
-          <div class="ring-i" style="transform: rotateY(270deg) translateZ(170px);"><img src="lubinus-spii.png" alt="Lubinus SPII"></div>
-        </div>
+        <div class="drift"><img src="mobilelink.png" alt="MobileLink Dual Mobility" class="shot"></div>
+        <div class="refl-box"><img src="mobilelink.png" alt="" class="refl"></div>
+        <div class="floor"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: -6px;">
+        <span style="font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: {{accent}};">Cadera</span>
+        <span style="font-size: 16px; font-weight: 700; color: #10222A; letter-spacing: -0.02em;">MobileLink Dual Mobility</span>
+        <span style="font-size: 12px; color: #8A929A;">Waldemar Link · Alemania</span>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -88,7 +93,7 @@
           Ver catálogo
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
         </a>
-        <a href="#" style="display: flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid rgba(255,255,255,.26); color: #FFFFFF; font-size: 15px; font-weight: 500; padding: 16px 20px; border-radius: 4px; min-height: 52px;">
+        <a href="#" style="display: flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid #CBD2D6; color: #10222A; background: #FFFFFF; font-size: 15px; font-weight: 500; padding: 16px 20px; border-radius: 4px; min-height: 52px;">
           Cómo trabajamos
         </a>
       </div>
@@ -159,35 +164,35 @@
   </div>
 
   <!-- PROCESO -->
-  <div style="background: linear-gradient(165deg, #10222A 0%, #0A171D 100%); padding: 34px 20px; display: flex; flex-direction: column; gap: 20px;">
+  <div style="background: #FFFFFF; border-top: 1px solid #E3E7E9; padding: 34px 20px; display: flex; flex-direction: column; gap: 20px;">
     <div style="display: flex; flex-direction: column; gap: 10px;">
-      <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #72C5C2;">Nuestro proceso</span>
-      <h2 style="font-size: 25px; color: #FFFFFF; letter-spacing: -0.03em;">Un implante no se entrega. Se acompaña.</h2>
-      <p style="font-size: 14px; color: #A7A9AC; line-height: 1.62; font-weight: 300;">
+      <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: {{accent}};">Nuestro proceso</span>
+      <h2 style="font-size: 25px; color: #10222A; letter-spacing: -0.03em;">Un implante no se entrega. Se acompaña.</h2>
+      <p style="font-size: 14px; color: #69727D; line-height: 1.62;">
         Cada pieza sale del depósito identificada, controlada y esterilizada bajo protocolo.
       </p>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 10px;">
-      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.035); border-radius: 6px; padding: 15px 17px;">
-        <span style="width: 34px; height: 34px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">01</span>
-        <span style="font-size: 14.5px; color: #FFFFFF; font-weight: 500;">Depósito e identificación</span>
+      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid #E3E7E9; background: #FFFFFF; border-radius: 6px; padding: 15px 17px;">
+        <span style="width: 34px; height: 34px; border-radius: 50%; background: rgba(0,149,161,.09); color: #0095A1; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">01</span>
+        <span style="font-size: 14.5px; color: #10222A; font-weight: 500;">Depósito e identificación</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.035); border-radius: 6px; padding: 15px 17px;">
-        <span style="width: 34px; height: 34px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">02</span>
-        <span style="font-size: 14.5px; color: #FFFFFF; font-weight: 500;">Control y preparación</span>
+      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid #E3E7E9; background: #FFFFFF; border-radius: 6px; padding: 15px 17px;">
+        <span style="width: 34px; height: 34px; border-radius: 50%; background: rgba(0,149,161,.09); color: #0095A1; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">02</span>
+        <span style="font-size: 14.5px; color: #10222A; font-weight: 500;">Control y preparación</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.035); border-radius: 6px; padding: 15px 17px;">
-        <span style="width: 34px; height: 34px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">03</span>
-        <span style="font-size: 14.5px; color: #FFFFFF; font-weight: 500;">Esterilización</span>
+      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid #E3E7E9; background: #FFFFFF; border-radius: 6px; padding: 15px 17px;">
+        <span style="width: 34px; height: 34px; border-radius: 50%; background: rgba(0,149,161,.09); color: #0095A1; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">03</span>
+        <span style="font-size: 14.5px; color: #10222A; font-weight: 500;">Esterilización</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.035); border-radius: 6px; padding: 15px 17px;">
-        <span style="width: 34px; height: 34px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">04</span>
-        <span style="font-size: 14.5px; color: #FFFFFF; font-weight: 500;">Traslado controlado</span>
+      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid #E3E7E9; background: #FFFFFF; border-radius: 6px; padding: 15px 17px;">
+        <span style="width: 34px; height: 34px; border-radius: 50%; background: rgba(0,149,161,.09); color: #0095A1; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">04</span>
+        <span style="font-size: 14.5px; color: #10222A; font-weight: 500;">Traslado controlado</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid rgba(0,149,161,.45); background: rgba(0,149,161,.10); border-radius: 6px; padding: 15px 17px;">
+      <div style="display: flex; align-items: center; gap: 14px; border: 1px solid rgba(0,149,161,.42); background: rgba(0,149,161,.05); border-radius: 6px; padding: 15px 17px;">
         <span style="width: 34px; height: 34px; border-radius: 50%; background: {{accent}}; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex: none;">05</span>
-        <span style="font-size: 14.5px; color: #FFFFFF; font-weight: 500;">Entrega en quirófano</span>
+        <span style="font-size: 14.5px; color: #10222A; font-weight: 500;">Entrega en quirófano</span>
       </div>
     </div>
   </div>

@@ -447,7 +447,7 @@ def main():
         cuerpo = raiz_fluida(cuerpo)
         cuerpo = marcar(cuerpo)
         cuerpo = wire_nav(cuerpo, dst)
-        cuerpo = add_burger(cuerpo, oscuro=(src == "Proceso.dc.html"))
+        cuerpo = add_burger(cuerpo)
         cuerpo = cuerpo.replace('src="', 'src="assets/').replace('src="assets/https', 'src="https')
         # botones que deben ir a una pagina real
         cuerpo = cuerpo.replace('>Ver los 21 productos', ' data-go>Ver los 21 productos')
