@@ -1,0 +1,592 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+  <style>
+    body { margin: 0; font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+           color: #10222A; background: #FFFFFF; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #0095A1; text-decoration: none; }
+    a:hover { color: #007C87; }
+    h1, h2, h3, h4 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+    p { margin: 0; }
+
+    /* ---- escenario 3D del hero ---- */
+    .stage { perspective: 1600px; perspective-origin: 50% 45%; }
+    .ring { position: relative; width: 420px; height: 420px; margin: 0 auto;
+            transform-style: preserve-3d; animation: spin 34s linear infinite; }
+    .ring.paused { animation-play-state: paused; }
+    .ring-i { position: absolute; inset: 0; margin: auto; width: 250px; height: 250px;
+              transform-style: preserve-3d; }
+    .ring-i img { width: 100%; height: 100%; object-fit: contain;
+                  filter: drop-shadow(0 26px 40px rgba(0,0,0,.55)); }
+    @keyframes spin { to { transform: rotateY(-360deg); } }
+
+    .halo { position: absolute; inset: 0; margin: auto; border-radius: 50%;
+            border: 1px solid rgba(0,149,161,.34); transform-style: preserve-3d; }
+    .halo.a { width: 470px; height: 470px; transform: rotateX(74deg); animation: hspin 18s linear infinite; }
+    .halo.b { width: 590px; height: 590px; transform: rotateX(74deg) rotateZ(40deg);
+              border-color: rgba(114,197,194,.18); animation: hspin 30s linear infinite reverse; }
+    @keyframes hspin { to { transform: rotateX(74deg) rotateZ(360deg); } }
+
+    .glow { position: absolute; inset: 0; margin: auto; width: 560px; height: 560px;
+            border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.32), transparent 66%);
+            filter: blur(26px); animation: pulse 7s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: .55; transform: scale(1); }
+                       50% { opacity: .95; transform: scale(1.07); } }
+
+    /* ---- tarjetas con inclinación 3D ---- */
+    .tilt { perspective: 1000px; }
+    .tilt-in { transition: transform .5s cubic-bezier(.2,.7,.3,1), box-shadow .5s; transform-style: preserve-3d; }
+    .tilt:hover .tilt-in { transform: rotateX(5deg) rotateY(-7deg) translateY(-10px) translateZ(24px);
+                           box-shadow: 0 34px 60px -22px rgba(16,34,42,.42); }
+    .tilt:hover .tilt-img { transform: translateZ(52px) scale(1.09) rotate(-3deg); }
+    .tilt-img { transition: transform .5s cubic-bezier(.2,.7,.3,1); }
+
+    /* ---- bloques del proceso ---- */
+    .step { perspective: 900px; }
+    .step-in { transition: transform .45s cubic-bezier(.2,.7,.3,1), border-color .45s, background .45s;
+               transform-style: preserve-3d; }
+    .step:hover .step-in { transform: translateY(-8px) rotateX(6deg) translateZ(18px);
+                           border-color: rgba(0,149,161,.7); background: rgba(0,149,161,.07); }
+    .step-n { transition: transform .45s, background .45s, color .45s; }
+    .step:hover .step-n { transform: translateZ(34px) scale(1.12); background: #0095A1; color: #fff; }
+
+    .rail { position: absolute; left: 0; right: 0; top: 46px; height: 2px;
+            background: linear-gradient(90deg, rgba(0,149,161,0), #0095A1 12%, #0095A1 88%, rgba(0,149,161,0)); }
+    .rail::after { content: ""; position: absolute; top: -3px; left: 0; width: 90px; height: 8px;
+                   border-radius: 99px; background: #72C5C2;
+                   box-shadow: 0 0 22px 5px rgba(114,197,194,.85); animation: run 5.5s ease-in-out infinite; }
+    @keyframes run { 0% { left: 2%; } 50% { left: 88%; } 100% { left: 2%; } }
+
+    .prov { transition: transform .3s, background .3s, color .3s, border-color .3s; }
+    .prov:hover { transform: translateY(-3px); background: #0095A1; border-color: #0095A1; color: #fff; }
+
+    .btn-p { transition: transform .28s, box-shadow .28s, background .28s; }
+    .btn-p:hover { transform: translateY(-3px); background: #007C87;
+                   box-shadow: 0 16px 32px -12px rgba(0,149,161,.85); }
+    .btn-g { transition: transform .28s, border-color .28s, color .28s; }
+    .btn-g:hover { transform: translateY(-3px); border-color: #0095A1; color: #0095A1; }
+
+    .navlink { position: relative; transition: color .25s; }
+    .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
+                      background: #0095A1; transition: right .3s; }
+    .navlink:hover { color: #0095A1; }
+    .navlink:hover::after { right: 0; }
+
+    .brand-l { filter: grayscale(1) brightness(1.7); opacity: .62;
+               transition: filter .35s, opacity .35s, transform .35s; }
+    .brand-l:hover { filter: none; opacity: 1; transform: scale(1.05); }
+
+    .grid-bg { background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 62px 62px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ring, .halo, .glow, .rail::after { animation: none; }
+      .tilt-in, .step-in, .btn-p, .btn-g { transition: none; }
+    }
+  </style>
+</helmet>
+
+<div style="width: 1440px; background: #FFFFFF; overflow: hidden;">
+
+  <!-- ================= BARRA SUPERIOR ================= -->
+  <div style="background: #10222A; color: #A7A9AC; font-size: 12.5px; letter-spacing: .04em;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 9px 40px; display: flex; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 26px;">
+        <span style="display: flex; align-items: center; gap: 7px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"></path></svg>
+          Habilitado por ANMAT y Ministerio de Salud de la Nación
+        </span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <a href="#" style="color: #A7A9AC;">Ingresar</a>
+        <span style="opacity: .32;">|</span>
+        <a href="#" style="color: #72C5C2; font-weight: 600;">Registro médico</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= NAVEGACIÓN ================= -->
+  <div style="background: #FFFFFF; border-bottom: 1px solid #E3E7E9; position: relative; z-index: 5;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px;">
+      <img src="logo.png" alt="Swiss Protech" style="height: 42px; width: auto; display: block;">
+      <div style="display: flex; align-items: center; gap: 34px; font-size: 14px; font-weight: 500; color: #10222A;">
+        <a href="#" class="navlink" style="color: #10222A;">Institucional</a>
+        <a href="#" class="navlink" style="color: #10222A;">Productos</a>
+        <a href="#" class="navlink" style="color: #0095A1; font-weight: 600;">Nuestro proceso</a>
+        <a href="#" class="navlink" style="color: #10222A;">Educación médica</a>
+        <a href="#" class="navlink" style="color: #10222A;">Representaciones</a>
+        <a href="#" class="navlink" style="color: #10222A;">Contacto</a>
+      </div>
+      <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 9px; background: {{accent}}; color: #fff; font-size: 13.5px; font-weight: 600; padding: 12px 22px; border-radius: 4px; white-space: nowrap;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 20.5l1.6-4.9A8.4 8.4 0 0 1 3.7 11 8.5 8.5 0 0 1 12 2.6a8.4 8.4 0 0 1 9 8.9z"></path></svg>
+        Consultar
+      </a>
+    </div>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <div class="grid-bg" style="position: relative; background:
+       radial-gradient(1100px 620px at 78% 34%, #163B44 0%, transparent 62%),
+       linear-gradient(155deg, #10222A 0%, #0A171D 58%, #06131A 100%); overflow: hidden;">
+
+    <div style="position: absolute; top: -180px; right: -140px; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.20), transparent 70%); filter: blur(50px);"></div>
+
+    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 92px 40px 100px; display: grid; grid-template-columns: 1fr 620px; gap: 56px; align-items: center;">
+
+      <div style="display: flex; flex-direction: column; gap: 30px;">
+        <div style="display: inline-flex; align-items: center; gap: 11px; align-self: flex-start; border: 1px solid rgba(114,197,194,.34); background: rgba(0,149,161,.11); color: #72C5C2; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 9px 17px; border-radius: 99px;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #72C5C2; display: block;"></span>
+          Representantes exclusivos en Argentina
+        </div>
+
+        <h1 style="font-size: 60px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.035em; line-height: 1.04; text-wrap: balance;">
+          Implantes ortopédicos<br>con trazabilidad<br>
+          <span style="color: {{accent}};">de punta a punta.</span>
+        </h1>
+
+        <p style="font-size: 18px; line-height: 1.65; color: #C6D0D4; max-width: 52ch; font-weight: 300;">
+          Más de 25 años importando prótesis de cadera y rodilla de origen alemán y
+          norteamericano. Cada implante sale de nuestro depósito identificado, controlado
+          y esterilizado, y llega acompañado hasta el quirófano.
+        </p>
+
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #fff; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px;">
+            Ver catálogo de productos
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+          <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.26); color: #FFFFFF; font-size: 15px; font-weight: 500; padding: 16px 28px; border-radius: 4px;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Cómo trabajamos
+          </a>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 13px; padding-top: 8px;">
+          <span style="font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: #69727D; font-weight: 600; white-space: nowrap;">Representamos a</span>
+          <span style="flex-grow: 1; height: 1px; background: rgba(255,255,255,.12); display: block;"></span>
+          <img src="link.png" alt="LINK" class="brand-l" style="height: 21px; width: auto;">
+          <img src="advita.png" alt="Advita Ortho" class="brand-l" style="height: 21px; width: auto;">
+          <img src="heraeus.png" alt="Heraeus" class="brand-l" style="height: 17px; width: auto;">
+        </div>
+      </div>
+
+      <!-- escenario 3D -->
+      <div class="stage" style="position: relative; height: 560px; display: flex; align-items: center; justify-content: center;">
+        <div class="glow"></div>
+        <div class="halo b"></div>
+        <div class="halo a"></div>
+        <div class="ring {{ringCls}}">
+          <div class="ring-i" style="transform: rotateY(0deg) translateZ(300px);"><img src="mobilelink.png" alt="MobileLink"></div>
+          <div class="ring-i" style="transform: rotateY(60deg) translateZ(300px);"><img src="endomodel-mod.png" alt="Endomodel Modular"></div>
+          <div class="ring-i" style="transform: rotateY(120deg) translateZ(300px);"><img src="lubinus-spii.png" alt="Lubinus SPII"></div>
+          <div class="ring-i" style="transform: rotateY(180deg) translateZ(300px);"><img src="uni-sled.png" alt="Uni Sled"></div>
+          <div class="ring-i" style="transform: rotateY(240deg) translateZ(300px);"><img src="optetrak-logic.png" alt="Optetrak Logic"></div>
+          <div class="ring-i" style="transform: rotateY(300deg) translateZ(300px);"><img src="mp-link.png" alt="MP Link"></div>
+        </div>
+
+        <div style="position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 9px; background: rgba(6,19,26,.72); border: 1px solid rgba(255,255,255,.11); padding: 9px 17px; border-radius: 99px; backdrop-filter: blur(8px);">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: #72C5C2; display: block;"></span>
+          <span style="font-size: 11.5px; color: #C6D0D4; letter-spacing: .07em;">21 productos en catálogo · 3 líneas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CREDENCIALES ================= -->
+  <div style="background: #FFFFFF; border-bottom: 1px solid #E3E7E9;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 44px 40px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px;">
+      <div style="display: flex; flex-direction: column; gap: 6px; border-left: 3px solid {{accent}}; padding-left: 20px;">
+        <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">+25</span>
+        <span style="font-size: 13.5px; color: #69727D; line-height: 1.45;">años de trayectoria en el país</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; border-left: 3px solid #E3E7E9; padding-left: 20px;">
+        <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">17</span>
+        <span style="font-size: 13.5px; color: #69727D; line-height: 1.45;">provincias con cobertura activa</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; border-left: 3px solid #E3E7E9; padding-left: 20px;">
+        <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">21</span>
+        <span style="font-size: 13.5px; color: #69727D; line-height: 1.45;">productos entre cadera, rodilla y cementos</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; border-left: 3px solid #E3E7E9; padding-left: 20px;">
+        <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">3</span>
+        <span style="font-size: 13.5px; color: #69727D; line-height: 1.45;">marcas internacionales representadas</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= LÍNEAS DE PRODUCTO ================= -->
+  <div style="background: #F7F8F9; padding: 96px 0;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 48px;">
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">Catálogo</span>
+          <h2 style="font-size: 42px; color: #10222A; letter-spacing: -0.03em;">Tres líneas, veintiún soluciones</h2>
+          <p style="font-size: 16.5px; color: #69727D; max-width: 62ch; line-height: 1.6; font-weight: 300;">
+            Cada producto tiene su ficha con indicaciones, tipo de fijación y marca de origen.
+            Filtrable por línea y por fabricante.
+          </p>
+        </div>
+        <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 9px; border: 1px solid #CBD2D6; color: #10222A; font-size: 14px; font-weight: 600; padding: 13px 24px; border-radius: 4px; white-space: nowrap;">
+          Ver los 21 productos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px;">
+
+        <div class="tilt">
+          <div class="tilt-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
+            <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
+              <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">9 productos</span>
+              <img src="mobilelink.png" alt="Prótesis de cadera" class="tilt-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
+            </div>
+            <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
+              <h3 style="font-size: 22px; color: #10222A;">Cadera</h3>
+              <p style="font-size: 14.5px; color: #69727D; line-height: 1.6;">
+                Cotilos cementados y no cementados, doble movilidad, vástagos primarios
+                y de revisión modular.
+              </p>
+              <span style="font-size: 13px; color: {{accent}}; font-weight: 600; padding-top: 6px;">Ver la línea &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tilt">
+          <div class="tilt-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
+            <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
+              <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">7 productos</span>
+              <img src="uni-sled.png" alt="Prótesis de rodilla" class="tilt-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
+            </div>
+            <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
+              <h3 style="font-size: 22px; color: #10222A;">Rodilla</h3>
+              <p style="font-size: 14.5px; color: #69727D; line-height: 1.6;">
+                Primarias de reemplazo total, unicompartimentales, abisagradas
+                constreñidas y sistemas de revisión.
+              </p>
+              <span style="font-size: 13px; color: {{accent}}; font-weight: 600; padding-top: 6px;">Ver la línea &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tilt">
+          <div class="tilt-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
+            <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
+              <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">5 productos</span>
+              <img src="palamix-gun.png" alt="Cementos óseos" class="tilt-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
+            </div>
+            <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
+              <h3 style="font-size: 22px; color: #10222A;">Cementos</h3>
+              <p style="font-size: 14.5px; color: #69727D; line-height: 1.6;">
+                Cementos óseos con y sin antibiótico, pistolas de aplicación
+                y sistemas de mezclado al vacío.
+              </p>
+              <span style="font-size: 13px; color: {{accent}}; font-weight: 600; padding-top: 6px;">Ver la línea &rarr;</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= EL PROCESO ================= -->
+  <div class="grid-bg" style="position: relative; background: linear-gradient(165deg, #10222A 0%, #0A171D 100%); padding: 100px 0; overflow: hidden;">
+    <div style="position: absolute; bottom: -240px; left: -160px; width: 620px; height: 620px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.16), transparent 70%); filter: blur(56px);"></div>
+
+    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center; margin-bottom: 66px;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #72C5C2;">Nuestro proceso</span>
+        <h2 style="font-size: 42px; color: #FFFFFF; letter-spacing: -0.03em; max-width: 20ch;">Un implante no se entrega. Se acompaña.</h2>
+        <p style="font-size: 16.5px; color: #A7A9AC; max-width: 68ch; line-height: 1.65; font-weight: 300;">
+          Cada pieza que sale de nuestro depósito queda registrada, controlada y esterilizada
+          bajo protocolo. Este es el circuito completo, y es la razón por la que un centro
+          elige a Swiss Protech.
+        </p>
+      </div>
+
+      <div style="position: relative;">
+        <div class="rail"></div>
+        <div style="position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px;">
+
+          <div class="step">
+            <div class="step-in" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">01</span>
+              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Depósito e identificación</h3>
+              <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
+                Cada pieza ingresa con su lote y su número de serie cargados en el sistema.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-in" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">02</span>
+              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Control y preparación</h3>
+              <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
+                Verificación de integridad, vencimiento y correspondencia con la cirugía programada.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-in" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">03</span>
+              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Esterilización</h3>
+              <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
+                Protocolo con registro trazable de cada ciclo, según normativa ANMAT.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-in" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">04</span>
+              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Traslado controlado</h3>
+              <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
+                Logística propia hasta el centro, con seguimiento del envío en todo momento.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-in" style="border: 1px solid rgba(0,149,161,.42); background: rgba(0,149,161,.10); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+              <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: {{accent}}; border: 1px solid rgba(114,197,194,.6); color: #FFFFFF; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">05</span>
+              <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Entrega en quirófano</h3>
+              <p style="font-size: 13.5px; color: #C6D0D4; line-height: 1.62; text-align: center;">
+                Acompañamiento técnico en el acto quirúrgico, con instrumental completo.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 56px;">
+        <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #fff; font-size: 15px; font-weight: 600; padding: 15px 30px; border-radius: 4px;">
+          Ver el proceso completo
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= REPRESENTACIONES ================= -->
+  <div style="background: #FFFFFF; padding: 96px 0;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+
+      <div style="display: grid; grid-template-columns: 400px 1fr; gap: 64px; align-items: start;">
+
+        <div style="display: flex; flex-direction: column; gap: 17px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">Representaciones</span>
+          <h2 style="font-size: 38px; color: #10222A; letter-spacing: -0.03em;">Fabricantes que elegimos representar</h2>
+          <p style="font-size: 16px; color: #69727D; line-height: 1.65; font-weight: 300;">
+            Somos representantes exclusivos en Argentina de compañías líderes en tecnología
+            médica de origen alemán y norteamericano.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px;">
+
+          <div class="tilt">
+            <div class="tilt-in" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
+              <div style="height: 46px; display: flex; align-items: center;">
+                <img src="link.png" alt="LINK" style="height: 26px; width: auto; filter: invert(1) brightness(.28);">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <h3 style="font-size: 17px; color: #10222A;">Waldemar Link</h3>
+                <p style="font-size: 13.5px; color: #69727D; line-height: 1.6;">
+                  Hamburgo, Alemania. Fabricante de endoprótesis desde 1948, presente en más de 70 países.
+                </p>
+              </div>
+              <span style="font-size: 12.5px; color: {{accent}}; font-weight: 600; margin-top: auto;">link-ortho.com &#8599;</span>
+            </div>
+          </div>
+
+          <div class="tilt">
+            <div class="tilt-in" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
+              <div style="height: 46px; display: flex; align-items: center;">
+                <img src="advita.png" alt="Advita Ortho" style="height: 30px; width: auto; filter: invert(1) brightness(.28);">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <h3 style="font-size: 17px; color: #10222A;">Advita Ortho</h3>
+                <p style="font-size: 13.5px; color: #69727D; line-height: 1.6;">
+                  Sistemas de reemplazo articular primario y de revisión para cadera y rodilla.
+                </p>
+              </div>
+              <span style="font-size: 12.5px; color: {{accent}}; font-weight: 600; margin-top: auto;">advita.com &#8599;</span>
+            </div>
+          </div>
+
+          <div class="tilt">
+            <div class="tilt-in" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
+              <div style="height: 46px; display: flex; align-items: center;">
+                <img src="heraeus.png" alt="Heraeus" style="height: 24px; width: auto;">
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <h3 style="font-size: 17px; color: #10222A;">Heraeus Medical</h3>
+                <p style="font-size: 13.5px; color: #69727D; line-height: 1.6;">
+                  Cementos óseos PALACOS y COPAL, y los sistemas de mezclado PALAMIX.
+                </p>
+              </div>
+              <span style="font-size: 12.5px; color: {{accent}}; font-weight: 600; margin-top: auto;">heraeus-medical.com &#8599;</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= COBERTURA + PORTAL ================= -->
+  <div style="background: #F7F8F9; padding: 90px 0;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1fr 420px; gap: 40px; align-items: stretch;">
+
+      <div style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; padding: 44px 46px; display: flex; flex-direction: column; gap: 26px;">
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">Cobertura</span>
+          <h2 style="font-size: 32px; color: #10222A; letter-spacing: -0.03em;">Presencia en todo el país</h2>
+          <p style="font-size: 15.5px; color: #69727D; line-height: 1.62; font-weight: 300; max-width: 60ch;">
+            Sedes en CABA y Rosario, con entrega y acompañamiento técnico en 17 provincias.
+          </p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 9px;">
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">CABA</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Buenos Aires</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Rosario</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Santa Fe</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Córdoba</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Entre Ríos</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Corrientes</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Misiones</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Chaco</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Jujuy</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Salta</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Tucumán</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Mendoza</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">San Juan</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">San Luis</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Neuquén</span>
+          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #F7F8F9; padding: 8px 15px; border-radius: 99px; font-weight: 500;">Chubut</span>
+        </div>
+      </div>
+
+      <div style="background: linear-gradient(165deg, #10222A 0%, #0A171D 100%); border-radius: 6px; padding: 44px 40px; display: flex; flex-direction: column; gap: 22px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -90px; right: -90px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.28), transparent 70%); filter: blur(34px);"></div>
+        <div style="position: relative; display: flex; flex-direction: column; gap: 18px; height: 100%;">
+          <span style="width: 46px; height: 46px; border-radius: 6px; background: rgba(0,149,161,.18); border: 1px solid rgba(114,197,194,.34); display: flex; align-items: center; justify-content: center;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          </span>
+          <h3 style="font-size: 25px; color: #FFFFFF; letter-spacing: -0.025em; line-height: 1.2;">Portal de educación médica</h3>
+          <p style="font-size: 14.5px; color: #A7A9AC; line-height: 1.65; font-weight: 300;">
+            Técnicas quirúrgicas por producto, material descargable y webinars.
+            Acceso exclusivo para profesionales registrados y activados.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-top: 12px;">
+            <a href="#" class="btn-p" style="display: flex; align-items: center; justify-content: center; gap: 9px; background: {{accent}}; color: #fff; font-size: 14.5px; font-weight: 600; padding: 14px 22px; border-radius: 4px;">
+              Registrarme como médico
+            </a>
+            <a href="#" class="btn-g" style="display: flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid rgba(255,255,255,.24); color: #FFFFFF; font-size: 14.5px; font-weight: 500; padding: 14px 22px; border-radius: 4px;">
+              Ya tengo cuenta
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= CTA FINAL ================= -->
+  <div style="background: {{accent}}; padding: 74px 0;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 48px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 style="font-size: 34px; color: #FFFFFF; letter-spacing: -0.03em;">¿Necesitás asesoramiento técnico?</h2>
+        <p style="font-size: 16px; color: rgba(255,255,255,.86); line-height: 1.6; font-weight: 300; max-width: 60ch;">
+          Contanos si escribís como médico, como financiador o como paciente, y la consulta
+          llega directo a quien corresponde.
+        </p>
+      </div>
+      <div style="display: flex; align-items: center; gap: 13px;">
+        <a href="#" style="display: inline-flex; align-items: center; gap: 10px; background: #FFFFFF; color: #0095A1; font-size: 15px; font-weight: 700; padding: 16px 30px; border-radius: 4px; white-space: nowrap;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 20.5l1.6-4.9A8.4 8.4 0 0 1 3.7 11 8.5 8.5 0 0 1 12 2.6a8.4 8.4 0 0 1 9 8.9z"></path></svg>
+          Escribir por WhatsApp
+        </a>
+        <a href="#" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.5); color: #FFFFFF; font-size: 15px; font-weight: 600; padding: 16px 28px; border-radius: 4px; white-space: nowrap;">
+          Ver sedes
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <div style="background: #0A171D; padding: 62px 0 30px;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px;">
+      <div style="display: grid; grid-template-columns: 320px repeat(3, minmax(0, 1fr)); gap: 44px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.09);">
+
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <img src="logo-blanco.png" alt="Swiss Protech" style="height: 40px; width: auto; align-self: flex-start;">
+          <p style="font-size: 13.5px; color: #69727D; line-height: 1.65; font-weight: 300;">
+            Importación y comercialización de implantes ortopédicos de origen alemán
+            y norteamericano. Habilitados por el Ministerio de Salud de la Nación y A.N.M.A.T.
+          </p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #FFFFFF;">Productos</span>
+          <a href="#" style="font-size: 13.5px; color: #A7A9AC;">Cadera</a>
+          <a href="#" style="font-size: 13.5px; color: #A7A9AC;">Rodilla</a>
+          <a href="#" style="font-size: 13.5px; color: #A7A9AC;">Cementos</a>
+          <a href="#" style="font-size: 13.5px; color: #A7A9AC;">Representaciones</a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #FFFFFF;">Sede Buenos Aires</span>
+          <span style="font-size: 13.5px; color: #A7A9AC; line-height: 1.6;">Av. Belgrano 863, CABA</span>
+          <span style="font-size: 13.5px; color: #A7A9AC;">11 3593 5241</span>
+          <span style="font-size: 12.5px; color: #69727D;">Lunes a viernes, 8 a 17 h</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #FFFFFF;">Sede Rosario</span>
+          <span style="font-size: 13.5px; color: #A7A9AC; line-height: 1.6;">Pte. Roca 782, piso 1</span>
+          <span style="font-size: 13.5px; color: #A7A9AC;">11 3593 5241</span>
+          <span style="font-size: 12.5px; color: #69727D;">Lunes a viernes, 8 a 17 h</span>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 26px;">
+        <span style="font-size: 12.5px; color: #69727D;">Swiss Protech S.A. — Todos los derechos reservados 2026.</span>
+        <div style="display: flex; align-items: center; gap: 22px;">
+          <a href="#" style="font-size: 12.5px; color: #69727D;">Políticas de privacidad</a>
+          <a href="#" style="font-size: 12.5px; color: #69727D;">Formulario AFIP F960</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0095A1","options":["#0095A1","#007C87","#1E73BE","#72C5C2"],"section":"Marca"},"girar":{"editor":"boolean","default":true,"section":"Animación"}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const girar = this.props.girar ?? true;
+    return {
+      accent: this.props.accent ?? '#0095A1',
+      ringCls: girar ? '' : 'paused',
+    };
+  }
+}
+</script>
+</body>
+</html>

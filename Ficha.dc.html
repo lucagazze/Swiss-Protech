@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+  <style>
+    body { margin: 0; font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+           color: #10222A; background: #FFFFFF; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #0095A1; text-decoration: none; }
+    a:hover { color: #007C87; }
+    h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
+    p { margin: 0; }
+
+    /* visor 3D */
+    .viewer { perspective: 1400px; perspective-origin: 50% 42%; }
+    .podium { position: relative; width: 100%; height: 100%;
+              display: flex; align-items: center; justify-content: center;
+              transform-style: preserve-3d; }
+    .obj { transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2,.75,.25,1); }
+    .obj img { width: 296px; height: 296px; object-fit: contain;
+               filter: drop-shadow(0 30px 40px rgba(0,0,0,.55)); display: block; }
+
+    .disc { position: absolute; bottom: 74px; left: 50%; margin-left: -190px;
+            width: 380px; height: 380px; border-radius: 50%;
+            border: 1px solid rgba(0,149,161,.34);
+            transform: rotateX(78deg); animation: dspin 16s linear infinite; }
+    .disc::before { content: ""; position: absolute; top: -5px; left: 50%; margin-left: -5px;
+            width: 10px; height: 10px; border-radius: 50%; background: #72C5C2;
+            box-shadow: 0 0 18px 5px rgba(114,197,194,.9); }
+    .disc.d2 { width: 470px; height: 470px; margin-left: -235px; bottom: 30px;
+            border-color: rgba(114,197,194,.16); animation-duration: 26s; animation-direction: reverse; }
+    @keyframes dspin { to { transform: rotateX(78deg) rotateZ(360deg); } }
+
+    .beam { position: absolute; inset: 0; margin: auto; width: 430px; height: 430px;
+            border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.30), transparent 66%);
+            filter: blur(30px); animation: bp 7s ease-in-out infinite; }
+    @keyframes bp { 0%,100% { opacity: .5; transform: scale(1); } 50% { opacity: .9; transform: scale(1.08); } }
+
+    .vbtn { cursor: pointer; transition: background .25s, border-color .25s, transform .25s, color .25s; }
+    .vbtn:hover { background: rgba(0,149,161,.22); border-color: #72C5C2; transform: translateY(-2px); }
+
+    .tabb { cursor: pointer; transition: color .25s, border-color .25s; }
+    .btn-p { transition: transform .28s, box-shadow .28s, background .28s; }
+    .btn-p:hover { transform: translateY(-3px); background: #007C87;
+                   box-shadow: 0 16px 32px -12px rgba(0,149,161,.8); }
+    .btn-g { transition: transform .28s, border-color .28s, color .28s; }
+    .btn-g:hover { transform: translateY(-3px); border-color: #0095A1; color: #0095A1; }
+
+    .navlink { position: relative; transition: color .25s; }
+    .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
+                      background: #0095A1; transition: right .3s; }
+    .navlink:hover { color: #0095A1; }
+    .navlink:hover::after { right: 0; }
+
+    .rel { perspective: 900px; }
+    .rel-in { transition: transform .45s cubic-bezier(.2,.7,.3,1), border-color .45s, box-shadow .45s;
+              transform-style: preserve-3d; }
+    .rel:hover .rel-in { transform: translateY(-7px) rotateY(-5deg) translateZ(16px);
+                         border-color: #0095A1; box-shadow: 0 24px 40px -18px rgba(16,34,42,.34); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .disc, .beam { animation: none; }
+      .obj, .rel-in, .btn-p, .btn-g { transition: none; }
+    }
+  </style>
+</helmet>
+
+<div style="width: 1440px; background: #FFFFFF;">
+
+  <!-- NAV -->
+  <div style="background: #FFFFFF; border-bottom: 1px solid #E3E7E9;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px;">
+      <img src="logo.png" alt="Swiss Protech" style="height: 42px; width: auto; display: block;">
+      <div style="display: flex; align-items: center; gap: 34px; font-size: 14px; font-weight: 500; color: #10222A;">
+        <a href="#" class="navlink" style="color: #10222A;">Institucional</a>
+        <a href="#" class="navlink" style="color: #0095A1; font-weight: 600;">Productos</a>
+        <a href="#" class="navlink" style="color: #10222A;">Nuestro proceso</a>
+        <a href="#" class="navlink" style="color: #10222A;">Educación médica</a>
+        <a href="#" class="navlink" style="color: #10222A;">Representaciones</a>
+        <a href="#" class="navlink" style="color: #10222A;">Contacto</a>
+      </div>
+      <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 9px; background: {{accent}}; color: #fff; font-size: 13.5px; font-weight: 600; padding: 12px 22px; border-radius: 4px; white-space: nowrap;">Consultar</a>
+    </div>
+  </div>
+
+  <!-- FICHA -->
+  <div style="display: grid; grid-template-columns: 700px 1fr;">
+
+    <!-- VISOR 3D -->
+    <div class="viewer" style="position: relative; background:
+         radial-gradient(680px 480px at 50% 40%, #16333C 0%, transparent 64%),
+         linear-gradient(165deg, #10222A 0%, #06131A 100%); height: 720px; overflow: hidden;">
+
+      <div class="podium">
+        <div class="beam"></div>
+        <div class="disc d2"></div>
+        <div class="disc"></div>
+        <div class="obj" style="{{objTf}}">
+          <img src="mobilelink.png" alt="MobileLink Dual Mobility">
+        </div>
+      </div>
+
+      <span style="position: absolute; top: 28px; left: 30px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #72C5C2; border: 1px solid rgba(114,197,194,.34); background: rgba(0,149,161,.12); padding: 7px 14px; border-radius: 99px;">Vista 3D</span>
+
+      <!-- controles -->
+      <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; background: rgba(6,19,26,.78); border: 1px solid rgba(255,255,255,.12); padding: 9px; border-radius: 99px; backdrop-filter: blur(10px);">
+        <span class="vbtn" onClick="{{girarIzq}}" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"></path><path d="M20 20v-7a4 4 0 0 0-4-4H4"></path></svg>
+        </span>
+        <span class="vbtn" onClick="{{acercar}}" style="height: 40px; padding: 0 18px; border-radius: 99px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #FFFFFF; font-weight: 500;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"></path></svg>
+          {{zoomTxt}}
+        </span>
+        <span class="vbtn" onClick="{{reset}}" style="height: 40px; padding: 0 18px; border-radius: 99px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #FFFFFF; font-weight: 500;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>
+          Centrar
+        </span>
+        <span class="vbtn" onClick="{{girarDer}}" style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); display: flex; align-items: center; justify-content: center;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"></path><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg>
+        </span>
+      </div>
+
+      <span style="position: absolute; bottom: 34px; right: 30px; font-size: 11.5px; color: #69727D; letter-spacing: .05em;">{{angTxt}}</span>
+    </div>
+
+    <!-- DATOS -->
+    <div style="padding: 60px 56px; display: flex; flex-direction: column; gap: 26px; background: #FFFFFF;">
+
+      <span style="font-size: 12.5px; color: #69727D;">Productos &nbsp;/&nbsp; Cadera &nbsp;/&nbsp; <span style="color: {{accent}};">MobileLink Dual Mobility</span></span>
+
+      <div style="display: flex; flex-direction: column; gap: 15px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.09); padding: 6px 12px; border-radius: 3px;">Cadera</span>
+          <span style="font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #69727D; border: 1px solid #E3E7E9; padding: 6px 12px; border-radius: 3px;">No cementado</span>
+        </div>
+        <h1 style="font-size: 40px; color: #10222A; letter-spacing: -0.035em; line-height: 1.08;">MOBILELINK<br>DUAL MOBILITY</h1>
+        <p style="font-size: 17px; color: #69727D; line-height: 1.65; font-weight: 300; max-width: 48ch;">
+          Sistema de cotilo no cementado de doble movilidad, diseñado para reducir el
+          riesgo de luxación en pacientes con alta demanda funcional o inestabilidad.
+        </p>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 14px; padding: 18px 0; border-top: 1px solid #E3E7E9; border-bottom: 1px solid #E3E7E9;">
+        <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #69727D;">Fabricante</span>
+        <img src="link.png" alt="LINK" style="height: 20px; width: auto; filter: invert(1) brightness(.28);">
+        <span style="font-size: 13.5px; color: #10222A; font-weight: 500;">Waldemar Link · Hamburgo, Alemania</span>
+      </div>
+
+      <!-- especificaciones -->
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid #EEF1F2;">
+          <span style="font-size: 13.5px; color: #69727D;">Tipo de fijación</span>
+          <span style="font-size: 13.5px; color: #10222A; font-weight: 600;">No cementado</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid #EEF1F2;">
+          <span style="font-size: 13.5px; color: #69727D;">Configuración</span>
+          <span style="font-size: 13.5px; color: #10222A; font-weight: 600;">Doble movilidad</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid #EEF1F2;">
+          <span style="font-size: 13.5px; color: #69727D;">Componente</span>
+          <span style="font-size: 13.5px; color: #10222A; font-weight: 600;">Cotilo acetabular</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid #EEF1F2;">
+          <span style="font-size: 13.5px; color: #69727D;">Medidas disponibles</span>
+          <span style="font-size: 13.5px; color: #A7A9AC; font-weight: 500; font-style: italic;">[COMPLETAR CON DATOS DEL FABRICANTE]</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 13px 0;">
+          <span style="font-size: 13.5px; color: #69727D;">Disponibilidad</span>
+          <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: #10222A; font-weight: 600;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #1B9E4B; display: block;"></span>
+            Stock en depósito · consultar medidas
+          </span>
+        </div>
+      </div>
+
+      <!-- acciones -->
+      <div style="display: flex; align-items: center; gap: 12px; padding-top: 6px;">
+        <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #fff; font-size: 15px; font-weight: 600; padding: 16px 28px; border-radius: 4px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 20.5l1.6-4.9A8.4 8.4 0 0 1 3.7 11 8.5 8.5 0 0 1 12 2.6a8.4 8.4 0 0 1 9 8.9z"></path></svg>
+          Consultar este producto
+        </a>
+        <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 600; padding: 16px 26px; border-radius: 4px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5M12 15V3"></path></svg>
+          Ficha técnica (PDF)
+        </a>
+      </div>
+
+      <!-- técnica quirúrgica -->
+      <div style="background: #10222A; border-radius: 6px; padding: 26px 28px; display: flex; align-items: center; justify-content: space-between; gap: 26px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -70px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.30), transparent 70%); filter: blur(28px);"></div>
+        <div style="position: relative; display: flex; align-items: center; gap: 17px;">
+          <span style="width: 42px; height: 42px; border-radius: 6px; background: rgba(0,149,161,.20); border: 1px solid rgba(114,197,194,.34); display: flex; align-items: center; justify-content: center; flex: none;">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 15px; color: #FFFFFF; font-weight: 600;">Técnica quirúrgica disponible</span>
+            <span style="font-size: 13px; color: #A7A9AC; line-height: 1.5;">Acceso exclusivo para médicos registrados.</span>
+          </div>
+        </div>
+        <a href="#" style="position: relative; font-size: 13.5px; color: #72C5C2; font-weight: 600; white-space: nowrap;">Ingresar &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RELACIONADOS -->
+  <div style="background: #F7F8F9; padding: 76px 0 90px; border-top: 1px solid #E3E7E9;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 28px;">
+      <div style="display: flex; align-items: baseline; gap: 14px;">
+        <h2 style="font-size: 27px; color: #10222A;">Otros productos de la línea</h2>
+        <span style="flex-grow: 1; height: 1px; background: #E3E7E9; display: block;"></span>
+        <a href="#" style="font-size: 13.5px; font-weight: 600; color: {{accent}}; white-space: nowrap;">Ver los 9 de cadera &rarr;</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px;">
+
+        <div class="rel"><div class="rel-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+          <div style="height: 168px; background: linear-gradient(160deg, #F4F7F8, #E9EFF1); display: flex; align-items: center; justify-content: center;">
+            <img src="crown-cup.png" alt="Crown Cup" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
+          </div>
+          <div style="padding: 19px 20px 22px; display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}};">Cadera</span>
+            <h3 style="font-size: 15px; color: #10222A;">CROWN CUP</h3>
+            <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Sistema de cotilo no cementado.</p>
+          </div>
+        </div></div>
+
+        <div class="rel"><div class="rel-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+          <div style="height: 168px; background: linear-gradient(160deg, #F4F7F8, #E9EFF1); display: flex; align-items: center; justify-content: center;">
+            <img src="lubinus-cup.png" alt="Lubinus Cup" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
+          </div>
+          <div style="padding: 19px 20px 22px; display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}};">Cadera</span>
+            <h3 style="font-size: 15px; color: #10222A;">LUBINUS CUP</h3>
+            <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Cotilo cementado autorretentivo y estándar.</p>
+          </div>
+        </div></div>
+
+        <div class="rel"><div class="rel-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+          <div style="height: 168px; background: linear-gradient(160deg, #F4F7F8, #E9EFF1); display: flex; align-items: center; justify-content: center;">
+            <img src="element.png" alt="Element" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
+          </div>
+          <div style="padding: 19px 20px 22px; display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}};">Cadera</span>
+            <h3 style="font-size: 15px; color: #10222A;">ELEMENT</h3>
+            <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Vástago no cementado.</p>
+          </div>
+        </div></div>
+
+        <div class="rel"><div class="rel-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+          <div style="height: 168px; background: linear-gradient(160deg, #F4F7F8, #E9EFF1); display: flex; align-items: center; justify-content: center;">
+            <img src="mp-link.png" alt="MP Link" style="width: 120px; height: 120px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
+          </div>
+          <div style="padding: 19px 20px 22px; display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}};">Cadera</span>
+            <h3 style="font-size: 15px; color: #10222A;">MP LINK</h3>
+            <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Vástago modular de revisión de fijación distal.</p>
+          </div>
+        </div></div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0095A1","options":["#0095A1","#007C87","#1E73BE","#72C5C2"],"section":"Marca"}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { ang: -22, zoom: 1 };
+  }
+  renderVals() {
+    const ang = this.state.ang, zoom = this.state.zoom;
+    const paso = (d) => () => this.setState({ ang: this.state.ang + d });
+    return {
+      accent: this.props.accent ?? '#0095A1',
+      objTf: 'transform: rotateY(' + ang + 'deg) rotateX(6deg) scale(' + zoom + ');',
+      angTxt: 'Rotación ' + (((ang % 360) + 360) % 360) + '°',
+      zoomTxt: Math.round(zoom * 100) + '%',
+      girarIzq: paso(-45),
+      girarDer: paso(45),
+      acercar: () => this.setState({ zoom: zoom >= 1.5 ? 0.85 : zoom + 0.25 }),
+      reset: () => this.setState({ ang: -22, zoom: 1 }),
+    };
+  }
+}
+</script>
+</body>
+</html>

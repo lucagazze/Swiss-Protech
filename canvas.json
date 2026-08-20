@@ -1,0 +1,41 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html",      "title": "Home",              "x": 0,    "y": 0,    "w": 1440, "h": 3760 },
+    { "file": "Productos.dc.html", "title": "Catálogo",          "x": 1600, "y": 0,    "w": 1440, "h": 2420 },
+    { "file": "Proceso.dc.html",   "title": "Nuestro proceso",   "x": 1600, "y": 2600, "w": 1440, "h": 2320 },
+    { "file": "Ficha.dc.html",     "title": "Ficha de producto", "x": 3200, "y": 0,    "w": 1440, "h": 1320 },
+    { "file": "Contacto.dc.html",  "title": "Contacto",          "x": 3200, "y": 1500, "w": 1440, "h": 1540 },
+    { "file": "Mobile.dc.html",    "title": "Home en celular",   "x": 4800, "y": 0,    "w": 390,  "h": 2240 }
+  ],
+  "annotations": [
+    {
+      "id": "nota-marca",
+      "x": 0,
+      "y": -190,
+      "w": 520,
+      "text": "IDENTIDAD LEVANTADA DE swipro.com.ar\nTipografía Montserrat, teal de marca #0095A1, gris #A7A9AC y fondo #F7F8F9 son los valores reales del sitio actual.\nLas fotos de producto son las originales de Swiss Protech."
+    },
+    {
+      "id": "nota-proceso",
+      "x": 1600,
+      "y": 2400,
+      "w": 460,
+      "text": "SECCIÓN NUEVA\nEl proceso de trazabilidad no existe hoy en el sitio. Es el diferencial contra IP Magna y Grupo Alemana: ninguno de los dos lo muestra."
+    },
+    {
+      "id": "nota-contacto",
+      "x": 3200,
+      "y": 1300,
+      "w": 460,
+      "text": "PENDIENTE DE CONFIRMAR\nEl selector de país está armado como lo pidieron en la reunión, pero el sitio actual solo muestra las 2 sedes argentinas. Los datos de Chile y Uruguay están marcados como [COMPLETAR]."
+    },
+    {
+      "id": "nota-mobile",
+      "x": 4800,
+      "y": -190,
+      "w": 390,
+      "text": "CELULAR PRIMERO\nEs donde el médico entra entre cirugía y cirugía. Botones de 52 px y barra de acción fija abajo."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}
