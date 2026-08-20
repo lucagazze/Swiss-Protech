@@ -17,21 +17,19 @@
     h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
     p { margin: 0; }
 
-    .who { cursor: pointer; perspective: 800px; }
-    .who-in { transition: transform .42s cubic-bezier(.2,.7,.3,1), border-color .42s, background .42s, box-shadow .42s;
-              transform-style: preserve-3d; }
-    .who:hover .who-in { transform: translateY(-6px) rotateX(4deg) translateZ(16px);
-                         box-shadow: 0 24px 40px -20px rgba(16,34,42,.34); }
+    .who { cursor: pointer; }
+    .who-in { transition: transform .35s cubic-bezier(.4,0,.2,1), border-color .35s, background .35s, box-shadow .35s; }
+    .who:hover .who-in { transform: translateY(-4px);
+                         box-shadow: 0 20px 36px -20px rgba(16,34,42,.26); }
 
-    .flag { cursor: pointer; transition: border-color .28s, background .28s, transform .28s; }
-    .flag:hover { transform: translateY(-3px); border-color: #0095A1; }
+    .flag { cursor: pointer; transition: border-color .28s, background .28s; }
+    .flag:hover { border-color: #0095A1; }
 
     .fld { transition: border-color .25s, box-shadow .25s; }
     .fld:hover { border-color: #A7A9AC; }
 
-    .btn-p { transition: transform .28s, box-shadow .28s, background .28s; }
-    .btn-p:hover { transform: translateY(-3px); background: #007C87;
-                   box-shadow: 0 16px 32px -12px rgba(0,149,161,.8); }
+    .btn-p { transition: background .28s, box-shadow .28s; }
+    .btn-p:hover { background: #007C87; box-shadow: 0 12px 26px -12px rgba(0,149,161,.7); }
 
     .navlink { position: relative; transition: color .25s; }
     .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;

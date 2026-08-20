@@ -20,22 +20,20 @@
     h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
     p { margin: 0; }
 
-    .pc { perspective: 1000px; cursor: pointer; }
-    .pc-in { transition: transform .48s cubic-bezier(.2,.7,.3,1), box-shadow .48s, border-color .48s;
-             transform-style: preserve-3d; }
-    .pc:hover .pc-in { transform: rotateX(4deg) rotateY(-6deg) translateY(-9px) translateZ(22px);
-                       box-shadow: 0 32px 56px -22px rgba(16,34,42,.4); border-color: #0095A1; }
-    .pc:hover .pc-img { transform: translateZ(46px) scale(1.11) rotate(-3deg); }
-    .pc:hover .pc-go { opacity: 1; transform: translateZ(28px) translateY(0); }
-    .pc-img { transition: transform .48s cubic-bezier(.2,.7,.3,1); }
-    .pc-go { opacity: 0; transform: translateY(7px); transition: opacity .4s, transform .4s; }
+    .pc { cursor: pointer; }
+    .pc-in { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .35s; }
+    .pc:hover .pc-in { transform: translateY(-5px); border-color: #0095A1;
+                       box-shadow: 0 20px 38px -20px rgba(16,34,42,.28); }
+    .pc:hover .pc-img { transform: scale(1.06); }
+    .pc:hover .pc-go { opacity: 1; }
+    .pc-img { transition: transform .5s cubic-bezier(.4,0,.2,1); }
+    .pc-go { opacity: .45; transition: opacity .35s; }
 
-    .fbtn { cursor: pointer; transition: background .26s, color .26s, border-color .26s, transform .26s; }
-    .fbtn:hover { transform: translateY(-2px); border-color: #0095A1; color: #0095A1; }
+    .fbtn { cursor: pointer; transition: background .26s, color .26s, border-color .26s; }
+    .fbtn:hover { border-color: #0095A1; color: #0095A1; }
 
-    .btn-p { transition: transform .28s, box-shadow .28s, background .28s; }
-    .btn-p:hover { transform: translateY(-3px); background: #007C87;
-                   box-shadow: 0 16px 32px -12px rgba(0,149,161,.8); }
+    .btn-p { transition: background .28s, box-shadow .28s; }
+    .btn-p:hover { background: #007C87; box-shadow: 0 12px 26px -12px rgba(0,149,161,.7); }
 
     .navlink { position: relative; transition: color .25s; }
     .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
@@ -169,8 +167,9 @@ html { scroll-behavior: smooth; }
       <span class="burger" onclick="document.getElementById('drawer').classList.toggle('open')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10222A" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></span><a href="contacto.html" class="btn-p navcta" style="display: inline-flex; align-items: center; gap: 9px; background: #0095A1; color: #fff; font-size: 13.5px; font-weight: 600; padding: 12px 22px; border-radius: 4px; white-space: nowrap;">Consultar</a>
     </div>
   </div>
+<div class="drawer" id="drawer"><a href="index.html#institucional">Institucional</a><a href="productos.html">Productos</a><a href="proceso.html">Nuestro proceso</a><a href="index.html#portal">Educación médica</a><a href="index.html#representaciones">Representaciones</a><a href="contacto.html">Contacto</a></div>
 
-  <div class="drawer" id="drawer"><a href="index.html#institucional">Institucional</a><a href="productos.html">Productos</a><a href="proceso.html">Nuestro proceso</a><a href="index.html#portal">Educación médica</a><a href="index.html#representaciones">Representaciones</a><a href="contacto.html">Contacto</a></div><!-- ENCABEZADO -->
+  <!-- ENCABEZADO -->
   <div style="background: linear-gradient(165deg, #10222A 0%, #0A171D 100%); padding: 62px 0 58px; position: relative; overflow: hidden;">
     <div style="position: absolute; top: -160px; right: 60px; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.20), transparent 70%); filter: blur(46px);"></div>
     <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 15px;">

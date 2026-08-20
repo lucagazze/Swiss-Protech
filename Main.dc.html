@@ -17,62 +17,91 @@
     h1, h2, h3, h4 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
     p { margin: 0; }
 
-    /* ---- escenario 3D del hero ---- */
-    .stage { perspective: 1600px; perspective-origin: 50% 45%; }
-    .ring { position: relative; width: 420px; height: 420px; margin: 0 auto;
-            transform-style: preserve-3d; animation: spin 34s linear infinite; }
-    .ring.paused { animation-play-state: paused; }
-    .ring-i { position: absolute; inset: 0; margin: auto; width: 250px; height: 250px;
-              transform-style: preserve-3d; }
-    .ring-i img { width: 100%; height: 100%; object-fit: contain;
-                  filter: drop-shadow(0 26px 40px rgba(0,0,0,.55)); }
-    @keyframes spin { to { transform: rotateY(-360deg); } }
+    /* ================= escenario de producto ================= */
+    .stage { position: relative; perspective: 1500px; perspective-origin: 50% 38%; }
 
-    .halo { position: absolute; inset: 0; margin: auto; border-radius: 50%;
-            border: 1px solid rgba(0,149,161,.34); transform-style: preserve-3d; }
-    .halo.a { width: 470px; height: 470px; transform: rotateX(74deg); animation: hspin 18s linear infinite; }
-    .halo.b { width: 590px; height: 590px; transform: rotateX(74deg) rotateZ(40deg);
-              border-color: rgba(114,197,194,.18); animation: hspin 30s linear infinite reverse; }
-    @keyframes hspin { to { transform: rotateX(74deg) rotateZ(360deg); } }
+    /* anillos orbitales finos, apenas perceptibles */
+    .orbit { position: absolute; left: 50%; top: 46%; border-radius: 50%;
+             border: 1px solid rgba(114,197,194,.15); pointer-events: none; }
+    .orbit.o1 { width: 430px; height: 430px; margin: -215px 0 0 -215px;
+                animation: orb 32s linear infinite; }
+    .orbit.o2 { width: 580px; height: 580px; margin: -290px 0 0 -290px;
+                border-color: rgba(114,197,194,.08); animation: orb 52s linear infinite reverse; }
+    .orbit::after { content: ""; position: absolute; top: -3px; left: 50%; margin-left: -3px;
+                    width: 6px; height: 6px; border-radius: 50%; background: #72C5C2;
+                    box-shadow: 0 0 16px 4px rgba(114,197,194,.55); }
+    @keyframes orb { from { transform: rotateX(76deg) rotateZ(0deg); }
+                     to   { transform: rotateX(76deg) rotateZ(360deg); } }
+    .orbit.o1, .orbit.o2 { transform: rotateX(76deg); }
 
-    .glow { position: absolute; inset: 0; margin: auto; width: 560px; height: 560px;
-            border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.32), transparent 66%);
-            filter: blur(26px); animation: pulse 7s ease-in-out infinite; }
-    @keyframes pulse { 0%,100% { opacity: .55; transform: scale(1); }
-                       50% { opacity: .95; transform: scale(1.07); } }
+    .aura { position: absolute; left: 50%; top: 44%; width: 620px; height: 620px;
+            margin: -310px 0 0 -310px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,149,161,.26), transparent 62%);
+            filter: blur(34px); animation: breathe 9s ease-in-out infinite; pointer-events: none; }
+    @keyframes breathe { 0%,100% { opacity: .6; } 50% { opacity: .9; } }
 
-    /* ---- tarjetas con inclinación 3D ---- */
-    .tilt { perspective: 1000px; }
-    .tilt-in { transition: transform .5s cubic-bezier(.2,.7,.3,1), box-shadow .5s; transform-style: preserve-3d; }
-    .tilt:hover .tilt-in { transform: rotateX(5deg) rotateY(-7deg) translateY(-10px) translateZ(24px);
-                           box-shadow: 0 34px 60px -22px rgba(16,34,42,.42); }
-    .tilt:hover .tilt-img { transform: translateZ(52px) scale(1.09) rotate(-3deg); }
-    .tilt-img { transition: transform .5s cubic-bezier(.2,.7,.3,1); }
+    /* el producto: quieto, con deriva mínima y reflejo en el piso */
+    .slot { position: absolute; inset: 0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity .85s cubic-bezier(.4,0,.2,1), transform .85s cubic-bezier(.4,0,.2,1); }
+    .drift { animation: drift 9s ease-in-out infinite; }
+    @keyframes drift { 0%,100% { transform: translateY(-7px); } 50% { transform: translateY(7px); } }
+    .shot { width: 320px; height: 320px; object-fit: contain; display: block;
+            filter: drop-shadow(0 44px 46px rgba(0,0,0,.62)); }
+    .refl-box { width: 320px; height: 132px; overflow: hidden; margin-top: 2px;
+                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 78%);
+                mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 78%); }
+    .refl { width: 320px; height: 320px; object-fit: contain; display: block;
+            transform: scaleY(-1); opacity: .55; filter: blur(.6px); }
 
-    /* ---- bloques del proceso ---- */
-    .step { perspective: 900px; }
-    .step-in { transition: transform .45s cubic-bezier(.2,.7,.3,1), border-color .45s, background .45s;
-               transform-style: preserve-3d; }
-    .step:hover .step-in { transform: translateY(-8px) rotateX(6deg) translateZ(18px);
-                           border-color: rgba(0,149,161,.7); background: rgba(0,149,161,.07); }
-    .step-n { transition: transform .45s, background .45s, color .45s; }
-    .step:hover .step-n { transform: translateZ(34px) scale(1.12); background: #0095A1; color: #fff; }
+    /* horizonte que apoya el producto */
+    .floor { position: absolute; left: 50%; top: 63%; width: 520px; height: 1px;
+             margin-left: -260px; pointer-events: none;
+             background: linear-gradient(90deg, transparent, rgba(114,197,194,.28), transparent); }
 
-    .rail { position: absolute; left: 0; right: 0; top: 46px; height: 2px;
-            background: linear-gradient(90deg, rgba(0,149,161,0), #0095A1 12%, #0095A1 88%, rgba(0,149,161,0)); }
-    .rail::after { content: ""; position: absolute; top: -3px; left: 0; width: 90px; height: 8px;
-                   border-radius: 99px; background: #72C5C2;
-                   box-shadow: 0 0 22px 5px rgba(114,197,194,.85); animation: run 5.5s ease-in-out infinite; }
-    @keyframes run { 0% { left: 2%; } 50% { left: 88%; } 100% { left: 2%; } }
+    /* barrido técnico */
+    .scan { position: absolute; left: 50%; top: 46%; width: 380px; height: 1px;
+            margin-left: -190px; pointer-events: none;
+            background: linear-gradient(90deg, transparent, rgba(114,197,194,.55), transparent);
+            animation: scan 9s cubic-bezier(.6,0,.4,1) infinite; }
+    @keyframes scan { 0%, 62% { opacity: 0; transform: translateY(-160px); }
+                      66% { opacity: 1; }
+                      92% { opacity: 0; transform: translateY(160px); }
+                      100% { opacity: 0; transform: translateY(160px); } }
 
-    .prov { transition: transform .3s, background .3s, color .3s, border-color .3s; }
-    .prov:hover { transform: translateY(-3px); background: #0095A1; border-color: #0095A1; color: #fff; }
+    /* selector de producto del hero */
+    .thumb { cursor: pointer; transition: border-color .3s, background .3s, transform .3s; }
+    .thumb:hover { border-color: rgba(114,197,194,.5); transform: translateY(-2px); }
 
-    .btn-p { transition: transform .28s, box-shadow .28s, background .28s; }
-    .btn-p:hover { transform: translateY(-3px); background: #007C87;
-                   box-shadow: 0 16px 32px -12px rgba(0,149,161,.85); }
-    .btn-g { transition: transform .28s, border-color .28s, color .28s; }
-    .btn-g:hover { transform: translateY(-3px); border-color: #0095A1; color: #0095A1; }
+    /* ================= interacciones sobrias ================= */
+    .card { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .35s; }
+    .card:hover { transform: translateY(-5px); border-color: #0095A1;
+                  box-shadow: 0 20px 38px -20px rgba(16,34,42,.30); }
+    .card-img { transition: transform .5s cubic-bezier(.4,0,.2,1); }
+    .card:hover .card-img { transform: scale(1.05); }
+
+    .step { transition: transform .35s cubic-bezier(.4,0,.2,1), border-color .35s, background .35s; }
+    .step:hover { transform: translateY(-5px); border-color: rgba(0,149,161,.6);
+                  background: rgba(0,149,161,.06); }
+    .step-n { transition: background .35s, color .35s, border-color .35s; }
+    .step:hover .step-n { background: #0095A1; color: #fff; border-color: #0095A1; }
+
+    .rail { position: absolute; left: 0; right: 0; top: 46px; height: 1px;
+            background: linear-gradient(90deg, rgba(0,149,161,0), rgba(0,149,161,.55) 14%,
+                        rgba(0,149,161,.55) 86%, rgba(0,149,161,0)); }
+    .rail::after { content: ""; position: absolute; top: -2px; left: 0; width: 120px; height: 5px;
+                   border-radius: 99px; background: linear-gradient(90deg, transparent, #72C5C2, transparent);
+                   animation: run 11s cubic-bezier(.5,0,.5,1) infinite; }
+    @keyframes run { 0% { left: 0%; opacity: 0; } 8% { opacity: .9; }
+                     92% { opacity: .9; } 100% { left: 92%; opacity: 0; } }
+
+    .prov { transition: border-color .3s, color .3s, background .3s; }
+    .prov:hover { background: rgba(0,149,161,.07); border-color: #0095A1; color: #0095A1; }
+
+    .btn-p { transition: background .28s, box-shadow .28s; }
+    .btn-p:hover { background: #007C87; box-shadow: 0 12px 26px -12px rgba(0,149,161,.7); }
+    .btn-g { transition: border-color .28s, color .28s, background .28s; }
+    .btn-g:hover { border-color: rgba(114,197,194,.6); background: rgba(255,255,255,.05); }
 
     .navlink { position: relative; transition: color .25s; }
     .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
@@ -90,8 +119,8 @@
       background-size: 62px 62px; }
 
     @media (prefers-reduced-motion: reduce) {
-      .ring, .halo, .glow, .rail::after { animation: none; }
-      .tilt-in, .step-in, .btn-p, .btn-g { transition: none; }
+      .orbit, .aura, .drift, .scan, .rail::after { animation: none; }
+      .card, .card-img, .step, .btn-p, .btn-g, .slot { transition: none; }
     }
   </style>
 </helmet>
@@ -180,23 +209,54 @@
         </div>
       </div>
 
-      <!-- escenario 3D -->
-      <div class="stage" style="position: relative; height: 560px; display: flex; align-items: center; justify-content: center;">
-        <div class="glow"></div>
-        <div class="halo b"></div>
-        <div class="halo a"></div>
-        <div class="ring {{ringCls}}">
-          <div class="ring-i" style="transform: rotateY(0deg) translateZ(300px);"><img src="mobilelink.png" alt="MobileLink"></div>
-          <div class="ring-i" style="transform: rotateY(60deg) translateZ(300px);"><img src="endomodel-mod.png" alt="Endomodel Modular"></div>
-          <div class="ring-i" style="transform: rotateY(120deg) translateZ(300px);"><img src="lubinus-spii.png" alt="Lubinus SPII"></div>
-          <div class="ring-i" style="transform: rotateY(180deg) translateZ(300px);"><img src="uni-sled.png" alt="Uni Sled"></div>
-          <div class="ring-i" style="transform: rotateY(240deg) translateZ(300px);"><img src="optetrak-logic.png" alt="Optetrak Logic"></div>
-          <div class="ring-i" style="transform: rotateY(300deg) translateZ(300px);"><img src="mp-link.png" alt="MP Link"></div>
+      <!-- presentación de producto -->
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <div class="stage" style="position: relative; height: 500px;">
+          <div class="aura"></div>
+          <div class="orbit o2"></div>
+          <div class="orbit o1"></div>
+
+          <div class="slot" style="{{s0}}">
+            <div class="drift"><img src="mobilelink.png" alt="MobileLink Dual Mobility" class="shot"></div>
+            <div class="refl-box"><img src="mobilelink.png" alt="" class="refl"></div>
+          </div>
+          <div class="slot" style="{{s1}}">
+            <div class="drift"><img src="endomodel-mod.png" alt="Endomodel Modular" class="shot"></div>
+            <div class="refl-box"><img src="endomodel-mod.png" alt="" class="refl"></div>
+          </div>
+          <div class="slot" style="{{s2}}">
+            <div class="drift"><img src="lubinus-spii.png" alt="Lubinus SPII Revision" class="shot"></div>
+            <div class="refl-box"><img src="lubinus-spii.png" alt="" class="refl"></div>
+          </div>
+          <div class="slot" style="{{s3}}">
+            <div class="drift"><img src="optetrak-logic.png" alt="Optetrak Logic" class="shot"></div>
+            <div class="refl-box"><img src="optetrak-logic.png" alt="" class="refl"></div>
+          </div>
+          <div class="slot" style="{{s4}}">
+            <div class="drift"><img src="palamix-gun.png" alt="Palamix" class="shot"></div>
+            <div class="refl-box"><img src="palamix-gun.png" alt="" class="refl"></div>
+          </div>
+
+          <div class="floor"></div>
+          <div class="scan"></div>
+
+          <!-- rótulo del producto en foco -->
+          <div style="position: absolute; left: 0; bottom: 4px; display: flex; flex-direction: column; gap: 5px;">
+            <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #72C5C2;">{{linea}}</span>
+            <span style="font-size: 16px; font-weight: 600; color: #FFFFFF; letter-spacing: -0.02em;">{{nombre}}</span>
+            <span style="font-size: 12.5px; color: #69727D;">{{marca}}</span>
+          </div>
         </div>
 
-        <div style="position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 9px; background: rgba(6,19,26,.72); border: 1px solid rgba(255,255,255,.11); padding: 9px 17px; border-radius: 99px; backdrop-filter: blur(8px);">
-          <span style="width: 6px; height: 6px; border-radius: 50%; background: #72C5C2; display: block;"></span>
-          <span style="font-size: 11.5px; color: #C6D0D4; letter-spacing: .07em;">21 productos en catálogo · 3 líneas</span>
+        <!-- selector -->
+        <div style="display: flex; align-items: center; gap: 10px; justify-content: flex-end;">
+          <span class="thumb" onClick="{{v0}}" style="{{t0}}"><img src="mobilelink.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
+          <span class="thumb" onClick="{{v1}}" style="{{t1}}"><img src="endomodel-mod.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
+          <span class="thumb" onClick="{{v2}}" style="{{t2}}"><img src="lubinus-spii.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
+          <span class="thumb" onClick="{{v3}}" style="{{t3}}"><img src="optetrak-logic.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
+          <span class="thumb" onClick="{{v4}}" style="{{t4}}"><img src="palamix-gun.png" alt="" style="width: 40px; height: 40px; object-fit: contain;"></span>
+          <span style="flex-grow: 1;"></span>
+          <span style="font-size: 11.5px; color: #69727D; letter-spacing: .06em;">21 productos · 3 líneas</span>
         </div>
       </div>
     </div>
@@ -245,11 +305,11 @@
 
       <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px;">
 
-        <div class="tilt">
-          <div class="tilt-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
+        <div class="cardw">
+          <div class="card" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
             <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
               <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">9 productos</span>
-              <img src="mobilelink.png" alt="Prótesis de cadera" class="tilt-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
+              <img src="mobilelink.png" alt="Prótesis de cadera" class="card-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
             </div>
             <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
               <h3 style="font-size: 22px; color: #10222A;">Cadera</h3>
@@ -262,11 +322,11 @@
           </div>
         </div>
 
-        <div class="tilt">
-          <div class="tilt-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
+        <div class="cardw">
+          <div class="card" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
             <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
               <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">7 productos</span>
-              <img src="uni-sled.png" alt="Prótesis de rodilla" class="tilt-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
+              <img src="uni-sled.png" alt="Prótesis de rodilla" class="card-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
             </div>
             <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
               <h3 style="font-size: 22px; color: #10222A;">Rodilla</h3>
@@ -279,11 +339,11 @@
           </div>
         </div>
 
-        <div class="tilt">
-          <div class="tilt-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
+        <div class="cardw">
+          <div class="card" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
             <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
               <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">5 productos</span>
-              <img src="palamix-gun.png" alt="Cementos óseos" class="tilt-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
+              <img src="palamix-gun.png" alt="Cementos óseos" class="card-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
             </div>
             <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
               <h3 style="font-size: 22px; color: #10222A;">Cementos</h3>
@@ -320,8 +380,8 @@
         <div class="rail"></div>
         <div style="position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px;">
 
-          <div class="step">
-            <div class="step-in" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+          <div class="stepw">
+            <div class="step" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
               <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">01</span>
               <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Depósito e identificación</h3>
               <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
@@ -330,8 +390,8 @@
             </div>
           </div>
 
-          <div class="step">
-            <div class="step-in" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+          <div class="stepw">
+            <div class="step" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
               <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">02</span>
               <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Control y preparación</h3>
               <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
@@ -340,8 +400,8 @@
             </div>
           </div>
 
-          <div class="step">
-            <div class="step-in" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+          <div class="stepw">
+            <div class="step" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
               <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">03</span>
               <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Esterilización</h3>
               <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
@@ -350,8 +410,8 @@
             </div>
           </div>
 
-          <div class="step">
-            <div class="step-in" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+          <div class="stepw">
+            <div class="step" style="border: 1px solid rgba(255,255,255,.11); background: rgba(255,255,255,.035); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
               <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.42); color: #72C5C2; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">04</span>
               <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Traslado controlado</h3>
               <p style="font-size: 13.5px; color: #A7A9AC; line-height: 1.62; text-align: center;">
@@ -360,8 +420,8 @@
             </div>
           </div>
 
-          <div class="step">
-            <div class="step-in" style="border: 1px solid rgba(0,149,161,.42); background: rgba(0,149,161,.10); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
+          <div class="stepw">
+            <div class="step" style="border: 1px solid rgba(0,149,161,.42); background: rgba(0,149,161,.10); border-radius: 6px; padding: 30px 22px 26px; display: flex; flex-direction: column; gap: 15px; height: 100%;">
               <span class="step-n" style="width: 46px; height: 46px; border-radius: 50%; background: {{accent}}; border: 1px solid rgba(114,197,194,.6); color: #FFFFFF; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: -53px auto 0;">05</span>
               <h3 style="font-size: 17px; color: #FFFFFF; text-align: center; padding-top: 6px;">Entrega en quirófano</h3>
               <p style="font-size: 13.5px; color: #C6D0D4; line-height: 1.62; text-align: center;">
@@ -399,8 +459,8 @@
 
         <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px;">
 
-          <div class="tilt">
-            <div class="tilt-in" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
+          <div class="cardw">
+            <div class="card" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
               <div style="height: 46px; display: flex; align-items: center;">
                 <img src="link.png" alt="LINK" style="height: 26px; width: auto; filter: invert(1) brightness(.28);">
               </div>
@@ -414,8 +474,8 @@
             </div>
           </div>
 
-          <div class="tilt">
-            <div class="tilt-in" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
+          <div class="cardw">
+            <div class="card" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
               <div style="height: 46px; display: flex; align-items: center;">
                 <img src="advita.png" alt="Advita Ortho" style="height: 30px; width: auto; filter: invert(1) brightness(.28);">
               </div>
@@ -429,8 +489,8 @@
             </div>
           </div>
 
-          <div class="tilt">
-            <div class="tilt-in" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
+          <div class="cardw">
+            <div class="card" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
               <div style="height: 46px; display: flex; align-items: center;">
                 <img src="heraeus.png" alt="Heraeus" style="height: 24px; width: auto;">
               </div>
@@ -577,14 +637,34 @@
 
 </div>
 </x-dc>
-<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0095A1","options":["#0095A1","#007C87","#1E73BE","#72C5C2"],"section":"Marca"},"girar":{"editor":"boolean","default":true,"section":"Animación"}}'>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0095A1","options":["#0095A1","#007C87","#1E73BE","#72C5C2"],"section":"Marca"}}'>
+const HERO = [
+  ['Cadera',   'MobileLink Dual Mobility', 'Waldemar Link · Alemania'],
+  ['Rodilla',  'Endomodel Modular',        'Waldemar Link · Alemania'],
+  ['Cadera',   'Lubinus SPII Revision',    'Waldemar Link · Alemania'],
+  ['Rodilla',  'Optetrak Logic',           'Sistema de reemplazo total'],
+  ['Cementos', 'Palamix',                  'Heraeus Medical · Alemania'],
+];
 class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { i: 0 }; }
+  componentDidMount() {
+    this.t = setInterval(() => this.setState({ i: (this.state.i + 1) % HERO.length }), 6000);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
   renderVals() {
-    const girar = this.props.girar ?? true;
-    return {
-      accent: this.props.accent ?? '#0095A1',
-      ringCls: girar ? '' : 'paused',
-    };
+    const i = this.state.i;
+    const v = { accent: this.props.accent ?? '#0095A1',
+                linea: HERO[i][0], nombre: HERO[i][1], marca: HERO[i][2] };
+    for (let k = 0; k < HERO.length; k++) {
+      v['s' + k] = k === i
+        ? 'opacity:1;transform:scale(1);'
+        : 'opacity:0;transform:scale(.94);pointer-events:none;';
+      v['t' + k] = 'width:56px;height:56px;border-radius:6px;display:flex;align-items:center;'
+        + 'justify-content:center;border:1px solid ' + (k === i ? 'rgba(114,197,194,.75)' : 'rgba(255,255,255,.12)')
+        + ';background:' + (k === i ? 'rgba(0,149,161,.16)' : 'rgba(255,255,255,.035)') + ';';
+      v['v' + k] = ((n) => () => { clearInterval(this.t); this.setState({ i: n }); })(k);
+    }
+    return v;
   }
 }
 </script>

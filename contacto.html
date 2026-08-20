@@ -20,21 +20,19 @@
     h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
     p { margin: 0; }
 
-    .who { cursor: pointer; perspective: 800px; }
-    .who-in { transition: transform .42s cubic-bezier(.2,.7,.3,1), border-color .42s, background .42s, box-shadow .42s;
-              transform-style: preserve-3d; }
-    .who:hover .who-in { transform: translateY(-6px) rotateX(4deg) translateZ(16px);
-                         box-shadow: 0 24px 40px -20px rgba(16,34,42,.34); }
+    .who { cursor: pointer; }
+    .who-in { transition: transform .35s cubic-bezier(.4,0,.2,1), border-color .35s, background .35s, box-shadow .35s; }
+    .who:hover .who-in { transform: translateY(-4px);
+                         box-shadow: 0 20px 36px -20px rgba(16,34,42,.26); }
 
-    .flag { cursor: pointer; transition: border-color .28s, background .28s, transform .28s; }
-    .flag:hover { transform: translateY(-3px); border-color: #0095A1; }
+    .flag { cursor: pointer; transition: border-color .28s, background .28s; }
+    .flag:hover { border-color: #0095A1; }
 
     .fld { transition: border-color .25s, box-shadow .25s; }
     .fld:hover { border-color: #A7A9AC; }
 
-    .btn-p { transition: transform .28s, box-shadow .28s, background .28s; }
-    .btn-p:hover { transform: translateY(-3px); background: #007C87;
-                   box-shadow: 0 16px 32px -12px rgba(0,149,161,.8); }
+    .btn-p { transition: background .28s, box-shadow .28s; }
+    .btn-p:hover { background: #007C87; box-shadow: 0 12px 26px -12px rgba(0,149,161,.7); }
 
     .navlink { position: relative; transition: color .25s; }
     .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
@@ -172,8 +170,9 @@ html { scroll-behavior: smooth; }
       <span class="burger" onclick="document.getElementById('drawer').classList.toggle('open')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10222A" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></span><a href="contacto.html" class="btn-p navcta" style="display: inline-flex; align-items: center; gap: 9px; background: #0095A1; color: #fff; font-size: 13.5px; font-weight: 600; padding: 12px 22px; border-radius: 4px; white-space: nowrap;">Consultar</a>
     </div>
   </div>
+<div class="drawer" id="drawer"><a href="index.html#institucional">Institucional</a><a href="productos.html">Productos</a><a href="proceso.html">Nuestro proceso</a><a href="index.html#portal">Educación médica</a><a href="index.html#representaciones">Representaciones</a><a href="contacto.html">Contacto</a></div>
 
-  <div class="drawer" id="drawer"><a href="index.html#institucional">Institucional</a><a href="productos.html">Productos</a><a href="proceso.html">Nuestro proceso</a><a href="index.html#portal">Educación médica</a><a href="index.html#representaciones">Representaciones</a><a href="contacto.html">Contacto</a></div><!-- ENCABEZADO -->
+  <!-- ENCABEZADO -->
   <div style="background: linear-gradient(165deg, #10222A 0%, #0A171D 100%); padding: 60px 0 54px; position: relative; overflow: hidden;">
     <div style="position: absolute; top: -150px; right: 100px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.20), transparent 70%); filter: blur(46px);"></div>
     <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 14px;">

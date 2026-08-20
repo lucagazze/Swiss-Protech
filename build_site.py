@@ -172,10 +172,14 @@ def add_burger(cuerpo, oscuro=False):
                             ' background: %s; color: #fff; font-size: 13.5px;' % ACCENT,
                             burger + '<a href="contacto.html" class="btn-p navcta" style="display: inline-flex;'
                             ' align-items: center; gap: 9px; background: %s; color: #fff; font-size: 13.5px;' % ACCENT, 1)
-    # cerrar el contenedor de la barra e inyectar el cajon
-    m = re.search(r'(</div>\s*</div>\s*)(?=\s*<!--)', cuerpo)
+    # el cajon va JUSTO DEBAJO de la barra de navegacion: se ancla en el boton
+    # Consultar de la barra y se cierran sus dos contenedores.
+    i = cuerpo.find('class="btn-p navcta"')
+    if i == -1:
+        return cuerpo
+    m = re.compile(r'</div>\s*</div>').search(cuerpo, i)
     if m:
-        cuerpo = cuerpo[:m.end(1)] + drawer + cuerpo[m.end(1):]
+        cuerpo = cuerpo[:m.end()] + "\n" + drawer + cuerpo[m.end():]
     return cuerpo
 
 
@@ -298,6 +302,52 @@ JS_CONTACTO = """
 """
 
 
+JS_MAIN = """
+(function(){
+  var HERO = [
+    ['Cadera',   'MobileLink Dual Mobility', 'Waldemar Link · Alemania'],
+    ['Rodilla',  'Endomodel Modular',        'Waldemar Link · Alemania'],
+    ['Cadera',   'Lubinus SPII Revision',    'Waldemar Link · Alemania'],
+    ['Rodilla',  'Optetrak Logic',           'Sistema de reemplazo total'],
+    ['Cementos', 'Palamix',                  'Heraeus Medical · Alemania']
+  ];
+  var slots = document.querySelectorAll('.slot');
+  var thumbs = document.querySelectorAll('[data-hero]');
+  var i = 0, timer = null;
+  function pintar(){
+    slots.forEach(function(s, k){
+      s.style.cssText = (k === i)
+        ? 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transform:scale(1);'
+        : 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(.94);pointer-events:none;';
+    });
+    thumbs.forEach(function(t, k){
+      t.style.cssText = 'width:56px;height:56px;border-radius:6px;display:flex;align-items:center;'
+        + 'justify-content:center;border:1px solid ' + (k === i ? 'rgba(114,197,194,.75)' : 'rgba(255,255,255,.12)')
+        + ';background:' + (k === i ? 'rgba(0,149,161,.16)' : 'rgba(255,255,255,.035)') + ';';
+    });
+    document.getElementById('heroLinea').textContent  = HERO[i][0];
+    document.getElementById('heroNombre').textContent = HERO[i][1];
+    document.getElementById('heroMarca').textContent  = HERO[i][2];
+  }
+  function auto(){ timer = setInterval(function(){ i = (i + 1) % HERO.length; pintar(); }, 6000); }
+  thumbs.forEach(function(t, k){
+    t.addEventListener('click', function(){ clearInterval(timer); i = k; pintar(); });
+  });
+  pintar(); auto();
+})();
+"""
+
+
+def transformar_main(c):
+    for k in range(5):
+        c = c.replace('<div class="slot" style="{{s%d}}">' % k, '<div class="slot">')
+        c = c.replace('onClick="{{v%d}}" style="{{t%d}}"' % (k, k), 'data-hero="%d"' % k)
+    c = c.replace("{{linea}}", '<span id="heroLinea"></span>')
+    c = c.replace("{{nombre}}", '<span id="heroNombre"></span>')
+    c = c.replace("{{marca}}", '<span id="heroMarca"></span>')
+    return c
+
+
 def transformar_productos(c):
     c = re.sub(r'<sc-if value="\{\{show(\w+)\}\}"[^>]*>', lambda m: '<div data-grupo="%s">' % m.group(1).lower(), c)
     c = c.replace("</sc-if>", "</div>")
@@ -372,9 +422,10 @@ def main():
     os.makedirs(OUT)
     shutil.copytree(os.path.join(SRC, "assets"), os.path.join(OUT, "assets"))
 
-    extras = {"Productos.dc.html": JS_PRODUCTOS, "Ficha.dc.html": JS_FICHA, "Contacto.dc.html": JS_CONTACTO}
-    trans = {"Productos.dc.html": transformar_productos, "Ficha.dc.html": transformar_ficha,
-             "Contacto.dc.html": transformar_contacto}
+    extras = {"Main.dc.html": JS_MAIN, "Productos.dc.html": JS_PRODUCTOS,
+              "Ficha.dc.html": JS_FICHA, "Contacto.dc.html": JS_CONTACTO}
+    trans = {"Main.dc.html": transformar_main, "Productos.dc.html": transformar_productos,
+             "Ficha.dc.html": transformar_ficha, "Contacto.dc.html": transformar_contacto}
 
     for src, dst, title, desc in PAGES:
         css, links, cuerpo = extraer(leer(src))

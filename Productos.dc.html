@@ -17,22 +17,20 @@
     h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
     p { margin: 0; }
 
-    .pc { perspective: 1000px; cursor: pointer; }
-    .pc-in { transition: transform .48s cubic-bezier(.2,.7,.3,1), box-shadow .48s, border-color .48s;
-             transform-style: preserve-3d; }
-    .pc:hover .pc-in { transform: rotateX(4deg) rotateY(-6deg) translateY(-9px) translateZ(22px);
-                       box-shadow: 0 32px 56px -22px rgba(16,34,42,.4); border-color: #0095A1; }
-    .pc:hover .pc-img { transform: translateZ(46px) scale(1.11) rotate(-3deg); }
-    .pc:hover .pc-go { opacity: 1; transform: translateZ(28px) translateY(0); }
-    .pc-img { transition: transform .48s cubic-bezier(.2,.7,.3,1); }
-    .pc-go { opacity: 0; transform: translateY(7px); transition: opacity .4s, transform .4s; }
+    .pc { cursor: pointer; }
+    .pc-in { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .35s; }
+    .pc:hover .pc-in { transform: translateY(-5px); border-color: #0095A1;
+                       box-shadow: 0 20px 38px -20px rgba(16,34,42,.28); }
+    .pc:hover .pc-img { transform: scale(1.06); }
+    .pc:hover .pc-go { opacity: 1; }
+    .pc-img { transition: transform .5s cubic-bezier(.4,0,.2,1); }
+    .pc-go { opacity: .45; transition: opacity .35s; }
 
-    .fbtn { cursor: pointer; transition: background .26s, color .26s, border-color .26s, transform .26s; }
-    .fbtn:hover { transform: translateY(-2px); border-color: #0095A1; color: #0095A1; }
+    .fbtn { cursor: pointer; transition: background .26s, color .26s, border-color .26s; }
+    .fbtn:hover { border-color: #0095A1; color: #0095A1; }
 
-    .btn-p { transition: transform .28s, box-shadow .28s, background .28s; }
-    .btn-p:hover { transform: translateY(-3px); background: #007C87;
-                   box-shadow: 0 16px 32px -12px rgba(0,149,161,.8); }
+    .btn-p { transition: background .28s, box-shadow .28s; }
+    .btn-p:hover { background: #007C87; box-shadow: 0 12px 26px -12px rgba(0,149,161,.7); }
 
     .navlink { position: relative; transition: color .25s; }
     .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
