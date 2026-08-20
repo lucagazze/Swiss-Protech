@@ -164,6 +164,18 @@ html { scroll-behavior: smooth; }
   [style*="align-items: flex-end; justify-content: space-between; gap: 40px"] {
     flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
   [style*="align-items: baseline; gap: 14px"] { flex-wrap: wrap !important; }
+  /* fila de logos representados: envuelve en vez de cortarse */
+  [style*="gap: 13px; padding-top: 8px"] { flex-wrap: wrap !important; row-gap: 16px !important; }
+  [style*="gap: 13px; padding-top: 8px"] > span[style*="flex-grow: 1"] { display: none !important; }
+  .stage { height: 380px !important; }
+  .shot, .refl, .refl-box { width: 230px !important; }
+  .shot { height: 230px !important; }
+  .refl { height: 230px !important; }
+  .refl-box { height: 88px !important; }
+  .orbit.o1 { width: 300px !important; height: 300px !important; margin: -150px 0 0 -150px !important; }
+  .orbit.o2 { display: none !important; }
+  .floor { width: 320px !important; margin-left: -160px !important; }
+  .thumb { width: 48px !important; height: 48px !important; }
   [style*="align-items: center; justify-content: space-between; gap: 26px"] {
     flex-direction: column !important; align-items: flex-start !important; gap: 18px !important; }
 }
