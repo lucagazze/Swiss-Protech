@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuestro proceso — Swiss Protech</title>
+<meta name="description" content="Las cinco etapas de trazabilidad: depósito, control, esterilización, traslado y entrega en quirófano.">
+<meta property="og:title" content="Nuestro proceso — Swiss Protech">
+<meta property="og:description" content="Las cinco etapas de trazabilidad: depósito, control, esterilización, traslado y entrega en quirófano.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+<style>
+
+    body { margin: 0; font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+           color: #10222A; background: #0A171D; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #0095A1; text-decoration: none; }
+    a:hover { color: #72C5C2; }
+    h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
+    p { margin: 0; }
+
+    .grid-bg { background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 62px 62px; }
+
+    /* cubo 3D girando */
+    .cube-stage { perspective: 900px; }
+    .cube { position: relative; width: 116px; height: 116px; transform-style: preserve-3d;
+            animation: cspin 18s linear infinite; }
+    .cf { position: absolute; inset: 0; border: 1px solid rgba(114,197,194,.42);
+          background: rgba(0,149,161,.10); display: flex; align-items: center; justify-content: center; }
+    @keyframes cspin { to { transform: rotateX(360deg) rotateY(720deg); } }
+
+    /* tarjetas de etapa */
+    .st { perspective: 1100px; }
+    .st-in { transition: transform .5s cubic-bezier(.2,.7,.3,1), border-color .5s, background .5s;
+             transform-style: preserve-3d; }
+    .st:hover .st-in { transform: translateX(10px) rotateY(-4deg) translateZ(24px);
+                       border-color: rgba(0,149,161,.72); background: rgba(0,149,161,.08); }
+    .st:hover .st-ic { transform: translateZ(40px) scale(1.1); background: #0095A1; }
+    .st:hover .st-ic svg { stroke: #FFFFFF; }
+    .st-ic { transition: transform .5s cubic-bezier(.2,.7,.3,1), background .5s; }
+    .st-ic svg { transition: stroke .5s; }
+
+    .spine { position: absolute; left: 43px; top: 0; bottom: 0; width: 2px;
+             background: linear-gradient(180deg, rgba(0,149,161,0), #0095A1 8%, #0095A1 92%, rgba(0,149,161,0)); }
+    .spine::after { content: ""; position: absolute; left: -3px; top: 0; width: 8px; height: 110px;
+                    border-radius: 99px; background: #72C5C2;
+                    box-shadow: 0 0 24px 6px rgba(114,197,194,.8); animation: flow 7s ease-in-out infinite; }
+    @keyframes flow { 0% { top: 1%; } 50% { top: 84%; } 100% { top: 1%; } }
+
+    .btn-p { transition: transform .28s, box-shadow .28s, background .28s; }
+    .btn-p:hover { transform: translateY(-3px); background: #007C87;
+                   box-shadow: 0 16px 32px -12px rgba(0,149,161,.85); }
+    .btn-g { transition: transform .28s, border-color .28s; }
+    .btn-g:hover { transform: translateY(-3px); border-color: #72C5C2; }
+
+    .navlink { position: relative; transition: color .25s; }
+    .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
+                      background: #72C5C2; transition: right .3s; }
+    .navlink:hover { color: #72C5C2; }
+    .navlink:hover::after { right: 0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cube, .spine::after { animation: none; }
+      .st-in, .st-ic, .btn-p, .btn-g { transition: none; }
+    }
+  
+
+.burger { display: none; width: 44px; height: 44px; border-radius: 6px; border: 1px solid #E3E7E9;
+          align-items: center; justify-content: center; cursor: pointer; flex: none; }
+.burger.dark { border-color: rgba(255,255,255,.2); }
+.drawer { display: none; flex-direction: column; gap: 2px; padding: 10px 20px 18px;
+          border-bottom: 1px solid #E3E7E9; background: #FFFFFF; }
+.drawer.dark { background: #0A171D; border-color: rgba(255,255,255,.09); }
+.drawer.open { display: flex; }
+.drawer a { padding: 14px 4px; font-size: 15px; font-weight: 500; color: #10222A;
+            border-bottom: 1px solid #F1F4F5; min-height: 50px; display: flex; align-items: center; }
+.drawer.dark a { color: #C6D0D4; border-color: rgba(255,255,255,.07); }
+
+
+/* ============ responsive ============ */
+.wrap { width: 100%; max-width: 1440px; margin: 0 auto; }
+img { max-width: 100%; }
+html, body { overflow-x: hidden; }
+html { scroll-behavior: smooth; }
+.navwrap { overflow-x: auto; }
+
+@media (max-width: 1240px) {
+  [style*="grid-template-columns: 1fr 620px"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 700px 1fr"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 400px 1fr"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 1fr 420px"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 320px repeat(3"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  [style*="grid-template-columns: 1fr 300px"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: repeat(5"] { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+  .rail { display: none !important; }
+  .navlinks { display: none !important; }
+  .burger { display: flex !important; }
+}
+@media (max-width: 980px) {
+  [style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  [style*="grid-template-columns: repeat(3"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  [style*="grid-template-columns: repeat(5"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  h1 { font-size: clamp(30px, 6.4vw, 52px) !important; }
+  h2 { font-size: clamp(24px, 4.6vw, 40px) !important; }
+  .viewer { height: 480px !important; }
+  .filtbar { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
+}
+@media (max-width: 720px) {
+  .navcta { display: none !important; }
+  [style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  [style*="grid-template-columns: repeat(3"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: repeat(5"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: repeat(2"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 320px repeat(3"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 200px 1fr"] { grid-template-columns: minmax(0,1fr) !important; gap: 2px !important; }
+  [style*="grid-template-columns: 88px 1fr"] { grid-template-columns: 62px 1fr !important; gap: 14px !important; }
+  [style*="padding: 92px 40px 100px"] { padding: 52px 20px 60px !important; }
+  [style*="padding: 0 40px"] { padding: 0 20px !important; }
+  [style*="padding: 20px 40px"] { padding: 14px 20px !important; }
+  [style*="padding: 60px 56px"] { padding: 40px 22px !important; }
+  [style*="padding: 40px 42px"] { padding: 26px 22px !important; }
+  [style*="padding: 44px 46px"] { padding: 28px 22px !important; }
+  [style*="padding: 34px 40px"] { padding: 24px 22px !important; flex-direction: column !important; align-items: flex-start !important; }
+  .stage { height: 340px !important; }
+  .ring { width: 240px !important; height: 240px !important; }
+  .ring-i { width: 150px !important; height: 150px !important; }
+  .viewer { height: 400px !important; }
+  .obj img { width: 190px !important; height: 190px !important; }
+  .disc { display: none !important; }
+  .ctarow { flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
+  .ctarow a { width: 100%; justify-content: center; }
+  .btnrow { flex-wrap: wrap !important; }
+  .btnrow a { flex-grow: 1; justify-content: center; }
+  .spine { display: none !important; }
+
+  /* paddings anchos heredados del diseno de escritorio */
+  [style*="padding: 18px 40px"] { padding: 14px 20px !important; }
+  [style*="padding: 26px 28px"] { padding: 20px 18px !important; }
+  [style*="padding: 30px 28px"] { padding: 22px 18px !important; }
+  [style*="padding: 32px 26px"] { padding: 22px 18px !important; }
+  [style*="padding: 34px 30px"] { padding: 22px 18px !important; }
+  [style*="padding: 44px 40px"] { padding: 26px 20px !important; }
+  [style*="padding: 28px 32px 28px 0"] { padding: 20px 18px 20px 0 !important; }
+  [style*="padding: 30px 22px 26px"] { padding: 26px 18px 22px !important; }
+  [style*="padding: 24px 26px"] { padding: 20px 18px !important; }
+  [style*="padding: 62px 0 58px"] { padding: 40px 0 36px !important; }
+  [style*="padding: 60px 0 54px"] { padding: 40px 0 34px !important; }
+  [style*="padding: 86px 0 78px"] { padding: 48px 0 44px !important; }
+
+  /* filas de chips que no deben empujar el ancho */
+  .filtbar > div, .paisbar { flex-wrap: wrap !important; }
+  .obj img { width: 180px !important; height: 180px !important; }
+  h1, h2, h3 { overflow-wrap: break-word; }
+
+  /* encabezados de seccion con boton al costado: se apilan */
+  [style*="align-items: flex-end; justify-content: space-between; gap: 40px"] {
+    flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
+  [style*="align-items: baseline; gap: 14px"] { flex-wrap: wrap !important; }
+  [style*="align-items: center; justify-content: space-between; gap: 26px"] {
+    flex-direction: column !important; align-items: flex-start !important; gap: 18px !important; }
+}
+
+</style>
+</head>
+<body>
+
+
+
+<div style="width: 100%; background: #0A171D;">
+
+  <!-- NAV oscuro -->
+  <div style="background: rgba(10,23,29,.92); border-bottom: 1px solid rgba(255,255,255,.09);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px;">
+      <img src="assets/logo-blanco.png" alt="Swiss Protech" style="height: 40px; width: auto; display: block;">
+      <div class="navlinks" style="display: flex; align-items: center; gap: 34px; font-size: 14px; font-weight: 500; color: #C6D0D4;">
+        <a href="index.html#institucional" class="navlink" style="color: #C6D0D4;">Institucional</a>
+        <a href="productos.html" class="navlink" style="color: #C6D0D4;">Productos</a>
+        <a href="proceso.html" class="navlink" style="color: #72C5C2; font-weight: 600;">Nuestro proceso</a>
+        <a href="index.html#portal" class="navlink" style="color: #C6D0D4;">Educación médica</a>
+        <a href="index.html#representaciones" class="navlink" style="color: #C6D0D4;">Representaciones</a>
+        <a href="contacto.html" class="navlink" style="color: #C6D0D4;">Contacto</a>
+      </div>
+      <span class="burger dark" onclick="document.getElementById('drawer').classList.toggle('open')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C6D0D4" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></span><a href="contacto.html" class="btn-p navcta" style="display: inline-flex; align-items: center; gap: 9px; background: #0095A1; color: #fff; font-size: 13.5px; font-weight: 600; padding: 12px 22px; border-radius: 4px; white-space: nowrap;">Consultar</a>
+    </div>
+  </div>
+
+  <div class="drawer dark" id="drawer"><a href="index.html#institucional">Institucional</a><a href="productos.html">Productos</a><a href="proceso.html">Nuestro proceso</a><a href="index.html#portal">Educación médica</a><a href="index.html#representaciones">Representaciones</a><a href="contacto.html">Contacto</a></div><!-- HERO -->
+  <div class="grid-bg" style="position: relative; background:
+       radial-gradient(900px 520px at 82% 40%, #16333C 0%, transparent 62%),
+       linear-gradient(165deg, #10222A 0%, #06131A 100%); padding: 86px 0 78px; overflow: hidden;">
+    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: 1fr 300px; gap: 60px; align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <span style="font-size: 12.5px; color: #69727D;">Home &nbsp;/&nbsp; <span style="color: #72C5C2;">Nuestro proceso</span></span>
+        <h1 style="font-size: 52px; color: #FFFFFF; letter-spacing: -0.035em; line-height: 1.06; max-width: 20ch;">
+          Un implante no se entrega.<br><span style="color: #0095A1;">Se acompaña.</span>
+        </h1>
+        <p style="font-size: 17.5px; color: #C6D0D4; line-height: 1.68; font-weight: 300; max-width: 62ch;">
+          Entre que una prótesis sale de nuestro depósito y que entra al quirófano hay cinco
+          etapas con registro propio. Este es el circuito completo — el mismo que auditan
+          los centros de salud antes de trabajar con nosotros.
+        </p>
+      </div>
+      <div class="cube-stage" style="display: flex; align-items: center; justify-content: center; height: 260px;">
+        <div class="cube">
+          <div class="cf" style="transform: translateZ(58px);"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.3 7L12 12l8.7-5M12 22V12"></path></svg></div>
+          <div class="cf" style="transform: rotateY(90deg) translateZ(58px);"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+          <div class="cf" style="transform: rotateY(180deg) translateZ(58px);"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 15l4-4 3 3 5-6"></path></svg></div>
+          <div class="cf" style="transform: rotateY(270deg) translateZ(58px);"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><path d="M16 8h4l3 3v5h-7z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></div>
+          <div class="cf" style="transform: rotateX(90deg) translateZ(58px);"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v5H4zM4 15h16v5H4z"></path><path d="M12 9v6"></path></svg></div>
+          <div class="cf" style="transform: rotateX(-90deg) translateZ(58px);"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LÍNEA DE TIEMPO -->
+  <div style="background: linear-gradient(180deg, #06131A 0%, #0A171D 100%); padding: 84px 0 90px;">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 40px; position: relative;">
+      <div class="spine"></div>
+      <div style="display: flex; flex-direction: column; gap: 22px; position: relative;">
+
+        <div class="st"><div class="st-in" style="display: grid; grid-template-columns: 88px 1fr; gap: 26px; align-items: center; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.032); border-radius: 8px; padding: 28px 32px 28px 0;">
+          <span class="st-ic" style="width: 62px; height: 62px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.4); display: flex; align-items: center; justify-content: center; margin-left: 12px;">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.3 7L12 12l8.7-5M12 22V12"></path></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #0095A1;">Etapa 01</span>
+            <h3 style="font-size: 23px; color: #FFFFFF;">Depósito e identificación</h3>
+            <p style="font-size: 15px; color: #A7A9AC; line-height: 1.68; font-weight: 300; max-width: 68ch;">
+              Cada pieza ingresa a nuestro depósito con su número de lote y de serie cargados
+              en el sistema. Desde ese momento la prótesis tiene un historial: dónde está,
+              cuándo llegó y a qué cirugía queda asignada.
+            </p>
+          </div>
+        </div></div>
+
+        <div class="st"><div class="st-in" style="display: grid; grid-template-columns: 88px 1fr; gap: 26px; align-items: center; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.032); border-radius: 8px; padding: 28px 32px 28px 0;">
+          <span class="st-ic" style="width: 62px; height: 62px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.4); display: flex; align-items: center; justify-content: center; margin-left: 12px;">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"></path><path d="M9 12l2 2 4-4"></path></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #0095A1;">Etapa 02</span>
+            <h3 style="font-size: 23px; color: #FFFFFF;">Control y preparación</h3>
+            <p style="font-size: 15px; color: #A7A9AC; line-height: 1.68; font-weight: 300; max-width: 68ch;">
+              Antes de salir se verifica integridad del envase, vencimiento y correspondencia
+              con la cirugía programada: medida, lado y componentes complementarios. Nada sale
+              del depósito sin ese doble control firmado.
+            </p>
+          </div>
+        </div></div>
+
+        <div class="st"><div class="st-in" style="display: grid; grid-template-columns: 88px 1fr; gap: 26px; align-items: center; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.032); border-radius: 8px; padding: 28px 32px 28px 0;">
+          <span class="st-ic" style="width: 62px; height: 62px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.4); display: flex; align-items: center; justify-content: center; margin-left: 12px;">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v5H4zM4 15h16v5H4z"></path><path d="M12 9v6"></path></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #0095A1;">Etapa 03</span>
+            <h3 style="font-size: 23px; color: #FFFFFF;">Esterilización bajo protocolo</h3>
+            <p style="font-size: 15px; color: #A7A9AC; line-height: 1.68; font-weight: 300; max-width: 68ch;">
+              El instrumental se procesa con registro trazable de cada ciclo, según la
+              normativa de A.N.M.A.T. Queda documentado qué se esterilizó, cuándo y con
+              qué parámetros — y ese registro acompaña a la caja.
+            </p>
+          </div>
+        </div></div>
+
+        <div class="st"><div class="st-in" style="display: grid; grid-template-columns: 88px 1fr; gap: 26px; align-items: center; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.032); border-radius: 8px; padding: 28px 32px 28px 0;">
+          <span class="st-ic" style="width: 62px; height: 62px; border-radius: 50%; background: #16323B; border: 1px solid rgba(114,197,194,.4); display: flex; align-items: center; justify-content: center; margin-left: 12px;">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#72C5C2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><path d="M16 8h4l3 3v5h-7z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #0095A1;">Etapa 04</span>
+            <h3 style="font-size: 23px; color: #FFFFFF;">Traslado controlado</h3>
+            <p style="font-size: 15px; color: #A7A9AC; line-height: 1.68; font-weight: 300; max-width: 68ch;">
+              Logística propia hasta el centro de salud, con seguimiento del envío en todo
+              el trayecto. Llegamos a 17 provincias, y en cada entrega se confirma recepción
+              contra la cirugía a la que corresponde.
+            </p>
+          </div>
+        </div></div>
+
+        <div class="st"><div class="st-in" style="display: grid; grid-template-columns: 88px 1fr; gap: 26px; align-items: center; border: 1px solid rgba(0,149,161,.45); background: rgba(0,149,161,.09); border-radius: 8px; padding: 28px 32px 28px 0;">
+          <span class="st-ic" style="width: 62px; height: 62px; border-radius: 50%; background: #0095A1; border: 1px solid rgba(114,197,194,.6); display: flex; align-items: center; justify-content: center; margin-left: 12px;">
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"></path><circle cx="12" cy="12" r="9"></circle></svg>
+          </span>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #72C5C2;">Etapa 05</span>
+            <h3 style="font-size: 23px; color: #FFFFFF;">Entrega y acompañamiento en quirófano</h3>
+            <p style="font-size: 15px; color: #C6D0D4; line-height: 1.68; font-weight: 300; max-width: 68ch;">
+              Nuestro técnico está presente en el acto quirúrgico con el instrumental
+              completo y las medidas alternativas por si el cirujano necesita cambiar
+              en el momento. Esta es la etapa que ningún catálogo puede mostrar.
+            </p>
+          </div>
+        </div></div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- POR QUÉ IMPORTA -->
+  <div style="background: #FFFFFF; padding: 88px 0;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 44px;">
+      <div style="display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center;">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #0095A1;">Por qué importa</span>
+        <h2 style="font-size: 38px; color: #10222A; letter-spacing: -0.03em; max-width: 24ch;">Lo que el circuito le garantiza a cada parte</h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+
+        <div style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 34px 30px; display: flex; flex-direction: column; gap: 15px;">
+          <span style="width: 46px; height: 46px; border-radius: 6px; background: rgba(0,149,161,.09); display: flex; align-items: center; justify-content: center;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 19.2A9 9 0 1 1 19.2 4.8 9 9 0 0 1 4.8 19.2z"></path><path d="M12 8v4l3 2"></path></svg>
+          </span>
+          <h3 style="font-size: 19px; color: #10222A;">Al cirujano</h3>
+          <p style="font-size: 14.5px; color: #69727D; line-height: 1.65;">
+            El instrumental completo en la fecha comprometida, con medidas alternativas
+            disponibles en el quirófano y un técnico que conoce el sistema.
+          </p>
+        </div>
+
+        <div style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 34px 30px; display: flex; flex-direction: column; gap: 15px;">
+          <span style="width: 46px; height: 46px; border-radius: 6px; background: rgba(0,149,161,.09); display: flex; align-items: center; justify-content: center;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 15l2 2 4-4"></path></svg>
+          </span>
+          <h3 style="font-size: 19px; color: #10222A;">Al centro de salud</h3>
+          <p style="font-size: 14.5px; color: #69727D; line-height: 1.65;">
+            Documentación completa de trazabilidad y esterilización por cada implante,
+            lista para auditoría interna o del financiador.
+          </p>
+        </div>
+
+        <div style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 34px 30px; display: flex; flex-direction: column; gap: 15px;">
+          <span style="width: 46px; height: 46px; border-radius: 6px; background: rgba(0,149,161,.09); display: flex; align-items: center; justify-content: center;">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.5 5.5 0 0 0-7.8 0L12 6.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21.2l7.7-7.8 1.1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg>
+          </span>
+          <h3 style="font-size: 19px; color: #10222A;">Al paciente</h3>
+          <p style="font-size: 14.5px; color: #69727D; line-height: 1.65;">
+            Un implante que llegó al quirófano por un circuito controlado de punta a punta,
+            de un fabricante habilitado y con respaldo local.
+          </p>
+        </div>
+
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: center; gap: 13px; padding-top: 8px;">
+        <a href="contacto.html" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: #0095A1; color: #fff; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px;">
+          Coordinar una cirugía
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <a href="productos.html" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 600; padding: 16px 28px; border-radius: 4px;">
+          Ver el catálogo
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('click', function(e){
+  var d = document.getElementById('drawer');
+  if (d && d.classList.contains('open') && !e.target.closest('.drawer') && !e.target.closest('.burger')) d.classList.remove('open');
+});
+</script>
+
+</body>
+</html>

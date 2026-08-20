@@ -4,25 +4,21 @@ Propuesta de rediseño del sitio de **Swiss Protech S.A.** ([swipro.com.ar](http
 importador y representante exclusivo en Argentina de implantes ortopédicos de origen
 alemán y norteamericano.
 
-## Ver el diseño
+El sitio está en la raíz del repo: se abre directo desde la URL del deploy, o abriendo
+`index.html` en cualquier navegador. HTML y CSS puros, sin build ni dependencias.
 
-Abrí **`index.html`** en cualquier navegador, o entrá a la URL del deploy. Es un
-archivo autónomo: trae las seis pantallas sobre un canvas con zoom y desplazamiento,
-sin servidor ni dependencias. Cada pantalla se puede abrir a pantalla completa y
-exportar como PNG o PDF desde la barra superior.
+## Páginas
 
-## Pantallas
-
-| Archivo | Pantalla | Qué muestra |
+| Archivo | Página | Qué tiene |
 |---|---|---|
-| `Main.dc.html` | Home | Hero con carrusel 3D de implantes, credenciales, las tres líneas, el proceso, representaciones y cobertura nacional |
-| `Productos.dc.html` | Catálogo | Los 21 productos con filtro por línea (cadera, rodilla, cementos) |
-| `Proceso.dc.html` | Nuestro proceso | Sección nueva: las cinco etapas de trazabilidad, de depósito a quirófano |
-| `Ficha.dc.html` | Ficha de producto | MobileLink Dual Mobility, con visor 3D de rotación y zoom |
-| `Contacto.dc.html` | Contacto | Selector de país y de tipo de público (médico / financiador / paciente) |
-| `Mobile.dc.html` | Home en celular | La misma home a 390 px, con barra de acción fija |
+| `index.html` | Home | Hero con carrusel 3D de implantes, credenciales, las tres líneas, el proceso, representaciones, cobertura nacional y portal médico |
+| `productos.html` | Catálogo | Los 21 productos con filtro por línea (todos / cadera / rodilla / cementos) |
+| `proceso.html` | Nuestro proceso | Sección nueva: las cinco etapas de trazabilidad, de depósito a quirófano |
+| `producto.html` | Ficha de producto | MobileLink Dual Mobility, con visor 3D que rota arrastrando o con los botones |
+| `contacto.html` | Contacto | Selector de país y de tipo de público (médico / obra social / paciente), con formulario y sedes que cambian según la elección |
 
-`canvas.json` define la posición de cada pantalla en el canvas y las notas al margen.
+Todo responsive: probado a 390, 768 y 1440 px, sin desborde horizontal, con menú
+desplegable en celular y botones de 48 px o más.
 
 ## Identidad
 
@@ -62,13 +58,22 @@ Marcas representadas: **Waldemar Link** (Hamburgo, 1948), **Advita Ortho** y
 - **Chile y Uruguay:** el selector de país está armado, pero el sitio actual solo
   publica las dos sedes argentinas. Esos datos quedaron como `[COMPLETAR]`.
 - **Tres fotos faltantes:** MobileLink, Bimobile Cementado y LCU no tienen imagen en
-  el sitio actual; en el catálogo figuran como marcador "foto a solicitar".
+  el sitio actual; en el catálogo figuran con un marcador "foto a solicitar".
+- **Medidas por producto:** la ficha las tiene como `[COMPLETAR CON DATOS DEL FABRICANTE]`.
 
-## Formato
+## Cómo se regenera
 
-Los `.dc.html` son componentes de Claude Design: HTML estándar con un bloque
-`<helmet>` para los estilos y una clase de lógica al pie. Se editan como HTML común.
+Los `.dc.html` son las maquetas fuente (un archivo por pantalla). El script
+`build_site.py` las convierte en las páginas estáticas de la raíz: resuelve los
+estilos, arma la navegación, agrega el menú de celular, las reglas responsive y el
+JavaScript de los filtros, el visor 3D y el selector de contacto.
+
+```
+python -u build_site.py
+```
+
+Escribe todo en `site/`; después se copian los `.html` a la raíz.
 
 ---
 
-Diseño: [Algoritmia](https://algoritmiadesarrollos.com.ar)
+Diseño y desarrollo: [Algoritmia](https://algoritmiadesarrollos.com.ar) · +54 9 3476 24-5523

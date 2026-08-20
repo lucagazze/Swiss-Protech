@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto — Swiss Protech</title>
+<meta name="description" content="Sedes en CABA y Rosario. Consultas de médicos, obras sociales, prepagas y pacientes.">
+<meta property="og:title" content="Contacto — Swiss Protech">
+<meta property="og:description" content="Sedes en CABA y Rosario. Consultas de médicos, obras sociales, prepagas y pacientes.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+<style>
+
+    body { margin: 0; font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+           color: #10222A; background: #FFFFFF; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #0095A1; text-decoration: none; }
+    a:hover { color: #007C87; }
+    h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
+    p { margin: 0; }
+
+    .who { cursor: pointer; perspective: 800px; }
+    .who-in { transition: transform .42s cubic-bezier(.2,.7,.3,1), border-color .42s, background .42s, box-shadow .42s;
+              transform-style: preserve-3d; }
+    .who:hover .who-in { transform: translateY(-6px) rotateX(4deg) translateZ(16px);
+                         box-shadow: 0 24px 40px -20px rgba(16,34,42,.34); }
+
+    .flag { cursor: pointer; transition: border-color .28s, background .28s, transform .28s; }
+    .flag:hover { transform: translateY(-3px); border-color: #0095A1; }
+
+    .fld { transition: border-color .25s, box-shadow .25s; }
+    .fld:hover { border-color: #A7A9AC; }
+
+    .btn-p { transition: transform .28s, box-shadow .28s, background .28s; }
+    .btn-p:hover { transform: translateY(-3px); background: #007C87;
+                   box-shadow: 0 16px 32px -12px rgba(0,149,161,.8); }
+
+    .navlink { position: relative; transition: color .25s; }
+    .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px;
+                      background: #0095A1; transition: right .3s; }
+    .navlink:hover { color: #0095A1; }
+    .navlink:hover::after { right: 0; }
+
+    .pin { position: relative; }
+    .pin::before { content: ""; position: absolute; inset: -7px; border-radius: 50%;
+                   border: 2px solid rgba(0,149,161,.4); animation: ping 2.6s ease-out infinite; }
+    @keyframes ping { 0% { transform: scale(.7); opacity: .9; }
+                      100% { transform: scale(1.7); opacity: 0; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .who-in, .flag, .btn-p { transition: none; }
+      .pin::before { animation: none; }
+    }
+  
+
+.burger { display: none; width: 44px; height: 44px; border-radius: 6px; border: 1px solid #E3E7E9;
+          align-items: center; justify-content: center; cursor: pointer; flex: none; }
+.burger.dark { border-color: rgba(255,255,255,.2); }
+.drawer { display: none; flex-direction: column; gap: 2px; padding: 10px 20px 18px;
+          border-bottom: 1px solid #E3E7E9; background: #FFFFFF; }
+.drawer.dark { background: #0A171D; border-color: rgba(255,255,255,.09); }
+.drawer.open { display: flex; }
+.drawer a { padding: 14px 4px; font-size: 15px; font-weight: 500; color: #10222A;
+            border-bottom: 1px solid #F1F4F5; min-height: 50px; display: flex; align-items: center; }
+.drawer.dark a { color: #C6D0D4; border-color: rgba(255,255,255,.07); }
+
+
+/* ============ responsive ============ */
+.wrap { width: 100%; max-width: 1440px; margin: 0 auto; }
+img { max-width: 100%; }
+html, body { overflow-x: hidden; }
+html { scroll-behavior: smooth; }
+.navwrap { overflow-x: auto; }
+
+@media (max-width: 1240px) {
+  [style*="grid-template-columns: 1fr 620px"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 700px 1fr"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 400px 1fr"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 1fr 420px"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 320px repeat(3"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  [style*="grid-template-columns: 1fr 300px"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: repeat(5"] { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+  .rail { display: none !important; }
+  .navlinks { display: none !important; }
+  .burger { display: flex !important; }
+}
+@media (max-width: 980px) {
+  [style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  [style*="grid-template-columns: repeat(3"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  [style*="grid-template-columns: repeat(5"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  h1 { font-size: clamp(30px, 6.4vw, 52px) !important; }
+  h2 { font-size: clamp(24px, 4.6vw, 40px) !important; }
+  .viewer { height: 480px !important; }
+  .filtbar { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
+}
+@media (max-width: 720px) {
+  .navcta { display: none !important; }
+  [style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  [style*="grid-template-columns: repeat(3"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: repeat(5"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: repeat(2"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 320px repeat(3"] { grid-template-columns: minmax(0,1fr) !important; }
+  [style*="grid-template-columns: 200px 1fr"] { grid-template-columns: minmax(0,1fr) !important; gap: 2px !important; }
+  [style*="grid-template-columns: 88px 1fr"] { grid-template-columns: 62px 1fr !important; gap: 14px !important; }
+  [style*="padding: 92px 40px 100px"] { padding: 52px 20px 60px !important; }
+  [style*="padding: 0 40px"] { padding: 0 20px !important; }
+  [style*="padding: 20px 40px"] { padding: 14px 20px !important; }
+  [style*="padding: 60px 56px"] { padding: 40px 22px !important; }
+  [style*="padding: 40px 42px"] { padding: 26px 22px !important; }
+  [style*="padding: 44px 46px"] { padding: 28px 22px !important; }
+  [style*="padding: 34px 40px"] { padding: 24px 22px !important; flex-direction: column !important; align-items: flex-start !important; }
+  .stage { height: 340px !important; }
+  .ring { width: 240px !important; height: 240px !important; }
+  .ring-i { width: 150px !important; height: 150px !important; }
+  .viewer { height: 400px !important; }
+  .obj img { width: 190px !important; height: 190px !important; }
+  .disc { display: none !important; }
+  .ctarow { flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
+  .ctarow a { width: 100%; justify-content: center; }
+  .btnrow { flex-wrap: wrap !important; }
+  .btnrow a { flex-grow: 1; justify-content: center; }
+  .spine { display: none !important; }
+
+  /* paddings anchos heredados del diseno de escritorio */
+  [style*="padding: 18px 40px"] { padding: 14px 20px !important; }
+  [style*="padding: 26px 28px"] { padding: 20px 18px !important; }
+  [style*="padding: 30px 28px"] { padding: 22px 18px !important; }
+  [style*="padding: 32px 26px"] { padding: 22px 18px !important; }
+  [style*="padding: 34px 30px"] { padding: 22px 18px !important; }
+  [style*="padding: 44px 40px"] { padding: 26px 20px !important; }
+  [style*="padding: 28px 32px 28px 0"] { padding: 20px 18px 20px 0 !important; }
+  [style*="padding: 30px 22px 26px"] { padding: 26px 18px 22px !important; }
+  [style*="padding: 24px 26px"] { padding: 20px 18px !important; }
+  [style*="padding: 62px 0 58px"] { padding: 40px 0 36px !important; }
+  [style*="padding: 60px 0 54px"] { padding: 40px 0 34px !important; }
+  [style*="padding: 86px 0 78px"] { padding: 48px 0 44px !important; }
+
+  /* filas de chips que no deben empujar el ancho */
+  .filtbar > div, .paisbar { flex-wrap: wrap !important; }
+  .obj img { width: 180px !important; height: 180px !important; }
+  h1, h2, h3 { overflow-wrap: break-word; }
+
+  /* encabezados de seccion con boton al costado: se apilan */
+  [style*="align-items: flex-end; justify-content: space-between; gap: 40px"] {
+    flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
+  [style*="align-items: baseline; gap: 14px"] { flex-wrap: wrap !important; }
+  [style*="align-items: center; justify-content: space-between; gap: 26px"] {
+    flex-direction: column !important; align-items: flex-start !important; gap: 18px !important; }
+}
+
+</style>
+</head>
+<body>
+
+
+
+<div style="width: 100%; background: #FFFFFF;">
+
+  <!-- NAV -->
+  <div style="background: #FFFFFF; border-bottom: 1px solid #E3E7E9;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px;">
+      <img src="assets/logo.png" alt="Swiss Protech" style="height: 42px; width: auto; display: block;">
+      <div class="navlinks" style="display: flex; align-items: center; gap: 34px; font-size: 14px; font-weight: 500; color: #10222A;">
+        <a href="index.html#institucional" class="navlink" style="color: #10222A;">Institucional</a>
+        <a href="productos.html" class="navlink" style="color: #10222A;">Productos</a>
+        <a href="proceso.html" class="navlink" style="color: #10222A;">Nuestro proceso</a>
+        <a href="index.html#portal" class="navlink" style="color: #10222A;">Educación médica</a>
+        <a href="index.html#representaciones" class="navlink" style="color: #10222A;">Representaciones</a>
+        <a href="contacto.html" class="navlink" style="color: #0095A1; font-weight: 600;">Contacto</a>
+      </div>
+      <span class="burger" onclick="document.getElementById('drawer').classList.toggle('open')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10222A" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></span><a href="contacto.html" class="btn-p navcta" style="display: inline-flex; align-items: center; gap: 9px; background: #0095A1; color: #fff; font-size: 13.5px; font-weight: 600; padding: 12px 22px; border-radius: 4px; white-space: nowrap;">Consultar</a>
+    </div>
+  </div>
+
+  <div class="drawer" id="drawer"><a href="index.html#institucional">Institucional</a><a href="productos.html">Productos</a><a href="proceso.html">Nuestro proceso</a><a href="index.html#portal">Educación médica</a><a href="index.html#representaciones">Representaciones</a><a href="contacto.html">Contacto</a></div><!-- ENCABEZADO -->
+  <div style="background: linear-gradient(165deg, #10222A 0%, #0A171D 100%); padding: 60px 0 54px; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -150px; right: 100px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.20), transparent 70%); filter: blur(46px);"></div>
+    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 14px;">
+      <span style="font-size: 12.5px; color: #69727D;">Home &nbsp;/&nbsp; <span style="color: #72C5C2;">Contacto</span></span>
+      <h1 style="font-size: 44px; color: #FFFFFF; letter-spacing: -0.035em;">Hablemos</h1>
+      <p style="font-size: 16.5px; color: #A7A9AC; max-width: 64ch; line-height: 1.65; font-weight: 300;">
+        Decinos desde dónde escribís y quién sos, y la consulta llega directo al área
+        que corresponde. Sin rebotes internos.
+      </p>
+    </div>
+  </div>
+
+  <!-- SELECTOR DE PAÍS -->
+  <div style="background: #FFFFFF; border-bottom: 1px solid #E3E7E9; padding: 30px 0;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 16px;" class="paisbar">
+      <span style="font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #69727D;">¿Desde dónde escribís?</span>
+      <span class="flag" class="flag" data-pais="ar">Argentina</span>
+      <span class="flag" class="flag" data-pais="cl">Chile</span>
+      <span class="flag" class="flag" data-pais="uy">Uruguay</span>
+    </div>
+  </div>
+
+  <div style="background: #F7F8F9; padding: 58px 0 84px;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 40px;">
+
+      <!-- QUIÉN SOS -->
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <h2 style="font-size: 27px; color: #10222A;">¿Quién nos escribe?</h2>
+          <p style="font-size: 15px; color: #69727D; line-height: 1.6; font-weight: 300;">Elegí una opción para que la consulta llegue a quien corresponde.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px;">
+
+          <div class="who" data-quien="medico"><div class="who-in">
+            <span class="who-ic">
+              <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v6a6 6 0 0 0 12 0V2"></path><path d="M6 2h2M16 2h2M12 14v3a4 4 0 0 0 8 0v-1"></path><circle cx="20" cy="15" r="2"></circle></svg>
+            </span>
+            <h3 style="font-size: 19px; color: #10222A;">Soy médico</h3>
+            <p style="font-size: 14px; color: #69727D; line-height: 1.6;">
+              Disponibilidad, medidas, coordinación de una cirugía o acceso a técnicas quirúrgicas.
+            </p>
+            <span style="font-size: 12.5px; font-weight: 600; color: #0095A1; margin-top: auto; padding-top: 10px;">→ Área comercial y técnica</span>
+          </div></div>
+
+          <div class="who" data-quien="financiador"><div class="who-in">
+            <span class="who-ic">
+              <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13"></path><path d="M9 21v-6h6v6"></path></svg>
+            </span>
+            <h3 style="font-size: 19px; color: #10222A;">Obra social o prepaga</h3>
+            <p style="font-size: 14px; color: #69727D; line-height: 1.6;">
+              Presupuestos, convenios, documentación de trazabilidad y habilitaciones.
+            </p>
+            <span style="font-size: 12.5px; font-weight: 600; color: #0095A1; margin-top: auto; padding-top: 10px;">→ Administración y convenios</span>
+          </div></div>
+
+          <div class="who" data-quien="paciente"><div class="who-in">
+            <span class="who-ic">
+              <svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </span>
+            <h3 style="font-size: 19px; color: #10222A;">Soy paciente</h3>
+            <p style="font-size: 14px; color: #69727D; line-height: 1.6;">
+              Consultas generales sobre un implante. Te orientamos y derivamos con tu médico.
+            </p>
+            <span style="font-size: 12.5px; font-weight: 600; color: #0095A1; margin-top: auto; padding-top: 10px;">→ Atención al paciente</span>
+          </div></div>
+
+        </div>
+      </div>
+
+      <!-- FORMULARIO + SEDES -->
+      <div style="display: grid; grid-template-columns: 1fr 420px; gap: 30px; align-items: start;">
+
+        <div style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; padding: 40px 42px; display: flex; flex-direction: column; gap: 24px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <h3 style="font-size: 21px; color: #10222A;">Dejanos tu consulta</h3>
+            <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #0095A1; background: rgba(0,149,161,.09); padding: 6px 12px; border-radius: 3px;"><span id="quienTxt"></span></span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px;">
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <span style="font-size: 12.5px; font-weight: 600; color: #10222A;">Nombre y apellido</span>
+              <span class="fld" style="border: 1px solid #DDE3E5; border-radius: 4px; padding: 13px 15px; font-size: 14px; color: #A7A9AC; background: #FFFFFF;">Escribí tu nombre</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <span style="font-size: 12.5px; font-weight: 600; color: #10222A;"><span id="campo2"></span></span>
+              <span class="fld" style="border: 1px solid #DDE3E5; border-radius: 4px; padding: 13px 15px; font-size: 14px; color: #A7A9AC; background: #FFFFFF;"><span id="campo2ph"></span></span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <span style="font-size: 12.5px; font-weight: 600; color: #10222A;">E-mail</span>
+              <span class="fld" style="border: 1px solid #DDE3E5; border-radius: 4px; padding: 13px 15px; font-size: 14px; color: #A7A9AC; background: #FFFFFF;">nombre@correo.com</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <span style="font-size: 12.5px; font-weight: 600; color: #10222A;">Teléfono</span>
+              <span class="fld" style="border: 1px solid #DDE3E5; border-radius: 4px; padding: 13px 15px; font-size: 14px; color: #A7A9AC; background: #FFFFFF;"><span id="telPh"></span></span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 7px;">
+            <span style="font-size: 12.5px; font-weight: 600; color: #10222A;">Tu mensaje</span>
+            <span class="fld" style="border: 1px solid #DDE3E5; border-radius: 4px; padding: 13px 15px; font-size: 14px; color: #A7A9AC; background: #FFFFFF; min-height: 112px; display: block; line-height: 1.6;"><span id="msgPh"></span></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 11px;">
+            <span style="width: 17px; height: 17px; border: 1px solid #CBD2D6; border-radius: 3px; display: block; flex: none;"></span>
+            <span style="font-size: 13px; color: #69727D;">Acepto las <a href="#">políticas de privacidad</a>.</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 13px; padding-top: 4px;">
+            <a href="contacto.html" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: #0095A1; color: #fff; font-size: 15px; font-weight: 600; padding: 15px 32px; border-radius: 4px;">
+              Enviar consulta
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+            <span style="font-size: 13px; color: #69727D;">o escribinos directo por</span>
+            <a href="#" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #0095A1;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 20.5l1.6-4.9A8.4 8.4 0 0 1 3.7 11 8.5 8.5 0 0 1 12 2.6a8.4 8.4 0 0 1 9 8.9z"></path></svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- SEDES -->
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <div style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden;">
+            <div style="height: 132px; background:
+                 linear-gradient(135deg, #EDF2F3 0%, #E1E9EB 100%); position: relative; display: flex; align-items: center; justify-content: center;">
+              <span class="pin" style="width: 13px; height: 13px; border-radius: 50%; background: #0095A1; display: block;"></span>
+              <span style="position: absolute; bottom: 12px; right: 14px; font-size: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .05em;">MAPA INTERACTIVO</span>
+            </div>
+            <div style="padding: 24px 26px; display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #0095A1;"><span id="sede1Tag"></span></span>
+              <h3 style="font-size: 18px; color: #10222A;"><span id="sede1Nom"></span></h3>
+              <p style="font-size: 14px; color: #69727D; line-height: 1.6;"><span id="sede1Dir"></span></p>
+              <div style="display: flex; flex-direction: column; gap: 5px; padding-top: 6px; border-top: 1px solid #EEF1F2; margin-top: 6px;">
+                <span style="font-size: 14px; color: #10222A; font-weight: 600;"><span id="sede1Tel"></span></span>
+                <span style="font-size: 12.5px; color: #69727D;">Lunes a viernes, 8 a 17 h</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; padding: 24px 26px; display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #0095A1;"><span id="sede2Tag"></span></span>
+            <h3 style="font-size: 18px; color: #10222A;"><span id="sede2Nom"></span></h3>
+            <p style="font-size: 14px; color: #69727D; line-height: 1.6;"><span id="sede2Dir"></span></p>
+            <div style="display: flex; flex-direction: column; gap: 5px; padding-top: 6px; border-top: 1px solid #EEF1F2; margin-top: 6px;">
+              <span style="font-size: 14px; color: #10222A; font-weight: 600;"><span id="sede2Tel"></span></span>
+              <span style="font-size: 12.5px; color: #69727D;">Lunes a viernes, 8 a 17 h</span>
+            </div>
+          </div>
+
+          <div style="background: #10222A; border-radius: 6px; padding: 26px 26px; display: flex; flex-direction: column; gap: 13px; position: relative; overflow: hidden;">
+            <div style="position: absolute; top: -60px; right: -50px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.3), transparent 70%); filter: blur(26px);"></div>
+            <div style="position: relative; display: flex; flex-direction: column; gap: 11px;">
+              <span style="font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #72C5C2;">Emergencias quirúrgicas</span>
+              <p style="font-size: 14px; color: #C6D0D4; line-height: 1.6; font-weight: 300;">
+                Si necesitás coordinar un implante para una cirugía en las próximas 48 horas,
+                escribinos por WhatsApp y marcá el mensaje como urgente.
+              </p>
+              <a href="#" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: #72C5C2; padding-top: 4px;">
+                Abrir WhatsApp &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.addEventListener('click', function(e){
+  var d = document.getElementById('drawer');
+  if (d && d.classList.contains('open') && !e.target.closest('.drawer') && !e.target.closest('.burger')) d.classList.remove('open');
+});
+</script>
+<script>
+(function(){
+  var P = {
+    ar: { s1:['Sede Buenos Aires','Casa central','Av. Belgrano 863, CABA','11 3593 5241'],
+          s2:['Sede Rosario','Santa Fe','Pte. Roca 782, piso 1, Rosario','11 3593 5241'],
+          tel:'+54 9 11 0000-0000' },
+    cl: { s1:['Chile','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'],
+          s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'],
+          tel:'+56 9 0000 0000' },
+    uy: { s1:['Uruguay','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'],
+          s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'],
+          tel:'+598 00 000 000' }
+  };
+  var Q = {
+    medico:['Médico','Matrícula profesional','MN / MP','Contanos qué producto necesitás, para qué fecha está programada la cirugía y en qué centro.'],
+    financiador:['Obra social / prepaga','Institución','Nombre de la institución','Contanos si necesitás un presupuesto, documentación de trazabilidad o avanzar con un convenio.'],
+    paciente:['Paciente','Centro donde te operás','Nombre del centro u hospital','Contanos qué implante te indicaron y quién es tu médico tratante.']
+  };
+  var pais = 'ar', quien = 'medico';
+  function set(id, txt){ var e = document.getElementById(id); if(e) e.textContent = txt; }
+  function pintar(){
+    document.querySelectorAll('[data-pais]').forEach(function(c){
+      var on = c.getAttribute('data-pais') === pais;
+      c.style.cssText = on
+        ? 'font-size:13.5px;font-weight:600;color:#FFFFFF;border:1px solid #0095A1;background:#0095A1;padding:10px 20px;border-radius:99px;cursor:pointer;'
+        : 'font-size:13.5px;font-weight:500;color:#10222A;border:1px solid #DDE3E5;background:#FFFFFF;padding:10px 20px;border-radius:99px;cursor:pointer;';
+    });
+    document.querySelectorAll('[data-quien]').forEach(function(c){
+      var on = c.getAttribute('data-quien') === quien;
+      var card = c.querySelector('.who-in'), ic = c.querySelector('.who-ic');
+      var base = 'border-radius:6px;padding:30px 28px;display:flex;flex-direction:column;gap:13px;height:100%;';
+      card.style.cssText = base + (on
+        ? 'background:#FFFFFF;border:2px solid #0095A1;box-shadow:0 16px 30px -18px rgba(0,149,161,.6);'
+        : 'background:#FFFFFF;border:1px solid #E3E7E9;');
+      var ib = 'width:46px;height:46px;border-radius:6px;display:flex;align-items:center;justify-content:center;';
+      ic.style.cssText = ib + (on ? 'background:#0095A1;color:#FFFFFF;' : 'background:rgba(0,149,161,.09);color:#0095A1;');
+    });
+    var p = P[pais], q = Q[quien];
+    set('quienTxt', q[0]); set('campo2', q[1]); set('campo2ph', q[2]); set('msgPh', q[3]); set('telPh', p.tel);
+    set('sede1Tag', p.s1[0]); set('sede1Nom', p.s1[1]); set('sede1Dir', p.s1[2]); set('sede1Tel', p.s1[3]);
+    set('sede2Tag', p.s2[0]); set('sede2Nom', p.s2[1]); set('sede2Dir', p.s2[2]); set('sede2Tel', p.s2[3]);
+  }
+  document.querySelectorAll('[data-pais]').forEach(function(c){
+    c.addEventListener('click', function(){ pais = c.getAttribute('data-pais'); pintar(); }); });
+  document.querySelectorAll('[data-quien]').forEach(function(c){
+    c.addEventListener('click', function(){ quien = c.getAttribute('data-quien'); pintar(); }); });
+  pintar();
+})();
+</script>
+</body>
+</html>
