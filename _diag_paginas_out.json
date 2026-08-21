@@ -1,0 +1,8227 @@
+{
+ "institucional.html": {
+  "d": {
+   "scrollW": 1440,
+   "innerW": 1440,
+   "overflow": [],
+   "clipped": [
+    {
+     "t": "DIV.a",
+     "sw": 147,
+     "cw": 132,
+     "ov": "visible",
+     "tx": "Habilitaciones"
+    },
+    {
+     "t": "DIV.a",
+     "sw": 185,
+     "cw": 132,
+     "ov": "visible",
+     "tx": "Representaciones"
+    }
+   ],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink on",
+     "w": 90,
+     "h": 18,
+     "tx": "Institucional",
+     "href": "institucional.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 72.9,
+     "h": 18,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 116.8,
+     "h": 18,
+     "tx": "Nuestro proceso",
+     "href": "proceso.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 131.9,
+     "h": 18,
+     "tx": "Educación médica",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 127.3,
+     "h": 18,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 64.5,
+     "h": 18,
+     "tx": "Contacto",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.navlink on",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Institucional"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Institucional"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Quiénes somos"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Trayectoria"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Más de 25 años de trayectoria en implantes ortopéd"
+    },
+    {
+     "n": 2,
+     "tx": "Soluciones para mejorar la calidad de vida del pac"
+    },
+    {
+     "n": 3,
+     "tx": "Experiencia"
+    },
+    {
+     "n": 3,
+     "tx": "Calidad"
+    },
+    {
+     "n": 3,
+     "tx": "Certificación"
+    },
+    {
+     "n": 2,
+     "tx": "Cómo llegamos hasta acá"
+    },
+    {
+     "n": 3,
+     "tx": "Importación directa de implantes ortopédicos"
+    },
+    {
+     "n": 3,
+     "tx": "Ministerio de Salud de la Nación y A.N.M.A.T."
+    },
+    {
+     "n": 3,
+     "tx": "Acuerdos de exclusividad"
+    },
+    {
+     "n": 3,
+     "tx": "De dos sedes a diecisiete provincias"
+    },
+    {
+     "n": 3,
+     "tx": "Más de 25 años de trayectoria"
+    },
+    {
+     "n": 2,
+     "tx": "Presencia en todo el país"
+    },
+    {
+     "n": 3,
+     "tx": "Sede Buenos Aires"
+    },
+    {
+     "n": 3,
+     "tx": "Sede Rosario"
+    },
+    {
+     "n": 2,
+     "tx": "Un implante no se entrega. Se acompaña."
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [
+    "Institucional"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": [],
+   "hitos": [
+    {
+     "i": 0,
+     "rotulo": "Origen",
+     "colW": 132,
+     "textoW": 70.5,
+     "textoRight": 210.5,
+     "colScrollW": 132,
+     "filaLeft": 298,
+     "h3Left": 298,
+     "h3Text": "Importación directa de implantes ortopédicos",
+     "pisa": false,
+     "solape": -87.5
+    },
+    {
+     "i": 1,
+     "rotulo": "Habilitaciones",
+     "colW": 132,
+     "textoW": 146.5,
+     "textoRight": 286.5,
+     "colScrollW": 147,
+     "filaLeft": 298,
+     "h3Left": 298,
+     "h3Text": "Ministerio de Salud de la Nación y A.N.M.A.T",
+     "pisa": false,
+     "solape": -11.5
+    },
+    {
+     "i": 2,
+     "rotulo": "Representaciones",
+     "colW": 132,
+     "textoW": 185.2,
+     "textoRight": 325.2,
+     "colScrollW": 185,
+     "filaLeft": 298,
+     "h3Left": 298,
+     "h3Text": "Acuerdos de exclusividad",
+     "pisa": true,
+     "solape": 27.2
+    },
+    {
+     "i": 3,
+     "rotulo": "Cobertura",
+     "colW": 132,
+     "textoW": 103.4,
+     "textoRight": 243.4,
+     "colScrollW": 132,
+     "filaLeft": 298,
+     "h3Left": 298,
+     "h3Text": "De dos sedes a diecisiete provincias",
+     "pisa": false,
+     "solape": -54.6
+    },
+    {
+     "i": 4,
+     "rotulo": "Hoy",
+     "colW": 132,
+     "textoW": 40.3,
+     "textoRight": 180.3,
+     "colScrollW": 132,
+     "filaLeft": 298,
+     "h3Left": 298,
+     "h3Text": "Más de 25 años de trayectoria",
+     "pisa": false,
+     "solape": -117.7
+    }
+   ]
+  },
+  "t": {
+   "scrollW": 768,
+   "innerW": 768,
+   "overflow": [],
+   "clipped": [
+    {
+     "t": "DIV.a",
+     "sw": 147,
+     "cw": 132,
+     "ov": "visible",
+     "tx": "Habilitaciones"
+    },
+    {
+     "t": "DIV.a",
+     "sw": 185,
+     "cw": 132,
+     "ov": "visible",
+     "tx": "Representaciones"
+    }
+   ],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Institucional"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Quiénes somos"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Trayectoria"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver el proceso completo"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Más de 25 años de trayectoria en implantes ortopéd"
+    },
+    {
+     "n": 2,
+     "tx": "Soluciones para mejorar la calidad de vida del pac"
+    },
+    {
+     "n": 3,
+     "tx": "Experiencia"
+    },
+    {
+     "n": 3,
+     "tx": "Calidad"
+    },
+    {
+     "n": 3,
+     "tx": "Certificación"
+    },
+    {
+     "n": 2,
+     "tx": "Cómo llegamos hasta acá"
+    },
+    {
+     "n": 3,
+     "tx": "Importación directa de implantes ortopédicos"
+    },
+    {
+     "n": 3,
+     "tx": "Ministerio de Salud de la Nación y A.N.M.A.T."
+    },
+    {
+     "n": 3,
+     "tx": "Acuerdos de exclusividad"
+    },
+    {
+     "n": 3,
+     "tx": "De dos sedes a diecisiete provincias"
+    },
+    {
+     "n": 3,
+     "tx": "Más de 25 años de trayectoria"
+    },
+    {
+     "n": 2,
+     "tx": "Presencia en todo el país"
+    },
+    {
+     "n": 3,
+     "tx": "Sede Buenos Aires"
+    },
+    {
+     "n": 3,
+     "tx": "Sede Rosario"
+    },
+    {
+     "n": 2,
+     "tx": "Un implante no se entrega. Se acompaña."
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [
+    "Institucional"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": [],
+   "hitos": [
+    {
+     "i": 0,
+     "rotulo": "Origen",
+     "colW": 132,
+     "textoW": 70.5,
+     "textoRight": 110.5,
+     "colScrollW": 132,
+     "filaLeft": 198,
+     "h3Left": 198,
+     "h3Text": "Importación directa de implantes ortopédicos",
+     "pisa": false,
+     "solape": -87.5
+    },
+    {
+     "i": 1,
+     "rotulo": "Habilitaciones",
+     "colW": 132,
+     "textoW": 146.5,
+     "textoRight": 186.5,
+     "colScrollW": 147,
+     "filaLeft": 198,
+     "h3Left": 198,
+     "h3Text": "Ministerio de Salud de la Nación y A.N.M.A.T",
+     "pisa": false,
+     "solape": -11.5
+    },
+    {
+     "i": 2,
+     "rotulo": "Representaciones",
+     "colW": 132,
+     "textoW": 185.2,
+     "textoRight": 225.2,
+     "colScrollW": 185,
+     "filaLeft": 198,
+     "h3Left": 198,
+     "h3Text": "Acuerdos de exclusividad",
+     "pisa": true,
+     "solape": 27.2
+    },
+    {
+     "i": 3,
+     "rotulo": "Cobertura",
+     "colW": 132,
+     "textoW": 103.4,
+     "textoRight": 143.4,
+     "colScrollW": 132,
+     "filaLeft": 198,
+     "h3Left": 198,
+     "h3Text": "De dos sedes a diecisiete provincias",
+     "pisa": false,
+     "solape": -54.6
+    },
+    {
+     "i": 4,
+     "rotulo": "Hoy",
+     "colW": 132,
+     "textoW": 40.3,
+     "textoRight": 80.3,
+     "colScrollW": 132,
+     "filaLeft": 198,
+     "h3Left": 198,
+     "h3Text": "Más de 25 años de trayectoria",
+     "pisa": false,
+     "solape": -117.7
+    }
+   ]
+  },
+  "m": {
+   "scrollW": 390,
+   "innerW": 390,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Institucional"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Quiénes somos"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Trayectoria"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver el proceso completo"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Más de 25 años de trayectoria en implantes ortopéd"
+    },
+    {
+     "n": 2,
+     "tx": "Soluciones para mejorar la calidad de vida del pac"
+    },
+    {
+     "n": 3,
+     "tx": "Experiencia"
+    },
+    {
+     "n": 3,
+     "tx": "Calidad"
+    },
+    {
+     "n": 3,
+     "tx": "Certificación"
+    },
+    {
+     "n": 2,
+     "tx": "Cómo llegamos hasta acá"
+    },
+    {
+     "n": 3,
+     "tx": "Importación directa de implantes ortopédicos"
+    },
+    {
+     "n": 3,
+     "tx": "Ministerio de Salud de la Nación y A.N.M.A.T."
+    },
+    {
+     "n": 3,
+     "tx": "Acuerdos de exclusividad"
+    },
+    {
+     "n": 3,
+     "tx": "De dos sedes a diecisiete provincias"
+    },
+    {
+     "n": 3,
+     "tx": "Más de 25 años de trayectoria"
+    },
+    {
+     "n": 2,
+     "tx": "Presencia en todo el país"
+    },
+    {
+     "n": 3,
+     "tx": "Sede Buenos Aires"
+    },
+    {
+     "n": 3,
+     "tx": "Sede Rosario"
+    },
+    {
+     "n": 2,
+     "tx": "Un implante no se entrega. Se acompaña."
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [
+    "Institucional"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": [],
+   "hitos": [
+    {
+     "i": 0,
+     "rotulo": "Origen",
+     "colW": 350,
+     "textoW": 70.5,
+     "textoRight": 90.5,
+     "colScrollW": 350,
+     "filaLeft": 20,
+     "h3Left": 20,
+     "h3Text": "Importación directa de implantes ortopédicos",
+     "pisa": true,
+     "solape": 70.5
+    },
+    {
+     "i": 1,
+     "rotulo": "Habilitaciones",
+     "colW": 350,
+     "textoW": 146.5,
+     "textoRight": 166.5,
+     "colScrollW": 350,
+     "filaLeft": 20,
+     "h3Left": 20,
+     "h3Text": "Ministerio de Salud de la Nación y A.N.M.A.T",
+     "pisa": true,
+     "solape": 146.5
+    },
+    {
+     "i": 2,
+     "rotulo": "Representaciones",
+     "colW": 350,
+     "textoW": 185.2,
+     "textoRight": 205.2,
+     "colScrollW": 350,
+     "filaLeft": 20,
+     "h3Left": 20,
+     "h3Text": "Acuerdos de exclusividad",
+     "pisa": true,
+     "solape": 185.2
+    },
+    {
+     "i": 3,
+     "rotulo": "Cobertura",
+     "colW": 350,
+     "textoW": 103.4,
+     "textoRight": 123.4,
+     "colScrollW": 350,
+     "filaLeft": 20,
+     "h3Left": 20,
+     "h3Text": "De dos sedes a diecisiete provincias",
+     "pisa": true,
+     "solape": 103.4
+    },
+    {
+     "i": 4,
+     "rotulo": "Hoy",
+     "colW": 350,
+     "textoW": 40.3,
+     "textoRight": 60.3,
+     "colScrollW": 350,
+     "filaLeft": 20,
+     "h3Left": 20,
+     "h3Text": "Más de 25 años de trayectoria",
+     "pisa": true,
+     "solape": 40.3
+    }
+   ]
+  }
+ },
+ "representaciones.html": {
+  "d": {
+   "scrollW": 1440,
+   "innerW": 1440,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 88.3,
+     "h": 18,
+     "tx": "Institucional",
+     "href": "institucional.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 72.9,
+     "h": 18,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 116.8,
+     "h": 18,
+     "tx": "Nuestro proceso",
+     "href": "proceso.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 131.9,
+     "h": 18,
+     "tx": "Educación médica",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink on",
+     "w": 129.3,
+     "h": 18,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 64.5,
+     "h": 18,
+     "tx": "Contacto",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 105,
+     "h": 34,
+     "tx": "MobileLink",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 195.4,
+     "h": 34,
+     "tx": "MobileLink Dual Mobility",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 115.3,
+     "h": 34,
+     "tx": "Lubinus Cup",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 172.9,
+     "h": 34,
+     "tx": "Lubinus SPII Revision",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 85.5,
+     "h": 34,
+     "tx": "MP Link",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 59.1,
+     "h": 34,
+     "tx": "LCU",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 109.1,
+     "h": 34,
+     "tx": "Endomodel",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 86.8,
+     "h": 34,
+     "tx": "Uni Sled",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 792,
+     "h": 18,
+     "tx": "link-ortho.com ↗",
+     "href": "https://www.link-ortho.com/"
+    },
+    {
+     "t": "A.prov",
+     "w": 105.3,
+     "h": 34,
+     "tx": "Crown Cup",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 88.2,
+     "h": 34,
+     "tx": "Element",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 130.2,
+     "h": 34,
+     "tx": "Optetrak Logic",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 140.3,
+     "h": 34,
+     "tx": "Optetrak Hi-Flex",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 112.4,
+     "h": 34,
+     "tx": "Optetrak CC",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 792,
+     "h": 18,
+     "tx": "advita.com ↗",
+     "href": "https://advita.com/"
+    },
+    {
+     "t": "A.prov",
+     "w": 108.2,
+     "h": 34,
+     "tx": "COPAL G+C",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 173.3,
+     "h": 34,
+     "tx": "PALACOS MV y MV+G",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 108.2,
+     "h": 34,
+     "tx": "PALACOS R",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 140.3,
+     "h": 34,
+     "tx": "PALAMIX Pistola",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 174.9,
+     "h": 34,
+     "tx": "PALAMIX UNO o DUO",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 792,
+     "h": 18,
+     "tx": "heraeus-medical.com ↗",
+     "href": "https://www.heraeus-medical.com/"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.navlink on",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Representaciones"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Representaciones"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Productos que representamos"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Qué significa"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Los fabricantes que representamos"
+    },
+    {
+     "n": 3,
+     "tx": "Waldemar Link GmbH & Co. KG"
+    },
+    {
+     "n": 3,
+     "tx": "Advita Ortho"
+    },
+    {
+     "n": 3,
+     "tx": "Heraeus Medical"
+    },
+    {
+     "n": 2,
+     "tx": "Representación exclusiva, no reventa"
+    },
+    {
+     "n": 3,
+     "tx": "Stock local"
+    },
+    {
+     "n": 3,
+     "tx": "Trazabilidad de origen"
+    },
+    {
+     "n": 3,
+     "tx": "Documentación oficial"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [
+    "Representaciones"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "https://www.link-ortho.com/",
+    "https://advita.com/",
+    "https://www.heraeus-medical.com/",
+    "#"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "t": {
+   "scrollW": 768,
+   "innerW": 768,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 105,
+     "h": 34,
+     "tx": "MobileLink",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 195.4,
+     "h": 34,
+     "tx": "MobileLink Dual Mobility",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 115.3,
+     "h": 34,
+     "tx": "Lubinus Cup",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 172.9,
+     "h": 34,
+     "tx": "Lubinus SPII Revision",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 85.5,
+     "h": 34,
+     "tx": "MP Link",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 59.1,
+     "h": 34,
+     "tx": "LCU",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 109.1,
+     "h": 34,
+     "tx": "Endomodel",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 86.8,
+     "h": 34,
+     "tx": "Uni Sled",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 614,
+     "h": 18,
+     "tx": "link-ortho.com ↗",
+     "href": "https://www.link-ortho.com/"
+    },
+    {
+     "t": "A.prov",
+     "w": 105.3,
+     "h": 34,
+     "tx": "Crown Cup",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 88.2,
+     "h": 34,
+     "tx": "Element",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 130.2,
+     "h": 34,
+     "tx": "Optetrak Logic",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 140.3,
+     "h": 34,
+     "tx": "Optetrak Hi-Flex",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 112.4,
+     "h": 34,
+     "tx": "Optetrak CC",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 614,
+     "h": 18,
+     "tx": "advita.com ↗",
+     "href": "https://advita.com/"
+    },
+    {
+     "t": "A.prov",
+     "w": 108.2,
+     "h": 34,
+     "tx": "COPAL G+C",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 173.3,
+     "h": 34,
+     "tx": "PALACOS MV y MV+G",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 108.2,
+     "h": 34,
+     "tx": "PALACOS R",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 140.3,
+     "h": 34,
+     "tx": "PALAMIX Pistola",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 174.9,
+     "h": 34,
+     "tx": "PALAMIX UNO o DUO",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 614,
+     "h": 18,
+     "tx": "heraeus-medical.com ↗",
+     "href": "https://www.heraeus-medical.com/"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Representaciones"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Productos que representamos"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "link-ortho.com ↗"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Qué significa"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "A.btn-g b2",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver sedes"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Los fabricantes que representamos"
+    },
+    {
+     "n": 3,
+     "tx": "Waldemar Link GmbH & Co. KG"
+    },
+    {
+     "n": 3,
+     "tx": "Advita Ortho"
+    },
+    {
+     "n": 3,
+     "tx": "Heraeus Medical"
+    },
+    {
+     "n": 2,
+     "tx": "Representación exclusiva, no reventa"
+    },
+    {
+     "n": 3,
+     "tx": "Stock local"
+    },
+    {
+     "n": 3,
+     "tx": "Trazabilidad de origen"
+    },
+    {
+     "n": 3,
+     "tx": "Documentación oficial"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [
+    "Representaciones"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "https://www.link-ortho.com/",
+    "https://advita.com/",
+    "https://www.heraeus-medical.com/",
+    "#"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "m": {
+   "scrollW": 390,
+   "innerW": 390,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 105,
+     "h": 34,
+     "tx": "MobileLink",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 195.4,
+     "h": 34,
+     "tx": "MobileLink Dual Mobility",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 115.3,
+     "h": 34,
+     "tx": "Lubinus Cup",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 172.9,
+     "h": 34,
+     "tx": "Lubinus SPII Revision",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 85.5,
+     "h": 34,
+     "tx": "MP Link",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 59.1,
+     "h": 34,
+     "tx": "LCU",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 109.1,
+     "h": 34,
+     "tx": "Endomodel",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 86.8,
+     "h": 34,
+     "tx": "Uni Sled",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 308,
+     "h": 18,
+     "tx": "link-ortho.com ↗",
+     "href": "https://www.link-ortho.com/"
+    },
+    {
+     "t": "A.prov",
+     "w": 105.3,
+     "h": 34,
+     "tx": "Crown Cup",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 88.2,
+     "h": 34,
+     "tx": "Element",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 130.2,
+     "h": 34,
+     "tx": "Optetrak Logic",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 140.3,
+     "h": 34,
+     "tx": "Optetrak Hi-Flex",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 112.4,
+     "h": 34,
+     "tx": "Optetrak CC",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 308,
+     "h": 18,
+     "tx": "advita.com ↗",
+     "href": "https://advita.com/"
+    },
+    {
+     "t": "A.prov",
+     "w": 108.2,
+     "h": 34,
+     "tx": "COPAL G+C",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 173.3,
+     "h": 34,
+     "tx": "PALACOS MV y MV+G",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 108.2,
+     "h": 34,
+     "tx": "PALACOS R",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 140.3,
+     "h": 34,
+     "tx": "PALAMIX Pistola",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.prov",
+     "w": 174.9,
+     "h": 34,
+     "tx": "PALAMIX UNO o DUO",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 308,
+     "h": 18,
+     "tx": "heraeus-medical.com ↗",
+     "href": "https://www.heraeus-medical.com/"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Representaciones"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Productos que representamos"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "link-ortho.com ↗"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Qué significa"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "A.btn-g b2",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver sedes"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Los fabricantes que representamos"
+    },
+    {
+     "n": 3,
+     "tx": "Waldemar Link GmbH & Co. KG"
+    },
+    {
+     "n": 3,
+     "tx": "Advita Ortho"
+    },
+    {
+     "n": 3,
+     "tx": "Heraeus Medical"
+    },
+    {
+     "n": 2,
+     "tx": "Representación exclusiva, no reventa"
+    },
+    {
+     "n": 3,
+     "tx": "Stock local"
+    },
+    {
+     "n": 3,
+     "tx": "Trazabilidad de origen"
+    },
+    {
+     "n": 3,
+     "tx": "Documentación oficial"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [
+    "Representaciones"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "https://www.link-ortho.com/",
+    "https://advita.com/",
+    "https://www.heraeus-medical.com/",
+    "#"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  }
+ },
+ "educacion.html": {
+  "d": {
+   "scrollW": 1440,
+   "innerW": 1440,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 88.3,
+     "h": 18,
+     "tx": "Institucional",
+     "href": "institucional.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 72.9,
+     "h": 18,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 116.8,
+     "h": 18,
+     "tx": "Nuestro proceso",
+     "href": "proceso.html"
+    },
+    {
+     "t": "A.navlink on",
+     "w": 133.5,
+     "h": 18,
+     "tx": "Educación médica",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 127.3,
+     "h": 18,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 64.5,
+     "h": 18,
+     "tx": "Contacto",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 312.7,
+     "h": 16,
+     "tx": "Ver los productos de cadera →",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 312.7,
+     "h": 16,
+     "tx": "Ver los productos de rodilla →",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 312.7,
+     "h": 16,
+     "tx": "Ver los cementos →",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.navlink on",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Educación médica"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Educación médica"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Qué vas a encontrar"
+    },
+    {
+     "sel": "H3.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 26,
+     "fw": 700,
+     "ratio": 1,
+     "min": 3,
+     "tx": "Acceso exclusivo para médicos"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 15,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Por tratarse de material técnico de producto"
+    },
+    {
+     "sel": "A.btn-g",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 1,
+     "min": 4.5,
+     "tx": "Ya tengo cuenta"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Por línea"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Técnicas quirúrgicas y formación para profesionale"
+    },
+    {
+     "n": 2,
+     "tx": "Todo el material técnico, en un solo lugar"
+    },
+    {
+     "n": 3,
+     "tx": "Técnicas quirúrgicas"
+    },
+    {
+     "n": 3,
+     "tx": "Fichas técnicas"
+    },
+    {
+     "n": 3,
+     "tx": "Videos de procedimiento"
+    },
+    {
+     "n": 3,
+     "tx": "Webinars"
+    },
+    {
+     "n": 3,
+     "tx": "Acceso exclusivo para médicos"
+    },
+    {
+     "n": 2,
+     "tx": "Material disponible por familia de producto"
+    },
+    {
+     "n": 3,
+     "tx": "Cadera"
+    },
+    {
+     "n": 3,
+     "tx": "Rodilla"
+    },
+    {
+     "n": 3,
+     "tx": "Cementos"
+    },
+    {
+     "n": 2,
+     "tx": "Videos y webinars"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [
+    "Educación médica"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#",
+    "multimedia.html"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "t": {
+   "scrollW": 768,
+   "innerW": 768,
+   "overflow": [
+    {
+     "t": "DIV.glow",
+     "l": 488,
+     "r": 808,
+     "w": 320,
+     "tx": ""
+    }
+   ],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 274,
+     "h": 16,
+     "tx": "Ver los productos de cadera →",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 274,
+     "h": 16,
+     "tx": "Ver los productos de rodilla →",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 274,
+     "h": 16,
+     "tx": "Ver los cementos →",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Educación médica"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Qué vas a encontrar"
+    },
+    {
+     "sel": "H3.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 26,
+     "fw": 700,
+     "ratio": 1,
+     "min": 3,
+     "tx": "Acceso exclusivo para médicos"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 15,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Por tratarse de material técnico de producto"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Registrarme como médico"
+    },
+    {
+     "sel": "A.btn-g",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 1,
+     "min": 4.5,
+     "tx": "Ya tengo cuenta"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Por línea"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver los productos de cadera →"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Técnicas quirúrgicas y formación para profesionale"
+    },
+    {
+     "n": 2,
+     "tx": "Todo el material técnico, en un solo lugar"
+    },
+    {
+     "n": 3,
+     "tx": "Técnicas quirúrgicas"
+    },
+    {
+     "n": 3,
+     "tx": "Fichas técnicas"
+    },
+    {
+     "n": 3,
+     "tx": "Videos de procedimiento"
+    },
+    {
+     "n": 3,
+     "tx": "Webinars"
+    },
+    {
+     "n": 3,
+     "tx": "Acceso exclusivo para médicos"
+    },
+    {
+     "n": 2,
+     "tx": "Material disponible por familia de producto"
+    },
+    {
+     "n": 3,
+     "tx": "Cadera"
+    },
+    {
+     "n": 3,
+     "tx": "Rodilla"
+    },
+    {
+     "n": 3,
+     "tx": "Cementos"
+    },
+    {
+     "n": 2,
+     "tx": "Videos y webinars"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [
+    "Educación médica"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#",
+    "multimedia.html"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "m": {
+   "scrollW": 390,
+   "innerW": 390,
+   "overflow": [
+    {
+     "t": "DIV.glow",
+     "l": 130,
+     "r": 450,
+     "w": 320,
+     "tx": ""
+    }
+   ],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 308,
+     "h": 16,
+     "tx": "Ver los productos de cadera →",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 308,
+     "h": 16,
+     "tx": "Ver los productos de rodilla →",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 308,
+     "h": 16,
+     "tx": "Ver los cementos →",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Educación médica"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Qué vas a encontrar"
+    },
+    {
+     "sel": "H3.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 26,
+     "fw": 700,
+     "ratio": 1,
+     "min": 3,
+     "tx": "Acceso exclusivo para médicos"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 15,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Por tratarse de material técnico de producto"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Registrarme como médico"
+    },
+    {
+     "sel": "A.btn-g",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 1,
+     "min": 4.5,
+     "tx": "Ya tengo cuenta"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Por línea"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver los productos de cadera →"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Técnicas quirúrgicas y formación para profesionale"
+    },
+    {
+     "n": 2,
+     "tx": "Todo el material técnico, en un solo lugar"
+    },
+    {
+     "n": 3,
+     "tx": "Técnicas quirúrgicas"
+    },
+    {
+     "n": 3,
+     "tx": "Fichas técnicas"
+    },
+    {
+     "n": 3,
+     "tx": "Videos de procedimiento"
+    },
+    {
+     "n": 3,
+     "tx": "Webinars"
+    },
+    {
+     "n": 3,
+     "tx": "Acceso exclusivo para médicos"
+    },
+    {
+     "n": 2,
+     "tx": "Material disponible por familia de producto"
+    },
+    {
+     "n": 3,
+     "tx": "Cadera"
+    },
+    {
+     "n": 3,
+     "tx": "Rodilla"
+    },
+    {
+     "n": 3,
+     "tx": "Cementos"
+    },
+    {
+     "n": 2,
+     "tx": "Videos y webinars"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [
+    "Educación médica"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#",
+    "multimedia.html"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  }
+ },
+ "multimedia.html": {
+  "d": {
+   "scrollW": 1440,
+   "innerW": 1440,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [
+    {
+     "src": "media/clips/mobilelink_flip.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 720,
+     "err": null
+    },
+    {
+     "src": "media/clips/mobilelink_poroso.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 1100,
+     "err": null
+    },
+    {
+     "src": "media/clips/lcu_intro.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 810,
+     "err": null
+    },
+    {
+     "src": "media/clips/endomodel_intro.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 660,
+     "err": null
+    },
+    {
+     "src": "media/clips/endomodel_implantado.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 660,
+     "err": null
+    },
+    {
+     "src": "media/clips/palamix_kit.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 528,
+     "err": null
+    },
+    {
+     "src": "media/clips/palamix_uso.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 528,
+     "err": null
+    }
+   ],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 88.3,
+     "h": 18,
+     "tx": "Institucional",
+     "href": "institucional.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 72.9,
+     "h": 18,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 116.8,
+     "h": 18,
+     "tx": "Nuestro proceso",
+     "href": "proceso.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 131.9,
+     "h": 18,
+     "tx": "Educación médica",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 127.3,
+     "h": 18,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 64.5,
+     "h": 18,
+     "tx": "Contacto",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 312.7,
+     "h": 16,
+     "tx": "Acceder con mi cuenta →",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 312.7,
+     "h": 16,
+     "tx": "Coordinar una capacitación →",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 238,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Multimedia"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Webinars"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Acceder con mi cuenta →"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Videos y webinars"
+    },
+    {
+     "n": 2,
+     "tx": "Formación con especialistas"
+    },
+    {
+     "n": 3,
+     "tx": "Próximos webinars"
+    },
+    {
+     "n": 3,
+     "tx": "Archivo grabado"
+    },
+    {
+     "n": 3,
+     "tx": "Solicitar una sesión"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [
+    {
+     "m": "[COMPLETAR",
+     "ctx": "</p><span style=\"font-size:12.5px;color:var(--mut);font-style:italic\">[COMPLETAR CON EL CALENDARIO]</span></div> <div class=\"card\"><span class=\"ico\"><svg wi"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "t": {
+   "scrollW": 768,
+   "innerW": 768,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [
+    {
+     "src": "media/clips/mobilelink_flip.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 720,
+     "err": null
+    },
+    {
+     "src": "media/clips/mobilelink_poroso.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 1100,
+     "err": null
+    },
+    {
+     "src": "media/clips/lcu_intro.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 810,
+     "err": null
+    },
+    {
+     "src": "media/clips/endomodel_intro.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 660,
+     "err": null
+    },
+    {
+     "src": "media/clips/endomodel_implantado.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 660,
+     "err": null
+    },
+    {
+     "src": "media/clips/palamix_kit.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 528,
+     "err": null
+    },
+    {
+     "src": "media/clips/palamix_uso.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 528,
+     "err": null
+    }
+   ],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 274,
+     "h": 16,
+     "tx": "Acceder con mi cuenta →",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 274,
+     "h": 16,
+     "tx": "Coordinar una capacitación →",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 323,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Multimedia"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Webinars"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Acceder con mi cuenta →"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "A.btn-g b2",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver sedes"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Videos y webinars"
+    },
+    {
+     "n": 2,
+     "tx": "Formación con especialistas"
+    },
+    {
+     "n": 3,
+     "tx": "Próximos webinars"
+    },
+    {
+     "n": 3,
+     "tx": "Archivo grabado"
+    },
+    {
+     "n": 3,
+     "tx": "Solicitar una sesión"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [
+    {
+     "m": "[COMPLETAR",
+     "ctx": "</p><span style=\"font-size:12.5px;color:var(--mut);font-style:italic\">[COMPLETAR CON EL CALENDARIO]</span></div> <div class=\"card\"><span class=\"ico\"><svg wi"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "m": {
+   "scrollW": 390,
+   "innerW": 390,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [
+    {
+     "src": "media/clips/mobilelink_flip.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 720,
+     "err": null
+    },
+    {
+     "src": "media/clips/mobilelink_poroso.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 1100,
+     "err": null
+    },
+    {
+     "src": "media/clips/lcu_intro.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 810,
+     "err": null
+    },
+    {
+     "src": "media/clips/endomodel_intro.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 660,
+     "err": null
+    },
+    {
+     "src": "media/clips/endomodel_implantado.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 660,
+     "err": null
+    },
+    {
+     "src": "media/clips/palamix_kit.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 528,
+     "err": null
+    },
+    {
+     "src": "media/clips/palamix_uso.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 528,
+     "err": null
+    }
+   ],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.reg",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 308,
+     "h": 16,
+     "tx": "Acceder con mi cuenta →",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 308,
+     "h": 16,
+     "tx": "Coordinar una capacitación →",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 22.3,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 20.6,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 20.6,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "/"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Multimedia"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Webinars"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Acceder con mi cuenta →"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15.5,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.btn-p b1",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "A.btn-g b2",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver sedes"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Swiss Protech S.A. — Todos los derechos rese"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Videos y webinars"
+    },
+    {
+     "n": 2,
+     "tx": "Formación con especialistas"
+    },
+    {
+     "n": 3,
+     "tx": "Próximos webinars"
+    },
+    {
+     "n": 3,
+     "tx": "Archivo grabado"
+    },
+    {
+     "n": 3,
+     "tx": "Solicitar una sesión"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "index.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [
+    {
+     "m": "[COMPLETAR",
+     "ctx": "</p><span style=\"font-size:12.5px;color:var(--mut);font-style:italic\">[COMPLETAR CON EL CALENDARIO]</span></div> <div class=\"card\"><span class=\"ico\"><svg wi"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  }
+ },
+ "index.html": {
+  "d": {
+   "scrollW": 1440,
+   "innerW": 1440,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 88.3,
+     "h": 18,
+     "tx": "Institucional",
+     "href": "institucional.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 72.9,
+     "h": 18,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 118.7,
+     "h": 18,
+     "tx": "Nuestro proceso",
+     "href": "proceso.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 131.9,
+     "h": 18,
+     "tx": "Educación médica",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 127.3,
+     "h": 18,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 64.5,
+     "h": 18,
+     "tx": "Contacto",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 236,
+     "h": 16,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 236,
+     "h": 16,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 236,
+     "h": 16,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 236,
+     "h": 16,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 15,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 15,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.navlink",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Nuestro proceso"
+    },
+    {
+     "sel": "A.btn-p navcta",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver catálogo de productos"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Representamos a"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Waldemar Link · Alemania"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "21 productos en catálogo · 3 líneas"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 12,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Catálogo"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver la línea →"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Nuestro proceso"
+    },
+    {
+     "sel": "SPAN.step-n",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12,
+     "fw": 800,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "01"
+    },
+    {
+     "sel": "SPAN.step-n",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 12,
+     "fw": 800,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "05"
+    },
+    {
+     "sel": "H3.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 25,
+     "fw": 700,
+     "ratio": 1,
+     "min": 3,
+     "tx": "Portal de educación médica"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14.5,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Técnicas quirúrgicas por producto, material "
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14.5,
+     "fw": 500,
+     "ratio": 1,
+     "min": 4.5,
+     "tx": "Ya tengo cuenta"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 16,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 15,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Importación y comercialización de implantes "
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Implantes ortopédicoscon trazabilidad\n          de"
+    },
+    {
+     "n": 2,
+     "tx": "Tres líneas, veintiún soluciones"
+    },
+    {
+     "n": 3,
+     "tx": "Cadera"
+    },
+    {
+     "n": 3,
+     "tx": "Rodilla"
+    },
+    {
+     "n": 3,
+     "tx": "Cementos"
+    },
+    {
+     "n": 2,
+     "tx": "Un implante no se entrega. Se acompaña."
+    },
+    {
+     "n": 3,
+     "tx": "Depósito e identificación"
+    },
+    {
+     "n": 3,
+     "tx": "Control y preparación"
+    },
+    {
+     "n": 3,
+     "tx": "Esterilización"
+    },
+    {
+     "n": 3,
+     "tx": "Traslado controlado"
+    },
+    {
+     "n": 3,
+     "tx": "Entrega en quirófano"
+    },
+    {
+     "n": 2,
+     "tx": "Fabricantes que elegimos representar"
+    },
+    {
+     "n": 3,
+     "tx": "Waldemar Link"
+    },
+    {
+     "n": 3,
+     "tx": "Advita Ortho"
+    },
+    {
+     "n": 3,
+     "tx": "Heraeus Medical"
+    },
+    {
+     "n": 2,
+     "tx": "Presencia en todo el país"
+    },
+    {
+     "n": 3,
+     "tx": "Portal de educación médica"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "t": {
+   "scrollW": 768,
+   "innerW": 768,
+   "overflow": [
+    {
+     "t": "DIV",
+     "l": 518,
+     "r": 818,
+     "w": 300,
+     "tx": ""
+    }
+   ],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 113.5,
+     "h": 15,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 322,
+     "h": 16,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 322,
+     "h": 16,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 322,
+     "h": 16,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 322,
+     "h": 16,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 140.1,
+     "h": 15,
+     "tx": "Políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 136.6,
+     "h": 15,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.btn-p navcta",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver catálogo de productos"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Representamos a"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Waldemar Link · Alemania"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "21 productos en catálogo · 3 líneas"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 12,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Catálogo"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver la línea →"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Nuestro proceso"
+    },
+    {
+     "sel": "SPAN.step-n",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12,
+     "fw": 800,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "01"
+    },
+    {
+     "sel": "SPAN.step-n",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 12,
+     "fw": 800,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "05"
+    },
+    {
+     "sel": "H3.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 25,
+     "fw": 700,
+     "ratio": 1,
+     "min": 3,
+     "tx": "Portal de educación médica"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14.5,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Técnicas quirúrgicas por producto, material "
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14.5,
+     "fw": 500,
+     "ratio": 1,
+     "min": 4.5,
+     "tx": "Ya tengo cuenta"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 16,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 15,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Importación y comercialización de implantes "
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Implantes ortopédicoscon trazabilidad\n          de"
+    },
+    {
+     "n": 2,
+     "tx": "Tres líneas, veintiún soluciones"
+    },
+    {
+     "n": 3,
+     "tx": "Cadera"
+    },
+    {
+     "n": 3,
+     "tx": "Rodilla"
+    },
+    {
+     "n": 3,
+     "tx": "Cementos"
+    },
+    {
+     "n": 2,
+     "tx": "Un implante no se entrega. Se acompaña."
+    },
+    {
+     "n": 3,
+     "tx": "Depósito e identificación"
+    },
+    {
+     "n": 3,
+     "tx": "Control y preparación"
+    },
+    {
+     "n": 3,
+     "tx": "Esterilización"
+    },
+    {
+     "n": 3,
+     "tx": "Traslado controlado"
+    },
+    {
+     "n": 3,
+     "tx": "Entrega en quirófano"
+    },
+    {
+     "n": 2,
+     "tx": "Fabricantes que elegimos representar"
+    },
+    {
+     "n": 3,
+     "tx": "Waldemar Link"
+    },
+    {
+     "n": 3,
+     "tx": "Advita Ortho"
+    },
+    {
+     "n": 3,
+     "tx": "Heraeus Medical"
+    },
+    {
+     "n": 2,
+     "tx": "Presencia en todo el país"
+    },
+    {
+     "n": 3,
+     "tx": "Portal de educación médica"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "m": {
+   "scrollW": 390,
+   "innerW": 390,
+   "overflow": [
+    {
+     "t": "IMG.brand-l",
+     "l": 382,
+     "r": 440,
+     "w": 57,
+     "tx": ""
+    },
+    {
+     "t": "DIV.aura",
+     "l": -125,
+     "r": 515,
+     "w": 640,
+     "tx": ""
+    },
+    {
+     "t": "DIV",
+     "l": 160,
+     "r": 460,
+     "w": 300,
+     "tx": ""
+    },
+    {
+     "t": "DIV",
+     "l": 20,
+     "r": 430,
+     "w": 410,
+     "tx": "Escribir por WhatsApp\n        \n        \n          "
+    },
+    {
+     "t": "A",
+     "l": 298,
+     "r": 430,
+     "w": 132,
+     "tx": "Ver sedes"
+    }
+   ],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 55.7,
+     "h": 15,
+     "tx": "Ingresar",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 58.1,
+     "h": 30,
+     "tx": "Registro médico",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 16,
+     "tx": "Cadera",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 16,
+     "tx": "Rodilla",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 16,
+     "tx": "Cementos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.",
+     "w": 350,
+     "h": 16,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.",
+     "w": 69,
+     "h": 30,
+     "tx": "Formulario AFIP F960",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver catálogo de productos"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Representamos a"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Waldemar Link · Alemania"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "21 productos en catálogo · 3 líneas"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 12,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Catálogo"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 13,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver la línea →"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Nuestro proceso"
+    },
+    {
+     "sel": "SPAN.step-n",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12,
+     "fw": 800,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "01"
+    },
+    {
+     "sel": "SPAN.step-n",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 12,
+     "fw": 800,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "05"
+    },
+    {
+     "sel": "H3.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 25,
+     "fw": 700,
+     "ratio": 1,
+     "min": 3,
+     "tx": "Portal de educación médica"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14.5,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Técnicas quirúrgicas por producto, material "
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14.5,
+     "fw": 500,
+     "ratio": 1,
+     "min": 4.5,
+     "tx": "Ya tengo cuenta"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgba(255, 255, 255, 0.88)",
+     "bg": "rgb(0,149,161)",
+     "fs": 16,
+     "fw": 400,
+     "ratio": 3.13,
+     "min": 4.5,
+     "tx": "Contanos si escribís como médico, como finan"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 15,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Escribir por WhatsApp"
+    },
+    {
+     "sel": "P.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 13.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Importación y comercialización de implantes "
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(105, 114, 125)",
+     "bg": "rgb(10,23,29)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.73,
+     "min": 4.5,
+     "tx": "Lunes a viernes, 8 a 17 h"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Implantes ortopédicoscon trazabilidad\n          de"
+    },
+    {
+     "n": 2,
+     "tx": "Tres líneas, veintiún soluciones"
+    },
+    {
+     "n": 3,
+     "tx": "Cadera"
+    },
+    {
+     "n": 3,
+     "tx": "Rodilla"
+    },
+    {
+     "n": 3,
+     "tx": "Cementos"
+    },
+    {
+     "n": 2,
+     "tx": "Un implante no se entrega. Se acompaña."
+    },
+    {
+     "n": 3,
+     "tx": "Depósito e identificación"
+    },
+    {
+     "n": 3,
+     "tx": "Control y preparación"
+    },
+    {
+     "n": 3,
+     "tx": "Esterilización"
+    },
+    {
+     "n": 3,
+     "tx": "Traslado controlado"
+    },
+    {
+     "n": 3,
+     "tx": "Entrega en quirófano"
+    },
+    {
+     "n": 2,
+     "tx": "Fabricantes que elegimos representar"
+    },
+    {
+     "n": 3,
+     "tx": "Waldemar Link"
+    },
+    {
+     "n": 3,
+     "tx": "Advita Ortho"
+    },
+    {
+     "n": 3,
+     "tx": "Heraeus Medical"
+    },
+    {
+     "n": 2,
+     "tx": "Presencia en todo el país"
+    },
+    {
+     "n": 3,
+     "tx": "Portal de educación médica"
+    },
+    {
+     "n": 2,
+     "tx": "¿Necesitás asesoramiento técnico?"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "educacion.html",
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  }
+ },
+ "productos.html": {
+  "d": {
+   "scrollW": 1440,
+   "innerW": 1440,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.navlink",
+     "w": 88.3,
+     "h": 18,
+     "tx": "Institucional",
+     "href": "institucional.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 74,
+     "h": 18,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 116.8,
+     "h": 18,
+     "tx": "Nuestro proceso",
+     "href": "proceso.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 131.9,
+     "h": 18,
+     "tx": "Educación médica",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 127.3,
+     "h": 18,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 64.5,
+     "h": 18,
+     "tx": "Contacto",
+     "href": "contacto.html"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.navlink",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Productos"
+    },
+    {
+     "sel": "A.btn-p navcta",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Home  /"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Productos"
+    },
+    {
+     "sel": "SPAN.fbtn",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Todos"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12,
+     "fw": 700,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Marca"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera · LINK"
+    },
+    {
+     "sel": "SPAN.pc-go",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver ficha →"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 600,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "FOTO A SOLICITAR"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar por WhatsApp"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Catálogo de productos"
+    },
+    {
+     "n": 2,
+     "tx": "Cadera"
+    },
+    {
+     "n": 3,
+     "tx": "MOBILELINK DUAL MOBILITY"
+    },
+    {
+     "n": 3,
+     "tx": "CROWN CUP"
+    },
+    {
+     "n": 3,
+     "tx": "LUBINUS CUP"
+    },
+    {
+     "n": 3,
+     "tx": "LUBINUS SPII REVISION"
+    },
+    {
+     "n": 3,
+     "tx": "MP LINK"
+    },
+    {
+     "n": 3,
+     "tx": "ELEMENT"
+    },
+    {
+     "n": 3,
+     "tx": "MOBILELINK"
+    },
+    {
+     "n": 3,
+     "tx": "BIMOBILE CEMENTADO"
+    },
+    {
+     "n": 3,
+     "tx": "LCU CEMENTADO Y NO CEMENTADO"
+    },
+    {
+     "n": 2,
+     "tx": "Rodilla"
+    },
+    {
+     "n": 3,
+     "tx": "OPTETRAK LOGIC"
+    },
+    {
+     "n": 3,
+     "tx": "OPTETRAK HI-FLEX"
+    },
+    {
+     "n": 3,
+     "tx": "OPTETRAK CC — CONTR. CONDILAR"
+    },
+    {
+     "n": 3,
+     "tx": "UNI SLED"
+    },
+    {
+     "n": 3,
+     "tx": "ENDOMODEL MODULAR"
+    },
+    {
+     "n": 3,
+     "tx": "ENDOMODEL HINGED MODULAR"
+    },
+    {
+     "n": 3,
+     "tx": "ENDOMODEL STANDARD"
+    },
+    {
+     "n": 2,
+     "tx": "Cementos"
+    },
+    {
+     "n": 3,
+     "tx": "COPAL® G+C"
+    },
+    {
+     "n": 3,
+     "tx": "PALACOS® MV y MV+G"
+    },
+    {
+     "n": 3,
+     "tx": "PALACOS® R"
+    },
+    {
+     "n": 3,
+     "tx": "PALAMIX® Pistola para cemento"
+    },
+    {
+     "n": 3,
+     "tx": "PALAMIX® UNO o DUO"
+    },
+    {
+     "n": 3,
+     "tx": "¿No encontrás la referencia que buscás?"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "educacion.html",
+    "representaciones.html",
+    "contacto.html",
+    "producto.html?p=mobilelink-dual-mobility",
+    "producto.html?p=crown-cup",
+    "producto.html?p=lubinus-cup",
+    "producto.html?p=lubinus-spii",
+    "producto.html?p=mp-link",
+    "producto.html?p=element",
+    "producto.html?p=mobilelink",
+    "producto.html?p=bimobile",
+    "producto.html?p=lcu",
+    "producto.html?p=optetrak-logic",
+    "producto.html?p=optetrak-hiflex",
+    "producto.html?p=optetrak-cc",
+    "producto.html?p=uni-sled",
+    "producto.html?p=endomodel-modular",
+    "producto.html?p=endomodel-hinged",
+    "producto.html?p=endomodel-standard",
+    "producto.html?p=copal",
+    "producto.html?p=palacos-mv",
+    "producto.html?p=palacos-r",
+    "producto.html?p=palamix-gun",
+    "producto.html?p=palamix-uno",
+    "#"
+   ],
+   "marc": [
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "ze: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;\">FOTO A SOLICITAR</span> </div> <div style=\"padding: 20px 20px 22px"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "ze: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;\">FOTO A SOLICITAR</span> </div> <div style=\"padding: 20px 20px 22px"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "ze: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;\">FOTO A SOLICITAR</span> </div> <div style=\"padding: 20px 20px 22px"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "t": {
+   "scrollW": 768,
+   "innerW": 768,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [],
+   "contraste": [
+    {
+     "sel": "A.btn-p navcta",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Home  /"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Productos"
+    },
+    {
+     "sel": "SPAN.fbtn",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Todos"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12,
+     "fw": 700,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Marca"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera · LINK"
+    },
+    {
+     "sel": "SPAN.pc-go",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver ficha →"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 600,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "FOTO A SOLICITAR"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar por WhatsApp"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Catálogo de productos"
+    },
+    {
+     "n": 2,
+     "tx": "Cadera"
+    },
+    {
+     "n": 3,
+     "tx": "MOBILELINK DUAL MOBILITY"
+    },
+    {
+     "n": 3,
+     "tx": "CROWN CUP"
+    },
+    {
+     "n": 3,
+     "tx": "LUBINUS CUP"
+    },
+    {
+     "n": 3,
+     "tx": "LUBINUS SPII REVISION"
+    },
+    {
+     "n": 3,
+     "tx": "MP LINK"
+    },
+    {
+     "n": 3,
+     "tx": "ELEMENT"
+    },
+    {
+     "n": 3,
+     "tx": "MOBILELINK"
+    },
+    {
+     "n": 3,
+     "tx": "BIMOBILE CEMENTADO"
+    },
+    {
+     "n": 3,
+     "tx": "LCU CEMENTADO Y NO CEMENTADO"
+    },
+    {
+     "n": 2,
+     "tx": "Rodilla"
+    },
+    {
+     "n": 3,
+     "tx": "OPTETRAK LOGIC"
+    },
+    {
+     "n": 3,
+     "tx": "OPTETRAK HI-FLEX"
+    },
+    {
+     "n": 3,
+     "tx": "OPTETRAK CC — CONTR. CONDILAR"
+    },
+    {
+     "n": 3,
+     "tx": "UNI SLED"
+    },
+    {
+     "n": 3,
+     "tx": "ENDOMODEL MODULAR"
+    },
+    {
+     "n": 3,
+     "tx": "ENDOMODEL HINGED MODULAR"
+    },
+    {
+     "n": 3,
+     "tx": "ENDOMODEL STANDARD"
+    },
+    {
+     "n": 2,
+     "tx": "Cementos"
+    },
+    {
+     "n": 3,
+     "tx": "COPAL® G+C"
+    },
+    {
+     "n": 3,
+     "tx": "PALACOS® MV y MV+G"
+    },
+    {
+     "n": 3,
+     "tx": "PALACOS® R"
+    },
+    {
+     "n": 3,
+     "tx": "PALAMIX® Pistola para cemento"
+    },
+    {
+     "n": 3,
+     "tx": "PALAMIX® UNO o DUO"
+    },
+    {
+     "n": 3,
+     "tx": "¿No encontrás la referencia que buscás?"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "educacion.html",
+    "representaciones.html",
+    "contacto.html",
+    "producto.html?p=mobilelink-dual-mobility",
+    "producto.html?p=crown-cup",
+    "producto.html?p=lubinus-cup",
+    "producto.html?p=lubinus-spii",
+    "producto.html?p=mp-link",
+    "producto.html?p=element",
+    "producto.html?p=mobilelink",
+    "producto.html?p=bimobile",
+    "producto.html?p=lcu",
+    "producto.html?p=optetrak-logic",
+    "producto.html?p=optetrak-hiflex",
+    "producto.html?p=optetrak-cc",
+    "producto.html?p=uni-sled",
+    "producto.html?p=endomodel-modular",
+    "producto.html?p=endomodel-hinged",
+    "producto.html?p=endomodel-standard",
+    "producto.html?p=copal",
+    "producto.html?p=palacos-mv",
+    "producto.html?p=palacos-r",
+    "producto.html?p=palamix-gun",
+    "producto.html?p=palamix-uno",
+    "#"
+   ],
+   "marc": [
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "ze: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;\">FOTO A SOLICITAR</span> </div> <div style=\"padding: 20px 20px 22px"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "ze: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;\">FOTO A SOLICITAR</span> </div> <div style=\"padding: 20px 20px 22px"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "ze: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;\">FOTO A SOLICITAR</span> </div> <div style=\"padding: 20px 20px 22px"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "m": {
+   "scrollW": 390,
+   "innerW": 390,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [],
+   "contraste": [
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Home  /"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Productos"
+    },
+    {
+     "sel": "SPAN.fbtn",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Todos"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12,
+     "fw": 700,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Marca"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera · LINK"
+    },
+    {
+     "sel": "SPAN.pc-go",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Ver ficha →"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 600,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "FOTO A SOLICITAR"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar por WhatsApp"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Catálogo de productos"
+    },
+    {
+     "n": 2,
+     "tx": "Cadera"
+    },
+    {
+     "n": 3,
+     "tx": "MOBILELINK DUAL MOBILITY"
+    },
+    {
+     "n": 3,
+     "tx": "CROWN CUP"
+    },
+    {
+     "n": 3,
+     "tx": "LUBINUS CUP"
+    },
+    {
+     "n": 3,
+     "tx": "LUBINUS SPII REVISION"
+    },
+    {
+     "n": 3,
+     "tx": "MP LINK"
+    },
+    {
+     "n": 3,
+     "tx": "ELEMENT"
+    },
+    {
+     "n": 3,
+     "tx": "MOBILELINK"
+    },
+    {
+     "n": 3,
+     "tx": "BIMOBILE CEMENTADO"
+    },
+    {
+     "n": 3,
+     "tx": "LCU CEMENTADO Y NO CEMENTADO"
+    },
+    {
+     "n": 2,
+     "tx": "Rodilla"
+    },
+    {
+     "n": 3,
+     "tx": "OPTETRAK LOGIC"
+    },
+    {
+     "n": 3,
+     "tx": "OPTETRAK HI-FLEX"
+    },
+    {
+     "n": 3,
+     "tx": "OPTETRAK CC — CONTR. CONDILAR"
+    },
+    {
+     "n": 3,
+     "tx": "UNI SLED"
+    },
+    {
+     "n": 3,
+     "tx": "ENDOMODEL MODULAR"
+    },
+    {
+     "n": 3,
+     "tx": "ENDOMODEL HINGED MODULAR"
+    },
+    {
+     "n": 3,
+     "tx": "ENDOMODEL STANDARD"
+    },
+    {
+     "n": 2,
+     "tx": "Cementos"
+    },
+    {
+     "n": 3,
+     "tx": "COPAL® G+C"
+    },
+    {
+     "n": 3,
+     "tx": "PALACOS® MV y MV+G"
+    },
+    {
+     "n": 3,
+     "tx": "PALACOS® R"
+    },
+    {
+     "n": 3,
+     "tx": "PALAMIX® Pistola para cemento"
+    },
+    {
+     "n": 3,
+     "tx": "PALAMIX® UNO o DUO"
+    },
+    {
+     "n": 3,
+     "tx": "¿No encontrás la referencia que buscás?"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "educacion.html",
+    "representaciones.html",
+    "contacto.html",
+    "producto.html?p=mobilelink-dual-mobility",
+    "producto.html?p=crown-cup",
+    "producto.html?p=lubinus-cup",
+    "producto.html?p=lubinus-spii",
+    "producto.html?p=mp-link",
+    "producto.html?p=element",
+    "producto.html?p=mobilelink",
+    "producto.html?p=bimobile",
+    "producto.html?p=lcu",
+    "producto.html?p=optetrak-logic",
+    "producto.html?p=optetrak-hiflex",
+    "producto.html?p=optetrak-cc",
+    "producto.html?p=uni-sled",
+    "producto.html?p=endomodel-modular",
+    "producto.html?p=endomodel-hinged",
+    "producto.html?p=endomodel-standard",
+    "producto.html?p=copal",
+    "producto.html?p=palacos-mv",
+    "producto.html?p=palacos-r",
+    "producto.html?p=palamix-gun",
+    "producto.html?p=palamix-uno",
+    "#"
+   ],
+   "marc": [
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "ze: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;\">FOTO A SOLICITAR</span> </div> <div style=\"padding: 20px 20px 22px"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "ze: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;\">FOTO A SOLICITAR</span> </div> <div style=\"padding: 20px 20px 22px"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "ze: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;\">FOTO A SOLICITAR</span> </div> <div style=\"padding: 20px 20px 22px"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  }
+ },
+ "proceso.html": {
+  "d": {
+   "scrollW": 1440,
+   "innerW": 1440,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.navlink",
+     "w": 88.3,
+     "h": 18,
+     "tx": "Institucional",
+     "href": "institucional.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 72.9,
+     "h": 18,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 118.7,
+     "h": 18,
+     "tx": "Nuestro proceso",
+     "href": "proceso.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 131.9,
+     "h": 18,
+     "tx": "Educación médica",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 127.3,
+     "h": 18,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 64.5,
+     "h": 18,
+     "tx": "Contacto",
+     "href": "contacto.html"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.navlink",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Nuestro proceso"
+    },
+    {
+     "sel": "A.btn-p navcta",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Home  /"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Nuestro proceso"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Etapa 01"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Etapa 05"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Coordinar una cirugía"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Un implante no se entrega.Se acompaña."
+    },
+    {
+     "n": 3,
+     "tx": "Depósito e identificación"
+    },
+    {
+     "n": 3,
+     "tx": "Control y preparación"
+    },
+    {
+     "n": 3,
+     "tx": "Esterilización bajo protocolo"
+    },
+    {
+     "n": 3,
+     "tx": "Traslado controlado"
+    },
+    {
+     "n": 3,
+     "tx": "Entrega y acompañamiento en quirófano"
+    },
+    {
+     "n": 2,
+     "tx": "Lo que el circuito le garantiza a cada parte"
+    },
+    {
+     "n": 3,
+     "tx": "Al cirujano"
+    },
+    {
+     "n": 3,
+     "tx": "Al centro de salud"
+    },
+    {
+     "n": 3,
+     "tx": "Al paciente"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "educacion.html",
+    "representaciones.html",
+    "contacto.html"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "t": {
+   "scrollW": 768,
+   "innerW": 768,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [],
+   "contraste": [
+    {
+     "sel": "A.btn-p navcta",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Home  /"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Nuestro proceso"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Etapa 01"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Etapa 05"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Coordinar una cirugía"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Un implante no se entrega.Se acompaña."
+    },
+    {
+     "n": 3,
+     "tx": "Depósito e identificación"
+    },
+    {
+     "n": 3,
+     "tx": "Control y preparación"
+    },
+    {
+     "n": 3,
+     "tx": "Esterilización bajo protocolo"
+    },
+    {
+     "n": 3,
+     "tx": "Traslado controlado"
+    },
+    {
+     "n": 3,
+     "tx": "Entrega y acompañamiento en quirófano"
+    },
+    {
+     "n": 2,
+     "tx": "Lo que el circuito le garantiza a cada parte"
+    },
+    {
+     "n": 3,
+     "tx": "Al cirujano"
+    },
+    {
+     "n": 3,
+     "tx": "Al centro de salud"
+    },
+    {
+     "n": 3,
+     "tx": "Al paciente"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "educacion.html",
+    "representaciones.html",
+    "contacto.html"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "m": {
+   "scrollW": 390,
+   "innerW": 390,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [],
+   "tap": [],
+   "contraste": [
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Home  /"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Nuestro proceso"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Etapa 01"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Etapa 05"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Coordinar una cirugía"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Un implante no se entrega.Se acompaña."
+    },
+    {
+     "n": 3,
+     "tx": "Depósito e identificación"
+    },
+    {
+     "n": 3,
+     "tx": "Control y preparación"
+    },
+    {
+     "n": 3,
+     "tx": "Esterilización bajo protocolo"
+    },
+    {
+     "n": 3,
+     "tx": "Traslado controlado"
+    },
+    {
+     "n": 3,
+     "tx": "Entrega y acompañamiento en quirófano"
+    },
+    {
+     "n": 2,
+     "tx": "Lo que el circuito le garantiza a cada parte"
+    },
+    {
+     "n": 3,
+     "tx": "Al cirujano"
+    },
+    {
+     "n": 3,
+     "tx": "Al centro de salud"
+    },
+    {
+     "n": 3,
+     "tx": "Al paciente"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "educacion.html",
+    "representaciones.html",
+    "contacto.html"
+   ],
+   "marc": [],
+   "consoleErr": [],
+   "reqFail": []
+  }
+ },
+ "contacto.html": {
+  "d": {
+   "scrollW": 1440,
+   "innerW": 1440,
+   "overflow": [],
+   "clipped": [
+    {
+     "t": "SPAN.pin",
+     "sw": 27,
+     "cw": 13,
+     "ov": "visible",
+     "tx": ""
+    }
+   ],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.navlink",
+     "w": 88.3,
+     "h": 18,
+     "tx": "Institucional",
+     "href": "institucional.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 72.9,
+     "h": 18,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 116.8,
+     "h": 18,
+     "tx": "Nuestro proceso",
+     "href": "proceso.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 131.9,
+     "h": 18,
+     "tx": "Educación médica",
+     "href": "educacion.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 127.3,
+     "h": 18,
+     "tx": "Representaciones",
+     "href": "representaciones.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 65.5,
+     "h": 18,
+     "tx": "Contacto",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 145.3,
+     "h": 16,
+     "tx": "políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 101.8,
+     "h": 18,
+     "tx": "WhatsApp",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 368,
+     "h": 20,
+     "tx": "Abrir WhatsApp →",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.navlink",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Contacto"
+    },
+    {
+     "sel": "A.btn-p navcta",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Home  /"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Contacto"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "→ Área comercial y técnica"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Médico"
+    },
+    {
+     "sel": "SPAN.fld",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Escribí tu nombre"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Enviar consulta"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 600,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "MAPA INTERACTIVO"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Sede Buenos Aires"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Hablemos"
+    },
+    {
+     "n": 2,
+     "tx": "¿Quién nos escribe?"
+    },
+    {
+     "n": 3,
+     "tx": "Soy médico"
+    },
+    {
+     "n": 3,
+     "tx": "Obra social o prepaga"
+    },
+    {
+     "n": 3,
+     "tx": "Soy paciente"
+    },
+    {
+     "n": 3,
+     "tx": "Dejanos tu consulta"
+    },
+    {
+     "n": 3,
+     "tx": "Casa central"
+    },
+    {
+     "n": 3,
+     "tx": "Santa Fe"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "educacion.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [
+    {
+     "m": "[COMPLETAR",
+     "ctx": "el:'+54 9 11 0000-0000' }, cl: { s1:['Chile','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Chile','Cobertura','[COMPLE"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "}, cl: { s1:['Chile','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "RECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+56 9 0000 0000' }, "
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "'], s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+56 9 0000 0000' }, uy: { s1:['Uruguay','Oficin"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "tel:'+56 9 0000 0000' }, uy: { s1:['Uruguay','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Uruguay','Cobertura','[COMP"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": " uy: { s1:['Uruguay','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]'"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "CCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+598 00 000 000' } "
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": ", s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+598 00 000 000' } }; var Q = { medico:['Mé"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "t": {
+   "scrollW": 768,
+   "innerW": 768,
+   "overflow": [
+    {
+     "t": "DIV",
+     "l": 578,
+     "r": 778,
+     "w": 200,
+     "tx": ""
+    }
+   ],
+   "clipped": [
+    {
+     "t": "SPAN.pin",
+     "sw": 19,
+     "cw": 13,
+     "ov": "visible",
+     "tx": ""
+    }
+   ],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 145.3,
+     "h": 16,
+     "tx": "políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 101.8,
+     "h": 18,
+     "tx": "WhatsApp",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 636,
+     "h": 20,
+     "tx": "Abrir WhatsApp →",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.btn-p navcta",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Home  /"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Contacto"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "→ Área comercial y técnica"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Médico"
+    },
+    {
+     "sel": "SPAN.fld",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Escribí tu nombre"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Enviar consulta"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 600,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "MAPA INTERACTIVO"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Sede Buenos Aires"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Hablemos"
+    },
+    {
+     "n": 2,
+     "tx": "¿Quién nos escribe?"
+    },
+    {
+     "n": 3,
+     "tx": "Soy médico"
+    },
+    {
+     "n": 3,
+     "tx": "Obra social o prepaga"
+    },
+    {
+     "n": 3,
+     "tx": "Soy paciente"
+    },
+    {
+     "n": 3,
+     "tx": "Dejanos tu consulta"
+    },
+    {
+     "n": 3,
+     "tx": "Casa central"
+    },
+    {
+     "n": 3,
+     "tx": "Santa Fe"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "educacion.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [
+    {
+     "m": "[COMPLETAR",
+     "ctx": "el:'+54 9 11 0000-0000' }, cl: { s1:['Chile','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Chile','Cobertura','[COMPLE"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "}, cl: { s1:['Chile','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "RECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+56 9 0000 0000' }, "
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "'], s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+56 9 0000 0000' }, uy: { s1:['Uruguay','Oficin"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "tel:'+56 9 0000 0000' }, uy: { s1:['Uruguay','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Uruguay','Cobertura','[COMP"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": " uy: { s1:['Uruguay','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]'"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "CCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+598 00 000 000' } "
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": ", s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+598 00 000 000' } }; var Q = { medico:['Mé"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "m": {
+   "scrollW": 390,
+   "innerW": 390,
+   "overflow": [
+    {
+     "t": "A",
+     "l": 291,
+     "r": 393,
+     "w": 102,
+     "tx": "WhatsApp"
+    },
+    {
+     "t": "DIV",
+     "l": 220,
+     "r": 420,
+     "w": 200,
+     "tx": ""
+    }
+   ],
+   "clipped": [
+    {
+     "t": "SPAN.pin",
+     "sw": 27,
+     "cw": 13,
+     "ov": "visible",
+     "tx": ""
+    }
+   ],
+   "imgs": [],
+   "videos": [],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 145.3,
+     "h": 16,
+     "tx": "políticas de privacidad",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 101.8,
+     "h": 18,
+     "tx": "WhatsApp",
+     "href": "#"
+    },
+    {
+     "t": "A.",
+     "w": 298,
+     "h": 20,
+     "tx": "Abrir WhatsApp →",
+     "href": "#"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Home  /"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Contacto"
+    },
+    {
+     "sel": "SPAN.flag",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Argentina"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "→ Área comercial y técnica"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Médico"
+    },
+    {
+     "sel": "SPAN.fld",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 400,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "Escribí tu nombre"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 15,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Enviar consulta"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "WhatsApp"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10.5,
+     "fw": 600,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "MAPA INTERACTIVO"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Sede Buenos Aires"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "Hablemos"
+    },
+    {
+     "n": 2,
+     "tx": "¿Quién nos escribe?"
+    },
+    {
+     "n": 3,
+     "tx": "Soy médico"
+    },
+    {
+     "n": 3,
+     "tx": "Obra social o prepaga"
+    },
+    {
+     "n": 3,
+     "tx": "Soy paciente"
+    },
+    {
+     "n": 3,
+     "tx": "Dejanos tu consulta"
+    },
+    {
+     "n": 3,
+     "tx": "Casa central"
+    },
+    {
+     "n": 3,
+     "tx": "Santa Fe"
+    }
+   ],
+   "navOn": [],
+   "navTotal": 6,
+   "hrefs": [
+    "institucional.html",
+    "productos.html",
+    "proceso.html",
+    "educacion.html",
+    "representaciones.html",
+    "contacto.html",
+    "#"
+   ],
+   "marc": [
+    {
+     "m": "[COMPLETAR",
+     "ctx": "el:'+54 9 11 0000-0000' }, cl: { s1:['Chile','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Chile','Cobertura','[COMPLE"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "}, cl: { s1:['Chile','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "RECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+56 9 0000 0000' }, "
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "'], s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+56 9 0000 0000' }, uy: { s1:['Uruguay','Oficin"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "tel:'+56 9 0000 0000' }, uy: { s1:['Uruguay','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Uruguay','Cobertura','[COMP"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": " uy: { s1:['Uruguay','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]'"
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": "CCIÓN]','[COMPLETAR TELÉFONO]'], s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+598 00 000 000' } "
+    },
+    {
+     "m": "[COMPLETAR",
+     "ctx": ", s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'], tel:'+598 00 000 000' } }; var Q = { medico:['Mé"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  }
+ },
+ "producto.html?p=mobilelink": {
+  "d": {
+   "scrollW": 1440,
+   "innerW": 1440,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [
+    {
+     "src": "media/clips/mobilelink_flip.mp4",
+     "poster": null,
+     "rs": 1,
+     "vw": 880,
+     "vh": 720,
+     "err": null
+    },
+    {
+     "src": "media/clips/mobilelink_poroso.mp4",
+     "poster": null,
+     "rs": 1,
+     "vw": 880,
+     "vh": 1100,
+     "err": null
+    }
+   ],
+   "tap": [
+    {
+     "t": "A.navlink",
+     "w": 88.3,
+     "h": 18,
+     "tx": "Institucional",
+     "href": "index.html#institucional"
+    },
+    {
+     "t": "A.navlink on",
+     "w": 74,
+     "h": 18,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 116.8,
+     "h": 18,
+     "tx": "Nuestro proceso",
+     "href": "proceso.html"
+    },
+    {
+     "t": "A.navlink",
+     "w": 131.9,
+     "h": 18,
+     "tx": "Educación médica",
+     "href": "index.html#portal"
+    },
+    {
+     "t": "A.navlink",
+     "w": 127.3,
+     "h": 18,
+     "tx": "Representaciones",
+     "href": "index.html#representaciones"
+    },
+    {
+     "t": "A.navlink",
+     "w": 64.5,
+     "h": 18,
+     "tx": "Contacto",
+     "href": "contacto.html"
+    },
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 64.2,
+     "h": 15,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "1",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "2",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "3",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "4",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "5",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn on",
+     "w": 131.6,
+     "h": 38,
+     "tx": "Producto",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 131.6,
+     "h": 38,
+     "tx": "En el hueso",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 131.6,
+     "h": 38,
+     "tx": "En el cuerpo",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 100.5,
+     "h": 38,
+     "tx": "Acercar",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 100.5,
+     "h": 38,
+     "tx": "Alejar",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 127.9,
+     "h": 38,
+     "tx": "Movimiento",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 150,
+     "h": 38,
+     "tx": "Vista explotada",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 86.1,
+     "h": 38,
+     "tx": "Corte",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn on",
+     "w": 155,
+     "h": 38,
+     "tx": "Giro automático",
+     "href": null
+    },
+    {
+     "t": "A.",
+     "w": 178.7,
+     "h": 16,
+     "tx": "Ver todos los de cadera →",
+     "href": "productos.html"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "A.navlink on",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 14,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Productos"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar"
+    },
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "//"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera"
+    },
+    {
+     "sel": "SPAN.tag a",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera"
+    },
+    {
+     "sel": "BUTTON.tab on",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "3D interactivo"
+    },
+    {
+     "sel": "SPAN.v-tag",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Modelo 3D interactivo"
+    },
+    {
+     "sel": "SPAN.v-hint",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 400,
+     "ratio": 2.97,
+     "min": 4.5,
+     "tx": "Arrastrá para girar · rueda para acercar"
+    },
+    {
+     "sel": "SPAN.hs-n",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "1"
+    },
+    {
+     "sel": "SPAN.rot",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 9.5,
+     "fw": 700,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Contexto"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Puntos de interés"
+    },
+    {
+     "sel": "I.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 11,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "1"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar este producto"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Descripción"
+    },
+    {
+     "sel": "SPAN.pill ",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 9.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Fabricante"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Ver todos los de cadera →"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10,
+     "fw": 700,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "FOTO A SOLICITAR"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "MOBILELINK"
+    },
+    {
+     "n": 3,
+     "tx": "Tocá un punto del modelo"
+    },
+    {
+     "n": 2,
+     "tx": "MOBILELINK"
+    },
+    {
+     "n": 2,
+     "tx": "Para verlo en detalle"
+    },
+    {
+     "n": 2,
+     "tx": "Otros productos de la línea"
+    }
+   ],
+   "navOn": [
+    "Productos"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "index.html",
+    "index.html#institucional",
+    "productos.html",
+    "proceso.html",
+    "index.html#portal",
+    "index.html#representaciones",
+    "contacto.html",
+    "producto.html?p=mobilelink-dual-mobility",
+    "producto.html?p=bimobile",
+    "producto.html?p=crown-cup",
+    "producto.html?p=element"
+   ],
+   "marc": [
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "size: 10px; color: #A7A9AC; font-weight: 700; letter-spacing: .08em;\">FOTO A SOLICITAR</span></div><div class=\"bd\"><span class=\"eyebrow\" style=\"font-size: 10px;"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": ".5\" cy=\"8.5\" r=\"1.5\"></circle><path d=\"M21 15l-5-5L5 21\"></path></svg>FOTO A SOLICITAR AL FABRICANTE</div>'; $('#insp-zoom') && ($('.insp-zoom').style.displ"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "size: 10px; color: #A7A9AC; font-weight: 700; letter-spacing: .08em;\">FOTO A SOLICITAR</span>'}</div><div class=\"bd\"><span class=\"eyebrow\" style=\"font-size: 10p"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "t": {
+   "scrollW": 768,
+   "innerW": 768,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [
+    {
+     "src": "media/clips/mobilelink_flip.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 720,
+     "err": null
+    },
+    {
+     "src": "media/clips/mobilelink_poroso.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 1100,
+     "err": null
+    }
+   ],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 64.2,
+     "h": 15,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "1",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "2",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "3",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "4",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "5",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn on",
+     "w": 63.9,
+     "h": 38,
+     "tx": "Producto",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 63.9,
+     "h": 38,
+     "tx": "En el hueso",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 63.9,
+     "h": 38,
+     "tx": "En el cuerpo",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 43,
+     "h": 38,
+     "tx": "Acercar",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 43,
+     "h": 38,
+     "tx": "Alejar",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 127.9,
+     "h": 38,
+     "tx": "Movimiento",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 150,
+     "h": 38,
+     "tx": "Vista explotada",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 86.1,
+     "h": 38,
+     "tx": "Corte",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn on",
+     "w": 155,
+     "h": 38,
+     "tx": "Giro automático",
+     "href": null
+    },
+    {
+     "t": "A.",
+     "w": 178.7,
+     "h": 16,
+     "tx": "Ver todos los de cadera →",
+     "href": "productos.html"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "//"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera"
+    },
+    {
+     "sel": "SPAN.tag a",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera"
+    },
+    {
+     "sel": "BUTTON.tab on",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "3D interactivo"
+    },
+    {
+     "sel": "SPAN.v-tag",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Modelo 3D interactivo"
+    },
+    {
+     "sel": "SPAN.v-hint",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 400,
+     "ratio": 2.97,
+     "min": 4.5,
+     "tx": "Arrastrá para girar · rueda para acercar"
+    },
+    {
+     "sel": "SPAN.hs-n",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "1"
+    },
+    {
+     "sel": "SPAN.rot",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 9.5,
+     "fw": 700,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "Contexto"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Puntos de interés"
+    },
+    {
+     "sel": "I.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 11,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "1"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar este producto"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Descripción"
+    },
+    {
+     "sel": "SPAN.pill ",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 9.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Fabricante"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Ver todos los de cadera →"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10,
+     "fw": 700,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "FOTO A SOLICITAR"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "MOBILELINK"
+    },
+    {
+     "n": 3,
+     "tx": "Tocá un punto del modelo"
+    },
+    {
+     "n": 2,
+     "tx": "MOBILELINK"
+    },
+    {
+     "n": 2,
+     "tx": "Para verlo en detalle"
+    },
+    {
+     "n": 2,
+     "tx": "Otros productos de la línea"
+    }
+   ],
+   "navOn": [
+    "Productos"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "index.html",
+    "index.html#institucional",
+    "productos.html",
+    "proceso.html",
+    "index.html#portal",
+    "index.html#representaciones",
+    "contacto.html",
+    "producto.html?p=mobilelink-dual-mobility",
+    "producto.html?p=bimobile",
+    "producto.html?p=crown-cup",
+    "producto.html?p=element"
+   ],
+   "marc": [
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "size: 10px; color: #A7A9AC; font-weight: 700; letter-spacing: .08em;\">FOTO A SOLICITAR</span></div><div class=\"bd\"><span class=\"eyebrow\" style=\"font-size: 10px;"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": ".5\" cy=\"8.5\" r=\"1.5\"></circle><path d=\"M21 15l-5-5L5 21\"></path></svg>FOTO A SOLICITAR AL FABRICANTE</div>'; $('#insp-zoom') && ($('.insp-zoom').style.displ"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "size: 10px; color: #A7A9AC; font-weight: 700; letter-spacing: .08em;\">FOTO A SOLICITAR</span>'}</div><div class=\"bd\"><span class=\"eyebrow\" style=\"font-size: 10p"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  },
+  "m": {
+   "scrollW": 390,
+   "innerW": 390,
+   "overflow": [],
+   "clipped": [],
+   "imgs": [],
+   "videos": [
+    {
+     "src": "media/clips/mobilelink_flip.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 720,
+     "err": null
+    },
+    {
+     "src": "media/clips/mobilelink_poroso.mp4",
+     "poster": null,
+     "rs": 4,
+     "vw": 880,
+     "vh": 1100,
+     "err": null
+    }
+   ],
+   "tap": [
+    {
+     "t": "A.",
+     "w": 38.8,
+     "h": 15,
+     "tx": "Home",
+     "href": "index.html"
+    },
+    {
+     "t": "A.",
+     "w": 64.2,
+     "h": 15,
+     "tx": "Productos",
+     "href": "productos.html"
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "1",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "2",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "3",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "4",
+     "href": null
+    },
+    {
+     "t": "BUTTON.hs",
+     "w": 30,
+     "h": 30,
+     "tx": "5",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn on",
+     "w": 41,
+     "h": 38,
+     "tx": "Producto",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 41,
+     "h": 38,
+     "tx": "En el hueso",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 41,
+     "h": 38,
+     "tx": "En el cuerpo",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 41,
+     "h": 38,
+     "tx": "Acercar",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 41,
+     "h": 38,
+     "tx": "Alejar",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 41,
+     "h": 38,
+     "tx": "Movimiento",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 41,
+     "h": 38,
+     "tx": "Vista explotada",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn",
+     "w": 41,
+     "h": 38,
+     "tx": "Corte",
+     "href": null
+    },
+    {
+     "t": "BUTTON.v-btn on",
+     "w": 41,
+     "h": 38,
+     "tx": "Giro automático",
+     "href": null
+    },
+    {
+     "t": "A.",
+     "w": 178.7,
+     "h": 16,
+     "tx": "Ver todos los de cadera →",
+     "href": "productos.html"
+    }
+   ],
+   "contraste": [
+    {
+     "sel": "SPAN.crumbs",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.15,
+     "min": 4.5,
+     "tx": "//"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 12.5,
+     "fw": 400,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera"
+    },
+    {
+     "sel": "SPAN.tag a",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Cadera"
+    },
+    {
+     "sel": "BUTTON.tab on",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 13,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "3D interactivo"
+    },
+    {
+     "sel": "SPAN.v-tag",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 10.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Modelo 3D interactivo"
+    },
+    {
+     "sel": "SPAN.hs-n",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "1"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Puntos de interés"
+    },
+    {
+     "sel": "I.",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 11,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "1"
+    },
+    {
+     "sel": "A.btn-p",
+     "fg": "rgb(255, 255, 255)",
+     "bg": "rgb(0,149,161)",
+     "fs": 14.5,
+     "fw": 600,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Consultar este producto"
+    },
+    {
+     "sel": "SPAN.eyebrow",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 700,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Descripción"
+    },
+    {
+     "sel": "SPAN.nota",
+     "fg": "rgb(138, 146, 154)",
+     "bg": "rgb(247,248,249)",
+     "fs": 11.5,
+     "fw": 400,
+     "ratio": 2.97,
+     "min": 4.5,
+     "tx": "Fotogramas del material oficial del fabrican"
+    },
+    {
+     "sel": "SPAN.pill ",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(255,255,255)",
+     "fs": 9.5,
+     "fw": 700,
+     "ratio": 3.61,
+     "min": 4.5,
+     "tx": "Fabricante"
+    },
+    {
+     "sel": "A.",
+     "fg": "rgb(0, 149, 161)",
+     "bg": "rgb(247,248,249)",
+     "fs": 13.5,
+     "fw": 600,
+     "ratio": 3.4,
+     "min": 4.5,
+     "tx": "Ver todos los de cadera →"
+    },
+    {
+     "sel": "SPAN.",
+     "fg": "rgb(167, 169, 172)",
+     "bg": "rgb(255,255,255)",
+     "fs": 10,
+     "fw": 700,
+     "ratio": 2.36,
+     "min": 4.5,
+     "tx": "FOTO A SOLICITAR"
+    }
+   ],
+   "h": [
+    {
+     "n": 1,
+     "tx": "MOBILELINK"
+    },
+    {
+     "n": 3,
+     "tx": "Tocá un punto del modelo"
+    },
+    {
+     "n": 2,
+     "tx": "MOBILELINK"
+    },
+    {
+     "n": 2,
+     "tx": "Para verlo en detalle"
+    },
+    {
+     "n": 2,
+     "tx": "Otros productos de la línea"
+    }
+   ],
+   "navOn": [
+    "Productos"
+   ],
+   "navTotal": 6,
+   "hrefs": [
+    "index.html",
+    "index.html#institucional",
+    "productos.html",
+    "proceso.html",
+    "index.html#portal",
+    "index.html#representaciones",
+    "contacto.html",
+    "producto.html?p=mobilelink-dual-mobility",
+    "producto.html?p=bimobile",
+    "producto.html?p=crown-cup",
+    "producto.html?p=element"
+   ],
+   "marc": [
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "size: 10px; color: #A7A9AC; font-weight: 700; letter-spacing: .08em;\">FOTO A SOLICITAR</span></div><div class=\"bd\"><span class=\"eyebrow\" style=\"font-size: 10px;"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": ".5\" cy=\"8.5\" r=\"1.5\"></circle><path d=\"M21 15l-5-5L5 21\"></path></svg>FOTO A SOLICITAR AL FABRICANTE</div>'; $('#insp-zoom') && ($('.insp-zoom').style.displ"
+    },
+    {
+     "m": "FOTO A SOLICITAR",
+     "ctx": "size: 10px; color: #A7A9AC; font-weight: 700; letter-spacing: .08em;\">FOTO A SOLICITAR</span>'}</div><div class=\"bd\"><span class=\"eyebrow\" style=\"font-size: 10p"
+    }
+   ],
+   "consoleErr": [],
+   "reqFail": []
+  }
+ }
+}

@@ -63,6 +63,9 @@
   .hs { position: absolute; left: -15px; top: -15px; width: 30px; height: 30px; border-radius: 50%; border: 0; padding: 0; background: var(--teal); color: #fff; font-size: 11.5px; font-weight: 700; cursor: pointer; pointer-events: auto; box-shadow: 0 0 0 5px rgba(0,149,161,.18), 0 8px 18px -6px rgba(0,0,0,.35); transition: opacity .3s, box-shadow .3s; font-family: inherit; }
   .hs::before { content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 1.5px solid rgba(0,149,161,.45); animation: ping 2.4s ease-out infinite; }
   .hs.on { background: var(--ink); box-shadow: 0 0 0 8px rgba(0,149,161,.32), 0 10px 22px -6px rgba(0,0,0,.4); transform: scale(1.25); z-index: 4; } .hs.on::before { animation: none; border-color: transparent; }
+  /* punto que queda del otro lado de la pieza: se ve a traves, en hueco */
+  .hs.atras { background: rgba(255,255,255,.94); color: var(--teal); box-shadow: inset 0 0 0 1.5px var(--teal), 0 4px 10px -5px rgba(0,0,0,.35); transform: scale(.86); }
+  .hs.atras::before { animation: none; border-color: rgba(0,149,161,.22); }
   .v-estado { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); z-index: 3; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: var(--teal); padding: 6px 14px; border-radius: 99px; opacity: 0; transition: opacity .35s; pointer-events: none; white-space: nowrap; }
   @keyframes ping { 0% { transform: scale(.75); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
   .v-grupo { position: absolute; z-index: 3; display: flex; gap: 6px; background: rgba(255,255,255,.94); border: 1px solid #DDE6E8; padding: 7px; border-radius: 20px; backdrop-filter: blur(10px); box-shadow: 0 6px 18px -8px rgba(16,34,42,.22); }

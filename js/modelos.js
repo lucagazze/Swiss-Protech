@@ -132,7 +132,9 @@ export function cotilo(m, cfg = {}) {
     inserto.add(insExt, insInt, insAro);
   }
 
-  const rCab = dob ? 0.59 : 0.74;
+  // La cabeza acompaña, no es el producto: va concéntrica con el cotilo y con un
+  // diámetro realista respecto del casquete, para que el protagonista siga siendo el cotilo.
+  const rCab = dob ? 0.50 : 0.56;
   const esfera = new THREE.Mesh(new THREE.SphereGeometry(rCab, 96, 64), m.cabeza); esfera.castShadow = true;
   const cuello = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.21, 0.62, 48), m.cuello);
   cuello.position.y = rCab - 0.02; cuello.castShadow = true;
@@ -145,25 +147,21 @@ export function cotilo(m, cfg = {}) {
   casquete.add(tapas[0]); cabeza.add(tapas[1]);
   if (dob) { const t = tapaPlano(new THREE.RingGeometry(0.63, 0.845, 96, 1, Math.PI, Math.PI), m.poli); inserto.add(t); tapas.push(t); }
 
-  inserto.position.y = 0.02; cabeza.position.y = 0.04;
-  // en reposo se muestra solo el casquete, como en la foto de catalogo
-  cabeza.visible = false; inserto.visible = false;
+  // el sistema se muestra ARMADO: casquete + inserto + cabeza, como va montado en el paciente.
+  // la cabeza queda concéntrica con la cavidad: asoma la media esfera de arriba del aro.
+  const Y_INS = 0.02, Y_CAB = -0.08;
+  inserto.position.y = Y_INS; cabeza.position.y = Y_CAB;
   raiz.rotation.x = 0.92; raiz.rotation.y = 0.45; raiz.rotation.z = 0.10;
 
-  let enMovimiento = false;
   const explotar = k => {
-    const on = k > 0.001 || enMovimiento;
-    cabeza.visible = on; inserto.visible = on && dob;
-    inserto.position.y = 0.02 + 1.03 * k;
-    cabeza.position.y = 0.04 + 2.06 * k;
+    inserto.position.y = Y_INS + 0.86 * k;
+    cabeza.position.y = Y_CAB + 1.74 * k;
   };
 
   // en movimiento la cabeza queda alojada y barre el arco de flexion
   const animar = (t) => {
-    enMovimiento = t !== null;
-    if (t === null) { cabeza.visible = false; inserto.visible = false; cabeza.rotation.set(0, 0, 0); if (dob) inserto.rotation.set(0, 0, 0); return; }
-    cabeza.visible = true; inserto.visible = dob;
-    cabeza.position.y = 0.04; inserto.position.y = 0.02;
+    if (t === null) { cabeza.rotation.set(0, 0, 0); if (dob) inserto.rotation.set(0, 0, 0); return; }
+    cabeza.position.y = Y_CAB; inserto.position.y = Y_INS;
     const a = Math.sin(t * Math.PI * 2);
     cabeza.rotation.z = a * 0.62;                 // flexion-extension del femur
     cabeza.rotation.x = Math.sin(t * Math.PI * 4) * 0.16;

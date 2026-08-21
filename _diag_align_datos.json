@@ -1,0 +1,2041 @@
+{
+ "mobilelink-dual-mobility": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.92,
+    0.45,
+    0.1
+   ],
+   "rotDeg": [
+    52.71,
+    25.78,
+    5.73
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "pelvis",
+  "impCentro": [
+   0.0423,
+   -0.2817,
+   -0.3006
+  ],
+  "impRadio": 2.331,
+  "impCaja": {
+   "min": [
+    -1.336,
+    -1.689,
+    -1.546
+   ],
+   "max": [
+    1.421,
+    1.126,
+    0.945
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -3.607,
+    -2.666,
+    -3.134
+   ],
+   "max": [
+    2.666,
+    3.925,
+    5.113
+   ]
+  },
+  "nImp": 18,
+  "nHueso": 4,
+  "fracDentro": 0.493,
+  "nMuestras": 1086,
+  "ejeHuesoWorld": [
+   -0.09,
+   0.568,
+   0.818
+  ],
+  "angHuesoVsVerticalCuerpo": 55.37,
+  "ejeImpWorld": [
+   -0.58,
+   0.21,
+   0.787
+  ],
+  "angImpVsHueso": 35.39,
+  "angImpVsVertical": 77.85,
+  "silEscala": 14.2671,
+  "silAlto": 158.508,
+  "silCaja": {
+   "min": [
+    -39.797,
+    -87.169,
+    -9.323
+   ],
+   "max": [
+    15.628,
+    71.339,
+    8.722
+   ]
+  },
+  "ratioSilImp": 34,
+  "anilloPos": [
+   0.0423,
+   -0.2817,
+   -0.3006
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.548,
+  "anilloRadioMundo": 12.5764,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.8095,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.539,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "mobilelink": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.92,
+    0.45,
+    0.1
+   ],
+   "rotDeg": [
+    52.71,
+    25.78,
+    5.73
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "pelvis",
+  "impCentro": [
+   0.0423,
+   -0.2083,
+   -0.1846
+  ],
+  "impRadio": 2.4389,
+  "impCaja": {
+   "min": [
+    -1.336,
+    -1.689,
+    -1.546
+   ],
+   "max": [
+    1.421,
+    1.273,
+    1.177
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -3.607,
+    -2.666,
+    -3.134
+   ],
+   "max": [
+    2.666,
+    3.925,
+    5.113
+   ]
+  },
+  "nImp": 15,
+  "nHueso": 4,
+  "fracDentro": 0.537,
+  "nMuestras": 899,
+  "ejeHuesoWorld": [
+   -0.09,
+   0.568,
+   0.818
+  ],
+  "angHuesoVsVerticalCuerpo": 55.37,
+  "ejeImpWorld": [
+   -0.447,
+   0.339,
+   0.828
+  ],
+  "angImpVsHueso": 24.51,
+  "angImpVsVertical": 70.2,
+  "silEscala": 14.9275,
+  "silAlto": 165.844,
+  "silCaja": {
+   "min": [
+    -41.641,
+    -91.117,
+    -9.625
+   ],
+   "max": [
+    16.349,
+    74.728,
+    9.255
+   ]
+  },
+  "ratioSilImp": 34,
+  "anilloPos": [
+   0.0423,
+   -0.2083,
+   -0.1846
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.548,
+  "anilloRadioMundo": 13.1584,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.8095,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.539,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "bimobile": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.92,
+    0.45,
+    0.1
+   ],
+   "rotDeg": [
+    52.71,
+    25.78,
+    5.73
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "pelvis",
+  "impCentro": [
+   0.0423,
+   -0.2817,
+   -0.3006
+  ],
+  "impRadio": 2.331,
+  "impCaja": {
+   "min": [
+    -1.336,
+    -1.689,
+    -1.546
+   ],
+   "max": [
+    1.421,
+    1.126,
+    0.945
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -3.607,
+    -2.666,
+    -3.134
+   ],
+   "max": [
+    2.666,
+    3.925,
+    5.113
+   ]
+  },
+  "nImp": 9,
+  "nHueso": 4,
+  "fracDentro": 0.37,
+  "nMuestras": 573,
+  "ejeHuesoWorld": [
+   -0.09,
+   0.568,
+   0.818
+  ],
+  "angHuesoVsVerticalCuerpo": 55.37,
+  "ejeImpWorld": [
+   0.699,
+   0.624,
+   -0.35
+  ],
+  "angImpVsHueso": 89.69,
+  "angImpVsVertical": 51.42,
+  "silEscala": 14.2671,
+  "silAlto": 158.508,
+  "silCaja": {
+   "min": [
+    -39.797,
+    -87.169,
+    -9.323
+   ],
+   "max": [
+    15.628,
+    71.339,
+    8.722
+   ]
+  },
+  "ratioSilImp": 34,
+  "anilloPos": [
+   0.0423,
+   -0.2817,
+   -0.3006
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.548,
+  "anilloRadioMundo": 12.5764,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.8095,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.539,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "crown-cup": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.92,
+    0.45,
+    0.1
+   ],
+   "rotDeg": [
+    52.71,
+    25.78,
+    5.73
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "pelvis",
+  "impCentro": [
+   0.0423,
+   -0.2083,
+   -0.1846
+  ],
+  "impRadio": 2.4389,
+  "impCaja": {
+   "min": [
+    -1.336,
+    -1.689,
+    -1.546
+   ],
+   "max": [
+    1.421,
+    1.273,
+    1.177
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -3.607,
+    -2.666,
+    -3.134
+   ],
+   "max": [
+    2.666,
+    3.925,
+    5.113
+   ]
+  },
+  "nImp": 18,
+  "nHueso": 4,
+  "fracDentro": 0.533,
+  "nMuestras": 1070,
+  "ejeHuesoWorld": [
+   -0.09,
+   0.568,
+   0.818
+  ],
+  "angHuesoVsVerticalCuerpo": 55.37,
+  "ejeImpWorld": [
+   -0.447,
+   0.39,
+   0.805
+  ],
+  "angImpVsHueso": 23.01,
+  "angImpVsVertical": 67.03,
+  "silEscala": 14.9275,
+  "silAlto": 165.844,
+  "silCaja": {
+   "min": [
+    -41.641,
+    -91.117,
+    -9.625
+   ],
+   "max": [
+    16.349,
+    74.728,
+    9.255
+   ]
+  },
+  "ratioSilImp": 34,
+  "anilloPos": [
+   0.0423,
+   -0.2083,
+   -0.1846
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.548,
+  "anilloRadioMundo": 13.1584,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.8095,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.539,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "element": {
+  "raiz": {
+   "pos": [
+    0,
+    0.35,
+    0
+   ],
+   "rot": [
+    0,
+    0.42,
+    0.16
+   ],
+   "rotDeg": [
+    0,
+    24.06,
+    9.17
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurProximal",
+  "impCentro": [
+   -0.2048,
+   -0.0135,
+   0.1353
+  ],
+  "impRadio": 2.1306,
+  "impCaja": {
+   "min": [
+    -1.132,
+    -1.829,
+    -0.484
+   ],
+   "max": [
+    0.723,
+    1.802,
+    0.754
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.463,
+    -4.192,
+    -1.212
+   ],
+   "max": [
+    1.466,
+    2.24,
+    1.283
+   ]
+  },
+  "nImp": 5,
+  "nHueso": 3,
+  "fracDentro": 0.561,
+  "nMuestras": 312,
+  "ejeHuesoWorld": [
+   -0.145,
+   0.987,
+   0.065
+  ],
+  "angHuesoVsVerticalCuerpo": 9.17,
+  "ejeImpWorld": [
+   -0.31,
+   0.941,
+   0.138
+  ],
+  "angImpVsHueso": 10.66,
+  "angImpVsVertical": 19.82,
+  "silEscala": 4.3468,
+  "silAlto": 48.293,
+  "silCaja": {
+   "min": [
+    -12.343,
+    -26.485,
+    -2.614
+   ],
+   "max": [
+    4.544,
+    21.807,
+    2.884
+   ]
+  },
+  "ratioSilImp": 11.33,
+  "anilloPos": [
+   -0.2048,
+   -0.0135,
+   0.1353
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.548,
+  "anilloRadioMundo": 3.8317,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.9491,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.508,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "lcu": {
+  "raiz": {
+   "pos": [
+    0,
+    0.35,
+    0
+   ],
+   "rot": [
+    0,
+    0.42,
+    0.16
+   ],
+   "rotDeg": [
+    0,
+    24.06,
+    9.17
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurProximal",
+  "impCentro": [
+   -0.183,
+   -0.1616,
+   0.1255
+  ],
+  "impRadio": 2.2698,
+  "impCaja": {
+   "min": [
+    -1.132,
+    -2.125,
+    -0.503
+   ],
+   "max": [
+    0.766,
+    1.802,
+    0.754
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.463,
+    -4.192,
+    -1.212
+   ],
+   "max": [
+    1.466,
+    2.24,
+    1.283
+   ]
+  },
+  "nImp": 5,
+  "nHueso": 3,
+  "fracDentro": 0.567,
+  "nMuestras": 312,
+  "ejeHuesoWorld": [
+   -0.145,
+   0.987,
+   0.065
+  ],
+  "angHuesoVsVerticalCuerpo": 9.17,
+  "ejeImpWorld": [
+   -0.293,
+   0.947,
+   0.131
+  ],
+  "angImpVsHueso": 9.53,
+  "angImpVsVertical": 18.7,
+  "silEscala": 4.6309,
+  "silAlto": 51.449,
+  "silCaja": {
+   "min": [
+    -13.114,
+    -28.364,
+    -2.803
+   ],
+   "max": [
+    4.876,
+    23.086,
+    3.054
+   ]
+  },
+  "ratioSilImp": 11.33,
+  "anilloPos": [
+   -0.183,
+   -0.1616,
+   0.1255
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.548,
+  "anilloRadioMundo": 4.0821,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -2.2453,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.508,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "lubinus-cup": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.92,
+    0.45,
+    0.1
+   ],
+   "rotDeg": [
+    52.71,
+    25.78,
+    5.73
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "pelvis",
+  "impCentro": [
+   0.0423,
+   -0.2083,
+   -0.1846
+  ],
+  "impRadio": 2.4389,
+  "impCaja": {
+   "min": [
+    -1.336,
+    -1.689,
+    -1.546
+   ],
+   "max": [
+    1.421,
+    1.273,
+    1.177
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -3.607,
+    -2.666,
+    -3.134
+   ],
+   "max": [
+    2.666,
+    3.925,
+    5.113
+   ]
+  },
+  "nImp": 6,
+  "nHueso": 4,
+  "fracDentro": 0.415,
+  "nMuestras": 386,
+  "ejeHuesoWorld": [
+   -0.09,
+   0.568,
+   0.818
+  ],
+  "angHuesoVsVerticalCuerpo": 55.37,
+  "ejeImpWorld": [
+   -0.082,
+   0.566,
+   0.82
+  ],
+  "angImpVsHueso": 0.49,
+  "angImpVsVertical": 55.5,
+  "silEscala": 14.9275,
+  "silAlto": 165.844,
+  "silCaja": {
+   "min": [
+    -41.641,
+    -91.117,
+    -9.625
+   ],
+   "max": [
+    16.349,
+    74.728,
+    9.255
+   ]
+  },
+  "ratioSilImp": 34,
+  "anilloPos": [
+   0.0423,
+   -0.2083,
+   -0.1846
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.548,
+  "anilloRadioMundo": 13.1584,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.8095,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.539,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "lubinus-spii": {
+  "raiz": {
+   "pos": [
+    0,
+    0.35,
+    0
+   ],
+   "rot": [
+    0,
+    0.42,
+    0.16
+   ],
+   "rotDeg": [
+    0,
+    24.06,
+    9.17
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurProximal",
+  "impCentro": [
+   -0.1684,
+   -0.2603,
+   0.119
+  ],
+  "impRadio": 2.3634,
+  "impCaja": {
+   "min": [
+    -1.132,
+    -2.323,
+    -0.516
+   ],
+   "max": [
+    0.795,
+    1.802,
+    0.754
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.463,
+    -4.192,
+    -1.212
+   ],
+   "max": [
+    1.466,
+    2.24,
+    1.283
+   ]
+  },
+  "nImp": 4,
+  "nHueso": 3,
+  "fracDentro": 0.721,
+  "nMuestras": 247,
+  "ejeHuesoWorld": [
+   -0.145,
+   0.987,
+   0.065
+  ],
+  "angHuesoVsVerticalCuerpo": 9.17,
+  "ejeImpWorld": [
+   -0.278,
+   0.952,
+   0.125
+  ],
+  "angImpVsHueso": 8.57,
+  "angImpVsVertical": 17.74,
+  "silEscala": 4.8218,
+  "silAlto": 53.57,
+  "silCaja": {
+   "min": [
+    -13.633,
+    -29.625,
+    -2.93
+   ],
+   "max": [
+    5.099,
+    23.945,
+    3.168
+   ]
+  },
+  "ratioSilImp": 11.33,
+  "anilloPos": [
+   -0.1684,
+   -0.2603,
+   0.119
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.548,
+  "anilloRadioMundo": 4.2504,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -2.4427,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.507,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "mp-link": {
+  "raiz": {
+   "pos": [
+    0,
+    0.35,
+    0
+   ],
+   "rot": [
+    0,
+    0.42,
+    0.16
+   ],
+   "rotDeg": [
+    0,
+    24.06,
+    9.17
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurProximal",
+  "impCentro": [
+   -0.2121,
+   -0.5803,
+   0.1385
+  ],
+  "impRadio": 2.627,
+  "impCaja": {
+   "min": [
+    -1.132,
+    -2.963,
+    -0.477
+   ],
+   "max": [
+    0.708,
+    1.802,
+    0.754
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.463,
+    -4.192,
+    -1.212
+   ],
+   "max": [
+    1.466,
+    2.24,
+    1.283
+   ]
+  },
+  "nImp": 16,
+  "nHueso": 3,
+  "fracDentro": 0.879,
+  "nMuestras": 621,
+  "ejeHuesoWorld": [
+   -0.145,
+   0.987,
+   0.065
+  ],
+  "angHuesoVsVerticalCuerpo": 9.17,
+  "ejeImpWorld": [
+   -0.207,
+   0.974,
+   0.093
+  ],
+  "angImpVsHueso": 3.93,
+  "angImpVsVertical": 13.1,
+  "silEscala": 5.3597,
+  "silAlto": 59.546,
+  "silCaja": {
+   "min": [
+    -15.178,
+    -33.221,
+    -3.251
+   ],
+   "max": [
+    5.643,
+    26.325,
+    3.528
+   ]
+  },
+  "ratioSilImp": 11.33,
+  "anilloPos": [
+   -0.2121,
+   -0.5803,
+   0.1385
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.548,
+  "anilloRadioMundo": 4.7245,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -3.0827,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.506,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "endomodel-modular": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.04,
+    0.58,
+    0
+   ],
+   "rotDeg": [
+    2.29,
+    33.23,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurTibia",
+  "impCentro": [
+   0,
+   0.3196,
+   -0.0072
+  ],
+  "impRadio": 2.4823,
+  "impCaja": {
+   "min": [
+    -0.986,
+    -1.756,
+    -0.945
+   ],
+   "max": [
+    0.986,
+    2.396,
+    0.931
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.474,
+    -4.753,
+    -1.427
+   ],
+   "max": [
+    1.474,
+    5.1,
+    1.501
+   ]
+  },
+  "nImp": 12,
+  "nHueso": 6,
+  "fracDentro": 0.37,
+  "nMuestras": 719,
+  "ejeHuesoWorld": [
+   -0.0,
+   0.999,
+   0.04
+  ],
+  "angHuesoVsVerticalCuerpo": 2.29,
+  "ejeImpWorld": [
+   0.017,
+   0.998,
+   0.064
+  ],
+  "angImpVsHueso": 1.72,
+  "angImpVsVertical": 3.82,
+  "silEscala": 4.7479,
+  "silAlto": 52.749,
+  "silCaja": {
+   "min": [
+    -11.834,
+    -15.776,
+    -3.01
+   ],
+   "max": [
+    6.611,
+    36.973,
+    2.995
+   ]
+  },
+  "ratioSilImp": 10.63,
+  "anilloPos": [
+   0,
+   0.3196,
+   -0.0072
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.305,
+  "anilloRadioMundo": 4.1852,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.8764,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.263,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "endomodel-hinged": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.04,
+    0.58,
+    0
+   ],
+   "rotDeg": [
+    2.29,
+    33.23,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurTibia",
+  "impCentro": [
+   0,
+   0.3196,
+   -0.0072
+  ],
+  "impRadio": 2.4823,
+  "impCaja": {
+   "min": [
+    -0.986,
+    -1.756,
+    -0.945
+   ],
+   "max": [
+    0.986,
+    2.396,
+    0.931
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.474,
+    -4.753,
+    -1.427
+   ],
+   "max": [
+    1.474,
+    5.1,
+    1.501
+   ]
+  },
+  "nImp": 12,
+  "nHueso": 6,
+  "fracDentro": 0.37,
+  "nMuestras": 719,
+  "ejeHuesoWorld": [
+   -0.0,
+   0.999,
+   0.04
+  ],
+  "angHuesoVsVerticalCuerpo": 2.29,
+  "ejeImpWorld": [
+   0.017,
+   0.998,
+   0.064
+  ],
+  "angImpVsHueso": 1.72,
+  "angImpVsVertical": 3.82,
+  "silEscala": 4.7479,
+  "silAlto": 52.749,
+  "silCaja": {
+   "min": [
+    -11.834,
+    -15.776,
+    -3.01
+   ],
+   "max": [
+    6.611,
+    36.973,
+    2.995
+   ]
+  },
+  "ratioSilImp": 10.63,
+  "anilloPos": [
+   0,
+   0.3196,
+   -0.0072
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.305,
+  "anilloRadioMundo": 4.1852,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.8764,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.263,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "endomodel-standard": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.04,
+    0.58,
+    0
+   ],
+   "rotDeg": [
+    2.29,
+    33.23,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurTibia",
+  "impCentro": [
+   0,
+   0.3196,
+   -0.0072
+  ],
+  "impRadio": 2.4823,
+  "impCaja": {
+   "min": [
+    -0.986,
+    -1.756,
+    -0.945
+   ],
+   "max": [
+    0.986,
+    2.396,
+    0.931
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.474,
+    -4.753,
+    -1.427
+   ],
+   "max": [
+    1.474,
+    5.1,
+    1.501
+   ]
+  },
+  "nImp": 12,
+  "nHueso": 6,
+  "fracDentro": 0.37,
+  "nMuestras": 719,
+  "ejeHuesoWorld": [
+   -0.0,
+   0.999,
+   0.04
+  ],
+  "angHuesoVsVerticalCuerpo": 2.29,
+  "ejeImpWorld": [
+   0.017,
+   0.998,
+   0.064
+  ],
+  "angImpVsHueso": 1.72,
+  "angImpVsVertical": 3.82,
+  "silEscala": 4.7479,
+  "silAlto": 52.749,
+  "silCaja": {
+   "min": [
+    -11.834,
+    -15.776,
+    -3.01
+   ],
+   "max": [
+    6.611,
+    36.973,
+    2.995
+   ]
+  },
+  "ratioSilImp": 10.63,
+  "anilloPos": [
+   0,
+   0.3196,
+   -0.0072
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.305,
+  "anilloRadioMundo": 4.1852,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.8764,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.263,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "optetrak-cc": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.04,
+    0.58,
+    0
+   ],
+   "rotDeg": [
+    2.29,
+    33.23,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurTibia",
+  "impCentro": [
+   0,
+   0.3196,
+   -0.0072
+  ],
+  "impRadio": 2.4823,
+  "impCaja": {
+   "min": [
+    -0.986,
+    -1.756,
+    -0.945
+   ],
+   "max": [
+    0.986,
+    2.396,
+    0.931
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.474,
+    -4.753,
+    -1.427
+   ],
+   "max": [
+    1.474,
+    5.1,
+    1.501
+   ]
+  },
+  "nImp": 11,
+  "nHueso": 6,
+  "fracDentro": 0.293,
+  "nMuestras": 611,
+  "ejeHuesoWorld": [
+   -0.0,
+   0.999,
+   0.04
+  ],
+  "angHuesoVsVerticalCuerpo": 2.29,
+  "ejeImpWorld": [
+   0.02,
+   0.998,
+   0.067
+  ],
+  "angImpVsHueso": 1.9,
+  "angImpVsVertical": 3.99,
+  "silEscala": 4.7479,
+  "silAlto": 52.749,
+  "silCaja": {
+   "min": [
+    -11.834,
+    -15.776,
+    -3.01
+   ],
+   "max": [
+    6.611,
+    36.973,
+    2.995
+   ]
+  },
+  "ratioSilImp": 10.63,
+  "anilloPos": [
+   0,
+   0.3196,
+   -0.0072
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.305,
+  "anilloRadioMundo": 4.1852,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -1.8764,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.263,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "optetrak-hiflex": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.04,
+    0.58,
+    0
+   ],
+   "rotDeg": [
+    2.29,
+    33.23,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurTibia",
+  "impCentro": [
+   0,
+   0.2104,
+   -0.0072
+  ],
+  "impRadio": 1.6526,
+  "impCaja": {
+   "min": [
+    -0.986,
+    -0.727,
+    -0.945
+   ],
+   "max": [
+    0.986,
+    1.148,
+    0.931
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.474,
+    -4.753,
+    -1.427
+   ],
+   "max": [
+    1.474,
+    5.1,
+    1.501
+   ]
+  },
+  "nImp": 10,
+  "nHueso": 6,
+  "fracDentro": 0.215,
+  "nMuestras": 550,
+  "ejeHuesoWorld": [
+   -0.0,
+   0.999,
+   0.04
+  ],
+  "angHuesoVsVerticalCuerpo": 2.29,
+  "ejeImpWorld": [
+   0.129,
+   0.969,
+   0.213
+  ],
+  "angImpVsHueso": 12.5,
+  "angImpVsVertical": 14.41,
+  "silEscala": 3.161,
+  "silAlto": 35.118,
+  "silCaja": {
+   "min": [
+    -7.878,
+    -10.505,
+    -2.006
+   ],
+   "max": [
+    4.401,
+    24.613,
+    1.992
+   ]
+  },
+  "ratioSilImp": 10.63,
+  "anilloPos": [
+   0,
+   0.2104,
+   -0.0072
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.305,
+  "anilloRadioMundo": 2.7864,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -0.8472,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.275,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "optetrak-logic": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.04,
+    0.58,
+    0
+   ],
+   "rotDeg": [
+    2.29,
+    33.23,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurTibia",
+  "impCentro": [
+   0,
+   0.2104,
+   -0.0072
+  ],
+  "impRadio": 1.6526,
+  "impCaja": {
+   "min": [
+    -0.986,
+    -0.727,
+    -0.945
+   ],
+   "max": [
+    0.986,
+    1.148,
+    0.931
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.474,
+    -4.753,
+    -1.427
+   ],
+   "max": [
+    1.474,
+    5.1,
+    1.501
+   ]
+  },
+  "nImp": 10,
+  "nHueso": 6,
+  "fracDentro": 0.215,
+  "nMuestras": 550,
+  "ejeHuesoWorld": [
+   -0.0,
+   0.999,
+   0.04
+  ],
+  "angHuesoVsVerticalCuerpo": 2.29,
+  "ejeImpWorld": [
+   0.129,
+   0.969,
+   0.213
+  ],
+  "angImpVsHueso": 12.5,
+  "angImpVsVertical": 14.41,
+  "silEscala": 3.161,
+  "silAlto": 35.118,
+  "silCaja": {
+   "min": [
+    -7.878,
+    -10.505,
+    -2.006
+   ],
+   "max": [
+    4.401,
+    24.613,
+    1.992
+   ]
+  },
+  "ratioSilImp": 10.63,
+  "anilloPos": [
+   0,
+   0.2104,
+   -0.0072
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.305,
+  "anilloRadioMundo": 2.7864,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -0.8472,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.275,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": false
+ },
+ "uni-sled": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0.04,
+    0.58,
+    0
+   ],
+   "rotDeg": [
+    2.29,
+    33.23,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": "femurTibia",
+  "impCentro": [
+   -0.0075,
+   0.2075,
+   0.0059
+  ],
+  "impRadio": 1.3167,
+  "impCaja": {
+   "min": [
+    -0.579,
+    -0.727,
+    -0.725
+   ],
+   "max": [
+    0.564,
+    1.142,
+    0.737
+   ]
+  },
+  "huesoCaja": {
+   "min": [
+    -1.474,
+    -4.753,
+    -1.427
+   ],
+   "max": [
+    1.474,
+    5.1,
+    1.501
+   ]
+  },
+  "nImp": 5,
+  "nHueso": 6,
+  "fracDentro": 0.339,
+  "nMuestras": 313,
+  "ejeHuesoWorld": [
+   -0.0,
+   0.999,
+   0.04
+  ],
+  "angHuesoVsVerticalCuerpo": 2.29,
+  "ejeImpWorld": [
+   -0.229,
+   0.913,
+   -0.338
+  ],
+  "angImpVsHueso": 26.03,
+  "angImpVsVertical": 24.1,
+  "silEscala": 2.5184,
+  "silAlto": 27.98,
+  "silCaja": {
+   "min": [
+    -6.284,
+    -8.33,
+    -1.587
+   ],
+   "max": [
+    3.499,
+    19.65,
+    1.599
+   ]
+  },
+  "ratioSilImp": 10.63,
+  "anilloPos": [
+   -0.0075,
+   0.2075,
+   0.0059
+  ],
+  "distAnilloImp": 0,
+  "distAnilloImpPctAlto": 0,
+  "alturaRelAnillo": 0.305,
+  "anilloRadioMundo": 2.22,
+  "anilloRadioPctAlto": 7.93,
+  "pisoY": -0.8472,
+  "pisoDentroDelCuerpo": true,
+  "pisoAlturaRel": 0.267,
+  "shadowCam": {
+   "l": -6,
+   "r": 6,
+   "t": 6,
+   "b": -6,
+   "near": 0.5,
+   "far": 30
+  },
+  "shadowCubreCuerpo": true
+ },
+ "copal": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0.12,
+    0
+   ],
+   "rotDeg": [
+    0,
+    6.88,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": null,
+  "impCentro": [
+   -0.1365,
+   0.02,
+   0.0147
+  ],
+  "impRadio": 1.6401,
+  "impCaja": {
+   "min": [
+    -1.412,
+    -0.93,
+    -0.388
+   ],
+   "max": [
+    1.138,
+    0.97,
+    0.417
+   ]
+  },
+  "huesoCaja": null,
+  "nImp": 7,
+  "nHueso": 0,
+  "ejeHuesoWorld": [
+   0,
+   1,
+   0
+  ],
+  "angHuesoVsVerticalCuerpo": 0,
+  "ejeImpWorld": [
+   0.963,
+   0.203,
+   -0.178
+  ],
+  "angImpVsHueso": 78.31,
+  "angImpVsVertical": 78.31
+ },
+ "palacos-mv": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0.12,
+    0
+   ],
+   "rotDeg": [
+    0,
+    6.88,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": null,
+  "impCentro": [
+   -0.1365,
+   0.02,
+   0.0147
+  ],
+  "impRadio": 1.6401,
+  "impCaja": {
+   "min": [
+    -1.412,
+    -0.93,
+    -0.388
+   ],
+   "max": [
+    1.138,
+    0.97,
+    0.417
+   ]
+  },
+  "huesoCaja": null,
+  "nImp": 7,
+  "nHueso": 0,
+  "ejeHuesoWorld": [
+   0,
+   1,
+   0
+  ],
+  "angHuesoVsVerticalCuerpo": 0,
+  "ejeImpWorld": [
+   0.963,
+   0.203,
+   -0.178
+  ],
+  "angImpVsHueso": 78.31,
+  "angImpVsVertical": 78.31
+ },
+ "palacos-r": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0.12,
+    0
+   ],
+   "rotDeg": [
+    0,
+    6.88,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": null,
+  "impCentro": [
+   -0.1365,
+   0.02,
+   0.0147
+  ],
+  "impRadio": 1.6401,
+  "impCaja": {
+   "min": [
+    -1.412,
+    -0.93,
+    -0.388
+   ],
+   "max": [
+    1.138,
+    0.97,
+    0.417
+   ]
+  },
+  "huesoCaja": null,
+  "nImp": 7,
+  "nHueso": 0,
+  "ejeHuesoWorld": [
+   0,
+   1,
+   0
+  ],
+  "angHuesoVsVerticalCuerpo": 0,
+  "ejeImpWorld": [
+   0.963,
+   0.203,
+   -0.178
+  ],
+  "angImpVsHueso": 78.31,
+  "angImpVsVertical": 78.31
+ },
+ "palamix-gun": {
+  "raiz": {
+   "pos": [
+    0,
+    0,
+    0
+   ],
+   "rot": [
+    0,
+    0.3,
+    0.06
+   ],
+   "rotDeg": [
+    0,
+    17.19,
+    3.44
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": null,
+  "impCentro": [
+   0.0929,
+   -0.4855,
+   -0.0927
+  ],
+  "impRadio": 1.8622,
+  "impCaja": {
+   "min": [
+    -1.447,
+    -1.35,
+    -0.684
+   ],
+   "max": [
+    1.633,
+    0.379,
+    0.499
+   ]
+  },
+  "huesoCaja": null,
+  "nImp": 9,
+  "nHueso": 0,
+  "ejeHuesoWorld": [
+   -0.057,
+   0.998,
+   0.018
+  ],
+  "angHuesoVsVerticalCuerpo": 3.44,
+  "ejeImpWorld": [
+   0.937,
+   0.196,
+   -0.288
+  ],
+  "angImpVsHueso": 82.11,
+  "angImpVsVertical": 78.67
+ },
+ "palamix-uno": {
+  "raiz": {
+   "pos": [
+    0,
+    -0.35,
+    0
+   ],
+   "rot": [
+    0,
+    0.35,
+    0
+   ],
+   "rotDeg": [
+    0,
+    20.05,
+    0
+   ],
+   "esc": [
+    1,
+    1,
+    1
+   ]
+  },
+  "anatomia": null,
+  "impCentro": [
+   0.2109,
+   0.55,
+   0
+  ],
+  "impRadio": 2.1535,
+  "impCaja": {
+   "min": [
+    -0.667,
+    -1.3,
+    -0.667
+   ],
+   "max": [
+    1.089,
+    2.4,
+    0.667
+   ]
+  },
+  "huesoCaja": null,
+  "nImp": 8,
+  "nHueso": 0,
+  "ejeHuesoWorld": [
+   0,
+   1,
+   0
+  ],
+  "angHuesoVsVerticalCuerpo": 0,
+  "ejeImpWorld": [
+   0.023,
+   1,
+   -0.009
+  ],
+  "angImpVsHueso": 1.39,
+  "angImpVsVertical": 1.39
+ }
+}

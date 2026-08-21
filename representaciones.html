@@ -69,9 +69,10 @@
   .kpi span { font-size: 13.5px; color: var(--txt); line-height: 1.45; }
 
   .hitos { display: flex; flex-direction: column; gap: 0; }
-  .hito { display: grid; grid-template-columns: 132px 1fr; gap: 26px; padding: 24px 0; border-top: 1px solid var(--line); }
+  /* 166px = el rotulo mas largo ("Representaciones", 158px a 17/800) con aire */
+  .hito { display: grid; grid-template-columns: 166px minmax(0, 1fr); gap: 26px; padding: 24px 0; border-top: 1px solid var(--line); }
   .hito:last-child { border-bottom: 1px solid var(--line); }
-  .hito .a { font-size: 20px; font-weight: 800; color: var(--teal); letter-spacing: -0.02em; }
+  .hito .a { font-size: 17px; font-weight: 800; color: var(--teal); letter-spacing: -0.02em; white-space: nowrap; }
   .hito h3 { font-size: 17.5px; margin-bottom: 6px; } .hito p { font-size: 14.5px; color: var(--txt); line-height: 1.65; }
 
   .prov { font-size: 13px; color: var(--ink); border: 1px solid var(--line); background: #fff; padding: 8px 15px; border-radius: 4px; font-weight: 500; transition: border-color .3s, color .3s, background .3s; }

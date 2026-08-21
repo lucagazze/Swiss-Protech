@@ -45,13 +45,15 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   cam.position.copy(CAM0);
 
   escena.add(new THREE.HemisphereLight(0xffffff, 0xd9e3e6, 0.55));
-  const sol = new THREE.DirectionalLight(0xffffff, 1.5); sol.position.set(5, 9, 4); sol.castShadow = true;
-  sol.shadow.mapSize.set(2048, 2048); sol.shadow.radius = 6; sol.shadow.bias = -0.0004;
+  // luz principal casi cenital: la sombra cae debajo de la pieza y se lee como apoyo,
+  // no como una mancha suelta al costado
+  const sol = new THREE.DirectionalLight(0xffffff, 1.5); sol.position.set(3.2, 11, 2.6); sol.castShadow = true;
+  sol.shadow.mapSize.set(2048, 2048); sol.shadow.radius = 5; sol.shadow.bias = -0.0004;
   Object.assign(sol.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 0.5, far: 30 });
   const relleno = new THREE.DirectionalLight(0xe8f4f6, 0.5); relleno.position.set(-4, 2, -3);
   escena.add(sol, relleno);
 
-  const piso = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.ShadowMaterial({ opacity: 0.17 }));
+  const piso = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.ShadowMaterial({ opacity: 0.10 }));
   piso.rotation.x = -Math.PI / 2; piso.position.y = -1.25; piso.receiveShadow = true; escena.add(piso);
   const m = materiales();
 
@@ -110,15 +112,65 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   cam.position.copy(CAM0);
   // el piso se apoya en la base del modelo
   piso.position.y = cajaTot.min.y - 0.12;
+  // la sombra se ajusta al tamaño real del modelo: ni recortada en los grandes
+  // ni difusa de más en los chicos
+  const rSol = Math.max(2.2, esfTot.radius * 1.7);
+  Object.assign(sol.shadow.camera, { left: -rSol, right: rSol, top: rSol, bottom: -rSol, near: 0.5, far: rSol * 6 });
+  sol.shadow.camera.updateProjectionMatrix();
+  sol.position.copy(esfTot.center).add(new THREE.Vector3(rSol * 0.36, rSol * 2.4, rSol * 0.30));
+  sol.target.position.copy(esfTot.center); escena.add(sol.target);
 
   const ctl = new OrbitControls(cam, renderer.domElement);
   ctl.enableDamping = true; ctl.dampingFactor = 0.07; ctl.enablePan = false;
   ctl.minDistance = distTot * 0.32; ctl.maxDistance = distTot * 2.6; ctl.minPolarAngle = 0; ctl.maxPolarAngle = Math.PI;
   ctl.target.copy(MIRA0); ctl.autoRotate = true; ctl.autoRotateSpeed = hero ? 1.0 : 0.8;
 
-  let autoPermitido = true, reanudar = null, animandoCam = false;
-  ctl.addEventListener('start', () => { ctl.autoRotate = false; clearTimeout(reanudar); animandoCam = false; host.classList.add('tocado'); });
+  let autoPermitido = true, reanudar = null, camTok = 0;
+  ctl.addEventListener('start', () => { ctl.autoRotate = false; clearTimeout(reanudar); camTok++; host.classList.add('tocado'); });
   ctl.addEventListener('end', () => { clearTimeout(reanudar); reanudar = setTimeout(() => { if (autoPermitido) ctl.autoRotate = true; }, 5000); });
+
+  // ------------------------------------------------ movimiento de camara (unico)
+  // Interpola en ORBITA, no en linea recta: la direccion se slerpea y la distancia
+  // avanza en progresion geometrica. Asi el acercamiento es siempre monotono y no
+  // se produce el efecto de "se aleja y despues vuelve".
+  // El token cancela cualquier movimiento anterior: nunca hay dos tweens escribiendo
+  // la camara al mismo tiempo.
+  const _off = new THREE.Vector3(), _dir = new THREE.Vector3(), _qa = new THREE.Quaternion(),
+        _qb = new THREE.Quaternion(), _qk = new THREE.Quaternion();
+  function moverCamara(miraDestino, distDestino, ms = 820, dirDestino = null, alTerminar = null) {
+    const tok = ++camTok;
+    const miraO = ctl.target.clone();
+    _off.copy(cam.position).sub(miraO);
+    const d0 = Math.max(1e-4, _off.length());
+    const dir0 = _off.clone().divideScalar(d0);
+    const dir1 = dirDestino ? dirDestino.clone().normalize() : dir0;
+    _qa.identity(); _qb.setFromUnitVectors(dir0, dir1);
+    const mira = miraDestino.clone();
+    const d1 = THREE.MathUtils.clamp(distDestino, ctl.minDistance, ctl.maxDistance);
+    const autoAntes = ctl.autoRotate;
+    ctl.autoRotate = false;                       // que el giro no pelee con el tween
+    if (ms <= 0) {
+      ctl.target.copy(mira); cam.position.copy(mira).add(dir1.clone().multiplyScalar(d1));
+      ctl.autoRotate = autoAntes; if (alTerminar) alTerminar(); return;
+    }
+    tween(ms, k => {
+      if (camTok !== tok) return;                 // lo cancelo otro movimiento
+      _qk.slerpQuaternions(_qa, _qb, k);
+      _dir.copy(dir0).applyQuaternion(_qk);
+      ctl.target.lerpVectors(miraO, mira, k);
+      cam.position.copy(ctl.target).addScaledVector(_dir, d0 * Math.pow(d1 / d0, k));
+    }, () => {
+      if (camTok !== tok) return;
+      ctl.autoRotate = autoAntes && autoPermitido;
+      if (alTerminar) alTerminar();
+    });
+  }
+  // distancia de camara necesaria para que entre una esfera de radio dado
+  function distParaRadio(radio) {
+    const fov = THREE.MathUtils.degToRad(cam.fov);
+    const fovH = 2 * Math.atan(Math.tan(fov / 2) * Math.max(0.6, cam.aspect));
+    return radio / Math.sin(Math.min(fov, fovH) / 2);
+  }
 
   // ---------------------------------------------------------- materiales de estado
   // cada malla guarda: normal / foco (resaltada) / fantasma (atenuada)
@@ -173,12 +225,15 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
 
   // ---------------------------------------------------------- estados de la escena
   let explotado = false, corte = false, activo = -1;
+  // mallas que la camara sigue mientras se las esta mirando (null = nada)
+  let seguido = null;
 
   // ---------------------------------------------------------- movimiento
   let enMov = false, faseMov = 0;
   function setMovimiento(on) {
     if (!M.animar) return;
     enMov = on;
+    seguido = null;
     if (botones.movimiento) botones.movimiento.classList.toggle('on', on);
     if (on) {
       enfocar(null); activo = -1;
@@ -196,17 +251,12 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       M.raiz.traverse(o => { if (o.isMesh && o.visible && !anatPiezas.includes(o)) c2.expandByObject(o); });
       caja.union(c2);
       const esf = caja.getBoundingSphere(new THREE.Sphere());
-      const fov = THREE.MathUtils.degToRad(cam.fov);
-      const fovH = 2 * Math.atan(Math.tan(fov / 2) * Math.max(0.6, cam.aspect));
-      const d = esf.radius / Math.sin(Math.min(fov, fovH) / 2) * 1.12;
+      const d = distParaRadio(esf.radius) * 1.12;
       ctl.maxDistance = Math.max(ctl.maxDistance, d * 1.6);
-      const dir = cam.position.clone().sub(ctl.target).normalize();
-      const origen = cam.position.clone(), miraO = ctl.target.clone();
-      const mira = esf.center.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
-      animandoCam = true;
-      tween(720, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } }, () => { animandoCam = false; });
+      moverCamara(esf.center, d, 720);
     } else {
       M.animar(null);
+      encuadrarRadio(esfTot.radius * 1.06, 520);
     }
     if (alCambiar) alCambiar(on ? -4 : -1, on ? { titulo: 'En movimiento', texto: M.movimiento || '' } : null, '');
   }
@@ -250,18 +300,26 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   // El producto es SIEMPRE el centro de la vista: la mira no se mueve del implante,
   // solo cambia cuanto entorno entra alrededor.
   function encuadrarRadio(radio, ms = 820) {
-    const fov = THREE.MathUtils.degToRad(cam.fov);
-    const fovH = 2 * Math.atan(Math.tan(fov / 2) * Math.max(0.6, cam.aspect));
-    const d = radio / Math.sin(Math.min(fov, fovH) / 2);
+    const d = distParaRadio(radio);
     ctl.minDistance = Math.min(distTot * 0.32, d * 0.12);
     ctl.maxDistance = Math.max(d * 2.4, distTot * 2.6);
     cam.far = Math.max(80, d * 6); cam.updateProjectionMatrix();
-    const dir = cam.position.clone().sub(ctl.target).normalize();
-    const origen = cam.position.clone(), miraO = ctl.target.clone();
-    const mira = MIRA0.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
-    animandoCam = true;
-    tween(ms, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } },
-      () => { animandoCam = false; });
+    moverCamara(MIRA0, d, ms);
+  }
+  // encuadra el modelo tal como va a quedar con un factor de apertura dado,
+  // para que la vista explotada entre entera en pantalla
+  function encuadrarModelo(kDestino, ms = 700) {
+    const kPrev = kExplo;
+    M.explotar(kDestino); M.raiz.updateMatrixWorld(true);
+    const caja = new THREE.Box3();
+    M.raiz.traverse(o => { if (o.isMesh && o.visible && !anatPiezas.includes(o)) caja.expandByObject(o); });
+    M.explotar(kPrev); M.raiz.updateMatrixWorld(true);
+    if (caja.isEmpty()) return;
+    const esf = caja.getBoundingSphere(new THREE.Sphere());
+    const d = distParaRadio(esf.radius * 1.08);
+    ctl.minDistance = Math.min(ctl.minDistance, d * 0.14);
+    ctl.maxDistance = Math.max(ctl.maxDistance, d * 2.2);
+    moverCamara(esf.center, d, ms);
   }
   // que tan lejos llega un objeto medido DESDE el centro del producto
   function radioDesdeProducto(obj) {
@@ -278,8 +336,12 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   function setContexto(k) {
     if (!anat && k !== 'solo') k = 'solo';
     contexto = k;
+    seguido = null;
     if (anat) anat.visible = (k === 'hueso' || k === 'cuerpo');
     if (silueta) silueta.visible = (k === 'cuerpo');
+    // el plano de sombra vive a la escala del implante: dentro del cuerpo queda
+    // un manchon suelto en medio del paciente, asi que se apaga
+    piso.visible = (k === 'solo');
     marcarContexto();
     if (k !== 'solo') {
       enfocar(mallasImplante); activo = -1;   // el implante en color, el hueso atenuado
@@ -306,15 +368,10 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   // acercar / alejar con botones (mismo recorrido que la rueda)
   const dirZoom = new THREE.Vector3();
   function zoom(factor) {
-    ctl.autoRotate = false; clearTimeout(reanudar); animandoCam = false;
+    clearTimeout(reanudar);
     dirZoom.copy(cam.position).sub(ctl.target);
-    const d0 = dirZoom.length();
-    const d1 = THREE.MathUtils.clamp(d0 * factor, ctl.minDistance, ctl.maxDistance);
-    const origen = cam.position.clone();
-    const destino = ctl.target.clone().add(dirZoom.normalize().multiplyScalar(d1));
-    animandoCam = true;
-    tween(320, k => { if (animandoCam) cam.position.lerpVectors(origen, destino, k); }, () => {
-      animandoCam = false;
+    const d1 = dirZoom.length() * factor;
+    moverCamara(ctl.target.clone(), d1, 320, null, () => {
       reanudar = setTimeout(() => { if (autoPermitido) ctl.autoRotate = true; }, 7000);
     });
   }
@@ -354,18 +411,16 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     const dir = p.camLocal.clone().normalize().applyQuaternion(qTmp).normalize();
     
 
-    const fov = THREE.MathUtils.degToRad(cam.fov);
-    const aspecto = Math.max(0.6, cam.aspect);
-    const fovH = 2 * Math.atan(Math.tan(fov / 2) * aspecto);
     const radio = Math.max(0.35, esfera.radius) * (p.margen || 1.8) * 0.82;
-    const dist = THREE.MathUtils.clamp(radio / Math.sin(Math.min(fov, fovH) / 2), ctl.minDistance, ctl.maxDistance);
+    const dist = distParaRadio(radio);
     const mira = esfera.center.clone();
     mira.y += esfera.radius * 0.16;   // deja aire arriba para la tarjeta de texto
-    const destino = mira.clone().add(dir.multiplyScalar(dist));
-    const origen = cam.position.clone(), miraOrigen = ctl.target.clone();
-    ctl.autoRotate = false; clearTimeout(reanudar); animandoCam = true;
-    tween(800, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraOrigen, mira, k); } }, () => {
-      animandoCam = false;
+    clearTimeout(reanudar);
+    seguido = null;
+    moverCamara(mira, dist, 800, dir, () => {
+      // a partir de acá la cámara queda pegada a la pieza que se está mirando:
+      // si la pieza se mueve (vista explotada, movimiento), la sigue
+      seguido = p.focos.filter(Boolean);
       reanudar = setTimeout(() => { if (autoPermitido) ctl.autoRotate = true; }, 9000);
     });
   }
@@ -379,19 +434,29 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (contexto !== 'solo') { contexto = 'solo'; if (anat) anat.visible = false; if (silueta) silueta.visible = false; marcarContexto(); }
     if (panelTitulo) panelTitulo.textContent = 'Tocá un punto del modelo';
     if (panelTexto) panelTexto.textContent = 'Cada número señala una parte del sistema. Arrastrá para girar, usá la rueda o pellizcá para acercar.';
-    const origen = cam.position.clone(), miraOrigen = ctl.target.clone();
-    const mira0 = MIRA0.clone();
-    animandoCam = true;
-    tween(700, k => { if (animandoCam) { cam.position.lerpVectors(origen, CAM0, k); ctl.target.lerpVectors(miraOrigen, mira0, k); } }, () => { animandoCam = false; });
+    seguido = null;
+    moverCamara(MIRA0, CAM0.distanceTo(MIRA0), 700, CAM0.clone().sub(MIRA0));
     setAuto(true);
     if (alCambiar) alCambiar(-1, null);
   }
 
-  // clic en el fondo = deseleccionar
-  renderer.domElement.addEventListener('dblclick', () => { if (activo >= 0) reiniciar(); });
+  // clic en el fondo = salir del punto de interés. Un arrastre para girar NO cuenta como clic.
+  (function () {
+    const el = renderer.domElement;
+    let px = 0, py = 0, pt = 0, valido = false;
+    el.addEventListener('pointerdown', e => { px = e.clientX; py = e.clientY; pt = performance.now(); valido = true; });
+    el.addEventListener('pointercancel', () => { valido = false; });
+    el.addEventListener('pointerup', e => {
+      if (!valido) return;
+      valido = false;
+      const movido = Math.hypot(e.clientX - px, e.clientY - py);
+      if (movido > 6 || performance.now() - pt > 500) return;   // fue un giro, no un clic
+      if (activo >= 0 || enMov || contexto !== 'solo' || explotado || corte) reiniciar();
+    });
+  })();
 
-  if (botones.explotar) botones.explotar.addEventListener('click', () => { enfocar(null); activo = -1; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setExplotar(!explotado); });
-  if (botones.corte) botones.corte.addEventListener('click', () => { enfocar(null); activo = -1; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setCorte(!corte); });
+  if (botones.explotar) botones.explotar.addEventListener('click', () => { enfocar(null); activo = -1; seguido = null; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setExplotar(!explotado); encuadrarModelo(explotado ? 1 : 0); });
+  if (botones.corte) botones.corte.addEventListener('click', () => { enfocar(null); activo = -1; seguido = null; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setCorte(!corte); });
   if (botones.auto) botones.auto.addEventListener('click', () => setAuto(!autoPermitido));
   if (botones.reset) botones.reset.addEventListener('click', reiniciar);
   if (botones.movimiento) {
@@ -426,14 +491,28 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
 
   // ---------------------------------------------------------- bucle
   const tmp = new THREE.Vector3(), dir2 = new THREE.Vector3(), centro = new THREE.Vector3(), haciaCam = new THREE.Vector3();
-  let visible = true, t = 0;
+  const cajaSeg = new THREE.Box3(), esfSeg = new THREE.Sphere(), miraSeg = new THREE.Vector3();
+  let visible = true, t = 0, tPrev = performance.now();
   new IntersectionObserver(e => { visible = e[0].isIntersecting; }, { threshold: 0.02 }).observe(host);
 
   function cuadro() {
     requestAnimationFrame(cuadro);
+    const ahora = performance.now();
+    const dt = Math.min(0.05, (ahora - tPrev) / 1000);   // en segundos, independiente del framerate
+    tPrev = ahora;
     if (!visible) return;
-    t += 0.016;
-    if (enMov && M.animar) { faseMov = (faseMov + 0.0042) % 1; M.animar(faseMov); }
+    t += dt;
+    if (enMov && M.animar) { faseMov = (faseMov + dt * 0.25) % 1; M.animar(faseMov); }
+    // la camara acompana a la pieza que se esta mirando si esta se mueve
+    if (seguido && seguido.length) {
+      cajaSeg.makeEmpty();
+      for (const f of seguido) cajaSeg.expandByObject(f);
+      if (!cajaSeg.isEmpty()) {
+        cajaSeg.getBoundingSphere(esfSeg);
+        miraSeg.copy(esfSeg.center); miraSeg.y += esfSeg.radius * 0.16;
+        if (ctl.target.distanceToSquared(miraSeg) > 1e-6) ctl.target.lerp(miraSeg, Math.min(1, dt * 6));
+      }
+    }
     ctl.update();
     if (corte) { M.raiz.updateMatrixWorld(); plano.copy(planoLocal).applyMatrix4(M.raiz.matrixWorld); }
     // pulso del resaltado
@@ -459,19 +538,26 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       tmp.project(cam);
       const x = (tmp.x * 0.5 + 0.5) * w, y = (-tmp.y * 0.5 + 0.5) * h;
       p.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
-      const detras = tmp.z > 1 || cara < -0.2;
+      const fueraDeCuadro = tmp.z > 1;                       // detras de la camara: no se puede proyectar
+      const atras = cara < -0.02;                            // del otro lado de la pieza
       const esActivo = puntos[activo] === p;
+      // los del otro lado NO se ocultan: se ven a traves, en hueco, y se pueden tocar igual
       let op;
-      if (esActivo) op = 1;                                  // el elegido siempre se ve
-      else if (detras) op = 0;                               // el que mira para el otro lado, no
-      else if (activo >= 0) op = 0.5;                        // los demas quedan atenuados pero se pueden tocar
-      else op = cara < 0.05 ? 0.45 : 1;
+      if (fueraDeCuadro) op = 0;
+      else if (esActivo) op = 1;                             // el elegido siempre se ve entero
+      else if (activo >= 0) op = atras ? 0.42 : 0.62;
+      else op = atras ? 0.5 : 1;
       p.el.style.opacity = String(op);
       p.el.style.pointerEvents = op < 0.05 ? 'none' : 'auto';
-      p.el.style.zIndex = esActivo ? '5' : '4';
+      p.el.style.zIndex = esActivo ? '6' : (atras ? '3' : '4');
+      p.el.classList.toggle('atras', atras && !esActivo);
     }
   }
   cuadro();
   if (alListo) alListo();
-  return { activar, reiniciar, setExplotar, setCorte, setAuto, zoom, setContexto, setMovimiento, hayMovimiento: !!M.animar, puntos: PUNTOS, total: PUNTOS.length };
+  const api = { activar, reiniciar, setExplotar, setCorte, setAuto, zoom, setContexto, setMovimiento, hayMovimiento: !!M.animar, puntos: PUNTOS, total: PUNTOS.length };
+  // enganche de diagnostico: permite medir la camara desde las pruebas automaticas
+  api._d = { cam, ctl, escena, M, piso, get anat() { return anat; }, get silueta() { return silueta; }, get contexto() { return contexto; }, THREE };
+  if (typeof window !== 'undefined' && !hero) window.__v3d = api;
+  return api;
 }
