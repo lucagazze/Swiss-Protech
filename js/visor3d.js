@@ -183,57 +183,46 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (botones.corte) botones.corte.classList.toggle('on', on);
   }
 
-  let verAnat = false, verCuerpo = false;
-  function setCuerpo(on) {
-    if (!silueta) return;
-    verCuerpo = on; silueta.visible = on && verAnat;
-    if (botones.cuerpo) botones.cuerpo.classList.toggle('on', on);
-    if (on && verAnat) {
-      silueta.updateMatrixWorld(true);
-      const caja = new THREE.Box3().setFromObject(silueta);
-      const esf = caja.getBoundingSphere(new THREE.Sphere());
-      const fov = THREE.MathUtils.degToRad(cam.fov);
-      const fovH = 2 * Math.atan(Math.tan(fov / 2) * Math.max(0.6, cam.aspect));
-      const d = esf.radius / Math.sin(Math.min(fov, fovH) / 2) * 1.05;
-      ctl.maxDistance = d * 2.2;
-      cam.far = Math.max(cam.far, d * 4); cam.updateProjectionMatrix();
-      const dir = cam.position.clone().sub(ctl.target).normalize();
-      const origen = cam.position.clone(), miraO = ctl.target.clone();
-      const mira = esf.center.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
-      animandoCam = true;
-      tween(850, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } }, () => { animandoCam = false; });
+  // ---------------------------------------------------------- contexto (3 estados)
+  let contexto = 'solo';
+  function marcarContexto() {
+    const b = botones.contexto || {};
+    for (const k of ['solo', 'hueso', 'cuerpo']) {
+      if (b[k]) b[k].classList.toggle('on', contexto === k);
     }
   }
-
-  function setAnatomia(on) {
-    if (!anat) return;
-    verAnat = on; anat.visible = on;
-    if (silueta) silueta.visible = on && verCuerpo;
-    if (botones.cuerpo) botones.cuerpo.style.display = on ? '' : 'none';
-    if (botones.anatomia) botones.anatomia.classList.toggle('on', on);
-    if (on) {
+  function encuadrar(obj, holgura) {
+    obj.updateMatrixWorld(true);
+    const caja = new THREE.Box3().setFromObject(obj);
+    const esf = caja.getBoundingSphere(new THREE.Sphere());
+    const fov = THREE.MathUtils.degToRad(cam.fov);
+    const fovH = 2 * Math.atan(Math.tan(fov / 2) * Math.max(0.6, cam.aspect));
+    const d = esf.radius / Math.sin(Math.min(fov, fovH) / 2) * holgura;
+    ctl.maxDistance = Math.max(d * 2.2, distTot * 2.6);
+    cam.far = Math.max(80, d * 4); cam.updateProjectionMatrix();
+    const dir = cam.position.clone().sub(ctl.target).normalize();
+    const origen = cam.position.clone(), miraO = ctl.target.clone();
+    const mira = esf.center.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
+    animandoCam = true;
+    tween(820, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } },
+      () => { animandoCam = false; });
+  }
+  function setContexto(k) {
+    if (!anat && k !== 'solo') k = 'solo';
+    contexto = k;
+    if (anat) anat.visible = (k === 'hueso' || k === 'cuerpo');
+    if (silueta) silueta.visible = (k === 'cuerpo');
+    marcarContexto();
+    if (k !== 'solo') {
       enfocar(null); activo = -1;
       puntos.forEach(q => q.el.classList.remove('on'));
       document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on'));
       setExplotar(false); setCorte(false);
-      // alejar para que entre el hueso
-      M.raiz.updateMatrixWorld(true);
-      const caja = new THREE.Box3().setFromObject(anat);
-      const esf = caja.getBoundingSphere(new THREE.Sphere());
-      const fov = THREE.MathUtils.degToRad(cam.fov);
-      const d = esf.radius / Math.sin(fov / 2) * 1.06;
-      const dir = cam.position.clone().sub(ctl.target).normalize();
-      const origen = cam.position.clone(), miraO = ctl.target.clone();
-      const mira = esf.center.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
-      ctl.maxDistance = Math.max(ctl.maxDistance, d * 1.4);
-      animandoCam = true;
-      tween(800, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } }, () => { animandoCam = false; });
+      encuadrar(k === 'cuerpo' ? silueta : anat, k === 'cuerpo' ? 1.05 : 1.08);
     } else {
-      verCuerpo = false;
-      if (botones.cuerpo) botones.cuerpo.classList.remove('on');
-      reiniciar();
+      encuadrar(M.raiz, 1.0);
     }
-    if (alCambiar) alCambiar(on ? -2 : -1, null);
+    if (alCambiar) alCambiar(k === 'solo' ? -1 : (k === 'hueso' ? -2 : -3), null);
   }
 
   function setAuto(on) {
@@ -270,9 +259,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (panelTitulo) panelTitulo.textContent = p.titulo;
     if (panelTexto) panelTexto.textContent = p.texto;
 
-    if (verAnat) { verAnat = false; anat.visible = false; if (silueta) silueta.visible = false;
-      if (botones.anatomia) botones.anatomia.classList.remove('on');
-      if (botones.cuerpo) { botones.cuerpo.style.display = 'none'; botones.cuerpo.classList.remove('on'); } }
+    if (contexto !== 'solo') { contexto = 'solo'; if (anat) anat.visible = false; if (silueta) silueta.visible = false; marcarContexto(); }
     setCorte(p.modo === 'corte');
     enfocar(p.focos);
     if (alCambiar) alCambiar(i, p);
@@ -313,6 +300,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     puntos.forEach(q => q.el.classList.remove('on'));
     document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on'));
     setCorte(false); setExplotar(false); enfocar(null);
+    if (contexto !== 'solo') { contexto = 'solo'; if (anat) anat.visible = false; if (silueta) silueta.visible = false; marcarContexto(); }
     if (panelTitulo) panelTitulo.textContent = 'Tocá un punto del modelo';
     if (panelTexto) panelTexto.textContent = 'Cada número señala una parte del sistema. Arrastrá para girar, usá la rueda o pellizcá para acercar.';
     const origen = cam.position.clone(), miraOrigen = ctl.target.clone();
@@ -331,9 +319,15 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   if (botones.corte) botones.corte.addEventListener('click', () => { enfocar(null); activo = -1; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setCorte(!corte); });
   if (botones.auto) botones.auto.addEventListener('click', () => setAuto(!autoPermitido));
   if (botones.reset) botones.reset.addEventListener('click', reiniciar);
-  if (botones.anatomia && !anat) botones.anatomia.style.display = 'none';
-  if (botones.anatomia) botones.anatomia.addEventListener('click', () => setAnatomia(!verAnat));
-  if (botones.cuerpo) { botones.cuerpo.style.display = 'none'; botones.cuerpo.addEventListener('click', () => setCuerpo(!verCuerpo)); }
+  if (botones.contexto) {
+    for (const k of ['solo', 'hueso', 'cuerpo']) {
+      const b = botones.contexto[k];
+      if (!b) continue;
+      if (!anat && k !== 'solo') { b.disabled = true; b.classList.add('off'); continue; }
+      b.addEventListener('click', () => setContexto(k));
+    }
+    marcarContexto();
+  }
   if (botones.zoomMas) botones.zoomMas.addEventListener('click', () => zoom(0.72));
   if (botones.zoomMenos) botones.zoomMenos.addEventListener('click', () => zoom(1.38));
   if (botones.siguiente) botones.siguiente.addEventListener('click', () => activar((activo + 1) % PUNTOS.length));
@@ -389,5 +383,5 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   }
   cuadro();
   if (alListo) alListo();
-  return { activar, reiniciar, setExplotar, setCorte, setAuto, zoom, setAnatomia, setCuerpo, hayAnatomia: !!anat, puntos: PUNTOS, total: PUNTOS.length };
+  return { activar, reiniciar, setExplotar, setCorte, setAuto, zoom, setContexto, hayAnatomia: !!anat, puntos: PUNTOS, total: PUNTOS.length };
 }

@@ -49,7 +49,7 @@
 
   /* explorador */
   .explora { background: var(--bg); padding: 40px 0 60px; }
-  .grid { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 30px; align-items: start; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 26px; align-items: start; }
   .stage { position: relative; background: radial-gradient(640px 440px at 50% 42%, #FFFFFF 0%, transparent 66%), linear-gradient(168deg, #F7FAFB 0%, #E7EFF1 100%); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; aspect-ratio: 1 / 1; min-height: 420px; max-height: 720px; }
   .stage canvas { cursor: grab; } .stage canvas:active { cursor: grabbing; }
   .tabs { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
@@ -66,7 +66,7 @@
   .v-estado { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); z-index: 3; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: var(--teal); padding: 6px 14px; border-radius: 99px; opacity: 0; transition: opacity .35s; pointer-events: none; white-space: nowrap; }
   @keyframes ping { 0% { transform: scale(.75); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
   .v-grupo { position: absolute; z-index: 3; display: flex; gap: 6px; background: rgba(255,255,255,.94); border: 1px solid #DDE6E8; padding: 7px; border-radius: 20px; backdrop-filter: blur(10px); box-shadow: 0 6px 18px -8px rgba(16,34,42,.22); }
-  .v-ctl  { left: 50%; transform: translateX(-50%); bottom: 14px; flex-wrap: wrap; justify-content: center; max-width: calc(100% - 24px); }
+  .v-ctl  { left: 50%; transform: translateX(-50%); bottom: 14px; flex-wrap: nowrap; justify-content: center; max-width: calc(100% - 24px); }
   .v-zoom { right: 14px; top: 50%; transform: translateY(-50%); flex-direction: column; }
   .v-ctx  { left: 14px;  top: 50%; transform: translateY(-50%); flex-direction: column; }
   .v-grupo .rot { font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--mut); text-align: center; padding: 2px 0 4px; }
@@ -77,8 +77,18 @@
   @media (max-width: 760px) { .v-grupo { gap: 5px; padding: 5px; } .v-btn { height: 36px; padding: 0 10px; } .v-btn .lbl { display: none; } .v-grupo .rot { display: none; } .v-zoom { right: 10px; } .v-ctx { left: 10px; } }
   .v-btn.on { background: var(--teal); border-color: var(--teal); color: #fff; } .v-btn.on svg { stroke: #fff; }
   .v-btn svg { stroke: var(--teal); }
+  .v-full { position: absolute; top: 16px; right: 16px; z-index: 4; width: 40px; height: 40px; border-radius: 50%;
+            border: 1px solid #DDE6E8; background: rgba(255,255,255,.94); display: flex; align-items: center; justify-content: center;
+            cursor: pointer; backdrop-filter: blur(10px); box-shadow: 0 6px 18px -8px rgba(16,34,42,.22); transition: background .25s, border-color .25s; }
+  .v-full:hover { background: rgba(0,149,161,.08); border-color: var(--teal); }
+  .v-btn.off { opacity: .35; cursor: default; }
+  .v-full svg { stroke: var(--teal); }
+  #stage3d:fullscreen { aspect-ratio: auto; max-height: none; width: 100vw; height: 100vh; border-radius: 0; border: 0; }
+  #stage3d:fullscreen .v-ctl { bottom: 28px; }
+  #stage3d:fullscreen .v-zoom { right: 28px; }
+  #stage3d:fullscreen .v-ctx { left: 28px; }
   .v-tag { position: absolute; top: 18px; left: 18px; z-index: 3; font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); border: 1px solid rgba(0,149,161,.28); background: rgba(255,255,255,.85); padding: 7px 13px; border-radius: 99px; }
-  .v-hint { position: absolute; top: 18px; right: 18px; z-index: 3; font-size: 11.5px; color: var(--mut); background: rgba(255,255,255,.85); padding: 7px 12px; border-radius: 99px; transition: opacity .5s; display: flex; align-items: center; gap: 7px; }
+  .v-hint { position: absolute; top: 18px; right: 66px; z-index: 3; font-size: 11.5px; color: var(--mut); background: rgba(255,255,255,.85); padding: 7px 12px; border-radius: 99px; transition: opacity .5s; display: flex; align-items: center; gap: 7px; }
   .stage.tocado .v-hint { opacity: 0; }
   .v-cargando { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px; z-index: 2; background: transparent; }
   .v-cargando img { width: 52%; height: auto; filter: drop-shadow(0 30px 30px rgba(16,34,42,.22)); }
@@ -156,7 +166,8 @@
   footer { background: #0A171D; padding: 40px 0 28px; color: #A7A9AC; font-size: 12.5px; }
   footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
 
-  @media (max-width: 1240px) { .navlinks, .nav .btn-p { display: none; } .burger { display: flex; } .grid { grid-template-columns: minmax(0, 1fr); } .two { grid-template-columns: minmax(0, 1fr); gap: 28px; } .gal, .rel { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 1240px) { .navlinks, .nav .btn-p { display: none; } .burger { display: flex; } }
+  @media (max-width: 1000px) { .grid { grid-template-columns: minmax(0, 1fr); } .two { grid-template-columns: minmax(0, 1fr); gap: 28px; } .gal, .rel { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 720px) {
     .wrap { padding: 0 20px; } .nav .wrap { padding-top: 14px; padding-bottom: 14px; }
     .head h1 { font-size: 30px; } .head .wrap { padding-top: 28px; padding-bottom: 26px; }
@@ -218,11 +229,15 @@
             <span class="v-tag">Modelo 3D interactivo</span>
             <span class="v-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v3M16 3v3M3 9h18M7 15l3 3 7-7"></path></svg>Arrastrá para girar · rueda para acercar</span>
             <div class="v-cargando" id="v-cargando"><img id="v-fallback" alt=""><span>CARGANDO MODELO 3D…</span></div>
+            <button class="v-full" id="v-full" type="button" aria-label="Pantalla completa" title="Pantalla completa">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg>
+            </button>
             <div class="hs-layer" id="hs-layer"></div>
             <span class="v-estado" id="v-estado"></span>
             <div class="v-grupo v-ctx">
               <span class="rot">Contexto</span>
-              <button class="v-btn" id="v-anatomia" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"></path><path d="M6 22v-3a6 6 0 0 1 12 0v3"></path></svg><span class="lbl">Dónde va</span></button>
+              <button class="v-btn on" id="v-solo" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.3 7L12 12l8.7-5M12 22V12"></path></svg><span class="lbl">Producto</span></button>
+              <button class="v-btn" id="v-anatomia" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5a2.5 2.5 0 0 1 2 4l6 6a2.5 2.5 0 1 1-2 2l-6-6a2.5 2.5 0 1 1 0-6z"></path></svg><span class="lbl">En el hueso</span></button>
               <button class="v-btn" id="v-cuerpo" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2.2"></circle><path d="M12 6.7v7M8.4 9.2h7.2M9.6 21l2.4-7.3L14.4 21"></path></svg><span class="lbl">En el cuerpo</span></button>
             </div>
 
@@ -236,9 +251,7 @@
               <button class="v-btn" id="v-explotar" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M12 15v6M5 12h5M14 12h5"></path></svg><span class="lbl">Vista explotada</span></button>
               <button class="v-btn" id="v-corte" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18"></path></svg><span class="lbl">Corte</span></button>
               <button class="v-btn on" id="v-auto" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg><span class="lbl">Giro automático</span></button>
-              <button class="v-btn" id="v-reset" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6M20 20v-6h-6"></path><path d="M20 9A8 8 0 0 0 5.6 6.6L4 10M4 15a8 8 0 0 0 14.4 2.4L20 14"></path></svg><span class="lbl">Volver</span></button>
             </div>
-          <p class="nota" style="margin-top: 10px;">Representación técnica interactiva del sistema. Las dimensiones y geometrías exactas corresponden a la documentación del fabricante.</p>
         </div>
 
         <!-- fotos -->
@@ -263,6 +276,9 @@
       </div>
 
       <!-- panel -->
+      
+    </div>
+  
       <aside class="panel">
         <div id="panel-3d" style="display: none; flex-direction: column; gap: 16px;">
           <div>
@@ -287,7 +303,6 @@
         </div>
       </aside>
     </div>
-  </div>
 </div>
 
 <section class="sec" id="sec-desc">
@@ -448,12 +463,13 @@
         host: $('#stage3d'), capaPuntos: $('#hs-layer'),
         modelo: P.modelo3d || 'cotilo', config: P.config3d || {},
         panelTitulo: $('#v-titulo'), panelTexto: $('#v-texto'),
-        botones: { explotar: $('#v-explotar'), corte: $('#v-corte'), auto: $('#v-auto'), reset: $('#v-reset'), zoomMas: $('#v-zoomin'), zoomMenos: $('#v-zoomout'), anatomia: $('#v-anatomia'), cuerpo: $('#v-cuerpo') },
+        botones: { explotar: $('#v-explotar'), corte: $('#v-corte'), auto: $('#v-auto'), zoomMas: $('#v-zoomin'), zoomMenos: $('#v-zoomout'), contexto: { solo: $('#v-solo'), hueso: $('#v-anatomia'), cuerpo: $('#v-cuerpo') } },
         alListo: () => { $('#v-cargando').remove(); },
         alCambiar: (i, p) => {
           const est = $('#v-estado');
           if (!est) return;
           if (i === -2) { est.textContent = 'Colocado en el hueso'; est.style.opacity = '1'; return; }
+          if (i === -3) { est.textContent = 'Ubicación en el paciente'; est.style.opacity = '1'; return; }
           est.textContent = i < 0 ? '' : (p.modo === 'corte' ? 'Vista en corte activada' : p.modo === 'explotar' ? 'Vista explotada activada' : 'Parte resaltada');
           est.style.opacity = i < 0 ? '0' : '1';
         },
@@ -463,6 +479,25 @@
       document.querySelectorAll('.hs-item').forEach(b => b.addEventListener('click', () => api.activar(+b.dataset.i)));
     }).catch(err => { console.error(err); $('#v-cargando').querySelector('span').textContent = 'No se pudo cargar el modelo 3D — mirá las fotos y el video.'; });
   }
+
+  // ------- pantalla completa
+  (function () {
+    const st = $('#stage3d'), bt = $('#v-full');
+    if (!st || !bt) return;
+    if (!st.requestFullscreen && !st.webkitRequestFullscreen) { bt.style.display = 'none'; return; }
+    const abrir = '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path>';
+    const cerrar = '<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"></path>';
+    bt.addEventListener('click', () => {
+      if (document.fullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else (st.requestFullscreen || st.webkitRequestFullscreen).call(st);
+    });
+    document.addEventListener('fullscreenchange', () => {
+      const on = document.fullscreenElement === st;
+      bt.querySelector('svg').innerHTML = on ? cerrar : abrir;
+      bt.title = on ? 'Salir de pantalla completa' : 'Pantalla completa';
+      window.dispatchEvent(new Event('resize'));
+    });
+  })();
 
   document.addEventListener('click', e => { const d = $('#drawer'); if (d.classList.contains('open') && !e.target.closest('.drawer') && !e.target.closest('.burger')) d.classList.remove('open'); });
 })();
