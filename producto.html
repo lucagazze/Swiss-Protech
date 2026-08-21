@@ -216,8 +216,10 @@
             <div class="v-ctl">
               <button class="v-btn" id="v-explotar" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M12 15v6M5 12h5M14 12h5"></path></svg><span class="lbl">Vista explotada</span></button>
               <button class="v-btn" id="v-corte" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18"></path></svg><span class="lbl">Corte</span></button>
+              <button class="v-btn" id="v-zoomin" type="button" aria-label="Acercar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"></path></svg><span class="lbl">Acercar</span></button>
+              <button class="v-btn" id="v-zoomout" type="button" aria-label="Alejar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3M8 11h6"></path></svg><span class="lbl">Alejar</span></button>
               <button class="v-btn on" id="v-auto" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg><span class="lbl">Giro automático</span></button>
-              <button class="v-btn" id="v-reset" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6M20 20v-6h-6"></path><path d="M20 9A8 8 0 0 0 5.6 6.6L4 10M4 15a8 8 0 0 0 14.4 2.4L20 14"></path></svg><span class="lbl">Reiniciar</span></button>
+              <button class="v-btn" id="v-reset" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6M20 20v-6h-6"></path><path d="M20 9A8 8 0 0 0 5.6 6.6L4 10M4 15a8 8 0 0 0 14.4 2.4L20 14"></path></svg><span class="lbl">Volver</span></button>
             </div>
           </div>
           <p class="nota" style="margin-top: 10px;">Representación técnica interactiva del sistema. Las dimensiones y geometrías exactas corresponden a la documentación del fabricante.</p>
@@ -428,8 +430,9 @@
     import('./js/visor3d.js').then(mod => {
       const api = mod.montarVisor({
         host: $('#stage3d'), capaPuntos: $('#hs-layer'),
+        modelo: P.modelo3d || 'cotilo', config: P.config3d || {},
         panelTitulo: $('#v-titulo'), panelTexto: $('#v-texto'),
-        botones: { explotar: $('#v-explotar'), corte: $('#v-corte'), auto: $('#v-auto'), reset: $('#v-reset') },
+        botones: { explotar: $('#v-explotar'), corte: $('#v-corte'), auto: $('#v-auto'), reset: $('#v-reset'), zoomMas: $('#v-zoomin'), zoomMenos: $('#v-zoomout') },
         alListo: () => { $('#v-cargando').remove(); },
         alCambiar: (i, p) => {
           const est = $('#v-estado');

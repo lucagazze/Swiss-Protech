@@ -127,6 +127,8 @@ P = [
        destacados=["Técnica de cementación moderna", "Mezcla en cartucho al vacío"]),
 ]
 
+M3D = {'mobilelink-dual-mobility': ('cotilo', {'dobleMovilidad': True, 'agujeros': 3}), 'mobilelink': ('cotilo', {'dobleMovilidad': False, 'agujeros': 3}), 'bimobile': ('cotilo', {'dobleMovilidad': True, 'cementado': True, 'agujeros': 0}), 'crown-cup': ('cotilo', {'dobleMovilidad': False, 'agujeros': 4}), 'lubinus-cup': ('cotilo', {'dobleMovilidad': False, 'cementado': True, 'agujeros': 0}), 'element': ('vastago', {'revestido': True, 'largo': 2.7}), 'lcu': ('vastago', {'revestido': True, 'largo': 3.0}), 'lubinus-spii': ('vastago', {'cementado': True, 'revestido': False, 'largo': 3.2}), 'mp-link': ('vastago', {'modular': True, 'revestido': False, 'largo': 2.6}), 'endomodel-modular': ('rodilla', {'bisagra': True, 'vastagos': True}), 'endomodel-hinged': ('rodilla', {'bisagra': True, 'vastagos': True}), 'endomodel-standard': ('rodilla', {'bisagra': True, 'vastagos': True}), 'optetrak-cc': ('rodilla', {'bisagra': False, 'vastagos': True}), 'optetrak-hiflex': ('rodilla', {'bisagra': False, 'vastagos': False}), 'optetrak-logic': ('rodilla', {'bisagra': False, 'vastagos': False}), 'uni-sled': ('rodilla', {'unicompartimental': True}), 'copal': ('cemento', {'tipo': 'sobre', 'antibiotico': True}), 'palacos-mv': ('cemento', {'tipo': 'sobre', 'antibiotico': True}), 'palacos-r': ('cemento', {'tipo': 'sobre', 'antibiotico': False}), 'palamix-gun': ('cemento', {'tipo': 'pistola'}), 'palamix-uno': ('cemento', {'tipo': 'cartucho'})}
+
 OUT = {}
 for p in P:
     j = J.get(p["key"]) if p.get("key") else None
@@ -136,7 +138,9 @@ for p in P:
     OUT[p["slug"]] = {
         "slug": p["slug"], "nombre": nombre, "bajada": bajada, "linea": p["linea"], "marca": p["marca"],
         "img": p.get("img"), "desc": desc, "specs": p.get("specs", []), "destacados": p.get("destacados", []),
-        "visor3d": bool(p.get("visor3d")), "clips": p.get("clips", []), "stills": p.get("stills", []),
+        "visor3d": p["slug"] in M3D, "modelo3d": M3D.get(p["slug"], [None, {}])[0],
+        "config3d": M3D.get(p["slug"], [None, {}])[1],
+        "clips": p.get("clips", []), "stills": p.get("stills", []),
         "vistas": p.get("vistas", []), "url": (j or {}).get("url"),
     }
 
@@ -148,5 +152,7 @@ with open(os.path.join(SRC, "js", "productos.js"), "w", encoding="utf-8") as f:
 
 faltan = [s for s, v in OUT.items() if not v["img"]]
 print("productos:", len(OUT), "| sin foto:", faltan)
-print("con visor 3D:", [s for s, v in OUT.items() if v["visor3d"]])
+print("con visor 3D:", sum(1 for v in OUT.values() if v["visor3d"]), "de", len(OUT))
+for s_, v in OUT.items():
+    if not v["visor3d"]: print("  SIN 3D:", s_)
 print("con video:", [s for s, v in OUT.items() if v["clips"]])

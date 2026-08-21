@@ -3,134 +3,10 @@
 import * as THREE from 'three';
 import { OrbitControls } from '../vendor/OrbitControls.js';
 import { RoomEnvironment } from '../vendor/RoomEnvironment.js';
+import { CONSTRUCTORES, materiales } from './modelos.js';
 
 const TEAL = new THREE.Color(0x0095A1);
 const TEAL_CLARO = new THREE.Color(0x5BC2C9);
-
-// ------------------------------------------------------------ texturas
-function texturaPorosa(size = 1024) {
-  const c = document.createElement('canvas'); c.width = c.height = size;
-  const g = c.getContext('2d');
-  g.fillStyle = '#C3C7CA'; g.fillRect(0, 0, size, size);
-  const b = document.createElement('canvas'); b.width = b.height = size;
-  const gb = b.getContext('2d');
-  gb.fillStyle = '#808080'; gb.fillRect(0, 0, size, size);
-  for (let i = 0; i < 26000; i++) {
-    const x = Math.random() * size, y = Math.random() * size, r = 0.8 + Math.random() * 2.6;
-    const v = 150 + Math.floor(Math.random() * 80);
-    g.fillStyle = `rgb(${v},${v + 3},${v + 5})`; g.beginPath(); g.arc(x, y, r, 0, 6.283); g.fill();
-    const h = 60 + Math.floor(Math.random() * 150);
-    gb.fillStyle = `rgb(${h},${h},${h})`; gb.beginPath(); gb.arc(x, y, r, 0, 6.283); gb.fill();
-  }
-  const map = new THREE.CanvasTexture(c), bump = new THREE.CanvasTexture(b);
-  for (const t of [map, bump]) { t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(3, 1.6); t.anisotropy = 8; }
-  map.colorSpace = THREE.SRGBColorSpace;
-  return { map, bump };
-}
-
-function materiales() {
-  const { map, bump } = texturaPorosa();
-  return {
-    poroso: new THREE.MeshStandardMaterial({ color: 0xD3D7DA, map, bumpMap: bump, bumpScale: 0.02, roughness: 0.95, metalness: 0.45 }),
-    pulido: new THREE.MeshPhysicalMaterial({ color: 0xE4E7EA, metalness: 1, roughness: 0.14, envMapIntensity: 1.25 }),
-    pulidoInt: new THREE.MeshPhysicalMaterial({ color: 0xDADDE0, metalness: 1, roughness: 0.10, envMapIntensity: 1.35, side: THREE.BackSide }),
-    poli: new THREE.MeshPhysicalMaterial({ color: 0xF2D9E4, roughness: 0.30, metalness: 0, clearcoat: 0.55, clearcoatRoughness: 0.22, envMapIntensity: 0.9 }),
-    poliInt: new THREE.MeshPhysicalMaterial({ color: 0xEBC9D7, roughness: 0.22, metalness: 0, clearcoat: 0.6, side: THREE.BackSide }),
-    cabeza: new THREE.MeshPhysicalMaterial({ color: 0xDCDFE3, metalness: 1, roughness: 0.05, envMapIntensity: 1.4 }),
-    cuello: new THREE.MeshStandardMaterial({ color: 0xB4B9BD, roughness: 0.5, metalness: 0.75 }),
-    agujero: new THREE.MeshStandardMaterial({ color: 0x33383C, roughness: 0.55, metalness: 0.8 }),
-  };
-}
-
-const hemi = (r, seg = 128) => new THREE.SphereGeometry(r, seg, seg / 2, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2);
-
-// ------------------------------------------------------------ modelo
-function construirCotilo(m) {
-  const raiz = new THREE.Group();
-  const casquete = new THREE.Group(), inserto = new THREE.Group(), cabeza = new THREE.Group();
-  raiz.add(casquete, inserto, cabeza);
-
-  const ext = new THREE.Mesh(hemi(1.0), m.poroso); ext.castShadow = true;
-  const int = new THREE.Mesh(hemi(0.88), m.pulidoInt);
-  const aro = new THREE.Mesh(new THREE.RingGeometry(0.88, 1.0, 160), m.pulido); aro.rotation.x = -Math.PI / 2;
-  const banda = new THREE.Mesh(new THREE.CylinderGeometry(1.002, 1.002, 0.075, 160, 1, true), m.pulido); banda.position.y = -0.037;
-  casquete.add(ext, int, aro, banda);
-
-  const agujeros = [], bordes = [];
-  const posAgujero = [[0.62, 0.0], [0.62, 1.15], [0.62, -1.15]];
-  const normalAgujero = [];
-  for (const [pol, az] of posAgujero) {
-    const n = new THREE.Vector3(Math.sin(pol) * Math.cos(az), -Math.cos(pol), Math.sin(pol) * Math.sin(az));
-    normalAgujero.push(n.clone());
-    const cil = new THREE.Mesh(new THREE.CylinderGeometry(0.082, 0.082, 0.16, 40), m.agujero);
-    cil.position.copy(n).multiplyScalar(0.925);
-    cil.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), n);
-    const borde = new THREE.Mesh(new THREE.TorusGeometry(0.086, 0.011, 12, 48), m.pulido);
-    borde.position.copy(n).multiplyScalar(1.0);
-    borde.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), n);
-    casquete.add(cil, borde); agujeros.push(cil); bordes.push(borde);
-  }
-
-  const insExt = new THREE.Mesh(hemi(0.862), m.poli); insExt.castShadow = true;
-  const insInt = new THREE.Mesh(hemi(0.64), m.poliInt);
-  const insAro = new THREE.Mesh(new THREE.RingGeometry(0.64, 0.862, 160), m.poli); insAro.rotation.x = -Math.PI / 2;
-  inserto.add(insExt, insInt, insAro);
-
-  const esfera = new THREE.Mesh(new THREE.SphereGeometry(0.60, 96, 64), m.cabeza); esfera.castShadow = true;
-  const cuello = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.21, 0.62, 48), m.cuello);
-  cuello.position.y = 0.58; cuello.castShadow = true;
-  cabeza.add(esfera, cuello);
-
-  const tapa = (geo, mat) => { const t = new THREE.Mesh(geo, mat.clone()); t.rotation.y = Math.PI / 2; t.material.side = THREE.DoubleSide; t.visible = false; return t; };
-  const tCasq = tapa(new THREE.RingGeometry(0.88, 1.0, 96, 1, Math.PI, Math.PI), m.pulido);
-  const tIns = tapa(new THREE.RingGeometry(0.64, 0.862, 96, 1, Math.PI, Math.PI), m.poli);
-  const tCab = tapa(new THREE.CircleGeometry(0.60, 96), m.cabeza);
-  const tCue = tapa(new THREE.PlaneGeometry(0.36, 0.62), m.cuello); tCue.position.y = 0.58;
-  casquete.add(tCasq); inserto.add(tIns); cabeza.add(tCab, tCue);
-  const tapas = [tCasq, tIns, tCab, tCue];
-
-  inserto.position.y = 0.02; cabeza.position.y = 0.04;
-  raiz.rotation.z = -0.62; raiz.rotation.y = 0.25;
-
-  return { raiz, casquete, inserto, cabeza, ext, int, aro, banda, insExt, insInt, insAro, esfera, cuello, agujeros, bordes, normalAgujero, tapas };
-}
-
-// ------------------------------------------------------------ puntos de interés
-// camLocal: dirección de cámara en el espacio local del modelo (la boca mira a +Y)
-function definirPuntos(M) {
-  return [
-    { titulo: 'Casquete de titanio poroso',
-      texto: 'Superficie porosa para la fijación biológica sin cemento. El hueso crece dentro de la estructura y asegura el implante a largo plazo.',
-      obj: M.casquete, pos: new THREE.Vector3(0.30, -0.86, 0.40),
-      focos: [M.ext], camLocal: new THREE.Vector3(0.42, -0.50, 0.76), margen: 1.75, modo: 'normal' },
-
-    { titulo: 'Aro pulido con press-fit integrado',
-      texto: 'El diseño incorpora un press-fit de 1,6 mm para la estabilidad primaria inmediata al impactar el cotilo en el acetábulo.',
-      obj: M.casquete, pos: new THREE.Vector3(0.98, -0.03, 0.22),
-      focos: [M.aro, M.banda], camLocal: new THREE.Vector3(0.60, 0.20, 0.77), margen: 1.55, modo: 'normal' },
-
-    { titulo: 'Superficie interna pulida',
-      texto: 'Minimiza el desgaste del inserto de doble movilidad y prolonga la vida útil del implante. Se muestra el corte para ver el interior.',
-      obj: M.casquete, pos: new THREE.Vector3(-0.34, -0.50, 0.62),
-      focos: [M.int], camLocal: new THREE.Vector3(0.10, 0.62, 0.78), margen: 1.25, modo: 'corte' },
-
-    { titulo: 'Inserto de doble movilidad (EndoDur)',
-      texto: 'Convierte el MobileLink en un sistema modular de movilidad dual y aloja los revestimientos de polietileno del sistema BiMobile.',
-      obj: M.inserto, pos: new THREE.Vector3(0.70, -0.16, 0.42),
-      focos: [M.insExt, M.insAro, M.insInt], camLocal: new THREE.Vector3(0.48, 0.44, 0.76), margen: 2.10, modo: 'explotar' },
-
-    { titulo: 'Cabeza femoral de doble articulación',
-      texto: 'La cabeza articula dentro del revestimiento y el revestimiento dentro del cotilo: mayor rango de movilidad y menor riesgo de luxación.',
-      obj: M.cabeza, pos: new THREE.Vector3(0.44, 0.16, 0.38),
-      focos: [M.esfera, M.cuello], camLocal: new THREE.Vector3(0.42, 0.40, 0.81), margen: 1.85, modo: 'explotar' },
-
-    { titulo: 'Orificios para tornillos',
-      texto: 'Permiten fijación adicional con tornillos cuando la calidad ósea lo requiere. Se cierran con tapones cuando no se utilizan.',
-      obj: M.casquete, pos: M.normalAgujero[0].clone().multiplyScalar(1.02),
-      focos: [...M.agujeros, ...M.bordes],
-      camLocal: M.normalAgujero[0].clone().add(new THREE.Vector3(0, 0.55, 0.25)).normalize(), margen: 2.30, modo: 'normal' },
-  ];
-}
 
 // ------------------------------------------------------------ util
 const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -141,7 +17,8 @@ function tween(ms, fn, done) {
 }
 
 // ------------------------------------------------------------ montaje
-export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones = {}, hero = false, alListo, alCambiar }) {
+export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones = {}, hero = false,
+                             modelo = 'cotilo', config = {}, alListo, alCambiar }) {
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
@@ -161,28 +38,42 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   const pmrem = new THREE.PMREMGenerator(renderer);
   escena.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
-  const cam = new THREE.PerspectiveCamera(30, 1, 0.1, 60);
+  const cam = new THREE.PerspectiveCamera(30, 1, 0.1, 80);
   const CAM0 = new THREE.Vector3(2.9, 1.6, 3.4);
+  const MIRA0 = new THREE.Vector3(0, 0.05, 0);
   cam.position.copy(CAM0);
 
   escena.add(new THREE.HemisphereLight(0xffffff, 0xd9e3e6, 0.55));
-  const sol = new THREE.DirectionalLight(0xffffff, 1.5); sol.position.set(3, 6, 2.5); sol.castShadow = true;
+  const sol = new THREE.DirectionalLight(0xffffff, 1.5); sol.position.set(5, 9, 4); sol.castShadow = true;
   sol.shadow.mapSize.set(2048, 2048); sol.shadow.radius = 6; sol.shadow.bias = -0.0004;
-  Object.assign(sol.shadow.camera, { left: -3.5, right: 3.5, top: 3.5, bottom: -3.5, near: 1, far: 16 });
+  Object.assign(sol.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 0.5, far: 30 });
   const relleno = new THREE.DirectionalLight(0xe8f4f6, 0.5); relleno.position.set(-4, 2, -3);
   escena.add(sol, relleno);
 
-  const piso = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.ShadowMaterial({ opacity: 0.17 }));
+  const piso = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.ShadowMaterial({ opacity: 0.17 }));
   piso.rotation.x = -Math.PI / 2; piso.position.y = -1.25; piso.receiveShadow = true; escena.add(piso);
-
   const m = materiales();
-  const M = construirCotilo(m);
+
+  const constructor = CONSTRUCTORES[modelo] || CONSTRUCTORES.cotilo;
+  const M = constructor(m, config);
   escena.add(M.raiz);
+  const PUNTOS = M.puntos;
+
+  // encuadre inicial segun el tamano real del modelo
+  M.raiz.updateMatrixWorld(true);
+  const cajaTot = new THREE.Box3().setFromObject(M.raiz);
+  const esfTot = cajaTot.getBoundingSphere(new THREE.Sphere());
+  MIRA0.copy(esfTot.center);
+  const distTot = esfTot.radius / Math.sin(THREE.MathUtils.degToRad(30) / 2) * 0.94;
+  CAM0.set(0.58, 0.30, 0.86).normalize().multiplyScalar(distTot).add(MIRA0);
+  cam.position.copy(CAM0);
+  // el piso se apoya en la base del modelo
+  piso.position.y = cajaTot.min.y - 0.12;
 
   const ctl = new OrbitControls(cam, renderer.domElement);
   ctl.enableDamping = true; ctl.dampingFactor = 0.07; ctl.enablePan = false;
-  ctl.minDistance = 3.0; ctl.maxDistance = 13; ctl.minPolarAngle = 0.22; ctl.maxPolarAngle = 1.62;
-  ctl.target.set(0, 0.05, 0); ctl.autoRotate = true; ctl.autoRotateSpeed = hero ? 1.0 : 0.8;
+  ctl.minDistance = distTot * 0.32; ctl.maxDistance = distTot * 2.6; ctl.minPolarAngle = 0.22; ctl.maxPolarAngle = 1.62;
+  ctl.target.copy(MIRA0); ctl.autoRotate = true; ctl.autoRotateSpeed = hero ? 1.0 : 0.8;
 
   let autoPermitido = true, reanudar = null, animandoCam = false;
   ctl.addEventListener('start', () => { ctl.autoRotate = false; clearTimeout(reanudar); animandoCam = false; host.classList.add('tocado'); });
@@ -227,8 +118,6 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     aplicarEstado();
   }
 
-  const PUNTOS = definirPuntos(M);
-
   // ---------------------------------------------------------- marcadores en pantalla
   const puntos = hero ? [] : PUNTOS.map((p, i) => {
     const el = document.createElement('button');
@@ -242,18 +131,20 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   // ---------------------------------------------------------- estados de la escena
   let explotado = false, corte = false, activo = -1;
 
+  let kExplo = 0;
   function setExplotar(on, ms = 850) {
     if (explotado === on) return;
     explotado = on;
-    const a0 = M.inserto.position.y, b0 = M.cabeza.position.y;
-    const a1 = on ? 1.05 : 0.02, b1 = on ? 2.1 : 0.04;
-    tween(ms, k => { M.inserto.position.y = a0 + (a1 - a0) * k; M.cabeza.position.y = b0 + (b1 - b0) * k; });
+    const k0 = kExplo, k1 = on ? 1 : 0;
+    tween(ms, t => { kExplo = k0 + (k1 - k0) * t; M.explotar(kExplo); });
     if (botones.explotar) botones.explotar.classList.toggle('on', on);
   }
 
   const planoLocal = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0);
   const plano = new THREE.Plane();
+  const hayCorte = M.tapas && M.tapas.length > 0;
   function setCorte(on) {
+    if (!hayCorte) on = false;
     if (corte === on) return;
     corte = on;
     for (const p of piezas) {
@@ -266,6 +157,22 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   function setAuto(on) {
     autoPermitido = on; ctl.autoRotate = on;
     if (botones.auto) botones.auto.classList.toggle('on', on);
+  }
+
+  // acercar / alejar con botones (mismo recorrido que la rueda)
+  const dirZoom = new THREE.Vector3();
+  function zoom(factor) {
+    ctl.autoRotate = false; clearTimeout(reanudar); animandoCam = false;
+    dirZoom.copy(cam.position).sub(ctl.target);
+    const d0 = dirZoom.length();
+    const d1 = THREE.MathUtils.clamp(d0 * factor, ctl.minDistance, ctl.maxDistance);
+    const origen = cam.position.clone();
+    const destino = ctl.target.clone().add(dirZoom.normalize().multiplyScalar(d1));
+    animandoCam = true;
+    tween(320, k => { if (animandoCam) cam.position.lerpVectors(origen, destino, k); }, () => {
+      animandoCam = false;
+      reanudar = setTimeout(() => { if (autoPermitido) ctl.autoRotate = true; }, 7000);
+    });
   }
 
   // ---------------------------------------------------------- activar un punto
@@ -286,15 +193,14 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (alCambiar) alCambiar(i, p);
 
     // medir la pieza EN SU POSICION FINAL para encuadrarla bien
-    const yIns = M.inserto.position.y, yCab = M.cabeza.position.y;
     const abierto = p.modo === 'explotar';
-    M.inserto.position.y = abierto ? 1.05 : 0.02;
-    M.cabeza.position.y = abierto ? 2.1 : 0.04;
+    const kPrevio = kExplo;
+    M.explotar(abierto ? 1 : 0);
     M.raiz.updateMatrixWorld(true);
     const caja = new THREE.Box3();
-    for (const f of p.focos) caja.expandByObject(f);
+    for (const f of p.focos) if (f) caja.expandByObject(f);
     const esfera = caja.getBoundingSphere(new THREE.Sphere());
-    M.inserto.position.y = yIns; M.cabeza.position.y = yCab;   // volver y animar
+    M.explotar(kPrevio);                                        // volver y animar
     setExplotar(abierto, 700);
 
     // cámara: dirección local del punto llevada al mundo
@@ -306,7 +212,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     const aspecto = Math.max(0.6, cam.aspect);
     const fovH = 2 * Math.atan(Math.tan(fov / 2) * aspecto);
     const radio = Math.max(0.35, esfera.radius) * (p.margen || 1.8);
-    const dist = THREE.MathUtils.clamp(radio / Math.sin(Math.min(fov, fovH) / 2), 3.2, 12);
+    const dist = THREE.MathUtils.clamp(radio / Math.sin(Math.min(fov, fovH) / 2), ctl.minDistance, ctl.maxDistance);
     const mira = esfera.center.clone();
     const destino = mira.clone().add(dir.multiplyScalar(dist));
     const origen = cam.position.clone(), miraOrigen = ctl.target.clone();
@@ -325,7 +231,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (panelTitulo) panelTitulo.textContent = 'Tocá un punto del modelo';
     if (panelTexto) panelTexto.textContent = 'Cada número señala una parte del sistema. Arrastrá para girar, usá la rueda o pellizcá para acercar.';
     const origen = cam.position.clone(), miraOrigen = ctl.target.clone();
-    const mira0 = new THREE.Vector3(0, 0.05, 0);
+    const mira0 = MIRA0.clone();
     animandoCam = true;
     tween(700, k => { if (animandoCam) { cam.position.lerpVectors(origen, CAM0, k); ctl.target.lerpVectors(miraOrigen, mira0, k); } }, () => { animandoCam = false; });
     setAuto(true);
@@ -336,9 +242,12 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   renderer.domElement.addEventListener('dblclick', () => { if (activo >= 0) reiniciar(); });
 
   if (botones.explotar) botones.explotar.addEventListener('click', () => { enfocar(null); activo = -1; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setExplotar(!explotado); });
+  if (botones.corte && !hayCorte) botones.corte.style.display = 'none';
   if (botones.corte) botones.corte.addEventListener('click', () => { enfocar(null); activo = -1; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setCorte(!corte); });
   if (botones.auto) botones.auto.addEventListener('click', () => setAuto(!autoPermitido));
   if (botones.reset) botones.reset.addEventListener('click', reiniciar);
+  if (botones.zoomMas) botones.zoomMas.addEventListener('click', () => zoom(0.72));
+  if (botones.zoomMenos) botones.zoomMenos.addEventListener('click', () => zoom(1.38));
   if (botones.siguiente) botones.siguiente.addEventListener('click', () => activar((activo + 1) % PUNTOS.length));
 
   // ---------------------------------------------------------- tamaño
@@ -392,5 +301,5 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   }
   cuadro();
   if (alListo) alListo();
-  return { activar, reiniciar, setExplotar, setCorte, setAuto, puntos: PUNTOS, total: PUNTOS.length };
+  return { activar, reiniciar, setExplotar, setCorte, setAuto, zoom, puntos: PUNTOS, total: PUNTOS.length };
 }

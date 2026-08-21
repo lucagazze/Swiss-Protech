@@ -34,6 +34,11 @@ window.PRODUCTOS = {
    "Revestimiento autocentrante"
   ],
   "visor3d": true,
+  "modelo3d": "cotilo",
+  "config3d": {
+   "dobleMovilidad": true,
+   "agujeros": 3
+  },
   "clips": [
    {
     "src": "media/clips/mobilelink_flip.mp4",
@@ -107,6 +112,11 @@ window.PRODUCTOS = {
    "Compatible con insertos de doble movilidad"
   ],
   "visor3d": true,
+  "modelo3d": "cotilo",
+  "config3d": {
+   "dobleMovilidad": false,
+   "agujeros": 3
+  },
   "clips": [
    {
     "src": "media/clips/mobilelink_flip.mp4",
@@ -174,7 +184,13 @@ window.PRODUCTOS = {
    "Doble movilidad con fijación cementada",
    "Revestimientos compatibles con el sistema MobileLink"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "cotilo",
+  "config3d": {
+   "dobleMovilidad": true,
+   "cementado": true,
+   "agujeros": 0
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -214,7 +230,12 @@ window.PRODUCTOS = {
    "Estabilidad inicial para la fijación biológica",
    "Bajo desgaste con resistencia mecánica"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "cotilo",
+  "config3d": {
+   "dobleMovilidad": false,
+   "agujeros": 4
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -248,7 +269,12 @@ window.PRODUCTOS = {
    "Más de 25 años de uso clínico",
    "Diseño que conserva hueso"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "vastago",
+  "config3d": {
+   "revestido": true,
+   "largo": 2.7
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -278,7 +304,12 @@ window.PRODUCTOS = {
    "Una sola plataforma para ambas fijaciones",
    "Instrumental común"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "vastago",
+  "config3d": {
+   "revestido": true,
+   "largo": 3.0
+  },
   "clips": [
    {
     "src": "media/clips/lcu_intro.mp4",
@@ -328,7 +359,13 @@ window.PRODUCTOS = {
    "Cotilo cementado de polietileno",
    "Estabilidad directa en el revestimiento de cemento"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "cotilo",
+  "config3d": {
+   "dobleMovilidad": false,
+   "cementado": true,
+   "agujeros": 0
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -381,7 +418,13 @@ window.PRODUCTOS = {
    "Supervivencia de hasta 92,3 % a 23 años",
    "Diseño adaptado a la forma anatómica del fémur"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "vastago",
+  "config3d": {
+   "cementado": true,
+   "revestido": false,
+   "largo": 3.2
+  },
   "clips": [],
   "stills": [
    {
@@ -427,7 +470,13 @@ window.PRODUCTOS = {
    "Flexibilidad y seguridad intraoperatoria",
    "Reconstrucción modular"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "vastago",
+  "config3d": {
+   "modular": true,
+   "revestido": false,
+   "largo": 2.6
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -467,7 +516,12 @@ window.PRODUCTOS = {
    "Transmisión amortiguada de la fuerza",
    "Segmentos especiales para revisión y tumores"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "rodilla",
+  "config3d": {
+   "bisagra": true,
+   "vastagos": true
+  },
   "clips": [
    {
     "src": "media/clips/endomodel_intro.mp4",
@@ -521,7 +575,12 @@ window.PRODUCTOS = {
    "Principio de baja fricción",
    "Bisagra simple para máxima constricción"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "rodilla",
+  "config3d": {
+   "bisagra": true,
+   "vastagos": true
+  },
   "clips": [
    {
     "src": "media/clips/endomodel_intro.mp4",
@@ -574,7 +633,12 @@ window.PRODUCTOS = {
    "Más de 40 años de uso clínico",
    "Prótesis rotaria o de bisagra"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "rodilla",
+  "config3d": {
+   "bisagra": true,
+   "vastagos": true
+  },
   "clips": [
    {
     "src": "media/clips/endomodel_intro.mp4",
@@ -631,7 +695,12 @@ window.PRODUCTOS = {
    "Cartera de implantes e instrumentos de revisión",
    "Resultados reproducibles"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "rodilla",
+  "config3d": {
+   "bisagra": false,
+   "vastagos": true
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -660,7 +729,12 @@ window.PRODUCTOS = {
   "destacados": [
    "Basado en el éxito clínico del sistema Optetrak"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "rodilla",
+  "config3d": {
+   "bisagra": false,
+   "vastagos": false
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -706,7 +780,12 @@ window.PRODUCTOS = {
    "Deslizamiento rotuliano optimizado",
    "Preparación de la escotadura más sencilla y reproducible"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "rodilla",
+  "config3d": {
+   "bisagra": false,
+   "vastagos": false
+  },
   "clips": [],
   "stills": [],
   "vistas": [
@@ -755,7 +834,11 @@ window.PRODUCTOS = {
    "Longevidad demostrada",
    "Máxima conservación de hueso y tejidos blandos"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "rodilla",
+  "config3d": {
+   "unicompartimental": true
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -791,7 +874,12 @@ window.PRODUCTOS = {
    "Amplio espectro de actividad",
    "Indicado en revisiones con riesgo de infección"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "cemento",
+  "config3d": {
+   "tipo": "sobre",
+   "antibiotico": true
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -824,7 +912,12 @@ window.PRODUCTOS = {
   "destacados": [
    "Profilaxis antibiótica con gentamicina"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "cemento",
+  "config3d": {
+   "tipo": "sobre",
+   "antibiotico": true
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -857,7 +950,12 @@ window.PRODUCTOS = {
    "Materias primas de alta calidad constante",
    "Fórmula probada"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "cemento",
+  "config3d": {
+   "tipo": "sobre",
+   "antibiotico": false
+  },
   "clips": [],
   "stills": [],
   "vistas": [],
@@ -888,7 +986,11 @@ window.PRODUCTOS = {
    "Aplicación segura y sin esfuerzo",
    "Cemento expulsado con elevada presión"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "cemento",
+  "config3d": {
+   "tipo": "pistola"
+  },
   "clips": [
    {
     "src": "media/clips/palamix_kit.mp4",
@@ -943,7 +1045,11 @@ window.PRODUCTOS = {
    "Técnica de cementación moderna",
    "Mezcla en cartucho al vacío"
   ],
-  "visor3d": false,
+  "visor3d": true,
+  "modelo3d": "cemento",
+  "config3d": {
+   "tipo": "cartucho"
+  },
   "clips": [
    {
     "src": "media/clips/palamix_kit.mp4",
