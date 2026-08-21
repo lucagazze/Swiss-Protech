@@ -18,8 +18,6 @@ PAGES = [
      "21 productos entre prótesis de cadera, rodilla y cementos óseos. Marcas Link, Advita Ortho y Heraeus."),
     ("Proceso.dc.html",   "proceso.html",   "Nuestro proceso — Swiss Protech",
      "Las cinco etapas de trazabilidad: depósito, control, esterilización, traslado y entrega en quirófano."),
-    ("Ficha.dc.html",     "producto.html",  "MobileLink Dual Mobility — Swiss Protech",
-     "Sistema de cotilo no cementado de doble movilidad. Waldemar Link, Hamburgo."),
     ("Contacto.dc.html",  "contacto.html",  "Contacto — Swiss Protech",
      "Sedes en CABA y Rosario. Consultas de médicos, obras sociales, prepagas y pacientes."),
 ]
@@ -360,12 +358,27 @@ def transformar_main(c):
     return c
 
 
+# orden real de las tarjetas en Productos.dc.html
+SLUGS = [
+    "mobilelink-dual-mobility", "crown-cup", "lubinus-cup", "lubinus-spii", "mp-link",
+    "element", "mobilelink", "bimobile", "lcu",
+    "optetrak-logic", "optetrak-hiflex", "optetrak-cc", "uni-sled",
+    "endomodel-modular", "endomodel-hinged", "endomodel-standard",
+    "copal", "palacos-mv", "palacos-r", "palamix-gun", "palamix-uno",
+]
+
+
 def transformar_productos(c):
     c = re.sub(r'<sc-if value="\{\{show(\w+)\}\}"[^>]*>', lambda m: '<div data-grupo="%s">' % m.group(1).lower(), c)
     c = c.replace("</sc-if>", "</div>")
     for cat in ["todos", "cadera", "rodilla", "cementos"]:
         c = c.replace('onClick="{{ver%s}}" style="{{s%s}}"' % (cat.capitalize(), cat.capitalize()),
                       'data-filter="%s"' % cat)
+    # cada tarjeta lleva a su ficha (21 aperturas y 21 cierres, uno a uno)
+    it = iter(SLUGS)
+    c = re.sub(r'<div class="pc">',
+               lambda m: '<a class="pc" href="producto.html?p=%s">' % next(it), c)
+    c = c.replace("</div></div>", "</div></a>")
     return c
 
 
