@@ -119,7 +119,7 @@ export function campo(mat) {
 export function cuerpo(zona = 'cadera') {
   const mat = new THREE.MeshStandardMaterial({
     color: 0xBFD8DC, roughness: 0.9, metalness: 0,
-    transparent: true, opacity: 0.13, depthWrite: false, side: THREE.DoubleSide,
+    transparent: true, opacity: 0.24, depthWrite: false, side: THREE.DoubleSide,
   });
   const g = new THREE.Group();
   const add = (mesh, x, y, z, rz = 0) => { mesh.position.set(x, y, z); mesh.rotation.z = rz; g.add(mesh); return mesh; };
@@ -141,8 +141,8 @@ export function cuerpo(zona = 'cadera') {
 
   // anillo que marca la zona intervenida
   const marca = new THREE.Mesh(
-    new THREE.TorusGeometry(0.95, 0.035, 10, 60),
-    new THREE.MeshBasicMaterial({ color: 0x0095A1, transparent: true, opacity: 0.55 }));
+    new THREE.TorusGeometry(0.95, 0.055, 10, 60),
+    new THREE.MeshBasicMaterial({ color: 0x0095A1, transparent: true, opacity: 0.9 }));
   marca.rotation.x = Math.PI / 2;
   marca.position.set(zona === 'rodilla' ? 0.55 : 0.85, zona === 'rodilla' ? 0.05 : 2.75, 0);
   g.add(marca);

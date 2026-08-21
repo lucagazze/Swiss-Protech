@@ -85,8 +85,12 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       const altoSil = Math.max(0.001, cajaSil.max.y - cajaSil.min.y);
       const cmImp = CM_IMPLANTE[M.anatomia] || 10;
       const altoPersona = (esfImp.radius * 2) * (ALTURA_PERSONA_CM / cmImp);
-      silueta.scale.setScalar(altoPersona / altoSil);
+      const escSil = altoPersona / altoSil;
+      silueta.scale.setScalar(escSil);
       silueta.position.copy(esfImp.center);      // la zona marcada calza con el implante
+      // el anillo no crece con la persona: queda ajustado al implante
+      // el anillo mide siempre lo mismo en el paciente (~25 cm), no crece con la pieza
+      if (c.marca) c.marca.scale.setScalar((altoPersona * 0.075) / (0.95 * escSil));
       silueta.visible = false;
       escena.add(silueta);
       anatPiezas = anatPiezas.concat(c.piezas);
@@ -136,6 +140,8 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     piezas.push({ mesh: o, base, foco, fantasma, side: base.side });
   });
   const porMesh = new Map(piezas.map(p => [p.mesh, p]));
+  // solo el implante, sin el hueso: sirve para destacarlo dentro del contexto anatomico
+  const mallasImplante = piezas.filter(p => !anatPiezas.includes(p.mesh)).map(p => p.mesh);
 
   let enfocadas = null;   // Set de mallas resaltadas, o null
   function aplicarEstado() {
@@ -241,21 +247,33 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       if (b[k]) b[k].classList.toggle('on', contexto === k);
     }
   }
-  function encuadrar(obj, holgura) {
-    obj.updateMatrixWorld(true);
-    const caja = new THREE.Box3().setFromObject(obj);
-    const esf = caja.getBoundingSphere(new THREE.Sphere());
+  // El producto es SIEMPRE el centro de la vista: la mira no se mueve del implante,
+  // solo cambia cuanto entorno entra alrededor.
+  function encuadrarRadio(radio, ms = 820) {
     const fov = THREE.MathUtils.degToRad(cam.fov);
     const fovH = 2 * Math.atan(Math.tan(fov / 2) * Math.max(0.6, cam.aspect));
-    const d = esf.radius / Math.sin(Math.min(fov, fovH) / 2) * holgura;
-    ctl.maxDistance = Math.max(d * 2.2, distTot * 2.6);
-    cam.far = Math.max(80, d * 4); cam.updateProjectionMatrix();
+    const d = radio / Math.sin(Math.min(fov, fovH) / 2);
+    ctl.minDistance = Math.min(distTot * 0.32, d * 0.12);
+    ctl.maxDistance = Math.max(d * 2.4, distTot * 2.6);
+    cam.far = Math.max(80, d * 6); cam.updateProjectionMatrix();
     const dir = cam.position.clone().sub(ctl.target).normalize();
     const origen = cam.position.clone(), miraO = ctl.target.clone();
-    const mira = esf.center.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
+    const mira = MIRA0.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
     animandoCam = true;
-    tween(820, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } },
+    tween(ms, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } },
       () => { animandoCam = false; });
+  }
+  // que tan lejos llega un objeto medido DESDE el centro del producto
+  function radioDesdeProducto(obj) {
+    if (!obj) return esfTot.radius;
+    obj.updateMatrixWorld(true);
+    const c = new THREE.Box3().setFromObject(obj);
+    if (c.isEmpty()) return esfTot.radius;
+    let r = 0; const v = new THREE.Vector3();
+    for (const x of [c.min.x, c.max.x]) for (const y of [c.min.y, c.max.y]) for (const z of [c.min.z, c.max.z]) {
+      r = Math.max(r, v.set(x, y, z).distanceTo(MIRA0));
+    }
+    return Math.max(r, esfTot.radius);
   }
   function setContexto(k) {
     if (!anat && k !== 'solo') k = 'solo';
@@ -264,13 +282,18 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (silueta) silueta.visible = (k === 'cuerpo');
     marcarContexto();
     if (k !== 'solo') {
-      enfocar(null); activo = -1;
+      enfocar(mallasImplante); activo = -1;   // el implante en color, el hueso atenuado
       puntos.forEach(q => q.el.classList.remove('on'));
       document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on'));
       setExplotar(false); setCorte(false);
-      encuadrar(k === 'cuerpo' ? silueta : anat, k === 'cuerpo' ? 1.05 : 1.08);
+      // en el cuerpo entra la persona entera; en el hueso, solo el segmento oseo.
+      // en los dos casos la mira sigue siendo el implante, asi el zoom lo acerca a el.
+      const radio = k === 'cuerpo'
+        ? (silueta ? radioDesdeProducto(silueta) * 1.02 : radioDesdeProducto(anat) * 2.3)
+        : radioDesdeProducto(anat) * 1.08;
+      encuadrarRadio(radio);
     } else {
-      encuadrar(M.raiz, 1.0);
+      encuadrarRadio(esfTot.radius * 1.06);
     }
     if (alCambiar) alCambiar(k === 'solo' ? -1 : (k === 'hueso' ? -2 : -3), null);
   }
@@ -422,6 +445,10 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
 
     if (!puntos.length) return;
     const w = host.clientWidth, h = host.clientHeight;
+    if (contexto !== 'solo') {   // en hueso/cuerpo los numeros solo estorban
+      for (const p of puntos) { p.el.style.opacity = '0'; p.el.style.pointerEvents = 'none'; }
+      return;
+    }
     for (const p of puntos) {
       p.obj.updateWorldMatrix(true, false);
       p.obj.localToWorld(tmp.copy(p.pos));
