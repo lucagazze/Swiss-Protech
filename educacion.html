@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Educación médica — Swiss Protech</title>
+<meta name="description" content="Técnicas quirúrgicas por producto, material descargable y webinars. Acceso exclusivo para profesionales registrados.">
+<meta property="og:title" content="Educación médica — Swiss Protech"><meta property="og:description" content="Técnicas quirúrgicas por producto, material descargable y webinars. Acceso exclusivo para profesionales registrados."><meta property="og:type" content="website">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+<style>
+  :root { --teal: #0095A1; --teal-d: #007C87; --teal-l: #72C5C2; --ink: #10222A; --txt: #5A6570; --mut: #8A929A; --line: #E3E7E9; --bg: #F7F8F9; }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: hidden; } html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: Montserrat, "Helvetica Neue", Arial, sans-serif; color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased; }
+  a { color: var(--teal); text-decoration: none; } a:hover { color: var(--teal-d); }
+  h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.14; }
+  p { margin: 0; } img { max-width: 100%; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+  .eyebrow { font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); }
+  .lead { font-size: 16.5px; color: var(--txt); line-height: 1.68; }
+
+  .topbar { background: var(--ink); color: #A7A9AC; font-size: 12.5px; letter-spacing: .04em; }
+  .topbar .wrap { padding-top: 9px; padding-bottom: 9px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .topbar a { color: #A7A9AC; } .topbar a.reg { color: var(--teal-l); font-weight: 600; }
+
+  .nav { background: #fff; border-bottom: 1px solid var(--line); position: relative; z-index: 5; }
+  .nav .wrap { padding-top: 20px; padding-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .navlinks { display: flex; align-items: center; gap: 34px; font-size: 14px; font-weight: 500; }
+  .navlink { position: relative; color: var(--ink); transition: color .25s; }
+  .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px; background: var(--teal); transition: right .3s; }
+  .navlink:hover { color: var(--teal); } .navlink:hover::after { right: 0; }
+  .navlink.on { color: var(--teal); font-weight: 600; }
+  .btn-p { display: inline-flex; align-items: center; gap: 9px; background: var(--teal); color: #fff; font-size: 14px; font-weight: 600; padding: 13px 24px; border-radius: 4px; white-space: nowrap; transition: background .28s, box-shadow .28s; border: 0; cursor: pointer; }
+  .btn-p:hover { background: var(--teal-d); color: #fff; box-shadow: 0 12px 26px -12px rgba(0,149,161,.55); }
+  .btn-g { display: inline-flex; align-items: center; gap: 9px; border: 1px solid #CBD2D6; color: var(--ink); background: #fff; font-size: 14px; font-weight: 600; padding: 13px 24px; border-radius: 4px; white-space: nowrap; transition: border-color .28s, color .28s, background .28s; }
+  .btn-g:hover { border-color: var(--teal); color: var(--teal); background: rgba(0,149,161,.05); }
+  .burger { display: none; width: 44px; height: 44px; border-radius: 6px; border: 1px solid var(--line); align-items: center; justify-content: center; cursor: pointer; flex: none; background: #fff; }
+  .drawer { display: none; flex-direction: column; gap: 2px; padding: 10px 20px 18px; border-bottom: 1px solid var(--line); background: #fff; }
+  .drawer.open { display: flex; }
+  .drawer a { padding: 14px 4px; font-size: 15px; font-weight: 500; color: var(--ink); border-bottom: 1px solid #F1F4F5; min-height: 50px; display: flex; align-items: center; }
+
+  .mesh { background-image: linear-gradient(rgba(16,34,42,.030) 1px, transparent 1px), linear-gradient(90deg, rgba(16,34,42,.030) 1px, transparent 1px);
+          background-size: 64px 64px; -webkit-mask-image: radial-gradient(circle at 76% 44%, #000 0%, transparent 72%); mask-image: radial-gradient(circle at 76% 44%, #000 0%, transparent 72%); }
+  .head { position: relative; background: linear-gradient(168deg, #FFFFFF 0%, #F6FAFB 52%, #EAF1F3 100%); border-bottom: 1px solid var(--line); overflow: hidden; }
+  .head .wrap { position: relative; padding-top: 58px; padding-bottom: 54px; display: flex; flex-direction: column; gap: 14px; }
+  .crumbs { font-size: 12.5px; color: var(--mut); }
+  .head h1 { font-size: 44px; letter-spacing: -0.035em; max-width: 20ch; }
+  .head .lead { max-width: 64ch; }
+
+  section { padding: 78px 0; }
+  section.alt { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .st { display: flex; flex-direction: column; gap: 13px; margin-bottom: 40px; max-width: 68ch; }
+  .st h2 { font-size: 36px; letter-spacing: -0.03em; }
+
+  .g2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; }
+  .g3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+  .g4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 22px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 30px 28px; display: flex; flex-direction: column; gap: 13px; transition: transform .35s, border-color .35s, box-shadow .35s; }
+  .card:hover { transform: translateY(-4px); border-color: var(--teal); box-shadow: 0 20px 38px -20px rgba(16,34,42,.24); }
+  .card h3 { font-size: 19px; } .card p { font-size: 14.5px; color: var(--txt); line-height: 1.65; }
+  .ico { width: 46px; height: 46px; border-radius: 6px; background: rgba(0,149,161,.09); display: flex; align-items: center; justify-content: center; }
+  .ico svg { stroke: var(--teal); }
+
+  .kpi { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 26px; }
+  .kpi > div { display: flex; flex-direction: column; gap: 6px; border-left: 3px solid var(--line); padding-left: 20px; }
+  .kpi > div:first-child { border-color: var(--teal); }
+  .kpi b { font-size: 38px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+  .kpi span { font-size: 13.5px; color: var(--txt); line-height: 1.45; }
+
+  .hitos { display: flex; flex-direction: column; gap: 0; }
+  .hito { display: grid; grid-template-columns: 132px 1fr; gap: 26px; padding: 24px 0; border-top: 1px solid var(--line); }
+  .hito:last-child { border-bottom: 1px solid var(--line); }
+  .hito .a { font-size: 20px; font-weight: 800; color: var(--teal); letter-spacing: -0.02em; }
+  .hito h3 { font-size: 17.5px; margin-bottom: 6px; } .hito p { font-size: 14.5px; color: var(--txt); line-height: 1.65; }
+
+  .prov { font-size: 13px; color: var(--ink); border: 1px solid var(--line); background: #fff; padding: 8px 15px; border-radius: 4px; font-weight: 500; transition: border-color .3s, color .3s, background .3s; }
+  .prov:hover { background: rgba(0,149,161,.07); border-color: var(--teal); color: var(--teal); }
+  .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+
+  .marca { display: grid; grid-template-columns: 260px 1fr; gap: 34px; align-items: start; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 34px 36px; }
+  .marca .logo { height: 54px; display: flex; align-items: center; }
+  .marca h3 { font-size: 24px; letter-spacing: -0.025em; }
+  .marca .datos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .marca .datos span { font-size: 12px; color: var(--txt); border: 1px solid var(--line); padding: 5px 11px; border-radius: 99px; }
+
+  .vid { background: #fff; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+  .vid video { width: 100%; aspect-ratio: 16/10; object-fit: cover; background: #EAF1F3; display: block; }
+  .vid .bd { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+  .vid b { font-size: 15px; } .vid span { font-size: 12.5px; color: var(--mut); }
+
+  .cerrado { background: linear-gradient(165deg, var(--ink) 0%, #0A171D 100%); border-radius: 8px; padding: 44px 46px; color: #fff; position: relative; overflow: hidden; }
+  .cerrado .glow { position: absolute; top: -90px; right: -80px; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(0,149,161,.30), transparent 70%); filter: blur(34px); }
+  .cerrado h3 { font-size: 26px; color: #fff; } .cerrado p { color: #A7A9AC; font-size: 15px; line-height: 1.68; }
+  .cerrado .acts { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .cerrado .btn-g { border-color: rgba(255,255,255,.24); color: #fff; background: transparent; }
+  .cerrado .btn-g:hover { border-color: var(--teal-l); color: #fff; background: rgba(255,255,255,.06); }
+
+  .cta { background: var(--teal); padding: 68px 0; }
+  .cta .wrap { display: flex; align-items: center; justify-content: space-between; gap: 44px; flex-wrap: wrap; }
+  .cta h2 { font-size: 32px; color: #fff; letter-spacing: -0.03em; } .cta p { color: rgba(255,255,255,.88); font-size: 15.5px; line-height: 1.6; max-width: 58ch; margin-top: 10px; }
+  .cta .b1 { background: #fff; color: var(--teal); font-weight: 700; }
+  .cta .b1:hover { background: #fff; color: var(--teal-d); }
+  .cta .b2 { border: 1px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .cta .b2:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.08); }
+
+  footer { background: #0A171D; padding: 58px 0 28px; }
+  footer .cols { display: grid; grid-template-columns: 320px repeat(3, minmax(0,1fr)); gap: 42px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.09); }
+  footer p, footer a, footer span { font-size: 13.5px; color: #A7A9AC; line-height: 1.65; }
+  footer .t { font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; }
+  footer .col { display: flex; flex-direction: column; gap: 12px; }
+  footer .fin { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 24px; flex-wrap: wrap; }
+  footer .fin span, footer .fin a { font-size: 12.5px; color: #69727D; }
+
+  @media (max-width: 1240px) { .navlinks, .nav .btn-p { display: none; } .burger { display: flex; } }
+  @media (max-width: 1000px) { .g4 { grid-template-columns: repeat(2, minmax(0,1fr)); } .g3 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .marca { grid-template-columns: 1fr; gap: 20px; } footer .cols { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 720px) { .wrap { padding: 0 20px; } section { padding: 52px 0; } .head .wrap { padding-top: 38px; padding-bottom: 36px; }
+    .head h1 { font-size: 32px; } .st h2 { font-size: 27px; } .g2, .g3, .g4 { grid-template-columns: 1fr; }
+    .kpi { grid-template-columns: repeat(2, minmax(0,1fr)); } .hito { grid-template-columns: 1fr; gap: 8px; }
+    .card, .marca, .cerrado { padding: 24px 20px; } footer .cols { grid-template-columns: 1fr; } .cta { padding: 48px 0; } }
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span style="display: flex; align-items: center; gap: 7px;">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"></path></svg>
+    Habilitado por ANMAT y Ministerio de Salud de la Nación</span>
+  <span style="display: flex; align-items: center; gap: 16px;"><a href="educacion.html">Ingresar</a><span style="opacity:.32">|</span><a href="educacion.html" class="reg">Registro médico</a></span>
+</div></div>
+
+<nav class="nav"><div class="wrap">
+  <a href="index.html"><img src="assets/logo.png" alt="Swiss Protech" style="height: 42px; display: block;"></a>
+  <div class="navlinks"><a href="institucional.html" class="navlink">Institucional</a><a href="productos.html" class="navlink">Productos</a><a href="proceso.html" class="navlink">Nuestro proceso</a><a href="educacion.html" class="navlink on">Educación médica</a><a href="representaciones.html" class="navlink">Representaciones</a><a href="contacto.html" class="navlink">Contacto</a></div>
+  <span class="burger" onclick="document.getElementById('drawer').classList.toggle('open')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10222A" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></span>
+  <a href="contacto.html" class="btn-p">Consultar</a>
+</div></nav>
+<div class="drawer" id="drawer"><a href="institucional.html">Institucional</a><a href="productos.html">Productos</a><a href="proceso.html">Nuestro proceso</a><a href="educacion.html">Educación médica</a><a href="representaciones.html">Representaciones</a><a href="contacto.html">Contacto</a></div>
+
+<div class="head"><div class="mesh" style="position:absolute;inset:0;"></div><div class="wrap">
+  <span class="crumbs"><a href="index.html" style="color:var(--mut)">Home</a> &nbsp;/&nbsp; <span style="color:var(--teal)">Educación médica</span></span>
+  <h1>Técnicas quirúrgicas y formación para profesionales</h1>
+  <p class="lead">Material técnico de los fabricantes que representamos, organizado por producto y por línea. El acceso es exclusivo para médicos registrados y activados.</p>
+</div></div>
+
+<section><div class="wrap">
+  <div style="display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:start" class="g-edu">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div class="st" style="margin-bottom:0"><span class="eyebrow">Qué vas a encontrar</span><h2>Todo el material técnico, en un solo lugar</h2></div>
+      <div class="g2">
+        <div class="card"><span class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span><h3>Técnicas quirúrgicas</h3><p>El documento oficial de cada sistema, con la secuencia de instrumental paso a paso. Organizado por producto y por línea.</p></div>
+        <div class="card"><span class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 15l2 2 4-4"></path></svg></span><h3>Fichas técnicas</h3><p>Medidas, materiales, indicaciones y referencias de cada implante, en PDF descargable.</p></div>
+        <div class="card"><span class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5l6 3.5-6 3.5z"></path></svg></span><h3>Videos de procedimiento</h3><p>Material audiovisual de Waldemar Link y Heraeus Medical con la técnica completa.</p></div>
+        <div class="card"><span class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><h3>Webinars</h3><p>Sesiones de formación con especialistas, en vivo y grabadas.</p></div>
+      </div>
+    </div>
+    <div class="cerrado"><div class="glow"></div>
+      <div style="position:relative;display:flex;flex-direction:column;gap:16px">
+        <span class="ico" style="background:rgba(0,149,161,.18);border:1px solid rgba(114,197,194,.34)"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke="#72C5C2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></span>
+        <h3>Acceso exclusivo para médicos</h3>
+        <p>Por tratarse de material técnico de productos médicos implantables, el acceso está restringido a profesionales de la salud. El registro se valida con la matrícula y se activa desde Swiss Protech.</p>
+        <div class="acts"><a href="contacto.html" class="btn-p">Registrarme como médico</a><a href="#" class="btn-g">Ya tengo cuenta</a></div>
+      </div></div>
+  </div>
+</div></section>
+
+<section class="alt"><div class="wrap">
+  <div class="st"><span class="eyebrow">Por línea</span><h2>Material disponible por familia de producto</h2>
+    <p class="lead">Cada ficha de producto enlaza directo a su técnica quirúrgica. Los 21 productos del catálogo tienen material asociado.</p></div>
+  <div class="g3">
+    <div class="card"><h3>Cadera</h3><p>Nueve sistemas entre cotilos y vástagos: MobileLink, Crown Cup, Lubinus, LCU, MP Link y Element.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de cadera &rarr;</a></div>
+    <div class="card"><h3>Rodilla</h3><p>Siete sistemas: la familia Endo-Model de Link y la familia Optetrak de Advita, primarias y de revisión.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de rodilla &rarr;</a></div>
+    <div class="card"><h3>Cementos</h3><p>Cinco productos de Heraeus Medical: cementos PALACOS y COPAL, y el sistema de mezcla y aplicación PALAMIX.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los cementos &rarr;</a></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="st"><span class="eyebrow">Multimedia</span><h2>Videos y webinars</h2>
+    <p class="lead">Material audiovisual oficial de los fabricantes que representamos.</p></div>
+  <a href="multimedia.html" class="btn-p">Ir a multimedia
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div></section>
+<style>@media (max-width: 1000px) { .g-edu { grid-template-columns: 1fr !important; } }</style>
+
+<div class="cta"><div class="wrap">
+  <div><h2>¿Necesitás asesoramiento técnico?</h2>
+  <p>Contanos si escribís como médico, como financiador o como paciente, y la consulta llega directo a quien corresponde.</p></div>
+  <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+    <a href="contacto.html" class="btn-p b1">Escribir por WhatsApp</a>
+    <a href="contacto.html" class="btn-g b2">Ver sedes</a></div>
+</div></div>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div class="col"><img src="assets/logo-blanco.png" alt="Swiss Protech" style="height: 40px; align-self: flex-start;">
+      <p>Importación y comercialización de implantes ortopédicos de origen alemán y norteamericano. Habilitados por el Ministerio de Salud de la Nación y A.N.M.A.T.</p></div>
+    <div class="col"><span class="t">Productos</span>
+      <a href="productos.html">Cadera</a><a href="productos.html">Rodilla</a><a href="productos.html">Cementos</a>
+      <a href="representaciones.html">Representaciones</a></div>
+    <div class="col"><span class="t">Sede Buenos Aires</span><span>Av. Belgrano 863, CABA</span><span>11 3593 5241</span><span style="color:#69727D">Lunes a viernes, 8 a 17 h</span></div>
+    <div class="col"><span class="t">Sede Rosario</span><span>Pte. Roca 782, piso 1</span><span>11 3593 5241</span><span style="color:#69727D">Lunes a viernes, 8 a 17 h</span></div>
+  </div>
+  <div class="fin"><span>Swiss Protech S.A. — Todos los derechos reservados 2026.</span>
+    <span style="display: flex; gap: 22px;"><a href="#">Políticas de privacidad</a><a href="#">Formulario AFIP F960</a></span></div>
+</div></footer>
+
+<script>
+document.addEventListener('click', function (e) {
+  var d = document.getElementById('drawer');
+  if (d && d.classList.contains('open') && !e.target.closest('.drawer') && !e.target.closest('.burger')) d.classList.remove('open');
+});
+</script>
+</body>
+</html>

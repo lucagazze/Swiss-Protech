@@ -268,6 +268,7 @@
             </div>
 
             <div class="v-grupo v-ctl">
+              <button class="v-btn" id="v-mov" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15.5-6.2"></path><path d="M21 12a9 9 0 0 1-15.5 6.2"></path><path d="M18 3v4h-4M6 21v-4h4"></path></svg><span class="lbl">Movimiento</span></button>
               <button class="v-btn" id="v-explotar" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M12 15v6M5 12h5M14 12h5"></path></svg><span class="lbl">Vista explotada</span></button>
               <button class="v-btn" id="v-corte" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18"></path></svg><span class="lbl">Corte</span></button>
               <button class="v-btn on" id="v-auto" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg><span class="lbl">Giro automático</span></button>
@@ -483,11 +484,16 @@
         host: $('#stage3d'), capaPuntos: $('#hs-layer'),
         modelo: P.modelo3d || 'cotilo', config: P.config3d || {},
         panelTitulo: $('#v-titulo'), panelTexto: $('#v-texto'),
-        botones: { explotar: $('#v-explotar'), corte: $('#v-corte'), auto: $('#v-auto'), zoomMas: $('#v-zoomin'), zoomMenos: $('#v-zoomout'), contexto: { solo: $('#v-solo'), hueso: $('#v-anatomia'), cuerpo: $('#v-cuerpo') } },
+        botones: { explotar: $('#v-explotar'), corte: $('#v-corte'), auto: $('#v-auto'), zoomMas: $('#v-zoomin'), zoomMenos: $('#v-zoomout'), movimiento: $('#v-mov'), contexto: { solo: $('#v-solo'), hueso: $('#v-anatomia'), cuerpo: $('#v-cuerpo') } },
         alListo: () => { $('#v-cargando').remove(); },
         alCambiar: (i, p, n) => {
           const info = $('#v-info');
           if (!info) return;
+          if (i === -4 && p) {
+            $('#v-info-n').innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l8 6-8 6z"></path></svg>';
+            $('#v-info-t').textContent = p.titulo; $('#v-info-p').textContent = p.texto;
+            info.classList.add('on'); return;
+          }
           if (i < 0 || !p) { info.classList.remove('on'); return; }
           $('#v-info-n').textContent = n;
           $('#v-info-t').textContent = p.titulo;

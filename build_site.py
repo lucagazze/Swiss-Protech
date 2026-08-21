@@ -23,11 +23,11 @@ PAGES = [
 ]
 
 NAV = [
-    ("Institucional",    "index.html#institucional"),
+    ("Institucional",    "institucional.html"),
     ("Productos",        "productos.html"),
     ("Nuestro proceso",  "proceso.html"),
-    ("Educación médica", "index.html#portal"),
-    ("Representaciones", "index.html#representaciones"),
+    ("Educación médica", "educacion.html"),
+    ("Representaciones", "representaciones.html"),
     ("Contacto",         "contacto.html"),
 ]
 
@@ -357,34 +357,6 @@ JS_MAIN = """
   });
   pintar(); auto();
 
-  // ---- visor 3D en el hero (reemplaza las fotos si el navegador lo permite)
-  var host = document.getElementById('hero3d');
-  if (!host || !window.WebGLRenderingContext) return;
-  import('./js/visor3d.js').then(function(mod){
-    var api = mod.montarVisor({ host: host, hero: true,
-      botones: { explotar: document.getElementById('h3-explotar'), auto: document.getElementById('h3-auto') } });
-    if (!api) return;
-    clearInterval(timer);
-    slots.forEach(function(s){ s.style.display = 'none'; });
-    var scan = document.querySelector('#hero-stage .scan'); if (scan) scan.style.display = 'none';
-    document.getElementById('heroLinea').textContent  = 'Cadera · Modelo 3D interactivo';
-    document.getElementById('heroNombre').textContent = 'MobileLink Dual Mobility';
-    document.getElementById('heroMarca').textContent  = 'Arrastrá para girar · rueda o pellizcá para acercar';
-    var th = document.getElementById('hero-thumbs');
-    th.innerHTML =
-      '<button type="button" id="h3-explotar" class="h3-btn">'
-      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v6M12 15v6M5 12h5M14 12h5"/></svg>Vista explotada</button>'
-      + '<button type="button" id="h3-auto" class="h3-btn on">'
-      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Giro automático</button>'
-      + '<a class="h3-btn h3-cta" href="producto.html?p=mobilelink-dual-mobility">Explorar en detalle'
-      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
-    th.style.flexWrap = 'wrap'; th.style.justifyContent = 'center';
-    var ex = document.getElementById('h3-explotar'), au = document.getElementById('h3-auto');
-    var abierto = false, girando = true;
-    ex.addEventListener('click', function(){ abierto = !abierto; api.setExplotar(abierto); ex.classList.toggle('on', abierto); });
-    au.addEventListener('click', function(){ girando = !girando; api.setAuto(girando); au.classList.toggle('on', girando); });
-    document.getElementById('hero-pie').textContent = '21 productos en catálogo · 3 líneas · modelo técnico del sistema';
-  }).catch(function(e){ console.error('hero 3D:', e); });
 })();
 """
 
@@ -512,6 +484,16 @@ def main():
                         lambda m: '<a href="proceso.html"%s>%s%s' % (m.group(1), m.group(2), m.group(3)), cuerpo)
         cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Ver sedes|Coordinar una cirugía|Escribir por WhatsApp|Consultar este producto|Consultar por WhatsApp|Enviar consulta)',
                         lambda m: '<a href="contacto.html"%s>%s%s' % (m.group(1), m.group(2), m.group(3)), cuerpo)
+        cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Ver la línea|Ver los 21 productos)',
+                        lambda m: '<a href="productos.html"%s>%s%s' % (m.group(1), m.group(2), m.group(3)), cuerpo)
+        cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Registrarme como médico|Ya tengo cuenta|Registro médico|Ingresar)',
+                        lambda m: '<a href="educacion.html"%s>%s%s' % (m.group(1), m.group(2), m.group(3)), cuerpo)
+        cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(link-ortho|advita|heraeus)',
+                        lambda m: '<a href="representaciones.html"%s>%s%s' % (m.group(1), m.group(2), m.group(3)), cuerpo)
+        cuerpo = cuerpo.replace('<a href="#" style="font-size: 13.5px; color: #A7A9AC;">Cadera</a>', '<a href="productos.html" style="font-size: 13.5px; color: #A7A9AC;">Cadera</a>')
+        cuerpo = cuerpo.replace('<a href="#" style="font-size: 13.5px; color: #A7A9AC;">Rodilla</a>', '<a href="productos.html" style="font-size: 13.5px; color: #A7A9AC;">Rodilla</a>')
+        cuerpo = cuerpo.replace('<a href="#" style="font-size: 13.5px; color: #A7A9AC;">Cementos</a>', '<a href="productos.html" style="font-size: 13.5px; color: #A7A9AC;">Cementos</a>')
+        cuerpo = cuerpo.replace('<a href="#" style="font-size: 13.5px; color: #A7A9AC;">Representaciones</a>', '<a href="representaciones.html" style="font-size: 13.5px; color: #A7A9AC;">Representaciones</a>')
         cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)Ver ficha', lambda m: '<a href="producto.html"%s>%sVer ficha' % (m.group(1), m.group(2)), cuerpo)
 
         html = (PLANTILLA

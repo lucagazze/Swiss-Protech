@@ -150,11 +150,24 @@ export function cotilo(m, cfg = {}) {
   cabeza.visible = false; inserto.visible = false;
   raiz.rotation.x = 0.92; raiz.rotation.y = 0.45; raiz.rotation.z = 0.10;
 
+  let enMovimiento = false;
   const explotar = k => {
-    const on = k > 0.001;
+    const on = k > 0.001 || enMovimiento;
     cabeza.visible = on; inserto.visible = on && dob;
     inserto.position.y = 0.02 + 1.03 * k;
     cabeza.position.y = 0.04 + 2.06 * k;
+  };
+
+  // en movimiento la cabeza queda alojada y barre el arco de flexion
+  const animar = (t) => {
+    enMovimiento = t !== null;
+    if (t === null) { cabeza.visible = false; inserto.visible = false; cabeza.rotation.set(0, 0, 0); if (dob) inserto.rotation.set(0, 0, 0); return; }
+    cabeza.visible = true; inserto.visible = dob;
+    cabeza.position.y = 0.04; inserto.position.y = 0.02;
+    const a = Math.sin(t * Math.PI * 2);
+    cabeza.rotation.z = a * 0.62;                 // flexion-extension del femur
+    cabeza.rotation.x = Math.sin(t * Math.PI * 4) * 0.16;
+    if (dob) inserto.rotation.z = a * 0.22;       // el revestimiento acompana: doble movilidad
   };
 
   const TXT_EXT = {
@@ -197,7 +210,9 @@ export function cotilo(m, cfg = {}) {
     obj: casquete, pos: normales[0].clone().multiplyScalar(1.02), focos: agujeros.concat(bordes),
     camLocal: normales[0].clone().add(V(0, 0.55, 0.25)).normalize(), margen: 2.30, modo: 'normal' });
 
-  return { raiz, tapas, puntos, explotar, anatomia: 'pelvis' };
+  return { raiz, tapas, puntos, explotar, animar, anatomia: 'pelvis',
+           movimiento: dob ? 'La cabeza articula dentro del revestimiento y el revestimiento dentro del cotilo: por eso el rango de movilidad es mayor.'
+                           : 'La cabeza femoral barre el arco de flexion apoyada en la superficie interna del cotilo.' };
 }
 
 // ================================================================ VÁSTAGO FEMORAL
@@ -207,20 +222,30 @@ export function vastago(m, cfg = {}) {
   const largo = cfg.largo || 2.9;
 
   const raiz = new THREE.Group();
+  const pivot = new THREE.Group();          // gira alrededor del centro de la cabeza
   const cuerpo = new THREE.Group(), cabezaG = new THREE.Group();
-  raiz.add(cuerpo, cabezaG);
+  raiz.add(pivot, cabezaG); pivot.add(cuerpo);
 
-  // perfil del vástago: ancho arriba (metáfisis), afinado abajo (diáfisis)
+  // perfil del vástago. afina = velocidad de adelgazamiento · aplana = sección ovalada
+  const afina = cfg.afina || 0.62, aplana = cfg.aplana || 0.62, curva = cfg.curva || 0;
   const perfil = [];
-  const pasos = 26;
+  const pasos = 30;
   for (let i = 0; i <= pasos; i++) {
     const t = i / pasos;
     const y = 0.55 - t * largo;
-    const r = 0.30 * Math.pow(1 - t, 0.62) + 0.055;
+    const r = 0.30 * Math.pow(1 - t, afina) + (cfg.puntaFina ? 0.032 : 0.055);
     perfil.push(new THREE.Vector2(r, y));
   }
   const geoCuerpo = new THREE.LatheGeometry(perfil, 72);
-  geoCuerpo.scale(1, 1, 0.62);                       // sección ovalada, como el hueso
+  geoCuerpo.scale(1, 1, aplana);                     // sección ovalada, como el hueso
+  if (curva) {                                       // curvatura anatómica del canal femoral
+    const pos = geoCuerpo.attributes.position;
+    for (let i = 0; i < pos.count; i++) {
+      const y = pos.getY(i), k = Math.max(0, (0.55 - y) / largo);
+      pos.setX(i, pos.getX(i) + curva * k * k * largo * 0.5);
+    }
+    pos.needsUpdate = true; geoCuerpo.computeVertexNormals();
+  }
   const matCuerpo = cementado ? m.pulido : (revestido ? m.poroso : m.mate);
   const eje = new THREE.Mesh(geoCuerpo, matCuerpo); eje.castShadow = true;
   cuerpo.add(eje);
@@ -231,6 +256,24 @@ export function vastago(m, cfg = {}) {
   const cono = new THREE.Mesh(new THREE.CylinderGeometry(0.115, 0.155, 0.52, 40), m.cuello);
   cono.position.set(-0.30, 0.90, 0); cono.rotation.z = 0.72; cono.castShadow = true;
   cuerpo.add(hombro, cono);
+
+  // collar de apoyo sobre el corte del cuello (vástagos anatómicos cementados)
+  let collar = null;
+  if (cfg.collar) {
+    collar = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.30, 0.075, 56), m.pulido);
+    collar.scale.set(1, 1, aplana); collar.position.set(-0.05, 0.58, 0); collar.rotation.z = 0.16;
+    collar.castShadow = true; cuerpo.add(collar);
+  }
+  // estrías longitudinales: estabilidad rotacional dentro del canal
+  const estrias = [];
+  if (cfg.estrias) {
+    for (let i = 0; i < cfg.estrias; i++) {
+      const a = (i / cfg.estrias) * Math.PI * 2;
+      const e = new THREE.Mesh(new THREE.BoxGeometry(0.024, largo * 0.60, 0.05), m.mate);
+      e.position.set(Math.cos(a) * 0.205, -0.34, Math.sin(a) * 0.205 * aplana);
+      e.lookAt(0, -0.34, 0); cuerpo.add(e); estrias.push(e);
+    }
+  }
 
   // franja porosa proximal (fijación biológica)
   let franja = null;
@@ -244,7 +287,7 @@ export function vastago(m, cfg = {}) {
 
   // unión modular (cuerpo + vástago distal)
   let anillo = null, distal = null;
-  const grupoDistal = new THREE.Group(); raiz.add(grupoDistal);
+  const grupoDistal = new THREE.Group(); pivot.add(grupoDistal);
   if (modular) {
     anillo = new THREE.Mesh(new THREE.TorusGeometry(0.175, 0.030, 14, 60), m.cuello);
     anillo.rotation.x = Math.PI / 2; anillo.position.y = -0.95; anillo.scale.set(1, 0.62, 1);
@@ -272,9 +315,22 @@ export function vastago(m, cfg = {}) {
   raiz.rotation.y = 0.42; raiz.rotation.z = 0.16;
   raiz.position.y = 0.35;
 
+  const CENTRO_CAB = V(-0.52, 1.16, 0);      // centro de rotacion de la articulacion
+  pivot.position.copy(CENTRO_CAB);
+  cuerpo.position.copy(CENTRO_CAB).multiplyScalar(-1);
+  grupoDistal.position.copy(CENTRO_CAB).multiplyScalar(-1);
+  const BASE_DIST = grupoDistal.position.y;
+
   const explotar = k => {
     cabezaG.position.set(-0.42 * k, 1.0 * k, 0);
-    if (modular) grupoDistal.position.y = -1.15 * k;
+    if (modular) grupoDistal.position.y = BASE_DIST - 1.15 * k;
+  };
+  // en movimiento el femur flexiona alrededor de la cabeza, que queda fija en el cotilo
+  const animar = (t) => {
+    if (t === null) { pivot.rotation.set(0, 0, 0); return; }
+    const a = Math.sin(t * Math.PI * 2);
+    pivot.rotation.z = a * 0.52;
+    pivot.rotation.x = Math.sin(t * Math.PI * 4) * 0.14;
   };
 
   const puntos = [
@@ -289,9 +345,18 @@ export function vastago(m, cfg = {}) {
           : 'Cuerpo de sección ovalada que acompaña la anatomía del canal femoral y da estabilidad rotacional.'),
       obj: cuerpo, pos: V(0.30, 0.12, 0.20), focos: revestido && !cementado ? [franja] : [eje],
       camLocal: V(0.62, 0.24, 0.75), margen: 1.9, modo: 'normal' },
-    { titulo: 'Hombro y apoyo metafisario',
-      texto: 'El hombro apoya sobre el corte del cuello femoral y transmite la carga al hueso proximal.',
-      obj: cuerpo, pos: V(0.22, 0.62, 0.16), focos: [hombro], camLocal: V(0.48, 0.52, 0.71), margen: 2.4, modo: 'normal' },
+    { titulo: cfg.collar ? 'Collar de apoyo' : (cfg.estrias ? 'Estrías antirrotacionales' : 'Hombro y apoyo metafisario'),
+      texto: cfg.collar
+        ? 'El collar apoya directamente sobre el corte del cuello femoral: frena el hundimiento del vástago y reparte la carga al hueso proximal.'
+        : (cfg.estrias
+          ? 'Las estrías longitudinales muerden el hueso o el cemento e impiden que el vástago rote dentro del canal femoral.'
+          : 'El hombro apoya sobre el corte del cuello femoral y transmite la carga al hueso proximal.'),
+      obj: cuerpo, pos: V(0.22, 0.55, 0.16),
+      focos: cfg.collar ? [collar, hombro] : (estrias.length ? estrias : [hombro]),
+      camLocal: V(0.48, 0.42, 0.77), margen: cfg.estrias ? 1.8 : 2.4, modo: 'normal' },
+    { titulo: 'Sección del vástago',
+      texto: 'El corte muestra la sección ovalada del cuerpo: más ancha en sentido anteroposterior, para acompañar el canal femoral y resistir la rotación.',
+      obj: cuerpo, pos: V(0.24, 0.02, 0.14), focos: [eje], camLocal: V(0.74, 0.24, 0.63), margen: 1.7, modo: 'corte' },
     { titulo: 'Cabeza femoral',
       texto: 'Articula contra el cotilo o su revestimiento. Se elige el diámetro y el offset según el caso.',
       obj: cabezaG, pos: V(-0.52, 1.16, 0.30), focos: [esfera], camLocal: V(-0.20, 0.46, 0.87), margen: 2.5, modo: 'explotar' },
@@ -301,7 +366,8 @@ export function vastago(m, cfg = {}) {
     texto: 'El cuerpo proximal y el vástago distal se ensamblan en cirugía: permite ajustar largo, versión y offset sobre el defecto óseo real.',
     obj: raiz, pos: V(0.0, -1.15, 0.22), focos: [anillo, distal], camLocal: V(0.42, 0.10, 0.90), margen: 1.9, modo: 'explotar' });
 
-  return { raiz, tapas, puntos, explotar, anatomia: 'femurProximal' };
+  return { raiz, tapas, puntos, explotar, animar, anatomia: 'femurProximal',
+           movimiento: 'La cabeza queda fija dentro del cotilo y el femur gira a su alrededor: eso es la flexion y la extension de la cadera.' };
 }
 
 // ================================================================ RODILLA
@@ -309,6 +375,11 @@ export function vastago(m, cfg = {}) {
 export function rodilla(m, cfg = {}) {
   const bisagra = !!cfg.bisagra, uni = !!cfg.unicompartimental;
   const vastagos = cfg.vastagos !== false && !uni;
+  const rotatoria = cfg.rotatoria !== false;      // bisagra que además rota
+  const modular = !!cfg.modular;                  // segmentos intercambiables
+  const altaFlexion = !!cfg.altaFlexion;          // cóndilo posterior más largo
+  const cajaRev = !!cfg.cajaRevision;             // caja intercondílea de revisión
+  const largoVast = cfg.largoVastago || 1.35;
 
   const raiz = new THREE.Group();
   const femoral = new THREE.Group(), inserto = new THREE.Group(), tibial = new THREE.Group();
@@ -317,8 +388,8 @@ export function rodilla(m, cfg = {}) {
   // ---- cóndilo: arco grueso (toro parcial) con sección ensanchada
   const ANCHO = uni ? 0.46 : 0.42;
   const condilo = (x) => {
-    const g = new THREE.TorusGeometry(0.52, 0.185, 20, 80, 4.05);
-    g.rotateZ(-2.86);                 // de posterior, por abajo, hasta anterior-superior
+    const g = new THREE.TorusGeometry(0.52, 0.185, 20, 80, altaFlexion ? 4.60 : 4.05);
+    g.rotateZ(altaFlexion ? -3.20 : -2.86);                 // de posterior, por abajo, hasta anterior-superior
     g.scale(1, 1, ANCHO / 0.37);      // ensancha la sección medial-lateral
     g.rotateY(Math.PI / 2);           // el arco queda de perfil, el ancho sobre X
     const mesh = new THREE.Mesh(g, m.pulido);
@@ -369,6 +440,29 @@ export function rodilla(m, cfg = {}) {
   quilla.position.y = -0.16 - (vastagos ? 0.82 : 0.30); quilla.castShadow = true;
   tibial.add(bandeja, quilla);
 
+  // ---- caja intercondílea de revisión
+  let caja = null;
+  if (cajaRev) {
+    caja = new THREE.Mesh(new THREE.BoxGeometry(sep * 1.5, 0.54, 0.50), m.pulido);
+    caja.position.set(0, 0.12, -0.06); caja.castShadow = true;
+    femoral.add(caja);
+  }
+  // ---- pivote rotatorio
+  let pivote = null;
+  if (bisagra && rotatoria) {
+    pivote = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.10, 0.62, 32), m.cuello);
+    pivote.position.set(0, -0.42, 0); pivote.castShadow = true;
+    tibial.add(pivote);
+  }
+  // ---- segmentos modulares
+  const segmentos = [];
+  if (modular) {
+    for (let i = 0; i < 2; i++) {
+      const an = new THREE.Mesh(new THREE.TorusGeometry(0.155, 0.03, 12, 44), m.cuello);
+      an.rotation.x = Math.PI / 2; an.position.y = 0.90 + i * 0.46;
+      femoral.add(an); segmentos.push(an);
+    }
+  }
   // ---- bisagra
   let ejeBisagra = null;
   if (bisagra) {
@@ -379,8 +473,8 @@ export function rodilla(m, cfg = {}) {
   // ---- vástago femoral
   let vastFem = null;
   if (vastagos) {
-    vastFem = new THREE.Mesh(new THREE.CylinderGeometry(0.135, 0.095, 1.35, 40), m.mate);
-    vastFem.position.y = 1.28; vastFem.castShadow = true;
+    vastFem = new THREE.Mesh(new THREE.CylinderGeometry(0.135, 0.095, largoVast, 40), m.mate);
+    vastFem.position.y = 0.58 + largoVast / 2; vastFem.castShadow = true;
     femoral.add(vastFem);
   }
 
@@ -392,6 +486,13 @@ export function rodilla(m, cfg = {}) {
   const explotar = k => {
     femoral.position.y = 0.46 + 1.45 * k;
     inserto.position.y = -0.02 + 0.62 * k;
+  };
+  // en movimiento el femur flexiona sobre el inserto: el origen del grupo femoral
+  // coincide con el centro del arco de los condilos, que es el eje real de giro
+  const animar = (t) => {
+    if (t === null) { femoral.rotation.set(0, 0, 0); return; }
+    const f = (1 - Math.cos(t * Math.PI * 2)) / 2;       // 0 -> 1 -> 0, suave
+    femoral.rotation.x = -f * (uni ? 1.75 : (altaFlexion ? 2.55 : 2.20));
   };
 
   const tapas = [];
@@ -406,6 +507,9 @@ export function rodilla(m, cfg = {}) {
       texto: 'Es la superficie de deslizamiento entre el fémur y la tibia. Su congruencia con el cóndilo define el desgaste y la estabilidad.',
       obj: inserto, pos: V(0, 0.12, 0.46), focos: [platillo, ...cuencas],
       camLocal: V(0.32, 0.42, 0.85), margen: 2.0, modo: 'explotar' },
+    { titulo: 'Seccion del inserto',
+      texto: 'El corte deja ver el espesor del polietileno y la profundidad de las cuencas: es lo que define la congruencia con el condilo y el desgaste.',
+      obj: inserto, pos: V(0, 0.06, 0.20), focos: [platillo].concat(cuencas), camLocal: V(0.78, 0.30, 0.55), margen: 1.7, modo: 'corte' },
     { titulo: 'Bandeja tibial y quilla',
       texto: 'Se fija sobre el corte de la tibia. La quilla central da estabilidad rotacional y transmite la carga al hueso.',
       obj: tibial, pos: V(0, -0.16, 0.50), focos: [bandeja, quilla],
@@ -421,9 +525,33 @@ export function rodilla(m, cfg = {}) {
     texto: 'Sustituye la función del ligamento cruzado posterior: controla el desplazamiento hacia atrás del fémur en flexión.',
     obj: inserto, pos: V(0, 0.30, 0.18), focos: [poste],
     camLocal: V(0.20, 0.46, 0.86), margen: 3.0, modo: 'explotar' });
+  if (cajaRev) puntos.push({
+    titulo: 'Caja intercondílea de revisión',
+    texto: 'La caja aloja el poste alto del inserto y controla el desplazamiento y la angulación cuando el hueso y los ligamentos ya están comprometidos.',
+    obj: femoral, pos: V(0, 0.12, 0.26), focos: [caja], camLocal: V(0.24, 0.40, 0.88), margen: 2.4, modo: 'normal' });
+  if (pivote) puntos.push({
+    titulo: 'Pivote rotatorio',
+    texto: 'Además de flexionar, la prótesis rota sobre este eje: reproduce la rotación natural de la rodilla y descarga tensión en la unión con el hueso.',
+    obj: tibial, pos: V(0, -0.42, 0.16), focos: [pivote], camLocal: V(0.42, 0.18, 0.89), margen: 2.6, modo: 'explotar' });
+  if (segmentos.length) puntos.push({
+    titulo: 'Segmentos modulares',
+    texto: 'Los anillos marcan las uniones donde se agregan segmentos: permiten reconstruir la longitud perdida en revisiones y en cirugía oncológica.',
+    obj: femoral, pos: V(0, 1.14, 0.18), focos: segmentos, camLocal: V(0.52, 0.24, 0.82), margen: 2.2, modo: 'explotar' });
+  if (altaFlexion) puntos.push({
+    titulo: 'Cóndilo de alta flexión',
+    texto: 'El cóndilo se prolonga hacia atrás para mantener el contacto en flexiones profundas, sin que el borde del inserto reciba toda la carga.',
+    obj: femoral, pos: V(-sep, -0.40, -0.30), focos: uni ? [condIzq] : [condIzq, condDer],
+    camLocal: V(0.30, 0.10, -0.94), margen: 1.9, modo: 'normal' });
+  puntos.push({
+    titulo: 'Sección del inserto',
+    texto: 'El corte deja ver el espesor del polietileno y la profundidad de las cuencas: es lo que define la congruencia con el cóndilo y el desgaste.',
+    obj: inserto, pos: V(0, 0.06, 0.20), focos: [platillo].concat(cuencas),
+    camLocal: V(0.78, 0.30, 0.55), margen: 1.7, modo: 'corte' });
   if (bisagra) puntos.push({
-    titulo: 'Eje de bisagra',
-    texto: 'Vincula el componente femoral con el tibial: aporta la constricción necesaria cuando los ligamentos no pueden sostener la rodilla.',
+    titulo: rotatoria ? 'Eje de bisagra rotatoria' : 'Eje de bisagra simple',
+    texto: rotatoria
+      ? 'Vincula el componente femoral con el tibial y permite flexión más rotación: la constricción necesaria sin bloquear el giro.'
+      : 'Bisagra simple: solo permite la flexión, sin rotación. Es la opción de máxima constricción cuando los ligamentos no sostienen la rodilla.',
     obj: femoral, pos: V(0, -0.04, -0.22), focos: [ejeBisagra],
     camLocal: V(0.30, 0.22, -0.93), margen: 2.6, modo: 'explotar' });
   if (vastagos && vastFem) puntos.push({
@@ -432,7 +560,12 @@ export function rodilla(m, cfg = {}) {
     obj: raiz, pos: V(0, 1.5, 0.20), focos: [vastFem, quilla],
     camLocal: V(0.44, 0.20, 0.87), margen: 1.6, modo: 'explotar' });
 
-  return { raiz, tapas, puntos, explotar, anatomia: 'femurTibia' };
+  return { raiz, tapas, puntos, explotar, animar, anatomia: 'femurTibia',
+           movimiento: uni
+             ? 'El condilo se desliza sobre el inserto conservando el resto de la articulacion y los ligamentos.'
+             : (altaFlexion
+               ? 'El condilo prolongado mantiene el contacto con el inserto incluso en flexiones profundas, por encima de los 130 grados.'
+               : 'Los condilos ruedan y se deslizan sobre el inserto de polietileno: asi la protesis reproduce la flexion de la rodilla.') };
 }
 
 // ================================================================ CEMENTOS Y MEZCLA
@@ -450,10 +583,21 @@ export function cemento(m, cfg = {}) {
     const sobre = new THREE.Mesh(new THREE.BoxGeometry(1.35, 1.65, 0.10), m.sobre);
     const selloTop = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.14, 0.055), m.mate); selloTop.position.y = 0.86;
     const selloBot = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.14, 0.055), m.mate); selloBot.position.y = -0.86;
-    const franja = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.34, 0.104), cfg.antibiotico ? m.verde : m.cuello);
+    const colorFranja = cfg.color === 'azul' ? new THREE.MeshStandardMaterial({ color: 0x2E6FB7, roughness: 0.45 })
+                      : cfg.color === 'naranja' ? new THREE.MeshStandardMaterial({ color: 0xD4762A, roughness: 0.45 })
+                      : (cfg.antibiotico ? m.verde : m.cuello);
+    const franja = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.34, 0.104), colorFranja);
     franja.position.set(0, 0.30, 0.001);
     sobre.castShadow = true;
     g1.add(sobre, selloTop, selloBot, franja);
+    if (cfg.franja2) {                              // segunda franja: dos antibióticos
+      const f2 = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.16, 0.106), m.verde);
+      f2.position.set(0, -0.06, 0.001); g1.add(f2);
+    }
+    if (cfg.viscosidad) {                           // marca de viscosidad
+      const v = new THREE.Mesh(new THREE.BoxGeometry(cfg.viscosidad * 0.28, 0.09, 0.106), m.cuello);
+      v.position.set(-0.48 + cfg.viscosidad * 0.14, -0.44, 0.001); g1.add(v);
+    }
     g1.position.x = -0.78; g1.rotation.y = 0.30;
     // ampolla de monómero
     const vidrio = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 1.30, 48), m.plastico);
@@ -474,6 +618,9 @@ export function cemento(m, cfg = {}) {
           ? 'El antibiótico va mezclado en el polvo y se libera de forma local en el sitio del implante, para la profilaxis o el tratamiento de la infección.'
           : 'La franja identifica la fórmula y la viscosidad del cemento dentro de la familia PALACOS.',
         obj: g1, pos: V(0, 0.30, 0.10), focos: [franja], camLocal: V(-0.20, 0.32, 0.92), margen: 2.6, modo: 'normal' },
+      { titulo: 'Contenido del envase',
+        texto: 'El corte muestra el polvo dentro del sobre sellado: la dosis viene lista para mezclarse con el monómero, sin pesar ni fraccionar.',
+        obj: g1, pos: V(0, 0, 0.06), focos: [sobre, franja], camLocal: V(0.62, 0.24, 0.75), margen: 1.6, modo: 'corte' },
       { titulo: 'Monómero líquido',
         texto: 'La ampolla contiene el líquido que, al mezclarse con el polvo, inicia la polimerización y define el tiempo de trabajo.',
         obj: g2, pos: V(0, 0.05, 0.30), focos: [vidrio, liquido, cuelloA], camLocal: V(0.40, 0.26, 0.88), margen: 2.0, modo: 'explotar' },
@@ -557,7 +704,7 @@ export function cemento(m, cfg = {}) {
     ];
   }
 
-  return { raiz, tapas, puntos, explotar, anatomia: 'campo' };
+  return { raiz, tapas, puntos, explotar, anatomia: null };
 }
 
 export const CONSTRUCTORES = { cotilo, vastago, rodilla, cemento };

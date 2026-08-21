@@ -99,7 +99,9 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   M.raiz.traverse(o => { if (o.isMesh && !anatPiezas.includes(o)) cajaTot.expandByObject(o); });
   const esfTot = cajaTot.getBoundingSphere(new THREE.Sphere());
   MIRA0.copy(esfTot.center);
-  const distTot = esfTot.radius / Math.sin(THREE.MathUtils.degToRad(30) / 2) * 0.94;
+  const fov0 = THREE.MathUtils.degToRad(30);
+  const fovH0 = 2 * Math.atan(Math.tan(fov0 / 2) * Math.max(0.6, host.clientWidth / Math.max(1, host.clientHeight)));
+  const distTot = esfTot.radius / Math.sin(Math.min(fov0, fovH0) / 2) * 1.06;
   CAM0.set(0.58, 0.30, 0.86).normalize().multiplyScalar(distTot).add(MIRA0);
   cam.position.copy(CAM0);
   // el piso se apoya en la base del modelo
@@ -131,7 +133,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     fantasma.color = base.color.clone().lerp(new THREE.Color(0xE9EDEF), 0.55);
     if ('envMapIntensity' in fantasma) fantasma.envMapIntensity = 0.45;
     if (fantasma.emissive) fantasma.emissive = new THREE.Color(0x000000);
-    piezas.push({ mesh: o, base, foco, fantasma });
+    piezas.push({ mesh: o, base, foco, fantasma, side: base.side });
   });
   const porMesh = new Map(piezas.map(p => [p.mesh, p]));
 
@@ -166,6 +168,43 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   // ---------------------------------------------------------- estados de la escena
   let explotado = false, corte = false, activo = -1;
 
+  // ---------------------------------------------------------- movimiento
+  let enMov = false, faseMov = 0;
+  function setMovimiento(on) {
+    if (!M.animar) return;
+    enMov = on;
+    if (botones.movimiento) botones.movimiento.classList.toggle('on', on);
+    if (on) {
+      enfocar(null); activo = -1;
+      puntos.forEach(q => q.el.classList.remove('on'));
+      document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on'));
+      setCorte(false); setExplotar(false, 400);
+      ctl.autoRotate = false; clearTimeout(reanudar);
+      faseMov = 0;
+      // encuadrar el recorrido completo, no solo la posicion de reposo
+      M.animar(0.5); M.raiz.updateMatrixWorld(true);
+      const caja = new THREE.Box3();
+      M.raiz.traverse(o => { if (o.isMesh && o.visible && !anatPiezas.includes(o)) caja.expandByObject(o); });
+      M.animar(0); M.raiz.updateMatrixWorld(true);
+      const c2 = new THREE.Box3();
+      M.raiz.traverse(o => { if (o.isMesh && o.visible && !anatPiezas.includes(o)) c2.expandByObject(o); });
+      caja.union(c2);
+      const esf = caja.getBoundingSphere(new THREE.Sphere());
+      const fov = THREE.MathUtils.degToRad(cam.fov);
+      const fovH = 2 * Math.atan(Math.tan(fov / 2) * Math.max(0.6, cam.aspect));
+      const d = esf.radius / Math.sin(Math.min(fov, fovH) / 2) * 1.12;
+      ctl.maxDistance = Math.max(ctl.maxDistance, d * 1.6);
+      const dir = cam.position.clone().sub(ctl.target).normalize();
+      const origen = cam.position.clone(), miraO = ctl.target.clone();
+      const mira = esf.center.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
+      animandoCam = true;
+      tween(720, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } }, () => { animandoCam = false; });
+    } else {
+      M.animar(null);
+    }
+    if (alCambiar) alCambiar(on ? -4 : -1, on ? { titulo: 'En movimiento', texto: M.movimiento || '' } : null, '');
+  }
+
   let kExplo = 0;
   function setExplotar(on, ms = 850) {
     if (explotado === on) return;
@@ -173,19 +212,24 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     const k0 = kExplo, k1 = on ? 1 : 0;
     tween(ms, t => { kExplo = k0 + (k1 - k0) * t; M.explotar(kExplo); });
     if (botones.explotar) botones.explotar.classList.toggle('on', on);
+    if (on && enMov) setMovimiento(false);
   }
 
   const planoLocal = new THREE.Plane(new THREE.Vector3(-1, 0, 0), 0);
   const plano = new THREE.Plane();
-  const hayCorte = M.tapas && M.tapas.length > 0;
   function setCorte(on) {
-    if (!hayCorte) on = false;
     if (corte === on) return;
     corte = on;
     for (const p of piezas) {
-      for (const mat of [p.base, p.foco, p.fantasma]) { mat.clippingPlanes = on ? [plano] : null; mat.clipShadows = true; mat.needsUpdate = true; }
+      for (const mat of [p.base, p.foco, p.fantasma]) {
+        mat.clippingPlanes = on ? [plano] : null;
+        mat.clipShadows = true;
+        // al cortar se ven las caras internas: el solido no queda hueco
+        mat.side = on ? THREE.DoubleSide : p.side;
+        mat.needsUpdate = true;
+      }
     }
-    M.tapas.forEach(t => { t.visible = on; });
+    if (M.tapas) M.tapas.forEach(t => { t.visible = on; });
     if (botones.corte) botones.corte.classList.toggle('on', on);
   }
 
@@ -265,6 +309,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (panelTitulo) panelTitulo.textContent = p.titulo;
     if (panelTexto) panelTexto.textContent = p.texto;
 
+    if (enMov) setMovimiento(false);
     if (contexto !== 'solo') { contexto = 'solo'; if (anat) anat.visible = false; if (silueta) silueta.visible = false; marcarContexto(); }
     setCorte(p.modo === 'corte');
     enfocar(p.focos);
@@ -307,6 +352,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     puntos.forEach(q => q.el.classList.remove('on'));
     document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on'));
     setCorte(false); setExplotar(false); enfocar(null);
+    if (enMov) setMovimiento(false);
     if (contexto !== 'solo') { contexto = 'solo'; if (anat) anat.visible = false; if (silueta) silueta.visible = false; marcarContexto(); }
     if (panelTitulo) panelTitulo.textContent = 'Tocá un punto del modelo';
     if (panelTexto) panelTexto.textContent = 'Cada número señala una parte del sistema. Arrastrá para girar, usá la rueda o pellizcá para acercar.';
@@ -322,15 +368,23 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   renderer.domElement.addEventListener('dblclick', () => { if (activo >= 0) reiniciar(); });
 
   if (botones.explotar) botones.explotar.addEventListener('click', () => { enfocar(null); activo = -1; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setExplotar(!explotado); });
-  if (botones.corte && !hayCorte) botones.corte.style.display = 'none';
   if (botones.corte) botones.corte.addEventListener('click', () => { enfocar(null); activo = -1; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setCorte(!corte); });
   if (botones.auto) botones.auto.addEventListener('click', () => setAuto(!autoPermitido));
   if (botones.reset) botones.reset.addEventListener('click', reiniciar);
+  if (botones.movimiento) {
+    if (!M.animar) botones.movimiento.style.display = 'none';
+    else botones.movimiento.addEventListener('click', () => setMovimiento(!enMov));
+  }
+  // sin contexto anatomico el grupo entero desaparece (cementos, instrumental)
+  if (botones.contexto && !anat && botones.contexto.solo) {
+    const g = botones.contexto.solo.closest('.v-grupo');
+    if (g) g.style.display = 'none';
+  }
   if (botones.contexto) {
     for (const k of ['solo', 'hueso', 'cuerpo']) {
       const b = botones.contexto[k];
       if (!b) continue;
-      if (!anat && k !== 'solo') { b.disabled = true; b.classList.add('off'); continue; }
+      if (!anat && k !== 'solo') { b.style.display = 'none'; continue; }
       b.addEventListener('click', () => setContexto(k));
     }
     marcarContexto();
@@ -356,6 +410,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     requestAnimationFrame(cuadro);
     if (!visible) return;
     t += 0.016;
+    if (enMov && M.animar) { faseMov = (faseMov + 0.0042) % 1; M.animar(faseMov); }
     ctl.update();
     if (corte) { M.raiz.updateMatrixWorld(); plano.copy(planoLocal).applyMatrix4(M.raiz.matrixWorld); }
     // pulso del resaltado
@@ -391,5 +446,5 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   }
   cuadro();
   if (alListo) alListo();
-  return { activar, reiniciar, setExplotar, setCorte, setAuto, zoom, setContexto, hayAnatomia: !!anat, puntos: PUNTOS, total: PUNTOS.length };
+  return { activar, reiniciar, setExplotar, setCorte, setAuto, zoom, setContexto, setMovimiento, hayMovimiento: !!M.animar, puntos: PUNTOS, total: PUNTOS.length };
 }

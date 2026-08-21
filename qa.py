@@ -8,6 +8,7 @@ SHOT = ROOT / "_shots"; SHOT.mkdir(exist_ok=True)
 BASE = os.environ.get("QA_BASE", "http://localhost:8899")
 url = lambda f: BASE + "/" + f
 PAGES = ["index.html", "productos.html", "proceso.html", "contacto.html",
+         "institucional.html", "representaciones.html", "educacion.html", "multimedia.html",
          "producto.html?p=mobilelink-dual-mobility", "producto.html?p=optetrak-logic",
          "producto.html?p=bimobile", "producto.html?p=palamix-gun"]
 
