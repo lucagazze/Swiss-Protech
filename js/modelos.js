@@ -37,7 +37,8 @@ export function materiales() {
     mate:      new THREE.MeshStandardMaterial({ color: 0xC9CED2, roughness: 0.55, metalness: 0.85 }),
     poli:      new THREE.MeshPhysicalMaterial({ color: 0xF2D9E4, roughness: 0.30, metalness: 0, clearcoat: 0.55, clearcoatRoughness: 0.22, envMapIntensity: 0.9 }),
     poliInt:   new THREE.MeshPhysicalMaterial({ color: 0xEBC9D7, roughness: 0.22, metalness: 0, clearcoat: 0.6, side: THREE.BackSide }),
-    poliBlanco:new THREE.MeshPhysicalMaterial({ color: 0xF4F1EC, roughness: 0.34, metalness: 0, clearcoat: 0.5, envMapIntensity: 0.85 }),
+    poliBlancoInt: new THREE.MeshPhysicalMaterial({ color: 0xF2F2EF, roughness: 0.32, metalness: 0, clearcoat: 0.45, side: THREE.BackSide }),
+    poliBlanco:new THREE.MeshPhysicalMaterial({ color: 0xFAFAF8, roughness: 0.34, metalness: 0, clearcoat: 0.5, envMapIntensity: 0.85 }),
     cabeza:    new THREE.MeshPhysicalMaterial({ color: 0xDCDFE3, metalness: 1, roughness: 0.05, envMapIntensity: 1.4 }),
     cuello:    new THREE.MeshStandardMaterial({ color: 0xB4B9BD, roughness: 0.5, metalness: 0.75 }),
     agujero:   new THREE.MeshStandardMaterial({ color: 0x33383C, roughness: 0.55, metalness: 0.8 }),
@@ -46,6 +47,7 @@ export function materiales() {
     verde:     new THREE.MeshStandardMaterial({ color: 0x3FA46A, roughness: 0.45, metalness: 0.05 }),
     plastico:  new THREE.MeshPhysicalMaterial({ color: 0xE6EAEC, roughness: 0.25, metalness: 0, transmission: 0.55, thickness: 0.4, envMapIntensity: 1 }),
     oscuro:    new THREE.MeshStandardMaterial({ color: 0x3A4046, roughness: 0.45, metalness: 0.6 }),
+    porosoOsc: new THREE.MeshStandardMaterial({ color: 0x585D62, map, bumpMap: bump, bumpScale: 0.035, roughness: 1.0, metalness: 0.55 }),
   };
 }
 
@@ -56,76 +58,125 @@ const tapaPlano = (geo, mat, y = 0) => {
 };
 
 // ================================================================ COTILO
-// cfg: { dobleMovilidad, cementado, agujeros, colorLiner }
+// cfg: {
+//   tipo: 'poroso' (MobileLink) | 'corona' (Crown Cup) | 'polietileno' (Lubinus Cup)
+//   dobleMovilidad, agujeros, achatado
+// }
 export function cotilo(m, cfg = {}) {
-  const dob = cfg.dobleMovilidad !== false;
-  const cementado = !!cfg.cementado;
-  const nAgujeros = cfg.agujeros === undefined ? 3 : cfg.agujeros;
-  const matExt = cementado ? m.poliBlanco : m.poroso;
+  const tipo = cfg.tipo || 'poroso';
+  const corona = tipo === 'corona';
+  const pe = tipo === 'polietileno';
+  const dob = !!cfg.dobleMovilidad;
+  const nAgujeros = cfg.agujeros === undefined ? (corona ? 4 : 3) : cfg.agujeros;
+  const rAgujero = corona ? 0.20 : 0.082;
+  const achata = cfg.achatado || (pe ? 0.80 : 1);
+
+  const matExt = pe ? m.poliBlanco : (corona ? m.porosoOsc : m.poroso);
+  const matAro = pe ? m.pulido : (corona ? m.mate : m.pulido);
+  const matInt = pe ? m.poliBlancoInt : m.pulidoInt;
 
   const raiz = new THREE.Group();
   const casquete = new THREE.Group(), inserto = new THREE.Group(), cabeza = new THREE.Group();
   raiz.add(casquete, cabeza); if (dob) raiz.add(inserto);
 
   const ext = new THREE.Mesh(hemi(1.0), matExt); ext.castShadow = true;
-  const int = new THREE.Mesh(hemi(0.88), cementado ? m.poliInt : m.pulidoInt);
-  const aro = new THREE.Mesh(new THREE.RingGeometry(0.88, 1.0, 160), cementado ? m.poliBlanco : m.pulido); aro.rotation.x = -Math.PI / 2;
-  const banda = new THREE.Mesh(new THREE.CylinderGeometry(1.002, 1.002, 0.075, 160, 1, true), cementado ? m.poliBlanco : m.pulido); banda.position.y = -0.037;
+  const int = new THREE.Mesh(hemi(0.86), matInt);
+  const aro = new THREE.Mesh(new THREE.RingGeometry(0.86, 1.0, 160), matAro); aro.rotation.x = -Math.PI / 2;
+  const banda = new THREE.Mesh(new THREE.CylinderGeometry(1.004, 1.004, pe ? 0.10 : 0.075, 160, 1, true), matAro);
+  banda.position.y = -(pe ? 0.05 : 0.037);
   casquete.add(ext, int, aro, banda);
+  if (achata !== 1) casquete.scale.y = achata;
 
+  // dientes del borde (Crown Cup) o muescas verticales (Lubinus Cup)
+  const relieve = [];
+  if (corona || pe) {
+    const n = corona ? 16 : 14;
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2;
+      const d = corona
+        ? new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.30, 0.12), m.mate)
+        : new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.34, 0.13), m.poliBlanco);
+      d.position.set(Math.cos(a) * 0.98, corona ? 0.06 : -0.10, Math.sin(a) * 0.98);
+      d.lookAt(0, d.position.y, 0);
+      d.castShadow = true;
+      casquete.add(d); relieve.push(d);
+    }
+  }
+
+  // orificios para tornillos
   const agujeros = [], bordes = [], normales = [];
-  const az = [0, 1.15, -1.15, 2.4].slice(0, nAgujeros);
+  const azBase = corona ? [0, 1.57, 3.14, 4.71] : [0, 1.15, -1.15, 2.4];
+  const az = azBase.slice(0, nAgujeros);
+  const pol = corona ? 0.42 : 0.62;
   for (const a of az) {
-    const n = V(Math.sin(0.62) * Math.cos(a), -Math.cos(0.62), Math.sin(0.62) * Math.sin(a));
+    const n = V(Math.sin(pol) * Math.cos(a), -Math.cos(pol), Math.sin(pol) * Math.sin(a));
     normales.push(n.clone());
-    const cil = new THREE.Mesh(new THREE.CylinderGeometry(0.082, 0.082, 0.16, 40), m.agujero);
-    cil.position.copy(n).multiplyScalar(0.925);
+    // el orificio se lee desde adentro: disco oscuro sobre la cara interna + anillo en la externa
+    const cil = new THREE.Mesh(new THREE.CylinderGeometry(rAgujero, rAgujero * 0.86, 0.16, 40), m.agujero);
+    cil.position.copy(n).multiplyScalar(0.90);
     cil.quaternion.setFromUnitVectors(V(0, 1, 0), n);
-    const bo = new THREE.Mesh(new THREE.TorusGeometry(0.086, 0.011, 12, 48), m.pulido);
-    bo.position.copy(n).multiplyScalar(1.0);
+    const disco = new THREE.Mesh(new THREE.CircleGeometry(rAgujero, 44), m.agujero);
+    disco.position.copy(n).multiplyScalar(0.853);
+    disco.quaternion.setFromUnitVectors(V(0, 0, 1), n.clone().negate());
+    const bo = new THREE.Mesh(new THREE.TorusGeometry(rAgujero * 1.04, rAgujero * 0.14, 12, 48), matAro);
+    bo.position.copy(n).multiplyScalar(0.858);
     bo.quaternion.setFromUnitVectors(V(0, 0, 1), n);
-    casquete.add(cil, bo); agujeros.push(cil); bordes.push(bo);
+    casquete.add(cil, disco, bo); agujeros.push(cil, disco); bordes.push(bo);
   }
 
   let insExt, insInt, insAro;
   if (dob) {
-    insExt = new THREE.Mesh(hemi(0.862), m.poli); insExt.castShadow = true;
-    insInt = new THREE.Mesh(hemi(0.64), m.poliInt);
-    insAro = new THREE.Mesh(new THREE.RingGeometry(0.64, 0.862, 160), m.poli); insAro.rotation.x = -Math.PI / 2;
+    insExt = new THREE.Mesh(hemi(0.845), m.poli); insExt.castShadow = true;
+    insInt = new THREE.Mesh(hemi(0.63), m.poliInt);
+    insAro = new THREE.Mesh(new THREE.RingGeometry(0.63, 0.845, 160), m.poli); insAro.rotation.x = -Math.PI / 2;
     inserto.add(insExt, insInt, insAro);
   }
 
-  const rCab = dob ? 0.60 : 0.80;
+  const rCab = dob ? 0.59 : 0.74;
   const esfera = new THREE.Mesh(new THREE.SphereGeometry(rCab, 96, 64), m.cabeza); esfera.castShadow = true;
   const cuello = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.21, 0.62, 48), m.cuello);
   cuello.position.y = rCab - 0.02; cuello.castShadow = true;
   cabeza.add(esfera, cuello);
 
   const tapas = [
-    tapaPlano(new THREE.RingGeometry(0.88, 1.0, 96, 1, Math.PI, Math.PI), cementado ? m.poliBlanco : m.pulido),
+    tapaPlano(new THREE.RingGeometry(0.86, 1.0, 96, 1, Math.PI, Math.PI), matAro),
     tapaPlano(new THREE.CircleGeometry(rCab, 96), m.cabeza),
   ];
   casquete.add(tapas[0]); cabeza.add(tapas[1]);
-  if (dob) { const t = tapaPlano(new THREE.RingGeometry(0.64, 0.862, 96, 1, Math.PI, Math.PI), m.poli); inserto.add(t); tapas.push(t); }
+  if (dob) { const t = tapaPlano(new THREE.RingGeometry(0.63, 0.845, 96, 1, Math.PI, Math.PI), m.poli); inserto.add(t); tapas.push(t); }
 
   inserto.position.y = 0.02; cabeza.position.y = 0.04;
-  raiz.rotation.z = -0.62; raiz.rotation.y = 0.25;
+  // en reposo se muestra solo el casquete, como en la foto de catalogo
+  cabeza.visible = false; inserto.visible = false;
+  raiz.rotation.x = 0.92; raiz.rotation.y = 0.45; raiz.rotation.z = 0.10;
 
-  const explotar = k => { inserto.position.y = 0.02 + 1.03 * k; cabeza.position.y = 0.04 + 2.06 * k; };
+  const explotar = k => {
+    const on = k > 0.001;
+    cabeza.visible = on; inserto.visible = on && dob;
+    inserto.position.y = 0.02 + 1.03 * k;
+    cabeza.position.y = 0.04 + 2.06 * k;
+  };
+
+  const TXT_EXT = {
+    poroso: ['Casquete de titanio poroso', 'Superficie porosa para la fijacion biologica sin cemento. El hueso crece dentro de la estructura y asegura el implante a largo plazo.'],
+    corona: ['Casquete con superficie rugosa', 'La textura rugosa de titanio maximiza la superficie de contacto con el hueso y promueve la fijacion biologica sin cemento.'],
+    polietileno: ['Cotilo de polietileno UHMWPE', 'Cotilo cementado de polietileno de peso molecular ultra alto. La estabilidad se logra en el manto de cemento, sin necesidad de crecimiento oseo.'],
+  }[tipo];
+  const TXT_ARO = {
+    poroso: ['Aro pulido con press-fit integrado', 'El diseno incorpora un press-fit de 1,6 mm para la estabilidad primaria inmediata al impactar el cotilo en el acetabulo.'],
+    corona: ['Dientes perifericos de anclaje', 'Los dientes del borde muerden el hueso esponjoso al impactar el cotilo: dan estabilidad rotacional inmediata y evitan el micromovimiento.'],
+    polietileno: ['Muescas antirrotacion y anillo radiopaco', 'Las muescas verticales se anclan en el cemento e impiden que el cotilo rote. El anillo metalico permite controlar la posicion en la radiografia.'],
+  }[tipo];
 
   const puntos = [
-    { titulo: cementado ? 'Cotilo de polietileno' : 'Casquete de titanio poroso',
-      texto: cementado
-        ? 'Cotilo cementado fabricado con UHMWPE. La estabilidad directa se logra en el revestimiento de cemento.'
-        : 'Superficie porosa para la fijación biológica sin cemento. El hueso crece dentro de la estructura y asegura el implante a largo plazo.',
-      obj: casquete, pos: V(0.30, -0.86, 0.40), focos: [ext], camLocal: V(0.42, -0.50, 0.76), margen: 1.75, modo: 'normal' },
-    { titulo: cementado ? 'Aro autorretentivo' : 'Aro pulido con press-fit integrado',
-      texto: cementado
-        ? 'El borde autorretentivo aumenta la cobertura de la cabeza y ayuda a evitar la luxación.'
-        : 'El diseño incorpora un press-fit de 1,6 mm para la estabilidad primaria inmediata al impactar el cotilo en el acetábulo.',
-      obj: casquete, pos: V(0.98, -0.03, 0.22), focos: [aro, banda], camLocal: V(0.60, 0.20, 0.77), margen: 1.55, modo: 'normal' },
-    { titulo: 'Superficie interna pulida',
-      texto: 'Minimiza el desgaste del componente que articula dentro del cotilo y prolonga la vida útil del implante. Se muestra el corte para ver el interior.',
+    { titulo: TXT_EXT[0], texto: TXT_EXT[1], obj: casquete, pos: V(0.30, -0.86, 0.40), focos: [ext],
+      camLocal: V(0.42, -0.50, 0.76), margen: 1.75, modo: 'normal' },
+    { titulo: TXT_ARO[0], texto: TXT_ARO[1], obj: casquete, pos: V(0.98, -0.03, 0.22),
+      focos: relieve.length ? [aro, banda].concat(relieve) : [aro, banda], camLocal: V(0.60, 0.20, 0.77), margen: 1.55, modo: 'normal' },
+    { titulo: pe ? 'Superficie articular concava' : 'Superficie interna pulida',
+      texto: pe
+        ? 'La cara concava de polietileno recibe directamente la cabeza femoral. Su acabado define el desgaste a lo largo de los anos.'
+        : 'Minimiza el desgaste del componente que articula dentro del cotilo y prolonga la vida util del implante. Se muestra el corte para ver el interior.',
       obj: casquete, pos: V(-0.34, -0.50, 0.62), focos: [int], camLocal: V(0.10, 0.62, 0.78), margen: 1.25, modo: 'corte' },
   ];
   if (dob) puntos.push({
@@ -133,18 +184,20 @@ export function cotilo(m, cfg = {}) {
     texto: 'Convierte el cotilo en un sistema modular de movilidad dual y aloja los revestimientos de polietileno del sistema BiMobile.',
     obj: inserto, pos: V(0.70, -0.16, 0.42), focos: [insExt, insAro, insInt], camLocal: V(0.48, 0.44, 0.76), margen: 2.10, modo: 'explotar' });
   puntos.push({
-    titulo: dob ? 'Cabeza femoral de doble articulación' : 'Cabeza femoral',
+    titulo: dob ? 'Cabeza femoral de doble articulacion' : 'Cabeza femoral',
     texto: dob
-      ? 'La cabeza articula dentro del revestimiento y el revestimiento dentro del cotilo: mayor rango de movilidad y menor riesgo de luxación.'
+      ? 'La cabeza articula dentro del revestimiento y el revestimiento dentro del cotilo: mayor rango de movilidad y menor riesgo de luxacion.'
       : 'La cabeza femoral articula directamente contra la superficie interna del cotilo.',
     obj: cabeza, pos: V(0.44, 0.16, 0.38), focos: [esfera, cuello], camLocal: V(0.42, 0.40, 0.81), margen: 1.85, modo: 'explotar' });
   if (nAgujeros) puntos.push({
-    titulo: 'Orificios para tornillos',
-    texto: 'Permiten fijación adicional con tornillos cuando la calidad ósea lo requiere. Se cierran con tapones cuando no se utilizan.',
-    obj: casquete, pos: normales[0].clone().multiplyScalar(1.02), focos: [...agujeros, ...bordes],
+    titulo: corona ? 'Orificios de fijacion con tornillos' : 'Orificios para tornillos',
+    texto: corona
+      ? 'Cuatro orificios amplios permiten atornillar el cotilo al hueso iliaco cuando la calidad osea o el defecto lo exigen.'
+      : 'Permiten fijacion adicional con tornillos cuando la calidad osea lo requiere. Se cierran con tapones cuando no se utilizan.',
+    obj: casquete, pos: normales[0].clone().multiplyScalar(1.02), focos: agujeros.concat(bordes),
     camLocal: normales[0].clone().add(V(0, 0.55, 0.25)).normalize(), margen: 2.30, modo: 'normal' });
 
-  return { raiz, tapas, puntos, explotar };
+  return { raiz, tapas, puntos, explotar, anatomia: 'pelvis' };
 }
 
 // ================================================================ VÁSTAGO FEMORAL
@@ -248,7 +301,7 @@ export function vastago(m, cfg = {}) {
     texto: 'El cuerpo proximal y el vástago distal se ensamblan en cirugía: permite ajustar largo, versión y offset sobre el defecto óseo real.',
     obj: raiz, pos: V(0.0, -1.15, 0.22), focos: [anillo, distal], camLocal: V(0.42, 0.10, 0.90), margen: 1.9, modo: 'explotar' });
 
-  return { raiz, tapas, puntos, explotar };
+  return { raiz, tapas, puntos, explotar, anatomia: 'femurProximal' };
 }
 
 // ================================================================ RODILLA
@@ -379,7 +432,7 @@ export function rodilla(m, cfg = {}) {
     obj: raiz, pos: V(0, 1.5, 0.20), focos: [vastFem, quilla],
     camLocal: V(0.44, 0.20, 0.87), margen: 1.6, modo: 'explotar' });
 
-  return { raiz, tapas, puntos, explotar };
+  return { raiz, tapas, puntos, explotar, anatomia: 'femurTibia' };
 }
 
 // ================================================================ CEMENTOS Y MEZCLA
@@ -504,7 +557,7 @@ export function cemento(m, cfg = {}) {
     ];
   }
 
-  return { raiz, tapas, puntos, explotar };
+  return { raiz, tapas, puntos, explotar, anatomia: 'campo' };
 }
 
 export const CONSTRUCTORES = { cotilo, vastago, rodilla, cemento };

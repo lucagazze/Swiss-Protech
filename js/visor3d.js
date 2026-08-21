@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from '../vendor/OrbitControls.js';
 import { RoomEnvironment } from '../vendor/RoomEnvironment.js';
 import { CONSTRUCTORES, materiales } from './modelos.js';
+import { ANATOMIAS, materialHueso, cuerpo as siluetaCuerpo } from './anatomia.js';
 
 const TEAL = new THREE.Color(0x0095A1);
 const TEAL_CLARO = new THREE.Color(0x5BC2C9);
@@ -59,9 +60,33 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   escena.add(M.raiz);
   const PUNTOS = M.puntos;
 
+  // contexto anatomico (oculto hasta que se pide)
+  let anat = null, anatPiezas = [], silueta = null, zonaCuerpo = null;
+  if (M.anatomia && ANATOMIAS[M.anatomia]) {
+    const mh = materialHueso();
+    const a = ANATOMIAS[M.anatomia](mh);
+    anat = a.grupo; anatPiezas = a.piezas.concat(a.referencia || []);
+    anat.visible = false;
+    M.raiz.add(anat);
+
+    zonaCuerpo = M.anatomia === 'femurTibia' ? 'rodilla' : 'cadera';
+    if (M.anatomia !== 'campo') {
+      const c = siluetaCuerpo(zonaCuerpo);
+      silueta = c.grupo;
+      // la silueta va en el espacio de la escena, no rotada con el implante
+      const escala = M.anatomia === 'femurTibia' ? 1.05 : 1.35;
+      silueta.scale.setScalar(escala);
+      silueta.position.y = M.anatomia === 'femurTibia' ? -0.2 : -2.9;
+      silueta.visible = false;
+      escena.add(silueta);
+      anatPiezas = anatPiezas.concat(c.piezas);
+    }
+  }
+
   // encuadre inicial segun el tamano real del modelo
   M.raiz.updateMatrixWorld(true);
-  const cajaTot = new THREE.Box3().setFromObject(M.raiz);
+  const cajaTot = new THREE.Box3();
+  M.raiz.traverse(o => { if (o.isMesh && !anatPiezas.includes(o)) cajaTot.expandByObject(o); });
   const esfTot = cajaTot.getBoundingSphere(new THREE.Sphere());
   MIRA0.copy(esfTot.center);
   const distTot = esfTot.radius / Math.sin(THREE.MathUtils.degToRad(30) / 2) * 0.94;
@@ -72,7 +97,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
 
   const ctl = new OrbitControls(cam, renderer.domElement);
   ctl.enableDamping = true; ctl.dampingFactor = 0.07; ctl.enablePan = false;
-  ctl.minDistance = distTot * 0.32; ctl.maxDistance = distTot * 2.6; ctl.minPolarAngle = 0.22; ctl.maxPolarAngle = 1.62;
+  ctl.minDistance = distTot * 0.32; ctl.maxDistance = distTot * 2.6; ctl.minPolarAngle = 0; ctl.maxPolarAngle = Math.PI;
   ctl.target.copy(MIRA0); ctl.autoRotate = true; ctl.autoRotateSpeed = hero ? 1.0 : 0.8;
 
   let autoPermitido = true, reanudar = null, animandoCam = false;
@@ -154,6 +179,56 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (botones.corte) botones.corte.classList.toggle('on', on);
   }
 
+  let verAnat = false, verCuerpo = false;
+  function setCuerpo(on) {
+    if (!silueta) return;
+    verCuerpo = on; silueta.visible = on && verAnat;
+    if (botones.cuerpo) botones.cuerpo.classList.toggle('on', on);
+    if (on && verAnat) {
+      const caja = new THREE.Box3().setFromObject(silueta);
+      const esf = caja.getBoundingSphere(new THREE.Sphere());
+      const fov = THREE.MathUtils.degToRad(cam.fov);
+      const d = esf.radius / Math.sin(fov / 2) * 1.02;
+      ctl.maxDistance = Math.max(ctl.maxDistance, d * 1.5);
+      const dir = cam.position.clone().sub(ctl.target).normalize();
+      const origen = cam.position.clone(), miraO = ctl.target.clone();
+      const mira = esf.center.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
+      animandoCam = true;
+      tween(850, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } }, () => { animandoCam = false; });
+    }
+  }
+
+  function setAnatomia(on) {
+    if (!anat) return;
+    verAnat = on; anat.visible = on;
+    if (silueta) silueta.visible = on && verCuerpo;
+    if (botones.cuerpo) botones.cuerpo.style.display = on ? '' : 'none';
+    if (botones.anatomia) botones.anatomia.classList.toggle('on', on);
+    if (on) {
+      enfocar(null); activo = -1;
+      puntos.forEach(q => q.el.classList.remove('on'));
+      document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on'));
+      setExplotar(false); setCorte(false);
+      // alejar para que entre el hueso
+      M.raiz.updateMatrixWorld(true);
+      const caja = new THREE.Box3().setFromObject(anat);
+      const esf = caja.getBoundingSphere(new THREE.Sphere());
+      const fov = THREE.MathUtils.degToRad(cam.fov);
+      const d = esf.radius / Math.sin(fov / 2) * 1.06;
+      const dir = cam.position.clone().sub(ctl.target).normalize();
+      const origen = cam.position.clone(), miraO = ctl.target.clone();
+      const mira = esf.center.clone(), destino = mira.clone().add(dir.multiplyScalar(d));
+      ctl.maxDistance = Math.max(ctl.maxDistance, d * 1.4);
+      animandoCam = true;
+      tween(800, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraO, mira, k); } }, () => { animandoCam = false; });
+    } else {
+      verCuerpo = false;
+      if (botones.cuerpo) botones.cuerpo.classList.remove('on');
+      reiniciar();
+    }
+    if (alCambiar) alCambiar(on ? -2 : -1, null);
+  }
+
   function setAuto(on) {
     autoPermitido = on; ctl.autoRotate = on;
     if (botones.auto) botones.auto.classList.toggle('on', on);
@@ -188,6 +263,9 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (panelTitulo) panelTitulo.textContent = p.titulo;
     if (panelTexto) panelTexto.textContent = p.texto;
 
+    if (verAnat) { verAnat = false; anat.visible = false; if (silueta) silueta.visible = false;
+      if (botones.anatomia) botones.anatomia.classList.remove('on');
+      if (botones.cuerpo) { botones.cuerpo.style.display = 'none'; botones.cuerpo.classList.remove('on'); } }
     setCorte(p.modo === 'corte');
     enfocar(p.focos);
     if (alCambiar) alCambiar(i, p);
@@ -206,7 +284,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     // cámara: dirección local del punto llevada al mundo
     M.raiz.getWorldQuaternion(qTmp);
     const dir = p.camLocal.clone().normalize().applyQuaternion(qTmp).normalize();
-    if (dir.y < 0.12) { dir.y = 0.12; dir.normalize(); }        // nunca por debajo del piso
+    
 
     const fov = THREE.MathUtils.degToRad(cam.fov);
     const aspecto = Math.max(0.6, cam.aspect);
@@ -246,6 +324,9 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   if (botones.corte) botones.corte.addEventListener('click', () => { enfocar(null); activo = -1; puntos.forEach(q => q.el.classList.remove('on')); document.querySelectorAll('.hs-item').forEach(el => el.classList.remove('on')); setCorte(!corte); });
   if (botones.auto) botones.auto.addEventListener('click', () => setAuto(!autoPermitido));
   if (botones.reset) botones.reset.addEventListener('click', reiniciar);
+  if (botones.anatomia && !anat) botones.anatomia.style.display = 'none';
+  if (botones.anatomia) botones.anatomia.addEventListener('click', () => setAnatomia(!verAnat));
+  if (botones.cuerpo) { botones.cuerpo.style.display = 'none'; botones.cuerpo.addEventListener('click', () => setCuerpo(!verCuerpo)); }
   if (botones.zoomMas) botones.zoomMas.addEventListener('click', () => zoom(0.72));
   if (botones.zoomMenos) botones.zoomMenos.addEventListener('click', () => zoom(1.38));
   if (botones.siguiente) botones.siguiente.addEventListener('click', () => activar((activo + 1) % PUNTOS.length));
@@ -301,5 +382,5 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
   }
   cuadro();
   if (alListo) alListo();
-  return { activar, reiniciar, setExplotar, setCorte, setAuto, zoom, puntos: PUNTOS, total: PUNTOS.length };
+  return { activar, reiniciar, setExplotar, setCorte, setAuto, zoom, setAnatomia, setCuerpo, hayAnatomia: !!anat, puntos: PUNTOS, total: PUNTOS.length };
 }
