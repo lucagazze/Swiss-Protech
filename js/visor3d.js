@@ -74,13 +74,19 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       const c = siluetaCuerpo(zonaCuerpo);
       silueta = c.grupo;
       // la silueta va en el espacio de la escena, no rotada con el implante
-      // la silueta se escala y se calza para que su zona marcada coincida con el implante
+      // escala anatomica real: un cotilo mide ~5 cm y una persona ~170 cm
+      const CM_IMPLANTE = { pelvis: 5, femurProximal: 15, femurTibia: 16 };
+      const ALTURA_PERSONA_CM = 170;
       M.raiz.updateMatrixWorld(true);
-      const cajaImp = new THREE.Box3().setFromObject(anat);
+      const cajaImp = new THREE.Box3();
+      M.raiz.traverse(o => { if (o.isMesh && !anatPiezas.includes(o)) cajaImp.expandByObject(o); });
       const esfImp = cajaImp.getBoundingSphere(new THREE.Sphere());
-      const escala = esfImp.radius / (M.anatomia === 'femurTibia' ? 2.6 : 1.9);
-      silueta.scale.setScalar(escala);
-      silueta.position.copy(esfImp.center);
+      const cajaSil = new THREE.Box3().setFromObject(silueta);
+      const altoSil = Math.max(0.001, cajaSil.max.y - cajaSil.min.y);
+      const cmImp = CM_IMPLANTE[M.anatomia] || 10;
+      const altoPersona = (esfImp.radius * 2) * (ALTURA_PERSONA_CM / cmImp);
+      silueta.scale.setScalar(altoPersona / altoSil);
+      silueta.position.copy(esfImp.center);      // la zona marcada calza con el implante
       silueta.visible = false;
       escena.add(silueta);
       anatPiezas = anatPiezas.concat(c.piezas);
@@ -115,10 +121,10 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (!o.isMesh || M.tapas.includes(o)) return;
     const base = o.material;
     const foco = base.clone();
-    foco.color = base.color.clone().lerp(TEAL, 0.78);
-    if (foco.emissive) { foco.emissive = TEAL_CLARO.clone(); foco.emissiveIntensity = 0.5; }
-    if ('metalness' in foco) foco.metalness = Math.min(foco.metalness, 0.22);
-    if ('roughness' in foco) foco.roughness = 0.5;
+    foco.color = base.color.clone().lerp(TEAL, 0.46);
+    if (foco.emissive) { foco.emissive = TEAL.clone(); foco.emissiveIntensity = 0.30; }
+    if ('metalness' in foco) foco.metalness = Math.max(0.42, Math.min(foco.metalness, 0.72));
+    if ('roughness' in foco) foco.roughness = Math.min(foco.roughness, 0.62);
     foco.transparent = false; foco.opacity = 1; foco.depthWrite = true;
     const fantasma = base.clone();
     fantasma.transparent = true; fantasma.opacity = 0.30; fantasma.depthWrite = false;
@@ -262,7 +268,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (contexto !== 'solo') { contexto = 'solo'; if (anat) anat.visible = false; if (silueta) silueta.visible = false; marcarContexto(); }
     setCorte(p.modo === 'corte');
     enfocar(p.focos);
-    if (alCambiar) alCambiar(i, p);
+    if (alCambiar) alCambiar(i, p, i + 1);
 
     // medir la pieza EN SU POSICION FINAL para encuadrarla bien
     const abierto = p.modo === 'explotar';
@@ -283,9 +289,10 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     const fov = THREE.MathUtils.degToRad(cam.fov);
     const aspecto = Math.max(0.6, cam.aspect);
     const fovH = 2 * Math.atan(Math.tan(fov / 2) * aspecto);
-    const radio = Math.max(0.35, esfera.radius) * (p.margen || 1.8);
+    const radio = Math.max(0.35, esfera.radius) * (p.margen || 1.8) * 0.82;
     const dist = THREE.MathUtils.clamp(radio / Math.sin(Math.min(fov, fovH) / 2), ctl.minDistance, ctl.maxDistance);
     const mira = esfera.center.clone();
+    mira.y += esfera.radius * 0.16;   // deja aire arriba para la tarjeta de texto
     const destino = mira.clone().add(dir.multiplyScalar(dist));
     const origen = cam.position.clone(), miraOrigen = ctl.target.clone();
     ctl.autoRotate = false; clearTimeout(reanudar); animandoCam = true;
@@ -353,7 +360,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (corte) { M.raiz.updateMatrixWorld(); plano.copy(planoLocal).applyMatrix4(M.raiz.matrixWorld); }
     // pulso del resaltado
     if (enfocadas) {
-      const k = 0.45 + Math.sin(t * 3.1) * 0.22;
+      const k = 0.26 + Math.sin(t * 3.1) * 0.13;
       for (const p of piezas) if (enfocadas.has(p.mesh) && p.foco.emissive) p.foco.emissiveIntensity = k;
     }
     renderer.render(escena, cam);
@@ -374,11 +381,12 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       const esActivo = puntos[activo] === p;
       let op;
       if (esActivo) op = 1;                                  // el elegido siempre se ve
-      else if (activo >= 0) op = detras ? 0 : 0.22;          // los demas se apagan
-      else op = detras ? 0 : (cara < 0.05 ? 0.4 : 1);
+      else if (detras) op = 0;                               // el que mira para el otro lado, no
+      else if (activo >= 0) op = 0.5;                        // los demas quedan atenuados pero se pueden tocar
+      else op = cara < 0.05 ? 0.45 : 1;
       p.el.style.opacity = String(op);
-      p.el.style.pointerEvents = op < 0.3 ? 'none' : 'auto';
-      p.el.style.zIndex = esActivo ? '4' : '2';
+      p.el.style.pointerEvents = op < 0.05 ? 'none' : 'auto';
+      p.el.style.zIndex = esActivo ? '5' : '4';
     }
   }
   cuadro();

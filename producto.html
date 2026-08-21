@@ -77,6 +77,20 @@
   @media (max-width: 760px) { .v-grupo { gap: 5px; padding: 5px; } .v-btn { height: 36px; padding: 0 10px; } .v-btn .lbl { display: none; } .v-grupo .rot { display: none; } .v-zoom { right: 10px; } .v-ctx { left: 10px; } }
   .v-btn.on { background: var(--teal); border-color: var(--teal); color: #fff; } .v-btn.on svg { stroke: #fff; }
   .v-btn svg { stroke: var(--teal); }
+  .v-info { position: absolute; left: 50%; transform: translateX(-50%) translateY(-8px); top: 62px; z-index: 5;
+            width: min(430px, calc(100% - 130px)); display: none; gap: 12px; align-items: flex-start;
+            background: rgba(255,255,255,.96); border: 1px solid #DDE6E8; border-left: 3px solid var(--teal);
+            padding: 13px 15px; border-radius: 12px; backdrop-filter: blur(10px);
+            box-shadow: 0 12px 30px -12px rgba(16,34,42,.30); opacity: 0; transition: opacity .3s, transform .3s; }
+  .v-info.on { display: flex; opacity: 1; transform: translateX(-50%) translateY(0); }
+  .v-info .n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); color: #fff;
+               font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .v-info b { display: block; font-size: 14.5px; letter-spacing: -0.015em; line-height: 1.3; }
+  .v-info p { margin: 5px 0 0; font-size: 12.5px; color: var(--txt); line-height: 1.55; }
+  .v-info .x { flex: none; border: 0; background: transparent; cursor: pointer; color: var(--mut); padding: 2px; line-height: 0; }
+  .v-info .x:hover { color: var(--ink); }
+  @media (max-width: 760px) { .v-info { top: 56px; width: calc(100% - 110px); padding: 11px 12px; }
+    .v-info p { font-size: 11.5px; } .v-info b { font-size: 13px; } }
   .v-full { position: absolute; top: 16px; right: 16px; z-index: 4; width: 40px; height: 40px; border-radius: 50%;
             border: 1px solid #DDE6E8; background: rgba(255,255,255,.94); display: flex; align-items: center; justify-content: center;
             cursor: pointer; backdrop-filter: blur(10px); box-shadow: 0 6px 18px -8px rgba(16,34,42,.22); transition: background .25s, border-color .25s; }
@@ -232,8 +246,14 @@
             <button class="v-full" id="v-full" type="button" aria-label="Pantalla completa" title="Pantalla completa">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg>
             </button>
+            <div class="v-info" id="v-info">
+              <span class="n" id="v-info-n">1</span>
+              <div style="min-width: 0;"><b id="v-info-t"></b><p id="v-info-p"></p></div>
+              <button class="x" id="v-info-x" type="button" aria-label="Cerrar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+              </button>
+            </div>
             <div class="hs-layer" id="hs-layer"></div>
-            <span class="v-estado" id="v-estado"></span>
             <div class="v-grupo v-ctx">
               <span class="rot">Contexto</span>
               <button class="v-btn on" id="v-solo" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><path d="M3.3 7L12 12l8.7-5M12 22V12"></path></svg><span class="lbl">Producto</span></button>
@@ -465,16 +485,21 @@
         panelTitulo: $('#v-titulo'), panelTexto: $('#v-texto'),
         botones: { explotar: $('#v-explotar'), corte: $('#v-corte'), auto: $('#v-auto'), zoomMas: $('#v-zoomin'), zoomMenos: $('#v-zoomout'), contexto: { solo: $('#v-solo'), hueso: $('#v-anatomia'), cuerpo: $('#v-cuerpo') } },
         alListo: () => { $('#v-cargando').remove(); },
-        alCambiar: (i, p) => {
-          const est = $('#v-estado');
-          if (!est) return;
-          if (i === -2) { est.textContent = 'Colocado en el hueso'; est.style.opacity = '1'; return; }
-          if (i === -3) { est.textContent = 'Ubicación en el paciente'; est.style.opacity = '1'; return; }
-          est.textContent = i < 0 ? '' : (p.modo === 'corte' ? 'Vista en corte activada' : p.modo === 'explotar' ? 'Vista explotada activada' : 'Parte resaltada');
-          est.style.opacity = i < 0 ? '0' : '1';
+        alCambiar: (i, p, n) => {
+          const info = $('#v-info');
+          if (!info) return;
+          if (i < 0 || !p) { info.classList.remove('on'); return; }
+          $('#v-info-n').textContent = n;
+          $('#v-info-t').textContent = p.titulo;
+          $('#v-info-p').textContent = p.texto;
+          info.classList.add('on');
         },
       });
       if (!api) { $('#v-cargando').querySelector('span').textContent = 'Tu navegador no admite 3D — mirá las fotos y el video.'; return; }
+      $('#v-info-x').addEventListener('click', () => {
+        $('#v-info').classList.remove('on');
+        api.reiniciar();
+      });
       $('#hs-list').innerHTML = api.puntos.map((p, i) => `<button type="button" class="hs-item" data-i="${i}"><i>${i + 1}</i>${p.titulo}</button>`).join('');
       document.querySelectorAll('.hs-item').forEach(b => b.addEventListener('click', () => api.activar(+b.dataset.i)));
     }).catch(err => { console.error(err); $('#v-cargando').querySelector('span').textContent = 'No se pudo cargar el modelo 3D — mirá las fotos y el video.'; });
