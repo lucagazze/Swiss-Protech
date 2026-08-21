@@ -128,6 +128,18 @@ html { scroll-behavior: smooth; }
 }
 """
 
+HERO3D_CSS = """
+#hero3d canvas { border-radius: 8px; }
+.h3-btn { display: inline-flex; align-items: center; gap: 8px; font-family: inherit; font-size: 13px;
+          font-weight: 600; color: #10222A; background: #FFFFFF; border: 1px solid #DDE3E5;
+          padding: 10px 16px; border-radius: 99px; cursor: pointer; min-height: 42px;
+          transition: border-color .25s, background .25s, color .25s; text-decoration: none; }
+.h3-btn:hover { border-color: #0095A1; color: #0095A1; }
+.h3-btn.on { background: rgba(0,149,161,.08); border-color: #0095A1; color: #0095A1; }
+.h3-cta { background: #0095A1; border-color: #0095A1; color: #FFFFFF; }
+.h3-cta:hover { background: #007C87; border-color: #007C87; color: #FFFFFF; }
+"""
+
 BURGER_CSS = """
 .burger { display: none; width: 44px; height: 44px; border-radius: 6px; border: 1px solid #E3E7E9;
           align-items: center; justify-content: center; cursor: pointer; flex: none; }
@@ -344,6 +356,35 @@ JS_MAIN = """
     t.addEventListener('click', function(){ clearInterval(timer); i = k; pintar(); });
   });
   pintar(); auto();
+
+  // ---- visor 3D en el hero (reemplaza las fotos si el navegador lo permite)
+  var host = document.getElementById('hero3d');
+  if (!host || !window.WebGLRenderingContext) return;
+  import('./js/visor3d.js').then(function(mod){
+    var api = mod.montarVisor({ host: host, hero: true,
+      botones: { explotar: document.getElementById('h3-explotar'), auto: document.getElementById('h3-auto') } });
+    if (!api) return;
+    clearInterval(timer);
+    slots.forEach(function(s){ s.style.display = 'none'; });
+    var scan = document.querySelector('#hero-stage .scan'); if (scan) scan.style.display = 'none';
+    document.getElementById('heroLinea').textContent  = 'Cadera · Modelo 3D interactivo';
+    document.getElementById('heroNombre').textContent = 'MobileLink Dual Mobility';
+    document.getElementById('heroMarca').textContent  = 'Arrastrá para girar · rueda o pellizcá para acercar';
+    var th = document.getElementById('hero-thumbs');
+    th.innerHTML =
+      '<button type="button" id="h3-explotar" class="h3-btn">'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v6M12 15v6M5 12h5M14 12h5"/></svg>Vista explotada</button>'
+      + '<button type="button" id="h3-auto" class="h3-btn on">'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Giro automático</button>'
+      + '<a class="h3-btn h3-cta" href="producto.html?p=mobilelink-dual-mobility">Explorar en detalle'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
+    th.style.flexWrap = 'wrap'; th.style.justifyContent = 'center';
+    var ex = document.getElementById('h3-explotar'), au = document.getElementById('h3-auto');
+    var abierto = false, girando = true;
+    ex.addEventListener('click', function(){ abierto = !abierto; api.setExplotar(abierto); ex.classList.toggle('on', abierto); });
+    au.addEventListener('click', function(){ girando = !girando; api.setAuto(girando); au.classList.toggle('on', girando); });
+    document.getElementById('hero-pie').textContent = '21 productos en catálogo · 3 líneas · modelo técnico del sistema';
+  }).catch(function(e){ console.error('hero 3D:', e); });
 })();
 """
 
@@ -420,6 +461,7 @@ PLANTILLA = """<!doctype html>
 <meta property="og:description" content="__DESC__">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/logo.png">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
 __LINKS__
 <style>
 __CSS__
@@ -475,7 +517,7 @@ def main():
         html = (PLANTILLA
                 .replace("__TITLE__", title).replace("__DESC__", desc)
                 .replace("__LINKS__", links).replace("__CSS__", css)
-                .replace("__BURGER__", BURGER_CSS).replace("__RESP__", RESPONSIVE)
+                .replace("__BURGER__", BURGER_CSS + HERO3D_CSS).replace("__RESP__", RESPONSIVE)
                 .replace("__BODY__", cuerpo)
                 .replace("__JS__", "<script>%s</script>" % extras[src] if src in extras else ""))
         with open(os.path.join(OUT, dst), "w", encoding="utf-8") as f:

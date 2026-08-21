@@ -102,33 +102,33 @@ function definirPuntos(M) {
     { titulo: 'Casquete de titanio poroso',
       texto: 'Superficie porosa para la fijación biológica sin cemento. El hueso crece dentro de la estructura y asegura el implante a largo plazo.',
       obj: M.casquete, pos: new THREE.Vector3(0.30, -0.86, 0.40),
-      focos: [M.ext], camLocal: new THREE.Vector3(0.42, -0.50, 0.76), dist: 3.6, modo: 'normal' },
+      focos: [M.ext], camLocal: new THREE.Vector3(0.42, -0.50, 0.76), margen: 1.75, modo: 'normal' },
 
     { titulo: 'Aro pulido con press-fit integrado',
       texto: 'El diseño incorpora un press-fit de 1,6 mm para la estabilidad primaria inmediata al impactar el cotilo en el acetábulo.',
       obj: M.casquete, pos: new THREE.Vector3(0.98, -0.03, 0.22),
-      focos: [M.aro, M.banda], camLocal: new THREE.Vector3(0.60, 0.20, 0.77), dist: 3.3, modo: 'normal' },
+      focos: [M.aro, M.banda], camLocal: new THREE.Vector3(0.60, 0.20, 0.77), margen: 1.55, modo: 'normal' },
 
     { titulo: 'Superficie interna pulida',
       texto: 'Minimiza el desgaste del inserto de doble movilidad y prolonga la vida útil del implante. Se muestra el corte para ver el interior.',
       obj: M.casquete, pos: new THREE.Vector3(-0.34, -0.50, 0.62),
-      focos: [M.int], camLocal: new THREE.Vector3(0.10, 0.62, 0.78), dist: 3.2, modo: 'corte' },
+      focos: [M.int], camLocal: new THREE.Vector3(0.10, 0.62, 0.78), margen: 1.25, modo: 'corte' },
 
     { titulo: 'Inserto de doble movilidad (EndoDur)',
       texto: 'Convierte el MobileLink en un sistema modular de movilidad dual y aloja los revestimientos de polietileno del sistema BiMobile.',
       obj: M.inserto, pos: new THREE.Vector3(0.70, -0.16, 0.42),
-      focos: [M.insExt, M.insAro, M.insInt], camLocal: new THREE.Vector3(0.48, 0.44, 0.76), dist: 3.5, modo: 'explotar' },
+      focos: [M.insExt, M.insAro, M.insInt], camLocal: new THREE.Vector3(0.48, 0.44, 0.76), margen: 2.10, modo: 'explotar' },
 
     { titulo: 'Cabeza femoral de doble articulación',
       texto: 'La cabeza articula dentro del revestimiento y el revestimiento dentro del cotilo: mayor rango de movilidad y menor riesgo de luxación.',
       obj: M.cabeza, pos: new THREE.Vector3(0.44, 0.16, 0.38),
-      focos: [M.esfera, M.cuello], camLocal: new THREE.Vector3(0.42, 0.40, 0.81), dist: 3.6, modo: 'explotar' },
+      focos: [M.esfera, M.cuello], camLocal: new THREE.Vector3(0.42, 0.40, 0.81), margen: 1.85, modo: 'explotar' },
 
     { titulo: 'Orificios para tornillos',
       texto: 'Permiten fijación adicional con tornillos cuando la calidad ósea lo requiere. Se cierran con tapones cuando no se utilizan.',
       obj: M.casquete, pos: M.normalAgujero[0].clone().multiplyScalar(1.02),
       focos: [...M.agujeros, ...M.bordes],
-      camLocal: M.normalAgujero[0].clone().add(new THREE.Vector3(0, 0.55, 0.25)).normalize(), dist: 3.0, modo: 'normal' },
+      camLocal: M.normalAgujero[0].clone().add(new THREE.Vector3(0, 0.55, 0.25)).normalize(), margen: 2.30, modo: 'normal' },
   ];
 }
 
@@ -181,7 +181,7 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
 
   const ctl = new OrbitControls(cam, renderer.domElement);
   ctl.enableDamping = true; ctl.dampingFactor = 0.07; ctl.enablePan = false;
-  ctl.minDistance = 2.3; ctl.maxDistance = 7; ctl.minPolarAngle = 0.22; ctl.maxPolarAngle = 1.62;
+  ctl.minDistance = 3.0; ctl.maxDistance = 13; ctl.minPolarAngle = 0.22; ctl.maxPolarAngle = 1.62;
   ctl.target.set(0, 0.05, 0); ctl.autoRotate = true; ctl.autoRotateSpeed = hero ? 1.0 : 0.8;
 
   let autoPermitido = true, reanudar = null, animandoCam = false;
@@ -195,13 +195,15 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (!o.isMesh || M.tapas.includes(o)) return;
     const base = o.material;
     const foco = base.clone();
-    foco.color = base.color.clone().lerp(TEAL_CLARO, 0.55);
-    if (foco.emissive) { foco.emissive = TEAL.clone(); foco.emissiveIntensity = 0.55; }
-    if ('metalness' in foco) foco.metalness = Math.min(foco.metalness, 0.35);
-    if ('roughness' in foco) foco.roughness = 0.42;
+    foco.color = base.color.clone().lerp(TEAL, 0.78);
+    if (foco.emissive) { foco.emissive = TEAL_CLARO.clone(); foco.emissiveIntensity = 0.5; }
+    if ('metalness' in foco) foco.metalness = Math.min(foco.metalness, 0.22);
+    if ('roughness' in foco) foco.roughness = 0.5;
+    foco.transparent = false; foco.opacity = 1; foco.depthWrite = true;
     const fantasma = base.clone();
-    fantasma.transparent = true; fantasma.opacity = 0.14; fantasma.depthWrite = false;
-    if ('envMapIntensity' in fantasma) fantasma.envMapIntensity = 0.3;
+    fantasma.transparent = true; fantasma.opacity = 0.30; fantasma.depthWrite = false;
+    fantasma.color = base.color.clone().lerp(new THREE.Color(0xE9EDEF), 0.55);
+    if ('envMapIntensity' in fantasma) fantasma.envMapIntensity = 0.45;
     if (fantasma.emissive) fantasma.emissive = new THREE.Color(0x000000);
     piezas.push({ mesh: o, base, foco, fantasma });
   });
@@ -280,19 +282,36 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     if (panelTexto) panelTexto.textContent = p.texto;
 
     setCorte(p.modo === 'corte');
-    setExplotar(p.modo === 'explotar', 700);
     enfocar(p.focos);
     if (alCambiar) alCambiar(i, p);
 
-    // cámara: dirección local del punto llevada al mundo
+    // medir la pieza EN SU POSICION FINAL para encuadrarla bien
+    const yIns = M.inserto.position.y, yCab = M.cabeza.position.y;
+    const abierto = p.modo === 'explotar';
+    M.inserto.position.y = abierto ? 1.05 : 0.02;
+    M.cabeza.position.y = abierto ? 2.1 : 0.04;
     M.raiz.updateMatrixWorld(true);
+    const caja = new THREE.Box3();
+    for (const f of p.focos) caja.expandByObject(f);
+    const esfera = caja.getBoundingSphere(new THREE.Sphere());
+    M.inserto.position.y = yIns; M.cabeza.position.y = yCab;   // volver y animar
+    setExplotar(abierto, 700);
+
+    // cámara: dirección local del punto llevada al mundo
     M.raiz.getWorldQuaternion(qTmp);
     const dir = p.camLocal.clone().normalize().applyQuaternion(qTmp).normalize();
     if (dir.y < 0.12) { dir.y = 0.12; dir.normalize(); }        // nunca por debajo del piso
-    const destino = ctl.target.clone().add(dir.multiplyScalar(p.dist));
-    const origen = cam.position.clone();
+
+    const fov = THREE.MathUtils.degToRad(cam.fov);
+    const aspecto = Math.max(0.6, cam.aspect);
+    const fovH = 2 * Math.atan(Math.tan(fov / 2) * aspecto);
+    const radio = Math.max(0.35, esfera.radius) * (p.margen || 1.8);
+    const dist = THREE.MathUtils.clamp(radio / Math.sin(Math.min(fov, fovH) / 2), 3.2, 12);
+    const mira = esfera.center.clone();
+    const destino = mira.clone().add(dir.multiplyScalar(dist));
+    const origen = cam.position.clone(), miraOrigen = ctl.target.clone();
     ctl.autoRotate = false; clearTimeout(reanudar); animandoCam = true;
-    tween(800, k => { if (animandoCam) cam.position.lerpVectors(origen, destino, k); }, () => {
+    tween(800, k => { if (animandoCam) { cam.position.lerpVectors(origen, destino, k); ctl.target.lerpVectors(miraOrigen, mira, k); } }, () => {
       animandoCam = false;
       reanudar = setTimeout(() => { if (autoPermitido) ctl.autoRotate = true; }, 9000);
     });
@@ -305,9 +324,10 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     setCorte(false); setExplotar(false); enfocar(null);
     if (panelTitulo) panelTitulo.textContent = 'Tocá un punto del modelo';
     if (panelTexto) panelTexto.textContent = 'Cada número señala una parte del sistema. Arrastrá para girar, usá la rueda o pellizcá para acercar.';
-    const origen = cam.position.clone();
+    const origen = cam.position.clone(), miraOrigen = ctl.target.clone();
+    const mira0 = new THREE.Vector3(0, 0.05, 0);
     animandoCam = true;
-    tween(700, k => { if (animandoCam) cam.position.lerpVectors(origen, CAM0, k); }, () => { animandoCam = false; });
+    tween(700, k => { if (animandoCam) { cam.position.lerpVectors(origen, CAM0, k); ctl.target.lerpVectors(miraOrigen, mira0, k); } }, () => { animandoCam = false; });
     setAuto(true);
     if (alCambiar) alCambiar(-1, null);
   }
@@ -359,9 +379,15 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       tmp.project(cam);
       const x = (tmp.x * 0.5 + 0.5) * w, y = (-tmp.y * 0.5 + 0.5) * h;
       p.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
-      const oculto = tmp.z > 1 || cara < -0.2;
-      p.el.style.opacity = oculto ? '0' : (cara < 0.05 ? '0.4' : '1');
-      p.el.style.pointerEvents = oculto ? 'none' : 'auto';
+      const detras = tmp.z > 1 || cara < -0.2;
+      const esActivo = puntos[activo] === p;
+      let op;
+      if (esActivo) op = 1;                                  // el elegido siempre se ve
+      else if (activo >= 0) op = detras ? 0 : 0.22;          // los demas se apagan
+      else op = detras ? 0 : (cara < 0.05 ? 0.4 : 1);
+      p.el.style.opacity = String(op);
+      p.el.style.pointerEvents = op < 0.3 ? 'none' : 'auto';
+      p.el.style.zIndex = esActivo ? '4' : '2';
     }
   }
   cuadro();

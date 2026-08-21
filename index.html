@@ -9,6 +9,7 @@
 <meta property="og:description" content="Importadores y representantes exclusivos en Argentina de prótesis de cadera y rodilla de origen alemán y norteamericano. Más de 25 años de trayectoria.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/logo.png">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
 <style>
 
@@ -124,6 +125,16 @@
 .drawer a { padding: 14px 4px; font-size: 15px; font-weight: 500; color: #10222A;
             border-bottom: 1px solid #F1F4F5; min-height: 50px; display: flex; align-items: center; }
 .drawer.dark a { color: #C6D0D4; border-color: rgba(255,255,255,.07); }
+
+#hero3d canvas { border-radius: 8px; }
+.h3-btn { display: inline-flex; align-items: center; gap: 8px; font-family: inherit; font-size: 13px;
+          font-weight: 600; color: #10222A; background: #FFFFFF; border: 1px solid #DDE3E5;
+          padding: 10px 16px; border-radius: 99px; cursor: pointer; min-height: 42px;
+          transition: border-color .25s, background .25s, color .25s; text-decoration: none; }
+.h3-btn:hover { border-color: #0095A1; color: #0095A1; }
+.h3-btn.on { background: rgba(0,149,161,.08); border-color: #0095A1; color: #0095A1; }
+.h3-cta { background: #0095A1; border-color: #0095A1; color: #FFFFFF; }
+.h3-cta:hover { background: #007C87; border-color: #007C87; color: #FFFFFF; }
 
 
 /* ============ responsive ============ */
@@ -311,7 +322,8 @@ html { scroll-behavior: smooth; }
 
       <!-- presentación de producto -->
       <div style="display: flex; flex-direction: column; gap: 26px;">
-        <div class="stage" style="position: relative; height: 460px;">
+        <div class="stage" id="hero-stage" style="position: relative; height: 460px;">
+          <div id="hero3d" style="position: absolute; inset: 0; z-index: 2;"></div>
           <div class="aura"></div>
           <div class="orbit o2"></div>
           <div class="orbit o1"></div>
@@ -343,13 +355,13 @@ html { scroll-behavior: smooth; }
 
         <!-- rótulo y selector, centrados -->
         <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
-          <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
-            <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #0095A1;"><span id="heroLinea"></span></span>
-            <span style="font-size: 18px; font-weight: 700; color: #10222A; letter-spacing: -0.025em;"><span id="heroNombre"></span></span>
-            <span style="font-size: 12.5px; color: #8A929A;"><span id="heroMarca"></span></span>
+          <div id="hero-rotulo" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+            <span id="hero-linea" style="font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #0095A1;"><span id="heroLinea"></span></span>
+            <span id="hero-nombre" style="font-size: 18px; font-weight: 700; color: #10222A; letter-spacing: -0.025em;"><span id="heroNombre"></span></span>
+            <span id="hero-marca" style="font-size: 12.5px; color: #8A929A;"><span id="heroMarca"></span></span>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 10px;">
+          <div id="hero-thumbs" style="display: flex; align-items: center; gap: 10px;">
             <span class="thumb" data-hero="0"><img src="assets/mobilelink.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
             <span class="thumb" data-hero="1"><img src="assets/endomodel-mod.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
             <span class="thumb" data-hero="2"><img src="assets/lubinus-spii.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
@@ -357,7 +369,7 @@ html { scroll-behavior: smooth; }
             <span class="thumb" data-hero="4"><img src="assets/palamix-gun.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
           </div>
 
-          <span style="font-size: 11.5px; color: #A7A9AC; letter-spacing: .07em;">21 productos en catálogo · 3 líneas</span>
+          <span id="hero-pie" style="font-size: 11.5px; color: #A7A9AC; letter-spacing: .07em;">21 productos en catálogo · 3 líneas</span>
         </div>
       </div>
     </div>
@@ -761,6 +773,35 @@ document.addEventListener('click', function(e){
     t.addEventListener('click', function(){ clearInterval(timer); i = k; pintar(); });
   });
   pintar(); auto();
+
+  // ---- visor 3D en el hero (reemplaza las fotos si el navegador lo permite)
+  var host = document.getElementById('hero3d');
+  if (!host || !window.WebGLRenderingContext) return;
+  import('./js/visor3d.js').then(function(mod){
+    var api = mod.montarVisor({ host: host, hero: true,
+      botones: { explotar: document.getElementById('h3-explotar'), auto: document.getElementById('h3-auto') } });
+    if (!api) return;
+    clearInterval(timer);
+    slots.forEach(function(s){ s.style.display = 'none'; });
+    var scan = document.querySelector('#hero-stage .scan'); if (scan) scan.style.display = 'none';
+    document.getElementById('heroLinea').textContent  = 'Cadera · Modelo 3D interactivo';
+    document.getElementById('heroNombre').textContent = 'MobileLink Dual Mobility';
+    document.getElementById('heroMarca').textContent  = 'Arrastrá para girar · rueda o pellizcá para acercar';
+    var th = document.getElementById('hero-thumbs');
+    th.innerHTML =
+      '<button type="button" id="h3-explotar" class="h3-btn">'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v6M12 15v6M5 12h5M14 12h5"/></svg>Vista explotada</button>'
+      + '<button type="button" id="h3-auto" class="h3-btn on">'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Giro automático</button>'
+      + '<a class="h3-btn h3-cta" href="producto.html?p=mobilelink-dual-mobility">Explorar en detalle'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
+    th.style.flexWrap = 'wrap'; th.style.justifyContent = 'center';
+    var ex = document.getElementById('h3-explotar'), au = document.getElementById('h3-auto');
+    var abierto = false, girando = true;
+    ex.addEventListener('click', function(){ abierto = !abierto; api.setExplotar(abierto); ex.classList.toggle('on', abierto); });
+    au.addEventListener('click', function(){ girando = !girando; api.setAuto(girando); au.classList.toggle('on', girando); });
+    document.getElementById('hero-pie').textContent = '21 productos en catálogo · 3 líneas · modelo técnico del sistema';
+  }).catch(function(e){ console.error('hero 3D:', e); });
 })();
 </script>
 </body>

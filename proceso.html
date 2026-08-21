@@ -9,6 +9,7 @@
 <meta property="og:description" content="Las cinco etapas de trazabilidad: depósito, control, esterilización, traslado y entrega en quirófano.">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/logo.png">
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
 <style>
 
@@ -77,6 +78,16 @@
 .drawer a { padding: 14px 4px; font-size: 15px; font-weight: 500; color: #10222A;
             border-bottom: 1px solid #F1F4F5; min-height: 50px; display: flex; align-items: center; }
 .drawer.dark a { color: #C6D0D4; border-color: rgba(255,255,255,.07); }
+
+#hero3d canvas { border-radius: 8px; }
+.h3-btn { display: inline-flex; align-items: center; gap: 8px; font-family: inherit; font-size: 13px;
+          font-weight: 600; color: #10222A; background: #FFFFFF; border: 1px solid #DDE3E5;
+          padding: 10px 16px; border-radius: 99px; cursor: pointer; min-height: 42px;
+          transition: border-color .25s, background .25s, color .25s; text-decoration: none; }
+.h3-btn:hover { border-color: #0095A1; color: #0095A1; }
+.h3-btn.on { background: rgba(0,149,161,.08); border-color: #0095A1; color: #0095A1; }
+.h3-cta { background: #0095A1; border-color: #0095A1; color: #FFFFFF; }
+.h3-cta:hover { background: #007C87; border-color: #007C87; color: #FFFFFF; }
 
 
 /* ============ responsive ============ */

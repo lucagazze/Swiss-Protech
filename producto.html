@@ -62,7 +62,8 @@
   .hs-layer { position: absolute; inset: 0; pointer-events: none; }
   .hs { position: absolute; left: -15px; top: -15px; width: 30px; height: 30px; border-radius: 50%; border: 0; padding: 0; background: var(--teal); color: #fff; font-size: 11.5px; font-weight: 700; cursor: pointer; pointer-events: auto; box-shadow: 0 0 0 5px rgba(0,149,161,.18), 0 8px 18px -6px rgba(0,0,0,.35); transition: opacity .3s, box-shadow .3s; font-family: inherit; }
   .hs::before { content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 1.5px solid rgba(0,149,161,.45); animation: ping 2.4s ease-out infinite; }
-  .hs.on { background: var(--ink); box-shadow: 0 0 0 6px rgba(16,34,42,.16); } .hs.on::before { animation: none; border-color: transparent; }
+  .hs.on { background: var(--ink); box-shadow: 0 0 0 8px rgba(0,149,161,.32), 0 10px 22px -6px rgba(0,0,0,.4); transform: scale(1.25); z-index: 4; } .hs.on::before { animation: none; border-color: transparent; }
+  .v-estado { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); z-index: 3; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: var(--teal); padding: 6px 14px; border-radius: 99px; opacity: 0; transition: opacity .35s; pointer-events: none; white-space: nowrap; }
   @keyframes ping { 0% { transform: scale(.75); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
   .v-ctl { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; gap: 6px; background: rgba(255,255,255,.92); border: 1px solid #DDE6E8; padding: 7px; border-radius: 99px; backdrop-filter: blur(10px); box-shadow: 0 6px 18px -8px rgba(16,34,42,.22); z-index: 3; }
   .v-btn { height: 40px; padding: 0 16px; border-radius: 99px; border: 1px solid #DDE6E8; background: #fff; display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--ink); font-weight: 600; cursor: pointer; font-family: inherit; transition: background .25s, border-color .25s, color .25s; white-space: nowrap; }
@@ -211,6 +212,7 @@
             <span class="v-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3v3M16 3v3M3 9h18M7 15l3 3 7-7"></path></svg>Arrastrá para girar · rueda para acercar</span>
             <div class="v-cargando" id="v-cargando"><img id="v-fallback" alt=""><span>CARGANDO MODELO 3D…</span></div>
             <div class="hs-layer" id="hs-layer"></div>
+            <span class="v-estado" id="v-estado"></span>
             <div class="v-ctl">
               <button class="v-btn" id="v-explotar" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M12 15v6M5 12h5M14 12h5"></path></svg><span class="lbl">Vista explotada</span></button>
               <button class="v-btn" id="v-corte" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18"></path></svg><span class="lbl">Corte</span></button>
@@ -420,6 +422,7 @@
   $('#rel-link').textContent = 'Ver todos los de ' + P.linea.toLowerCase() + ' →';
 
   // ------- 3D
+  if (!P.visor3d) { const cg = $('#v-cargando'); if (cg) cg.remove(); }
   if (P.visor3d) {
     $('#v-fallback').src = P.img || 'assets/mobilelink.png';
     import('./js/visor3d.js').then(mod => {
@@ -428,11 +431,16 @@
         panelTitulo: $('#v-titulo'), panelTexto: $('#v-texto'),
         botones: { explotar: $('#v-explotar'), corte: $('#v-corte'), auto: $('#v-auto'), reset: $('#v-reset') },
         alListo: () => { $('#v-cargando').remove(); },
+        alCambiar: (i, p) => {
+          const est = $('#v-estado');
+          if (!est) return;
+          est.textContent = i < 0 ? '' : (p.modo === 'corte' ? 'Vista en corte activada' : p.modo === 'explotar' ? 'Vista explotada activada' : 'Parte resaltada');
+          est.style.opacity = i < 0 ? '0' : '1';
+        },
       });
       if (!api) { $('#v-cargando').querySelector('span').textContent = 'Tu navegador no admite 3D — mirá las fotos y el video.'; return; }
       $('#hs-list').innerHTML = api.puntos.map((p, i) => `<button type="button" class="hs-item" data-i="${i}"><i>${i + 1}</i>${p.titulo}</button>`).join('');
-      document.querySelectorAll('.hs-item').forEach(b => b.addEventListener('click', () => { api.activar(+b.dataset.i); document.querySelectorAll('.hs-item').forEach(x => x.classList.toggle('on', x === b)); }));
-      $('#hs-layer').addEventListener('click', e => { const h = e.target.closest('.hs'); if (!h) return; const i = [...document.querySelectorAll('.hs')].indexOf(h); document.querySelectorAll('.hs-item').forEach((x, k) => x.classList.toggle('on', k === i)); });
+      document.querySelectorAll('.hs-item').forEach(b => b.addEventListener('click', () => api.activar(+b.dataset.i)));
     }).catch(err => { console.error(err); $('#v-cargando').querySelector('span').textContent = 'No se pudo cargar el modelo 3D — mirá las fotos y el video.'; });
   }
 
