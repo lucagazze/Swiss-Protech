@@ -350,9 +350,11 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       setExplotar(false); setCorte(false);
       // en el cuerpo entra la persona entera; en el hueso, solo el segmento oseo.
       // en los dos casos la mira sigue siendo el implante, asi el zoom lo acerca a el.
+      // 'En el hueso' no muestra el hueso entero: con la pelvis, que es enorme al lado
+      // de un cotilo, el implante quedaba diminuto. Se acota a lo que da contexto.
       const radio = k === 'cuerpo'
         ? (silueta ? radioDesdeProducto(silueta) * 1.02 : radioDesdeProducto(anat) * 2.3)
-        : radioDesdeProducto(anat) * 1.08;
+        : Math.min(radioDesdeProducto(anat), esfTot.radius * 2.3) * 1.08;
       encuadrarRadio(radio);
     } else {
       encuadrarRadio(esfTot.radius * 1.06);

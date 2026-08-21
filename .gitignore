@@ -6,3 +6,5 @@ media/video/
 media/src/
 media/turn/
 productos_swipro.json
+_diag_*
+bash.exe.stackdump

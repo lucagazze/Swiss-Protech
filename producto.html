@@ -7,6 +7,7 @@
 <meta name="description" content="Explorá cada implante de Swiss Protech: modelo 3D interactivo, videos del fabricante, vistas y especificaciones.">
 <link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
+<script src="js/productos.js"></script>
 <script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
 <style>
   :root { --teal: #0095A1; --teal-d: #007C87; --teal-l: #72C5C2; --ink: #10222A; --txt: #5A6570; --mut: #8A929A; --line: #E3E7E9; --bg: #F7F8F9; }
@@ -234,6 +235,22 @@
   </div>
 </div>
 
+<script>
+// Se completa aca mismo, mientras el navegador parsea: si esperara al script del
+// final, .head se pintaria vacio y todo lo de abajo saltaria (CLS ~0,8).
+(function () {
+  const $ = s => document.querySelector(s);
+  const slug = new URLSearchParams(location.search).get('p') || 'mobilelink-dual-mobility';
+  const P = (window.PRODUCTOS || {})[slug] || (window.PRODUCTOS || {})['mobilelink-dual-mobility'];
+  if (!P) return;
+  document.title = P.nombre + ' — Swiss Protech';
+  $('#h-linea').textContent = P.linea; $('#t-linea').textContent = P.linea;
+  const fij = (P.specs.find(s => s[0] === 'Fijación') || [])[1];
+  if (fij) $('#t-fij').textContent = fij; else $('#t-fij').remove();
+  $('#h-nombre').textContent = P.nombre; $('#h-bajada').textContent = P.bajada;
+})();
+</script>
+
 <div class="explora">
   <div class="wrap">
     <div class="grid">
@@ -329,7 +346,7 @@
     </div>
 </div>
 
-<section class="sec" id="sec-desc">
+<section class="sec" id="sec-desc" hidden>
   <div class="wrap two">
     <div style="display: flex; flex-direction: column; gap: 12px;">
       <span class="eyebrow">Descripción</span>
@@ -339,7 +356,7 @@
   </div>
 </section>
 
-<section class="sec gris" id="sec-gal">
+<section class="sec gris" id="sec-gal" hidden>
   <div class="wrap" style="display: flex; flex-direction: column; gap: 26px;">
     <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
       <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -372,19 +389,12 @@
 
 <div class="lb" id="lb"><button class="x" id="lb-x" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10222A" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button><div id="lb-in"></div><span class="lbcap" id="lb-cap"></span></div>
 
-<script src="js/productos.js"></script>
 <script>
 (function () {
   const $ = s => document.querySelector(s);
   const slug = new URLSearchParams(location.search).get('p') || 'mobilelink-dual-mobility';
   const P = PRODUCTOS[slug] || PRODUCTOS['mobilelink-dual-mobility'];
-  document.title = P.nombre + ' — Swiss Protech';
-
-  // ------- encabezado
-  $('#h-linea').textContent = P.linea; $('#t-linea').textContent = P.linea;
-  const fij = (P.specs.find(s => s[0] === 'Fijación') || [])[1];
-  if (fij) $('#t-fij').textContent = fij; else $('#t-fij').remove();
-  $('#h-nombre').textContent = P.nombre; $('#h-bajada').textContent = P.bajada;
+  // el encabezado ya quedo resuelto en el script de arriba, antes del primer pintado
   $('#d-titulo').textContent = P.nombre;
 
   // ------- panel
@@ -393,6 +403,7 @@
   $('#fab').innerHTML = `<span style="color: var(--txt);">Fabricante</span><b>${P.marca}</b>`;
   $('#specs').innerHTML = P.specs.map(s => `<div><span>${s[0]}</span><span>${s[1]}</span></div>`).join('');
   $('#prose').innerHTML = (P.desc.length ? P.desc : [P.bajada]).map(p => `<p>${p}</p>`).join('');
+  $('#sec-desc').hidden = false;
   $('#btn-tecnica').href = P.url ? P.url.replace(/\/producto\/.*/, '/tecnicas-quirurgicas/') : 'index.html#portal';
 
   // ------- pestañas
@@ -459,8 +470,7 @@
     $('#gal').innerHTML = galItems.map((g, i) => `<figure data-i="${i}"><img src="${g.src}" alt="${g.titulo}" loading="lazy"><figcaption><span>${g.titulo}</span><span class="pill ${g.ia ? 'ia' : ''}">${g.tipo}</span></figcaption></figure>`).join('');
     document.querySelectorAll('#gal figure').forEach(f => f.addEventListener('click', () => abrir(galItems[+f.dataset.i].src, galItems[+f.dataset.i].titulo, false)));
     $('#gal-nota').textContent = galItems.some(g => g.ia) ? 'Las vistas marcadas como recreadas son representaciones; la foto oficial es la de referencia.' : 'Fotogramas del material oficial del fabricante.';
-  } else {
-    $('#sec-gal').style.display = 'none';
+    $('#sec-gal').hidden = false;
   }
 
   // ------- lightbox
