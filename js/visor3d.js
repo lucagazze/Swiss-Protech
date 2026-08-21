@@ -74,9 +74,13 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       const c = siluetaCuerpo(zonaCuerpo);
       silueta = c.grupo;
       // la silueta va en el espacio de la escena, no rotada con el implante
-      const escala = M.anatomia === 'femurTibia' ? 1.05 : 1.35;
+      // la silueta se escala y se calza para que su zona marcada coincida con el implante
+      M.raiz.updateMatrixWorld(true);
+      const cajaImp = new THREE.Box3().setFromObject(anat);
+      const esfImp = cajaImp.getBoundingSphere(new THREE.Sphere());
+      const escala = esfImp.radius / (M.anatomia === 'femurTibia' ? 2.6 : 1.9);
       silueta.scale.setScalar(escala);
-      silueta.position.y = M.anatomia === 'femurTibia' ? -0.2 : -2.9;
+      silueta.position.copy(esfImp.center);
       silueta.visible = false;
       escena.add(silueta);
       anatPiezas = anatPiezas.concat(c.piezas);
@@ -185,11 +189,14 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
     verCuerpo = on; silueta.visible = on && verAnat;
     if (botones.cuerpo) botones.cuerpo.classList.toggle('on', on);
     if (on && verAnat) {
+      silueta.updateMatrixWorld(true);
       const caja = new THREE.Box3().setFromObject(silueta);
       const esf = caja.getBoundingSphere(new THREE.Sphere());
       const fov = THREE.MathUtils.degToRad(cam.fov);
-      const d = esf.radius / Math.sin(fov / 2) * 1.02;
-      ctl.maxDistance = Math.max(ctl.maxDistance, d * 1.5);
+      const fovH = 2 * Math.atan(Math.tan(fov / 2) * Math.max(0.6, cam.aspect));
+      const d = esf.radius / Math.sin(Math.min(fov, fovH) / 2) * 1.05;
+      ctl.maxDistance = d * 2.2;
+      cam.far = Math.max(cam.far, d * 4); cam.updateProjectionMatrix();
       const dir = cam.position.clone().sub(ctl.target).normalize();
       const origen = cam.position.clone(), miraO = ctl.target.clone();
       const mira = esf.center.clone(), destino = mira.clone().add(dir.multiplyScalar(d));

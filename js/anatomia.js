@@ -147,6 +147,9 @@ export function cuerpo(zona = 'cadera') {
   marca.position.set(zona === 'rodilla' ? 0.55 : 0.85, zona === 'rodilla' ? 0.05 : 2.75, 0);
   g.add(marca);
 
+  // el origen del grupo queda sobre la zona intervenida, para poder calzarlo con el implante
+  const off = marca.position.clone();
+  g.children.forEach(c => c.position.sub(off));
   return { grupo: g, piezas: g.children.slice(), marca };
 }
 

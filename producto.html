@@ -65,11 +65,16 @@
   .hs.on { background: var(--ink); box-shadow: 0 0 0 8px rgba(0,149,161,.32), 0 10px 22px -6px rgba(0,0,0,.4); transform: scale(1.25); z-index: 4; } .hs.on::before { animation: none; border-color: transparent; }
   .v-estado { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); z-index: 3; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: var(--teal); padding: 6px 14px; border-radius: 99px; opacity: 0; transition: opacity .35s; pointer-events: none; white-space: nowrap; }
   @keyframes ping { 0% { transform: scale(.75); opacity: .9; } 100% { transform: scale(1.6); opacity: 0; } }
-  .v-ctl { position: absolute; left: 12px; right: 12px; bottom: 14px; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; background: rgba(255,255,255,.94); border: 1px solid #DDE6E8; padding: 8px; border-radius: 22px; backdrop-filter: blur(10px); box-shadow: 0 6px 18px -8px rgba(16,34,42,.22); z-index: 3; max-height: 46%; overflow: auto; }
+  .v-grupo { position: absolute; z-index: 3; display: flex; gap: 6px; background: rgba(255,255,255,.94); border: 1px solid #DDE6E8; padding: 7px; border-radius: 20px; backdrop-filter: blur(10px); box-shadow: 0 6px 18px -8px rgba(16,34,42,.22); }
+  .v-ctl  { left: 50%; transform: translateX(-50%); bottom: 14px; flex-wrap: wrap; justify-content: center; max-width: calc(100% - 24px); }
+  .v-zoom { right: 14px; top: 50%; transform: translateY(-50%); flex-direction: column; }
+  .v-ctx  { left: 14px;  top: 50%; transform: translateY(-50%); flex-direction: column; }
+  .v-grupo .rot { font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--mut); text-align: center; padding: 2px 0 4px; }
   .v-btn { height: 38px; padding: 0 13px; border-radius: 99px; border: 1px solid #DDE6E8; background: #fff; display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--ink); font-weight: 600; cursor: pointer; font-family: inherit; transition: background .25s, border-color .25s, color .25s; white-space: nowrap; }
   .v-btn:hover { background: rgba(0,149,161,.07); border-color: var(--teal); }
   .v-btn .lbl { font-size: 12.5px; }
-  @media (max-width: 900px) { .v-ctl { gap: 5px; padding: 6px; } .v-btn { height: 36px; padding: 0 10px; } .v-btn .lbl { display: none; } }
+  @media (max-width: 1100px) { .v-zoom .lbl, .v-ctx .lbl { display: none; } }
+  @media (max-width: 760px) { .v-grupo { gap: 5px; padding: 5px; } .v-btn { height: 36px; padding: 0 10px; } .v-btn .lbl { display: none; } .v-grupo .rot { display: none; } .v-zoom { right: 10px; } .v-ctx { left: 10px; } }
   .v-btn.on { background: var(--teal); border-color: var(--teal); color: #fff; } .v-btn.on svg { stroke: #fff; }
   .v-btn svg { stroke: var(--teal); }
   .v-tag { position: absolute; top: 18px; left: 18px; z-index: 3; font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); border: 1px solid rgba(0,149,161,.28); background: rgba(255,255,255,.85); padding: 7px 13px; border-radius: 99px; }
@@ -215,17 +220,24 @@
             <div class="v-cargando" id="v-cargando"><img id="v-fallback" alt=""><span>CARGANDO MODELO 3D…</span></div>
             <div class="hs-layer" id="hs-layer"></div>
             <span class="v-estado" id="v-estado"></span>
-            <div class="v-ctl">
-              <button class="v-btn" id="v-explotar" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M12 15v6M5 12h5M14 12h5"></path></svg><span class="lbl">Vista explotada</span></button>
-              <button class="v-btn" id="v-corte" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18"></path></svg><span class="lbl">Corte</span></button>
+            <div class="v-grupo v-ctx">
+              <span class="rot">Contexto</span>
               <button class="v-btn" id="v-anatomia" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"></path><path d="M6 22v-3a6 6 0 0 1 12 0v3"></path></svg><span class="lbl">Dónde va</span></button>
               <button class="v-btn" id="v-cuerpo" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2.2"></circle><path d="M12 6.7v7M8.4 9.2h7.2M9.6 21l2.4-7.3L14.4 21"></path></svg><span class="lbl">En el cuerpo</span></button>
+            </div>
+
+            <div class="v-grupo v-zoom">
+              <span class="rot">Zoom</span>
               <button class="v-btn" id="v-zoomin" type="button" aria-label="Acercar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"></path></svg><span class="lbl">Acercar</span></button>
               <button class="v-btn" id="v-zoomout" type="button" aria-label="Alejar"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3M8 11h6"></path></svg><span class="lbl">Alejar</span></button>
+            </div>
+
+            <div class="v-grupo v-ctl">
+              <button class="v-btn" id="v-explotar" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M12 15v6M5 12h5M14 12h5"></path></svg><span class="lbl">Vista explotada</span></button>
+              <button class="v-btn" id="v-corte" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18"></path></svg><span class="lbl">Corte</span></button>
               <button class="v-btn on" id="v-auto" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg><span class="lbl">Giro automático</span></button>
               <button class="v-btn" id="v-reset" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6M20 20v-6h-6"></path><path d="M20 9A8 8 0 0 0 5.6 6.6L4 10M4 15a8 8 0 0 0 14.4 2.4L20 14"></path></svg><span class="lbl">Volver</span></button>
             </div>
-          </div>
           <p class="nota" style="margin-top: 10px;">Representación técnica interactiva del sistema. Las dimensiones y geometrías exactas corresponden a la documentación del fabricante.</p>
         </div>
 
