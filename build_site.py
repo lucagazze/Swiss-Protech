@@ -856,9 +856,55 @@ def main():
         # las paginas se publican desde la raiz: se copian solas
         shutil.copyfile(os.path.join(OUT, dst), os.path.join(SRC, dst))
 
+    armar_publicable()
+
     print("paginas:", ", ".join(d for _, d, _, _ in PAGES))
     print("holes sin resolver:", quedan if quedan else "ninguno")
     print("marcadores [COMPLETAR]:", pendientes if pendientes else "ninguno")
+
+
+# Lo que hay que subir al hosting. Antes site/ quedaba con cinco paginas y sin
+# media/: abrirla desde ahi mostraba el sitio a medias (video roto, visor 3D
+# sin cargar, media navegacion en 404).
+PUBLICAR_HTML = ["index.html", "productos.html", "producto.html", "proceso.html",
+                 "institucional.html", "representaciones.html", "educacion.html",
+                 "multimedia.html", "contacto.html", "privacidad.html"]
+PUBLICAR_DIRS = ["assets", "js", "vendor"]
+PUBLICAR_MEDIA = ["clips", "gifs", "stills", "views"]      # lo que referencia el sitio
+PUBLICAR_SUELTOS = ["sitemap.xml", "robots.txt", "media/swiss-protech.mp4"]
+
+
+def armar_publicable():
+    """Deja site/ como una copia completa y navegable, lista para subir."""
+    for d in PUBLICAR_DIRS:
+        org, dst = os.path.join(SRC, d), os.path.join(OUT, d)
+        if os.path.isdir(org):
+            shutil.rmtree(dst, ignore_errors=True)
+            shutil.copytree(org, dst)
+    for d in PUBLICAR_MEDIA:
+        org, dst = os.path.join(SRC, "media", d), os.path.join(OUT, "media", d)
+        if os.path.isdir(org):
+            shutil.rmtree(dst, ignore_errors=True)
+            shutil.copytree(org, dst)
+    for f in PUBLICAR_HTML + PUBLICAR_SUELTOS:
+        org, dst = os.path.join(SRC, f), os.path.join(OUT, f)
+        if os.path.exists(org):
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            shutil.copyfile(org, dst)
+
+    # nada de lo que pide una pagina puede faltar en la copia
+    rotas = []
+    for f in PUBLICAR_HTML:
+        p = os.path.join(OUT, f)
+        if not os.path.exists(p):
+            rotas.append((f, "FALTA LA PAGINA"))
+            continue
+        t = open(p, encoding="utf-8").read()
+        for ref in set(re.findall(r'(?:src|href|poster)="((?:assets|media|js|vendor)/[^"]+)"', t)):
+            if not os.path.exists(os.path.join(OUT, ref)):
+                rotas.append((f, ref))
+    print("site/ publicable:", len(PUBLICAR_HTML), "paginas |",
+          "referencias rotas:", rotas if rotas else "ninguna")
 
 
 if __name__ == "__main__":

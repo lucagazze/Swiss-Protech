@@ -98,9 +98,14 @@ python -u build_paginas.py      # institucional, representaciones, educación, m
 python -u build_site.py         # index, productos, proceso, contacto y la ficha
 ```
 
-`build_site.py` escribe en `site/` y copia solo los `.html` a la raíz; también
-inyecta el armazón en `producto.html`, que se mantiene a mano. Es idempotente:
-se puede correr las veces que haga falta.
+`build_site.py` copia los `.html` a la raíz, inyecta el armazón en
+`producto.html` (que se mantiene a mano) y deja en `site/` una copia completa
+lista para subir: las 10 páginas más `assets/`, `js/`, `vendor/`, `media/`,
+`sitemap.xml` y `robots.txt`. Al terminar avisa si quedó alguna referencia rota.
+Es idempotente: se puede correr las veces que haga falta.
+
+**Qué se publica:** el contenido de `site/`. La raíz del repo sirve para
+desarrollar; `site/` es lo que va al hosting.
 
 ---
 
