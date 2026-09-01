@@ -6,9 +6,11 @@ Todo el contenido sale de swipro.com.ar. Ejecutar: python -u build_paginas.py
 """
 import os
 
+import shell
+
 SRC = os.path.dirname(os.path.abspath(__file__))
 
-NAV = [("Institucional", "institucional.html"), ("Productos", "productos.html"),
+NAV = [("Inicio", "index.html"), ("Institucional", "institucional.html"), ("Productos", "productos.html"),
        ("Nuestro proceso", "proceso.html"), ("Educación médica", "educacion.html"),
        ("Representaciones", "representaciones.html"), ("Contacto", "contacto.html")]
 
@@ -30,7 +32,7 @@ CSS = """
 
   .nav { background: #fff; border-bottom: 1px solid var(--line); position: relative; z-index: 5; }
   .nav .wrap { padding-top: 20px; padding-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
-  .navlinks { display: flex; align-items: center; gap: 34px; font-size: 14px; font-weight: 500; }
+  .navlinks { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 500; }
   .navlink { position: relative; color: var(--ink); transition: color .25s; }
   .navlink::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px; background: var(--teal); transition: right .3s; }
   .navlink:hover { color: var(--teal); } .navlink:hover::after { right: 0; }
@@ -136,75 +138,72 @@ I_PLAY   = SVG('<circle cx="12" cy="12" r="9"></circle><path d="M10 8.5l6 3.5-6 
 I_DOC    = SVG('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6M9 15l2 2 4-4"></path>')
 I_USER   = SVG('<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>')
 
-PROVINCIAS = ["CABA", "Buenos Aires", "Rosario", "Santa Fe", "Córdoba", "Entre Ríos", "Corrientes",
-              "Misiones", "Chaco", "Jujuy", "Salta", "Tucumán", "Mendoza", "San Juan", "San Luis",
-              "Neuquén", "Chubut"]
+# Nota: el sitio del cliente no publica una lista de provincias ni una cantidad.
+# Cualquier cifra de cobertura tiene que venir confirmada por la empresa antes de
+# volver a ponerla acá.
 
 
-def cabecera(activo, titulo, desc):
-    links = "".join('<a href="%s" class="navlink%s">%s</a>' % (h, " on" if h == activo else "", t) for t, h in NAV)
+A11Y = """
+  .navlinks a { white-space: nowrap; }
+  @media (max-width: 1330px) { .navlinks { gap: 20px; font-size: 13.5px; } }
+  body { font-size: 16px; line-height: 1.6; text-rendering: optimizeLegibility; }
+  p { text-wrap: pretty; } h1, h2, h3 { text-wrap: balance; }
+  .lead { font-size: 17px; line-height: 1.7; max-width: 62ch; }
+  .card p { font-size: 15px; line-height: 1.68; }
+  .hito p { font-size: 15px; line-height: 1.7; }
+  .st h2 { font-size: 38px; }
+  section { padding: 88px 0; }
+  @media (max-width: 720px) { body { font-size: 15.5px; } .st h2 { font-size: 27px; } section { padding: 52px 0; } }
+
+  .sr-skip { position: absolute; left: -9999px; top: 0; z-index: 99; background: var(--teal); color: #fff;
+             padding: 12px 20px; font-size: 14px; font-weight: 600; border-radius: 0 0 4px 0; }
+  .sr-skip:focus { left: 0; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; border-radius: 3px; }
+  @media (prefers-reduced-motion: reduce) { * { animation-duration: .01ms !important; transition-duration: .01ms !important; } html { scroll-behavior: auto; } }
+"""
+
+
+def cabecera(activo, titulo, desc, migas=None):
+    links = "".join('<a href="%s" class="navlink%s"%s>%s</a>'
+                    % (h, " on" if h == activo else "", ' aria-current="page"' if h == activo else "", t)
+                    for t, h in NAV)
     drawer = "".join('<a href="%s">%s</a>' % (h, t) for t, h in NAV)
+    ld = shell.jsonld_migas(migas or [("Home", "index.html")])
     return """<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>%s</title>
-<meta name="description" content="%s">
-<meta property="og:title" content="%s"><meta property="og:description" content="%s"><meta property="og:type" content="website">
-<link rel="icon" href="assets/logo.png">
+%s
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap">
-<style>%s</style>
+<style>%s
+%s
+%s</style>
+%s
 </head>
 <body>
-
-<div class="topbar"><div class="wrap">
-  <span style="display: flex; align-items: center; gap: 7px;">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"></path></svg>
-    Habilitado por ANMAT y Ministerio de Salud de la Nación</span>
-  <span style="display: flex; align-items: center; gap: 16px;"><a href="educacion.html">Ingresar</a><span style="opacity:.32">|</span><a href="educacion.html" class="reg">Registro médico</a></span>
-</div></div>
-
+<a href="#contenido" class="sr-skip">Ir al contenido</a>
+%s
 <nav class="nav"><div class="wrap">
-  <a href="index.html"><img src="assets/logo.png" alt="Swiss Protech" style="height: 42px; display: block;"></a>
+  <a href="index.html" aria-label="Swiss Protech — inicio"><img src="assets/logo.webp" alt="Swiss Protech" style="height: 42px; display: block;"></a>
   <div class="navlinks">%s</div>
   <span class="burger" onclick="document.getElementById('drawer').classList.toggle('open')">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10222A" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"></path></svg></span>
   <a href="contacto.html" class="btn-p">Consultar</a>
 </div></nav>
 <div class="drawer" id="drawer">%s</div>
-""" % (titulo, desc, titulo, desc, CSS, links, drawer)
+<span id="contenido" tabindex="-1"></span>
+""" % (shell.meta(titulo, desc, activo), CSS, shell.CSS, A11Y, ld, shell.topbar(), links, drawer)
 
 
-PIE = """
-<div class="cta"><div class="wrap">
-  <div><h2>¿Necesitás asesoramiento técnico?</h2>
-  <p>Contanos si escribís como médico, como financiador o como paciente, y la consulta llega directo a quien corresponde.</p></div>
-  <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-    <a href="contacto.html" class="btn-p b1">Escribir por WhatsApp</a>
-    <a href="contacto.html" class="btn-g b2">Ver sedes</a></div>
-</div></div>
-
-<footer><div class="wrap">
-  <div class="cols">
-    <div class="col"><img src="assets/logo-blanco.png" alt="Swiss Protech" style="height: 40px; align-self: flex-start;">
-      <p>Importación y comercialización de implantes ortopédicos de origen alemán y norteamericano. Habilitados por el Ministerio de Salud de la Nación y A.N.M.A.T.</p></div>
-    <div class="col"><span class="t">Productos</span>
-      <a href="productos.html">Cadera</a><a href="productos.html">Rodilla</a><a href="productos.html">Cementos</a>
-      <a href="representaciones.html">Representaciones</a></div>
-    <div class="col"><span class="t">Sede Buenos Aires</span><span>Av. Belgrano 863, CABA</span><span>11 3593 5241</span><span style="color:#69727D">Lunes a viernes, 8 a 17 h</span></div>
-    <div class="col"><span class="t">Sede Rosario</span><span>Pte. Roca 782, piso 1</span><span>11 3593 5241</span><span style="color:#69727D">Lunes a viernes, 8 a 17 h</span></div>
-  </div>
-  <div class="fin"><span>Swiss Protech S.A. — Todos los derechos reservados 2026.</span>
-    <span style="display: flex; gap: 22px;"><a href="#">Políticas de privacidad</a><a href="#">Formulario AFIP F960</a></span></div>
-</div></footer>
-
+PIE = shell.pie() + """
 <script>
 document.addEventListener('click', function (e) {
   var d = document.getElementById('drawer');
   if (d && d.classList.contains('open') && !e.target.closest('.drawer') && !e.target.closest('.burger')) d.classList.remove('open');
 });
 </script>
+<script>""" + shell.MOVIMIENTO_JS + """</script>
 </body>
 </html>
 """
@@ -228,26 +227,26 @@ HITOS = [
      "La empresa cuenta con todas las habilitaciones que exige la normativa argentina para importar y comercializar productos médicos implantables."),
     ("Representaciones", "Acuerdos de exclusividad",
      "Swiss Protech es representante exclusivo en Argentina de Waldemar Link, Advita Ortho y Heraeus Medical."),
-    ("Cobertura", "De dos sedes a diecisiete provincias",
-     "Desde CABA y Rosario, la logística propia llega hoy con entrega y acompañamiento técnico a diecisiete provincias del país."),
-    ("Hoy", "Más de 25 años de trayectoria",
+    ("Sedes", "Buenos Aires y Rosario",
+     "Dos sedes propias con depósito e instrumental, desde donde sale cada implante hacia el centro de salud donde se realiza la cirugía."),
+    ("Hoy", "Más de 20 años de trayectoria",
      "Veintiún productos en catálogo entre cadera, rodilla y cementos óseos, y un circuito de trazabilidad documentado en cada implante."),
 ]
 
 def institucional():
     hitos = "".join("""<div class="hito"><div class="a">%s</div><div><h3>%s</h3><p>%s</p></div></div>""" % h for h in HITOS)
-    provs = "".join('<span class="prov">%s</span>' % p for p in PROVINCIAS)
     return (cabecera("institucional.html", "Institucional — Swiss Protech",
-                     "Más de 25 años importando implantes ortopédicos de origen alemán y norteamericano. Habilitados por ANMAT y el Ministerio de Salud de la Nación.")
-    + head("Institucional", "Más de 25 años de trayectoria en implantes ortopédicos",
+                     "Más de 20 años importando implantes ortopédicos de origen alemán y norteamericano. Habilitados por ANMAT y el Ministerio de Salud de la Nación.",
+                     [("Home", "index.html"), ("Institucional", "institucional.html")])
+    + head("Institucional", "Más de 20 años de trayectoria en implantes ortopédicos",
            "Importamos y comercializamos implantes de cadera y rodilla de la más alta calidad, de origen alemán y norteamericano, con todas las habilitaciones que exige la normativa argentina.")
     + """
 <section><div class="wrap">
   <div class="kpi">
-    <div><b>+25</b><span>años de trayectoria en el país</span></div>
-    <div><b>17</b><span>provincias con cobertura activa</span></div>
+    <div><b>+20</b><span>años de trayectoria en el país</span></div>
     <div><b>21</b><span>productos entre cadera, rodilla y cementos</span></div>
     <div><b>3</b><span>marcas internacionales representadas</span></div>
+    <div><b>2</b><span>sedes propias: Buenos Aires y Rosario</span></div>
   </div>
 </div></section>
 
@@ -256,7 +255,7 @@ def institucional():
     <h2>Soluciones para mejorar la calidad de vida del paciente</h2>
     <p class="lead">Mediante nuestros productos y servicios brindamos a pacientes, médicos, prestadores y financiadores del sistema de salud público y privado de todo el país soluciones superadoras para mejorar la calidad de vida de los pacientes.</p></div>
   <div class="g3">
-    <div class="card"><span class="ico">""" + I_RELOJ + """</span><h3>Experiencia</h3><p>Más de 25 años de trayectoria en la comercialización de prótesis de cadera y rodilla importadas, con presencia en todo el país.</p></div>
+    <div class="card"><span class="ico">""" + I_RELOJ + """</span><h3>Experiencia</h3><p>Más de 20 años de trayectoria en la comercialización de prótesis de cadera y rodilla importadas.</p></div>
     <div class="card"><span class="ico">""" + I_CAJA + """</span><h3>Calidad</h3><p>Trabajamos con productos de la más alta calidad, de fabricantes líderes en tecnología médica de Alemania y Estados Unidos.</p></div>
     <div class="card"><span class="ico">""" + I_ESCUDO + """</span><h3>Certificación</h3><p>Contamos con todas las habilitaciones del Ministerio de Salud de la Nación y de A.N.M.A.T. para productos médicos implantables.</p></div>
   </div>
@@ -265,18 +264,16 @@ def institucional():
 <section><div class="wrap">
   <div class="st"><span class="eyebrow">Trayectoria</span><h2>Cómo llegamos hasta acá</h2></div>
   <div class="hitos">""" + hitos + """</div>
-  <p style="font-size: 12.5px; color: var(--mut); margin-top: 18px;">Las fechas exactas de cada hito quedan pendientes de confirmar con la empresa.</p>
 </div></section>
 
 <section class="alt"><div class="wrap">
-  <div class="st"><span class="eyebrow">Cobertura</span><h2>Presencia en todo el país</h2>
-    <p class="lead">Sedes en CABA y Rosario, con entrega y acompañamiento técnico en diecisiete provincias.</p></div>
-  <div class="chips">""" + provs + """</div>
-  <div class="g2" style="margin-top: 34px;">
+  <div class="st"><span class="eyebrow">Dónde estamos</span><h2>Dos sedes, un mismo circuito</h2>
+    <p class="lead">Casa central en Buenos Aires y sede en Rosario. Desde cualquiera de las dos coordinamos la entrega y el acompañamiento técnico en el centro de salud donde se realiza la cirugía.</p></div>
+  <div class="g2">
     <div class="card"><span class="ico">""" + I_MAPA + """</span><h3>Sede Buenos Aires</h3>
-      <p>Av. Belgrano 863, CABA<br>11 3593 5241<br>Lunes a viernes, 8 a 17 h</p></div>
+      <p>Av. Belgrano 863, CABA<br><a href="tel:""" + shell.TEL_LINK + """">""" + shell.TEL_DISPLAY + """</a><br>Lunes a viernes, 8 a 17 h</p></div>
     <div class="card"><span class="ico">""" + I_MAPA + """</span><h3>Sede Rosario</h3>
-      <p>Pte. Roca 782, piso 1, Rosario<br>11 3593 5241<br>Lunes a viernes, 8 a 17 h</p></div>
+      <p>Pte. Roca 782, piso 1, Rosario<br><a href="tel:""" + shell.TEL_LINK + """">""" + shell.TEL_DISPLAY + """</a><br>Lunes a viernes, 8 a 17 h</p></div>
   </div>
 </div></section>
 
@@ -291,21 +288,21 @@ def institucional():
 
 # ================================================================ REPRESENTACIONES
 MARCAS = [
-    dict(logo="assets/link.png", filtro="filter: invert(1) brightness(.28);", alto="30px",
+    dict(logo="assets/link.webp", filtro="filter: invert(1) brightness(.28);", alto="30px",
          n="Waldemar Link GmbH & Co. KG", pais="Hamburgo, Alemania",
          datos=["Fundada el 1 de enero de 1948", "Presente en más de 70 países", "Cinco décadas en endoprotética de grandes articulaciones"],
          txt=["Fabricante alemán de endoprótesis articulares. Su catálogo cubre prótesis de cadera y rodilla, implantes de extremidad superior, soluciones para salvamento de miembros e implantes personalizados.",
               "De Link provienen la mayoría de los sistemas que Swiss Protech comercializa en Argentina: los cotilos MobileLink y Lubinus, los vástagos LCU, Lubinus SP II y MP Link, y las prótesis de rodilla Endo-Model."],
          prods=["MobileLink", "MobileLink Dual Mobility", "Lubinus Cup", "Lubinus SPII Revision", "MP Link", "LCU", "Endomodel", "Uni Sled"],
          web="link-ortho.com", url="https://www.link-ortho.com/"),
-    dict(logo="assets/advita.png", filtro="filter: invert(1) brightness(.28);", alto="34px",
+    dict(logo="assets/advita.webp", filtro="filter: invert(1) brightness(.28);", alto="34px",
          n="Advita Ortho", pais="Estados Unidos",
          datos=["Sistemas Novation® y Optetrak®", "Polietileno XLE con vitamina E"],
          txt=["Fabricante norteamericano de sistemas de reemplazo articular primario y de revisión para cadera y rodilla.",
               "De Advita provienen los cotilos Crown Cup, los vástagos Element y la familia de prótesis de rodilla Optetrak, en sus versiones Logic, Hi-Flex y CC de revisión."],
          prods=["Crown Cup", "Element", "Optetrak Logic", "Optetrak Hi-Flex", "Optetrak CC"],
          web="advita.com", url="https://advita.com/"),
-    dict(logo="assets/heraeus.png", filtro="", alto="28px",
+    dict(logo="assets/heraeus.webp", filtro="", alto="28px",
          n="Heraeus Medical", pais="Alemania",
          datos=["Cementos óseos PALACOS y COPAL", "Sistemas de mezcla al vacío PALAMIX"],
          txt=["Fabricante alemán de cementos óseos para fijación de implantes. La familia PALACOS es una de las de mayor uso clínico documentado del mundo.",
@@ -331,7 +328,8 @@ def representaciones():
     <a href="%s" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:600;margin-top:4px">%s &#8599;</a>
   </div></div>""" % (m["logo"], m["n"], m["alto"], m["filtro"], datos, m["n"], m["pais"], txt, prods, m["url"], m["web"]))
     return (cabecera("representaciones.html", "Representaciones — Swiss Protech",
-                     "Representantes exclusivos en Argentina de Waldemar Link, Advita Ortho y Heraeus Medical.")
+                     "Representantes exclusivos en Argentina de Waldemar Link, Advita Ortho y Heraeus Medical.",
+                     [("Home", "index.html"), ("Representaciones", "representaciones.html")])
     + head("Representaciones", "Los fabricantes que representamos",
            "Somos representantes exclusivos en Argentina de compañías líderes en tecnología médica de origen alemán y norteamericano. Cada producto de nuestro catálogo viene de una de estas tres casas.")
     + '<section><div class="wrap" style="display:flex;flex-direction:column;gap:24px">' + "".join(bloques) + '</div></section>'
@@ -351,7 +349,8 @@ def representaciones():
 # ================================================================ EDUCACIÓN MÉDICA
 def educacion():
     return (cabecera("educacion.html", "Educación médica — Swiss Protech",
-                     "Técnicas quirúrgicas por producto, material descargable y webinars. Acceso exclusivo para profesionales registrados.")
+                     "Técnicas quirúrgicas por producto, material descargable y webinars. Acceso exclusivo para profesionales registrados.",
+                     [("Home", "index.html"), ("Educación médica", "educacion.html")])
     + head("Educación médica", "Técnicas quirúrgicas y formación para profesionales",
            "Material técnico de los fabricantes que representamos, organizado por producto y por línea. El acceso es exclusivo para médicos registrados y activados.")
     + """
@@ -371,7 +370,7 @@ def educacion():
         <span class="ico" style="background:rgba(0,149,161,.18);border:1px solid rgba(114,197,194,.34)">""" + I_LIBRO.replace('stroke-width="1.8"', 'stroke-width="1.8" stroke="#72C5C2"') + """</span>
         <h3>Acceso exclusivo para médicos</h3>
         <p>Por tratarse de material técnico de productos médicos implantables, el acceso está restringido a profesionales de la salud. El registro se valida con la matrícula y se activa desde Swiss Protech.</p>
-        <div class="acts"><a href="contacto.html" class="btn-p">Registrarme como médico</a><a href="#" class="btn-g">Ya tengo cuenta</a></div>
+        <div class="acts"><a href="contacto.html?q=medico" class="btn-p">Registrarme como médico</a><a href="%s" target="_blank" rel="noopener" class="btn-g">Ya tengo cuenta</a></div>""" % shell.wa("Hola, ya tengo cuenta en el portal medico y necesito acceder al material tecnico.") + """
       </div></div>
   </div>
 </div></section>
@@ -412,7 +411,8 @@ def multimedia():
       onmouseenter="this.play()" onmouseleave="this.pause()"></video>
       <div class="bd"><b>%s</b><span>%s</span></div></div>""" % v for v in VIDEOS)
     return (cabecera("multimedia.html", "Multimedia y webinars — Swiss Protech",
-                     "Videos oficiales de Waldemar Link y Heraeus Medical sobre los sistemas que representamos.")
+                     "Videos oficiales de Waldemar Link y Heraeus Medical sobre los sistemas que representamos.",
+                     [("Home", "index.html"), ("Multimedia", "multimedia.html")])
     + head("Multimedia", "Videos y webinars",
            "Material audiovisual oficial de los fabricantes que representamos. Pasá el mouse sobre cada video para reproducirlo.")
     + '<section><div class="wrap"><div class="g4">' + vids + """</div>
@@ -423,7 +423,7 @@ def multimedia():
   <div class="st"><span class="eyebrow">Webinars</span><h2>Formación con especialistas</h2>
     <p class="lead">Sesiones en vivo y grabadas sobre técnica quirúrgica, selección de implante y manejo de complicaciones. El acceso al archivo completo es exclusivo para profesionales registrados.</p></div>
   <div class="g3">
-    <div class="card"><span class="ico">""" + I_PLAY + """</span><h3>Próximos webinars</h3><p>El calendario de sesiones en vivo se publica acá y se anuncia por correo a los médicos registrados.</p><span style="font-size:12.5px;color:var(--mut);font-style:italic">[COMPLETAR CON EL CALENDARIO]</span></div>
+    <div class="card"><span class="ico">""" + I_PLAY + """</span><h3>Próximos webinars</h3><p>Las sesiones en vivo se anuncian por correo a los médicos registrados y se publican en esta página.</p><a href="contacto.html?q=medico" style="font-size:13.5px;font-weight:600;margin-top:auto">Avisame de la próxima &rarr;</a></div>
     <div class="card"><span class="ico">""" + I_LIBRO + """</span><h3>Archivo grabado</h3><p>Sesiones anteriores disponibles a demanda, organizadas por línea de producto.</p><a href="educacion.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Acceder con mi cuenta &rarr;</a></div>
     <div class="card"><span class="ico">""" + I_USER + """</span><h3>Solicitar una sesión</h3><p>Coordinamos capacitaciones a medida para servicios de traumatología y equipos quirúrgicos.</p><a href="contacto.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Coordinar una capacitación &rarr;</a></div>
   </div>
@@ -431,11 +431,100 @@ def multimedia():
 """ + PIE)
 
 
+# ================================================================ PRIVACIDAD
+# Texto redactado sobre la Ley 25.326 de Protección de los Datos Personales.
+# No incluye datos societarios (CUIT, domicilio legal) porque no los tenemos
+# confirmados: ver PENDIENTES.md.
+PRIV = [
+    ("Qué datos recogemos",
+     "Este sitio solo recoge los datos que vos escribís en el formulario de contacto: nombre y apellido, "
+     "correo electrónico, teléfono, el dato profesional o institucional que corresponda según quién nos "
+     "escribe, y el texto de tu consulta. No pedimos ni almacenamos datos de salud, ni información de "
+     "tarjetas o medios de pago."),
+    ("Para qué los usamos",
+     "Únicamente para responder tu consulta y, si corresponde, coordinar la provisión de un implante o el "
+     "acceso al material técnico. No usamos tus datos para publicidad ni los cruzamos con otras bases."),
+    ("Cómo se envía tu consulta",
+     "Al enviar el formulario, tu consulta se abre como mensaje de WhatsApp hacia el número comercial de "
+     "Swiss Protech. Eso significa que el contenido del mensaje también queda sujeto a las políticas de "
+     "privacidad de WhatsApp. Si preferís no usar ese canal, podés llamarnos por teléfono a cualquiera de "
+     "nuestras dos sedes."),
+    ("Con quién los compartimos",
+     "No cedemos ni vendemos tus datos a terceros. Solo se comparten dentro de Swiss Protech con el área que "
+     "tiene que responderte, y con el centro de salud o el fabricante cuando es imprescindible para "
+     "concretar la cirugía que nos consultaste."),
+    ("Cuánto tiempo los guardamos",
+     "Conservamos las consultas durante el tiempo necesario para atenderlas y para cumplir con las "
+     "obligaciones de trazabilidad que exige la normativa de productos médicos. Pasado ese plazo se eliminan."),
+    ("Tus derechos",
+     "Podés pedirnos en cualquier momento acceder a tus datos, rectificarlos, actualizarlos o suprimirlos, "
+     "escribiéndonos por los canales de contacto de este sitio. La AGENCIA DE ACCESO A LA INFORMACIÓN "
+     "PÚBLICA, en su carácter de órgano de control de la Ley 25.326, tiene la atribución de atender las "
+     "denuncias y reclamos que se interpongan con relación al incumplimiento de las normas sobre protección "
+     "de datos personales."),
+    ("Cookies y medición",
+     "Este sitio no instala cookies de seguimiento ni de publicidad. Las tipografías se cargan desde Google "
+     "Fonts y los mapas de la página de contacto desde OpenStreetMap: ambos servicios reciben tu dirección IP "
+     "al cargar esos recursos, como en cualquier sitio que los use."),
+    ("Cambios en esta política",
+     "Si cambiamos la forma en que tratamos los datos, vamos a publicar la versión actualizada en esta misma "
+     "página."),
+]
+
+
+def privacidad():
+    bloques = "".join(
+        '<div class="hito"><div class="a" style="white-space:normal">%s</div><div><p>%s</p></div></div>' % b
+        for b in PRIV)
+    return (cabecera("privacidad.html", "Políticas de privacidad — Swiss Protech",
+                     "Cómo Swiss Protech trata los datos personales que se envían a través de este sitio, "
+                     "según la Ley 25.326.",
+                     [("Home", "index.html"), ("Políticas de privacidad", "privacidad.html")])
+    + head("Políticas de privacidad", "Políticas de privacidad",
+           "Qué datos recogemos en este sitio, para qué los usamos y cómo podés pedirnos que los "
+           "modifiquemos o los borremos. Redactado según la Ley 25.326 de Protección de los Datos Personales.")
+    + """
+<section><div class="wrap" style="max-width: 940px;">
+  <div class="hitos">""" + bloques + """</div>
+  <p style="font-size: 13px; color: var(--mut); margin-top: 26px;">Última actualización: septiembre de 2026.</p>
+</div></section>
+""" + PIE)
+
+
 PAGS = {"institucional.html": institucional, "representaciones.html": representaciones,
-        "educacion.html": educacion, "multimedia.html": multimedia}
+        "educacion.html": educacion, "multimedia.html": multimedia,
+        "privacidad.html": privacidad}
+
+# --------------------------------------------------------------- sitemap/robots
+URLS = ["index.html", "productos.html", "producto.html", "proceso.html", "institucional.html",
+        "representaciones.html", "educacion.html", "multimedia.html", "contacto.html", "privacidad.html"]
+PRIO = {"index.html": "1.0", "productos.html": "0.9", "contacto.html": "0.8", "proceso.html": "0.8"}
+
+
+def sitemap():
+    hoy = "2026-09-01"
+    filas = "".join(
+        "  <url><loc>%s/%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n"
+        % (shell.BASE_URL, "" if u == "index.html" else u, hoy, PRIO.get(u, "0.7"))
+        for u in URLS)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n' % filas)
+
+
+def robots():
+    return ("User-agent: *\n"
+            "Allow: /\n"
+            "Disallow: /media/video/\n"
+            "Disallow: /media/src/\n\n"
+            "Sitemap: %s/sitemap.xml\n" % shell.BASE_URL)
+
 
 if __name__ == "__main__":
     for nombre, fn in PAGS.items():
+        with open(os.path.join(SRC, nombre), "w", encoding="utf-8") as f:
+            f.write(fn())
+        print("ok", nombre)
+    for nombre, fn in [("sitemap.xml", sitemap), ("robots.txt", robots)]:
         with open(os.path.join(SRC, nombre), "w", encoding="utf-8") as f:
             f.write(fn())
         print("ok", nombre)

@@ -530,6 +530,8 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       for (const p of puntos) { p.el.style.opacity = '0'; p.el.style.pointerEvents = 'none'; }
       return;
     }
+    // 1) proyectar cada punto a pantalla
+    const vistos = [];
     for (const p of puntos) {
       p.obj.updateWorldMatrix(true, false);
       p.obj.localToWorld(tmp.copy(p.pos));
@@ -538,8 +540,6 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       haciaCam.copy(cam.position).sub(tmp).normalize();
       const cara = dir2.dot(haciaCam);
       tmp.project(cam);
-      const x = (tmp.x * 0.5 + 0.5) * w, y = (-tmp.y * 0.5 + 0.5) * h;
-      p.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
       const fueraDeCuadro = tmp.z > 1;                       // detras de la camara: no se puede proyectar
       const atras = cara < -0.02;                            // del otro lado de la pieza
       const esActivo = puntos[activo] === p;
@@ -553,6 +553,43 @@ export function montarVisor({ host, capaPuntos, panelTitulo, panelTexto, botones
       p.el.style.pointerEvents = op < 0.05 ? 'none' : 'auto';
       p.el.style.zIndex = esActivo ? '6' : (atras ? '3' : '4');
       p.el.classList.toggle('atras', atras && !esActivo);
+      const d = { p, esActivo,
+                  x: (tmp.x * 0.5 + 0.5) * w,
+                  y: (-tmp.y * 0.5 + 0.5) * h };
+      if (op > 0.05) vistos.push(d); else { d.fuera = true; vistos.push(d); }
+    }
+
+    // 2) separarlos si quedaron encimados: dos numeros pisados no se pueden leer
+    //    ni tocar. Se corren en pantalla, no en el modelo, asi que la linea de
+    //    lectura sigue apuntando a la misma pieza.
+    const SEP = 34, activos = vistos.filter(d => !d.fuera);
+    for (let it = 0; it < 4; it++) {
+      let movio = false;
+      for (let a = 0; a < activos.length; a++) {
+        for (let b = a + 1; b < activos.length; b++) {
+          const A = activos[a], B = activos[b];
+          let dx = B.x - A.x, dy = B.y - A.y;
+          let dist = Math.hypot(dx, dy);
+          if (dist >= SEP) continue;
+          if (dist < 0.01) { dx = (b - a) * 0.7; dy = 0.7; dist = Math.hypot(dx, dy); }
+          const empuje = (SEP - dist) / 2;
+          const ux = dx / dist, uy = dy / dist;
+          // el punto elegido no se mueve: es el que el usuario esta mirando
+          if (A.esActivo)      { B.x += ux * empuje * 2; B.y += uy * empuje * 2; }
+          else if (B.esActivo) { A.x -= ux * empuje * 2; A.y -= uy * empuje * 2; }
+          else { A.x -= ux * empuje; A.y -= uy * empuje; B.x += ux * empuje; B.y += uy * empuje; }
+          movio = true;
+        }
+      }
+      if (!movio) break;
+    }
+
+    // 3) aplicar, sin dejar que se escapen del visor
+    const M_ = 22;
+    for (const d of vistos) {
+      const x = Math.min(Math.max(d.x, M_), w - M_);
+      const y = Math.min(Math.max(d.y, M_), h - M_);
+      d.p.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
     }
   }
   cuadro();

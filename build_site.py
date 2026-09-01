@@ -5,7 +5,9 @@ Salida: site/  ->  index.html, productos.html, proceso.html, producto.html,
                    contacto.html, assets/
 Ejecutar:  python -u build_site.py
 """
-import os, re, shutil
+import json, os, re, shutil
+
+import shell
 
 SRC = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(SRC, "site")
@@ -13,7 +15,7 @@ ACCENT = "#0095A1"
 
 PAGES = [
     ("Main.dc.html",      "index.html",     "Swiss Protech — Implantes ortopédicos con trazabilidad de punta a punta",
-     "Importadores y representantes exclusivos en Argentina de prótesis de cadera y rodilla de origen alemán y norteamericano. Más de 25 años de trayectoria."),
+     "Representantes exclusivos en Argentina de prótesis de cadera y rodilla de Waldemar Link, Advita Ortho y Heraeus Medical. Más de 20 años de trayectoria."),
     ("Productos.dc.html", "productos.html", "Catálogo de productos — Swiss Protech",
      "21 productos entre prótesis de cadera, rodilla y cementos óseos. Marcas Link, Advita Ortho y Heraeus."),
     ("Proceso.dc.html",   "proceso.html",   "Nuestro proceso — Swiss Protech",
@@ -22,7 +24,31 @@ PAGES = [
      "Sedes en CABA y Rosario. Consultas de médicos, obras sociales, prepagas y pacientes."),
 ]
 
+MIGAS = {
+    "index.html":     [("Home", "index.html")],
+    "productos.html": [("Home", "index.html"), ("Productos", "productos.html")],
+    "proceso.html":   [("Home", "index.html"), ("Nuestro proceso", "proceso.html")],
+    "contacto.html":  [("Home", "index.html"), ("Contacto", "contacto.html")],
+}
+
+
+def cargar_productos():
+    """Lee js/productos.js para que el catálogo salga de una sola fuente."""
+    t = open(os.path.join(SRC, "js", "productos.js"), encoding="utf-8").read()
+    i, j = t.index("window.PRODUCTOS = "), t.index(";\nwindow.ORDEN")
+    return json.loads(t[i + len("window.PRODUCTOS = "):j])
+
+
+def marca_corta(marca):
+    m = marca.lower()
+    if "link" in m:
+        return "link", "LINK"
+    if "advita" in m:
+        return "advita", "ADVITA"
+    return "heraeus", "HERAEUS"
+
 NAV = [
+    ("Inicio",           "index.html"),
     ("Institucional",    "institucional.html"),
     ("Productos",        "productos.html"),
     ("Nuestro proceso",  "proceso.html"),
@@ -76,7 +102,6 @@ html { scroll-behavior: smooth; }
   [style*="padding: 40px 42px"] { padding: 26px 22px !important; }
   [style*="padding: 44px 46px"] { padding: 28px 22px !important; }
   [style*="padding: 34px 40px"] { padding: 24px 22px !important; flex-direction: column !important; align-items: flex-start !important; }
-  .stage { height: 340px !important; }
   .ring { width: 240px !important; height: 240px !important; }
   .ring-i { width: 150px !important; height: 150px !important; }
   .viewer { height: 400px !important; }
@@ -114,31 +139,12 @@ html { scroll-behavior: smooth; }
   /* fila de logos representados: envuelve en vez de cortarse */
   [style*="gap: 13px; padding-top: 8px"] { flex-wrap: wrap !important; row-gap: 16px !important; }
   [style*="gap: 13px; padding-top: 8px"] > span[style*="flex-grow: 1"] { display: none !important; }
-  .stage { height: 380px !important; }
-  .shot, .refl, .refl-box { width: 230px !important; }
-  .shot { height: 230px !important; }
-  .refl { height: 230px !important; }
-  .refl-box { height: 88px !important; }
-  .orbit.o1 { width: 300px !important; height: 300px !important; margin: -150px 0 0 -150px !important; }
-  .orbit.o2 { display: none !important; }
-  .floor { width: 320px !important; margin-left: -160px !important; }
-  .thumb { width: 48px !important; height: 48px !important; }
   [style*="align-items: center; justify-content: space-between; gap: 26px"] {
     flex-direction: column !important; align-items: flex-start !important; gap: 18px !important; }
 }
 """
 
-HERO3D_CSS = """
-#hero3d canvas { border-radius: 8px; }
-.h3-btn { display: inline-flex; align-items: center; gap: 8px; font-family: inherit; font-size: 13px;
-          font-weight: 600; color: #10222A; background: #FFFFFF; border: 1px solid #DDE3E5;
-          padding: 10px 16px; border-radius: 99px; cursor: pointer; min-height: 42px;
-          transition: border-color .25s, background .25s, color .25s; text-decoration: none; }
-.h3-btn:hover { border-color: #0095A1; color: #0095A1; }
-.h3-btn.on { background: rgba(0,149,161,.08); border-color: #0095A1; color: #0095A1; }
-.h3-cta { background: #0095A1; border-color: #0095A1; color: #FFFFFF; }
-.h3-cta:hover { background: #007C87; border-color: #007C87; color: #FFFFFF; }
-"""
+HERO3D_CSS = ""
 
 BURGER_CSS = """
 .burger { display: none; width: 44px; height: 44px; border-radius: 6px; border: 1px solid #E3E7E9;
@@ -172,12 +178,108 @@ def extraer(src):
 
 def wire_nav(cuerpo, actual):
     """Pone los href reales en la navegacion y marca la pagina activa."""
+    # los artboards se disenaron sin "Inicio": se agrega como primer item
+    cuerpo = cuerpo.replace('<a href="#" class="navlink" style="color: #10222A;">Institucional</a>',
+                            '<a href="index.html" class="navlink" style="color: #10222A;">Inicio</a>'
+                            '<a href="#" class="navlink" style="color: #10222A;">Institucional</a>', 1)
+    cuerpo = cuerpo.replace('gap: 34px; font-size: 14px; font-weight: 500; color: #10222A;',
+                            'gap: 26px; font-size: 14px; font-weight: 500; color: #10222A;')
     for texto, href in NAV:
         cuerpo = re.sub(
             r'<a href="#"(\s+class="navlink"[^>]*)>(\s*)' + re.escape(texto) + r'(\s*)</a>',
             lambda m, h=href, t=texto: '<a href="%s"%s>%s</a>' % (h, m.group(1), t),
             cuerpo)
+    # el maquetado trae un item resaltado a mano: el resaltado real depende de
+    # que pagina se esta construyendo
+    def repintar(m):
+        href, resto, texto = m.group(1), m.group(2), m.group(3)
+        on = (href == actual)
+        estilo = 'color: #0095A1; font-weight: 600;' if on else 'color: #10222A;'
+        cls = 'navlink on' if on else 'navlink'
+        aria = ' aria-current="page"' if on else ''
+        return '<a href="%s" class="%s"%s style="%s">%s</a>' % (href, cls, aria, estilo, texto)
+    cuerpo = re.sub(r'<a href="([a-z]+\.html)"( class="navlink"[^>]*)>([^<]+)</a>', repintar, cuerpo)
+
+    # el logo de la barra tiene que volver al home
+    cuerpo = re.sub(r'(?<!">)<img src="logo\.webp" alt="Swiss Protech"',
+                    '<a href="index.html" aria-label="Swiss Protech — inicio"><img src="logo.webp" alt="Swiss Protech"', cuerpo)
+    cuerpo = cuerpo.replace('style="height: 42px; width: auto; display: block;">',
+                            'style="height: 42px; width: auto; display: block;"></a>', 1)
     return cuerpo
+
+
+# ------------------------------------------------------------ ruteo de botones
+# El maquetado deja todos los enlaces en href="#". Se resuelven por el texto
+# visible del boton, no por su posicion, porque muchos llevan un icono adelante.
+def _wa(msg):
+    return lambda: (shell.wa(msg), True)
+
+
+DESTINOS = [
+    ("ver catálogo de productos", "productos.html"), ("ver los 21 productos", "productos.html"),
+    ("ver la línea", "productos.html"), ("ver el catálogo", "productos.html"),
+    ("ver los 9 de cadera", "productos.html#cadera"), ("catálogo", "productos.html"),
+    ("cómo trabajamos", "proceso.html"), ("ver el proceso completo", "proceso.html"),
+    ("ver sedes", "contacto.html"), ("coordinar una cirugía", "contacto.html"),
+    ("consultar este producto", "contacto.html"), ("consultar", "contacto.html"),
+    ("registrarme como médico", "contacto.html?q=medico"), ("registro médico", "educacion.html"),
+    ("ingresar", "educacion.html"), ("ya tengo cuenta", "educacion.html"),
+    ("técnica quirúrgica (médicos)", "educacion.html"),
+    ("políticas de privacidad", "privacidad.html"),
+    ("cadera", "productos.html#cadera"), ("rodilla", "productos.html#rodilla"),
+    ("cementos", "productos.html#cementos"), ("representaciones", "representaciones.html"),
+    ("link-ortho", "representaciones.html"), ("advita", "representaciones.html"),
+    ("heraeus", "representaciones.html"),
+]
+
+WHATSAPP = {
+    "escribir por whatsapp": "Hola, quisiera hacer una consulta sobre sus implantes.",
+    "consultar por whatsapp": "Hola, queria consultar disponibilidad y medidas de un producto del catalogo.",
+    "abrir whatsapp": "Hola, necesito coordinar un implante para una cirugia en las proximas 48 horas.",
+    "whatsapp": "Hola, quisiera hacer una consulta sobre sus implantes.",
+}
+
+
+def rutear_botones(cuerpo):
+    def resolver(m):
+        attrs, interior = m.group(1), m.group(2)
+        txt = re.sub(r"<[^>]+>", " ", interior)
+        txt = re.sub(r"\s+", " ", txt).replace("→", "").replace("&rarr;", "").strip().lower().rstrip(".")
+        if not txt:
+            return m.group(0)
+        for clave, msg in WHATSAPP.items():
+            if txt == clave:
+                return '<a href="%s" target="_blank" rel="noopener"%s>%s</a>' % (shell.wa(msg), attrs, interior)
+        for clave, destino in DESTINOS:
+            if txt == clave or txt.startswith(clave + " "):
+                return '<a href="%s"%s>%s</a>' % (destino, attrs, interior)
+        return m.group(0)
+    return re.sub(r'<a href="#"([^>]*)>(.*?)</a>', resolver, cuerpo, flags=re.S)
+
+
+# --------------------------------------------------------------- armazon comun
+MARCA_TOPBAR = "<!-- ================= BARRA SUPERIOR ================= -->"
+MARCA_NAV_M  = "<!-- ================= NAVEGACIÓN ================= -->"
+MARCA_CTA    = "<!-- ================= CTA FINAL ================= -->"
+
+
+def poner_armazon(cuerpo, es_main):
+    """Una sola barra superior, un solo CTA y un solo pie para todo el sitio."""
+    if es_main:
+        # el artboard del home trae su propia version de los tres: se sacan y se
+        # reemplazan por las de shell.py, que son las que usan las 9 paginas
+        i, j = cuerpo.index(MARCA_TOPBAR), cuerpo.index(MARCA_NAV_M)
+        cuerpo = cuerpo[:i] + cuerpo[j:]
+        k = cuerpo.index(MARCA_CTA)
+        cuerpo = cuerpo[:k] + "</div>\n"
+        cuerpo = cuerpo.replace(MARCA_NAV_M, MARCA_NAV_M + shell.topbar(), 1)
+    else:
+        cuerpo = cuerpo.replace("<!-- NAV -->", shell.topbar() + "<!-- NAV -->", 1)
+    # destino del enlace "Ir al contenido"
+    cuerpo = cuerpo.replace('</div>\n<div class="drawer"', '</div>\n<span id="contenido" tabindex="-1"></span>\n<div class="drawer"', 1)
+    if 'id="contenido"' not in cuerpo:
+        cuerpo = cuerpo.replace('<div class="drawer"', '<span id="contenido" tabindex="-1"></span><div class="drawer"', 1)
+    return cuerpo + shell.pie()
 
 
 def add_burger(cuerpo, oscuro=False):
@@ -217,8 +319,12 @@ def raiz_fluida(cuerpo):
 
 def marcar(cuerpo):
     """Clases utilitarias para las reglas responsive."""
-    cuerpo = cuerpo.replace('<div style="display: flex; align-items: center; gap: 34px;',
-                            '<div class="navlinks" style="display: flex; align-items: center; gap: 34px;')
+    # la barra pasa de seis a siete items: se achica la separacion antes de
+    # etiquetar el contenedor, para que el selector siga siendo uno solo
+    cuerpo = cuerpo.replace('<div style="display: flex; align-items: center; gap: 34px; font-size: 14px;',
+                            '<div style="display: flex; align-items: center; gap: 26px; font-size: 14px;')
+    cuerpo = cuerpo.replace('<div style="display: flex; align-items: center; gap: 26px; font-size: 14px;',
+                            '<div class="navlinks" style="display: flex; align-items: center; gap: 26px; font-size: 14px;')
     cuerpo = cuerpo.replace('padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 48px;',
                             'padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 48px;" class="ctarow')
     cuerpo = cuerpo.replace('<div style="display: flex; align-items: center; gap: 14px;">\n          <a href="#" class="btn-p"',
@@ -233,21 +339,54 @@ def marcar(cuerpo):
 # ---------------------------------------------------------------- interactivos
 JS_PRODUCTOS = """
 (function(){
-  var chips = document.querySelectorAll('[data-filter]');
+  var chips  = document.querySelectorAll('[data-filter]');
+  var marcas = document.querySelectorAll('[data-marca-f]');
   var grupos = document.querySelectorAll('[data-grupo]');
-  function pintar(v){
-    chips.forEach(function(c){
-      var on = c.getAttribute('data-filter') === v;
-      c.style.cssText = on
-        ? 'font-size:13px;font-weight:600;color:#FFFFFF;border:1px solid #0095A1;background:#0095A1;padding:9px 16px;border-radius:99px;'
-        : 'font-size:13px;font-weight:500;color:#10222A;border:1px solid #E3E7E9;background:#FFFFFF;padding:9px 16px;border-radius:99px;';
+  var cards  = document.querySelectorAll('.pc');
+  var vacio  = document.getElementById('sinResultados');
+  var linea = 'todos', marca = 'todas';
+
+  var ON  = 'font-size:13px;font-weight:600;color:#FFFFFF;border:1px solid #0095A1;background:#0095A1;padding:9px 16px;border-radius:99px;cursor:pointer;';
+  var OFF = 'font-size:13px;font-weight:500;color:#10222A;border:1px solid #E3E7E9;background:#FFFFFF;padding:9px 16px;border-radius:99px;cursor:pointer;';
+  var MON = 'font-size:13px;font-weight:600;color:#0095A1;border:1px solid #0095A1;background:rgba(0,149,161,.08);padding:8px 14px;border-radius:99px;cursor:pointer;';
+  var MOFF= 'font-size:13px;font-weight:500;color:#5A6570;border:1px solid #E3E7E9;background:#FFFFFF;padding:8px 14px;border-radius:99px;cursor:pointer;';
+
+  function pintar(){
+    var total = 0;
+    cards.forEach(function(c){
+      var ok = (linea === 'todos' || c.getAttribute('data-linea') === linea)
+            && (marca === 'todas' || c.getAttribute('data-marca') === marca);
+      c.style.display = ok ? '' : 'none';
+      if (ok) total++;
     });
+    // un grupo de línea desaparece si se quedó sin tarjetas visibles
     grupos.forEach(function(g){
-      g.style.display = (v === 'todos' || g.getAttribute('data-grupo') === v) ? '' : 'none';
+      var vis = 0;
+      g.querySelectorAll('.pc').forEach(function(c){ if (c.style.display !== 'none') vis++; });
+      g.style.display = vis ? '' : 'none';
+      var n = g.querySelector('[data-cuenta]');
+      if (n) n.textContent = vis + (vis === 1 ? ' producto' : ' productos');
     });
+    chips.forEach(function(c){
+      c.style.cssText = (c.getAttribute('data-filter') === linea) ? ON : OFF;
+    });
+    marcas.forEach(function(c){
+      c.style.cssText = (c.getAttribute('data-marca-f') === marca) ? MON : MOFF;
+    });
+    if (vacio) vacio.style.display = total ? 'none' : '';
   }
-  chips.forEach(function(c){ c.addEventListener('click', function(){ pintar(c.getAttribute('data-filter')); }); });
-  pintar('todos');
+
+  chips.forEach(function(c){ c.addEventListener('click', function(){
+    linea = c.getAttribute('data-filter'); pintar(); }); });
+  marcas.forEach(function(c){ c.addEventListener('click', function(){
+    var v = c.getAttribute('data-marca-f');
+    marca = (marca === v && v !== 'todas') ? 'todas' : v;   // volver a tocar la marca activa la saca
+    pintar(); }); });
+
+  // permite entrar directo a una línea desde el pie: productos.html#rodilla
+  var h = (location.hash || '').replace('#', '');
+  if (['cadera','rodilla','cementos'].indexOf(h) >= 0) linea = h;
+  pintar();
 })();
 """
 
@@ -275,16 +414,20 @@ JS_FICHA = """
 
 JS_CONTACTO = """
 (function(){
+  var TEL = '__TEL__';
+  var MAPA_BA  = '__MAPA_BA__',  LINK_BA  = 'https://www.openstreetmap.org/?mlat=-34.6116&mlon=-58.3847#map=17/-34.6116/-58.3847';
+  var MAPA_ROS = '__MAPA_ROS__', LINK_ROS = 'https://www.openstreetmap.org/?mlat=-32.9473&mlon=-60.6398#map=17/-32.9473/-60.6398';
+
   var P = {
-    ar: { s1:['Sede Buenos Aires','Casa central','Av. Belgrano 863, CABA','11 3593 5241'],
-          s2:['Sede Rosario','Santa Fe','Pte. Roca 782, piso 1, Rosario','11 3593 5241'],
-          tel:'+54 9 11 0000-0000' },
-    cl: { s1:['Chile','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'],
-          s2:['Chile','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'],
-          tel:'+56 9 0000 0000' },
-    uy: { s1:['Uruguay','Oficina comercial','[COMPLETAR DIRECCIÓN]','[COMPLETAR TELÉFONO]'],
-          s2:['Uruguay','Cobertura','[COMPLETAR ZONAS DE ENTREGA]','[COMPLETAR WHATSAPP]'],
-          tel:'+598 00 000 000' }
+    ar: { s1:['Sede Buenos Aires','Casa central','Av. Belgrano 863, CABA', TEL],
+          s2:['Sede Rosario','Rosario, Santa Fe','Pte. Roca 782, piso 1, Rosario', TEL],
+          tel:'+54 9 11 0000-0000', mapa: MAPA_BA, link: LINK_BA },
+    cl: { s1:['Chile','Atención desde casa central','Las consultas desde Chile las toma el equipo comercial en Buenos Aires.', TEL],
+          s2:['Chile','Cómo trabajamos allá','Coordinamos la entrega y el acompañamiento técnico con el centro de salud para cada cirugía.', TEL],
+          tel:'+56 9 0000 0000', mapa: MAPA_BA, link: LINK_BA },
+    uy: { s1:['Uruguay','Atención desde casa central','Las consultas desde Uruguay las toma el equipo comercial en Buenos Aires.', TEL],
+          s2:['Uruguay','Cómo trabajamos allá','Coordinamos la entrega y el acompañamiento técnico con el centro de salud para cada cirugía.', TEL],
+          tel:'+598 00 000 000', mapa: MAPA_BA, link: LINK_BA }
   };
   var Q = {
     medico:['Médico','Matrícula profesional','MN / MP','Contanos qué producto necesitás, para qué fecha está programada la cirugía y en qué centro.'],
@@ -311,63 +454,93 @@ JS_CONTACTO = """
       ic.style.cssText = ib + (on ? 'background:#0095A1;color:#FFFFFF;' : 'background:rgba(0,149,161,.09);color:#0095A1;');
     });
     var p = P[pais], q = Q[quien];
-    set('quienTxt', q[0]); set('campo2', q[1]); set('campo2ph', q[2]); set('msgPh', q[3]); set('telPh', p.tel);
+    set('quienTxt', q[0]); set('campo2', q[1]);
     set('sede1Tag', p.s1[0]); set('sede1Nom', p.s1[1]); set('sede1Dir', p.s1[2]); set('sede1Tel', p.s1[3]);
     set('sede2Tag', p.s2[0]); set('sede2Nom', p.s2[1]); set('sede2Dir', p.s2[2]); set('sede2Tel', p.s2[3]);
+    ph('fCampo2', q[2]); ph('fMsg', q[3]); ph('fTel', p.tel);
+    var f = document.getElementById('mapa'), a = document.getElementById('mapaLink');
+    if (f && f.getAttribute('src') !== p.mapa) f.setAttribute('src', p.mapa);
+    if (a) a.setAttribute('href', p.link);
+  }
+  function ph(id, txt){ var e = document.getElementById(id); if (e) e.setAttribute('placeholder', txt); }
+
+  // el segundo mapa de Argentina: al tocar la tarjeta de Rosario cambia el mapa
+  var t2 = document.getElementById('sede2Nom');
+  if (t2) {
+    var caja2 = t2.closest('div[style*="border-radius: 6px"]');
+    if (caja2) {
+      caja2.style.cursor = 'pointer';
+      caja2.addEventListener('click', function(){
+        if (pais !== 'ar') return;
+        var f = document.getElementById('mapa'), a = document.getElementById('mapaLink');
+        if (f) f.setAttribute('src', MAPA_ROS);
+        if (a) a.setAttribute('href', LINK_ROS);
+      });
+    }
   }
   document.querySelectorAll('[data-pais]').forEach(function(c){
     c.addEventListener('click', function(){ pais = c.getAttribute('data-pais'); pintar(); }); });
   document.querySelectorAll('[data-quien]').forEach(function(c){
     c.addEventListener('click', function(){ quien = c.getAttribute('data-quien'); pintar(); }); });
   pintar();
+
+  // ---- envio: arma el mensaje y abre WhatsApp con la consulta ya escrita
+  var PAIS_TXT = { ar: 'Argentina', cl: 'Chile', uy: 'Uruguay' };
+  var form = document.getElementById('formConsulta');
+  var err  = document.getElementById('formError');
+  function marcar(el, mal){ if (el) el.classList[mal ? 'add' : 'remove']('mal'); }
+  function fallar(msg, el){
+    if (err) { err.textContent = msg; err.style.display = ''; }
+    if (el) { marcar(el, true); el.focus(); }
+    return false;
+  }
+  if (form) form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var g = function(id){ return (document.getElementById(id).value || '').trim(); };
+    ['fNombre','fMail','fTel','fMsg'].forEach(function(i){ marcar(document.getElementById(i), false); });
+    if (err) err.style.display = 'none';
+
+    if (!g('fNombre')) return fallar('Escribinos tu nombre para saber con quién hablamos.', document.getElementById('fNombre'));
+    if (!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]{2,}$/.test(g('fMail')))
+      return fallar('Revisá el e-mail: no parece una dirección válida.', document.getElementById('fMail'));
+    if (g('fTel').replace(/[^0-9]/g, '').length < 8)
+      return fallar('Dejanos un teléfono con característica para poder responderte.', document.getElementById('fTel'));
+    if (!g('fMsg')) return fallar('Contanos brevemente qué necesitás.', document.getElementById('fMsg'));
+    if (!document.getElementById('fOk').checked)
+      return fallar('Necesitamos que aceptes las políticas de privacidad para poder contactarte.');
+
+    var q = Q[quien], extra = g('fCampo2');
+    var t = 'Consulta desde la web de Swiss Protech'
+          + '\\n\\nSoy: ' + q[0]
+          + '\\nPaís: ' + PAIS_TXT[pais]
+          + '\\nNombre: ' + g('fNombre')
+          + (extra ? '\\n' + q[1] + ': ' + extra : '')
+          + '\\nE-mail: ' + g('fMail')
+          + '\\nTeléfono: ' + g('fTel')
+          + '\\n\\n' + g('fMsg');
+    window.open('https://wa.me/__WA__?text=' + encodeURIComponent(t), '_blank', 'noopener');
+  });
 })();
 """
 
 
 JS_MAIN = """
-(function(){
-  var HERO = [
-    ['Cadera',   'MobileLink Dual Mobility', 'Waldemar Link · Alemania'],
-    ['Rodilla',  'Endomodel Modular',        'Waldemar Link · Alemania'],
-    ['Cadera',   'Lubinus SPII Revision',    'Waldemar Link · Alemania'],
-    ['Rodilla',  'Optetrak Logic',           'Sistema de reemplazo total'],
-    ['Cementos', 'Palamix',                  'Heraeus Medical · Alemania']
-  ];
-  var slots = document.querySelectorAll('.slot');
-  var thumbs = document.querySelectorAll('[data-hero]');
-  var i = 0, timer = null;
-  function pintar(){
-    slots.forEach(function(s, k){
-      s.style.cssText = (k === i)
-        ? 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:1;transform:scale(1);'
-        : 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transform:scale(.94);pointer-events:none;';
-    });
-    thumbs.forEach(function(t, k){
-      t.style.cssText = 'width:56px;height:56px;border-radius:6px;display:flex;align-items:center;'
-        + 'justify-content:center;border:1px solid ' + (k === i ? 'rgba(114,197,194,.75)' : 'rgba(255,255,255,.12)')
-        + ';background:' + (k === i ? 'rgba(0,149,161,.16)' : 'rgba(255,255,255,.035)') + ';';
-    });
-    document.getElementById('heroLinea').textContent  = HERO[i][0];
-    document.getElementById('heroNombre').textContent = HERO[i][1];
-    document.getElementById('heroMarca').textContent  = HERO[i][2];
-  }
-  function auto(){ timer = setInterval(function(){ i = (i + 1) % HERO.length; pintar(); }, 6000); }
-  thumbs.forEach(function(t, k){
-    t.addEventListener('click', function(){ clearInterval(timer); i = k; pintar(); });
+(function () {
+  var v = document.getElementById('film');
+  var b = document.getElementById('filmPlay');
+  if (!v || !b) return;
+  b.addEventListener('click', function () {
+    b.hidden = true;
+    v.controls = true;   // los controles nativos aparecen recien al reproducir
+    v.play();
   });
-  pintar(); auto();
-
+  v.addEventListener('pause', function () { if (v.currentTime === 0) b.hidden = false; });
+  v.addEventListener('ended', function () { v.currentTime = 0; b.hidden = false; });
 })();
 """
 
 
 def transformar_main(c):
-    for k in range(5):
-        c = c.replace('<div class="slot" style="{{s%d}}">' % k, '<div class="slot">')
-        c = c.replace('onClick="{{v%d}}" style="{{t%d}}"' % (k, k), 'data-hero="%d"' % k)
-    c = c.replace("{{linea}}", '<span id="heroLinea"></span>')
-    c = c.replace("{{nombre}}", '<span id="heroNombre"></span>')
-    c = c.replace("{{marca}}", '<span id="heroMarca"></span>')
     return c
 
 
@@ -382,17 +555,62 @@ SLUGS = [
 
 
 def transformar_productos(c):
-    c = re.sub(r'<sc-if value="\{\{show(\w+)\}\}"[^>]*>', lambda m: '<div data-grupo="%s">' % m.group(1).lower(), c)
+    P = cargar_productos()
+
+    c = re.sub(r'<sc-if value="\{\{show(\w+)\}\}"[^>]*>',
+               lambda m: '<div data-grupo="%s" id="%s">' % (m.group(1).lower(), m.group(1).lower()), c)
     c = c.replace("</sc-if>", "</div>")
     for cat in ["todos", "cadera", "rodilla", "cementos"]:
         c = c.replace('onClick="{{ver%s}}" style="{{s%s}}"' % (cat.capitalize(), cat.capitalize()),
                       'data-filter="%s"' % cat)
-    # cada tarjeta lleva a su ficha (21 aperturas y 21 cierres, uno a uno)
+
+    # el contador de cada grupo lo recalcula el JS al filtrar
+    c = re.sub(r'<span style="font-size: 13.5px; color: #69727D;">(\d+) productos</span>',
+               lambda m: '<span data-cuenta style="font-size: 13.5px; color: #69727D;">%s productos</span>' % m.group(1), c)
+
+    # cada tarjeta lleva a su ficha y declara línea y marca para el filtro
     it = iter(SLUGS)
-    c = re.sub(r'<div class="pc">',
-               lambda m: '<a class="pc" href="producto.html?p=%s">' % next(it), c)
+    def abrir(_m):
+        s = next(it)
+        p = P[s]
+        return ('<a class="pc" href="producto.html?p=%s" data-linea="%s" data-marca="%s">'
+                % (s, p["linea"].lower(), marca_corta(p["marca"])[0]))
+    c = re.sub(r'<div class="pc">', abrir, c)
     c = c.replace("</div></div>", "</div></a>")
+
+    # el rótulo "Línea · MARCA" sale del catálogo, no del maquetado: así no se
+    # puede volver a desincronizar de js/productos.js
+    it2 = iter(SLUGS)
+    def rotulo(m):
+        p = P[next(it2)]
+        return '%s%s · %s</span>' % (m.group(1), p["linea"], marca_corta(p["marca"])[1])
+    c = re.sub(r'(<span style="font-size: 10\.5px; font-weight: 700; letter-spacing: \.13em; '
+               r'text-transform: uppercase; color: #0095A1;">)[^<]*</span>', rotulo, c)
+
+    # barra de marcas: de texto decorativo a filtro real
+    c = re.sub(r'<span style="font-size: 12px; font-weight: 700; letter-spacing: \.12em; text-transform: uppercase; color: #A7A9AC;">Marca</span>.*?(?=</div>\s*</div>\s*</div>)',
+               MARCAS_HTML, c, flags=re.S)
+
+    # que decir cuando el cruce de filtros no deja nada
+    c = c.replace("<!-- AYUDA -->", VACIO_HTML + "<!-- AYUDA -->", 1)
     return c
+
+
+VACIO_HTML = """
+<div id="sinResultados" style="display: none; background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; padding: 44px 40px; text-align: center;">
+  <h3 style="font-size: 19px; color: #10222A; margin-bottom: 8px;">No hay productos con esa combinación</h3>
+  <p style="font-size: 14px; color: #69727D; line-height: 1.6;">Esa marca no tiene productos en la línea elegida. Probá con otra línea o mirá el catálogo completo.</p>
+</div>
+"""
+
+
+MARCAS_HTML = (
+    '<span style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #A7A9AC;">Marca</span>'
+    '<span class="mlink" data-marca-f="todas">Todas</span>'
+    '<span class="mlink" data-marca-f="link">LINK</span>'
+    '<span class="mlink" data-marca-f="advita">Advita</span>'
+    '<span class="mlink" data-marca-f="heraeus">Heraeus</span>'
+)
 
 
 def transformar_ficha(c):
@@ -415,7 +633,10 @@ def transformar_contacto(c):
         c = c.replace('<div class="who" onClick="{{%s}}"><div class="who-in" style="{{%s}}">' % (h, card),
                       '<div class="who" data-quien="%s"><div class="who-in">' % val)
         c = c.replace('<span style="{{%s}}">' % icon, '<span class="who-ic">')
-    for hid in ["quienTxt", "campo2", "campo2ph", "msgPh", "telPh",
+    # estos tres viven dentro de atributos placeholder="": los completa el JS
+    for hid in ["campo2ph", "msgPh", "telPh"]:
+        c = c.replace("{{%s}}" % hid, "")
+    for hid in ["quienTxt", "campo2",
                 "sede1Tag", "sede1Nom", "sede1Dir", "sede1Tel",
                 "sede2Tag", "sede2Nom", "sede2Dir", "sede2Tel"]:
         c = c.replace("{{%s}}" % hid, '<span id="%s"></span>' % hid)
@@ -427,21 +648,19 @@ PLANTILLA = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>__TITLE__</title>
-<meta name="description" content="__DESC__">
-<meta property="og:title" content="__TITLE__">
-<meta property="og:description" content="__DESC__">
-<meta property="og:type" content="website">
-<link rel="icon" href="assets/logo.png">
+__META__
 <script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
 __LINKS__
 <style>
 __CSS__
 __BURGER__
+__SHELL__
 __RESP__
 </style>
+__LD__
 </head>
 <body>
+<a href="#contenido" class="sr-skip">Ir al contenido</a>
 __BODY__
 <script>
 document.addEventListener('click', function(e){
@@ -450,9 +669,93 @@ document.addEventListener('click', function(e){
 });
 </script>
 __JS__
+<script>__MOV__</script>
 </body>
 </html>
 """
+
+LEGIBILIDAD_CSS = """
+/* ---- navegacion: siete items no pueden partirse en dos renglones ---- */
+.navlinks a { white-space: nowrap; }
+@media (max-width: 1330px) { .navlinks { gap: 20px !important; font-size: 13.5px !important; } }
+
+/* ---- ritmo y legibilidad ----
+   El maquetado venia con cuerpos de 12,5-13,5 px y lineas de hasta 75 caracteres.
+   Se sube el cuerpo, se abre el interlineado y se acota la medida: es un sitio que
+   leen medicos y administrativos, no un folleto. */
+body { font-size: 16px; line-height: 1.6; color: #10222A; text-rendering: optimizeLegibility; }
+p { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* parrafos de tarjeta y de bajada: piso de 14,5 px */
+[style*="font-size: 12.5px"]:not(.sp-foot *):not([class*="crumb"]) { font-size: 13.5px !important; }
+[style*="font-size: 13px; color: #69727D"] { font-size: 14.5px !important; line-height: 1.65 !important; }
+[style*="font-size: 14px; color: #69727D"] { font-size: 15px !important; line-height: 1.68 !important; }
+[style*="font-size: 15.5px; color: #69727D"] { font-size: 16.5px !important; line-height: 1.7 !important; }
+[style*="font-size: 15px; color: #69727D"] { font-size: 15.5px !important; line-height: 1.68 !important; }
+
+/* titulos de seccion con mas presencia y menos ruido */
+h2[style*="font-size: 27px"] { font-size: 30px !important; }
+h2[style*="font-size: 32px"] { font-size: 34px !important; }
+h2[style*="font-size: 34px"] { letter-spacing: -0.035em !important; }
+
+/* medida de lectura: ninguna columna de texto arriba de 68 caracteres */
+p[style*="max-width: 60ch"], p[style*="max-width: 64ch"] { max-width: 62ch !important; }
+
+/* separacion vertical mas pareja entre secciones */
+[style*="padding: 90px 0"] { padding: 96px 0 !important; }
+[style*="padding: 86px 0 78px"] { padding: 96px 0 !important; }
+
+/* enlaces de texto: subrayado al pasar, para que se lean como enlaces */
+a[style*="color: #0095A1"]:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 720px) {
+  body { font-size: 15.5px; }
+  h1 { letter-spacing: -0.03em !important; }
+}
+"""
+
+A11Y_CSS = """
+.sr-skip { position: absolute; left: -9999px; top: 0; z-index: 99; background: #0095A1; color: #fff;
+           padding: 12px 20px; font-size: 14px; font-weight: 600; border-radius: 0 0 4px 0; }
+.sr-skip:focus { left: 0; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible, .fbtn:focus-visible, .mlink:focus-visible {
+  outline: 3px solid #0095A1; outline-offset: 2px; border-radius: 3px; }
+.fbtn, .mlink { cursor: pointer; user-select: none; }
+@media (max-width: 720px) { .fbtn, .mlink { min-height: 40px; display: inline-flex; align-items: center; } }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: .01ms !important; transition-duration: .01ms !important; } html { scroll-behavior: auto; } }
+"""
+
+
+FICHA_CSS = """
+.creditos { margin: 0; padding: 26px 0 34px; background: #FFFFFF; border-top: 1px solid #E3E7E9; }
+.creditos .wrap { display: block; font-size: 12.5px; color: #8A929A; }
+""" + A11Y_CSS
+
+
+def parchar_ficha():
+    """producto.html se mantiene a mano; el armazon se le inyecta entre marcas.
+    Es idempotente: se puede volver a correr el build sin duplicar nada."""
+    ruta = os.path.join(SRC, "producto.html")
+    t = open(ruta, encoding="utf-8").read()
+
+    bloques = {
+        "META": shell.meta("Ficha de producto — Swiss Protech",
+                           "Cada implante de Swiss Protech con su ficha: especificaciones, material del "
+                           "fabricante, técnica quirúrgica y consulta directa.", "producto.html")
+                + "\n" + shell.jsonld_migas([("Home", "index.html"), ("Productos", "productos.html")]),
+        "CSS":    shell.CSS + FICHA_CSS,
+        "TOPBAR": shell.topbar(),
+        "PIE":    shell.pie(),
+    }
+    for nombre, contenido in bloques.items():
+        abre, cierra = ("/* SHELL:%s */" % nombre, "/* /SHELL:%s */" % nombre) if nombre == "CSS" \
+                       else ("<!-- SHELL:%s -->" % nombre, "<!-- /SHELL:%s -->" % nombre)
+        i, j = t.index(abre), t.index(cierra)
+        t = t[:i + len(abre)] + "\n" + contenido + "\n" + t[j:]
+
+    open(ruta, "w", encoding="utf-8").write(t)
+    shutil.copyfile(ruta, os.path.join(OUT, "producto.html"))
 
 
 def main():
@@ -476,14 +779,32 @@ def main():
         cuerpo = wire_nav(cuerpo, dst)
         cuerpo = add_burger(cuerpo)
         cuerpo = cuerpo.replace('src="', 'src="assets/').replace('src="assets/https', 'src="https')
+        cuerpo = cuerpo.replace('src="assets/media/', 'src="media/')
+        cuerpo = cuerpo.replace('poster="', 'poster="assets/')
+        # el srcset lleva varias rutas y no lo alcanza el reemplazo de arriba
+        cuerpo = re.sub(r'srcset="([^"]+)"',
+                        lambda m: 'srcset="%s"' % ", ".join(
+                            (t if t.startswith(("http", "assets/")) else "assets/" + t)
+                            for t in (x.strip() for x in m.group(1).split(","))),
+                        cuerpo)
         # botones que deben ir a una pagina real
+        cuerpo = rutear_botones(cuerpo)
         cuerpo = cuerpo.replace('>Ver los 21 productos', ' data-go>Ver los 21 productos')
         cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Ver catálogo de productos|Ver los 21 productos|Ver la línea|Ver el catálogo|Ver los 9 de cadera)',
                         lambda m: '<a href="productos.html"%s>%s%s' % (m.group(1), m.group(2), m.group(3)), cuerpo)
         cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Cómo trabajamos|Ver el proceso completo)',
                         lambda m: '<a href="proceso.html"%s>%s%s' % (m.group(1), m.group(2), m.group(3)), cuerpo)
-        cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Ver sedes|Coordinar una cirugía|Escribir por WhatsApp|Consultar este producto|Consultar por WhatsApp|Enviar consulta)',
+        cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Ver sedes|Coordinar una cirugía|Consultar este producto)',
                         lambda m: '<a href="contacto.html"%s>%s%s' % (m.group(1), m.group(2), m.group(3)), cuerpo)
+        # todo lo que dice WhatsApp abre WhatsApp de verdad
+        cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Escribir por WhatsApp|Consultar por WhatsApp)',
+                        lambda m: '<a href="%s" target="_blank" rel="noopener"%s>%s%s'
+                        % (shell.WA_CATALOGO, m.group(1), m.group(2), m.group(3)), cuerpo)
+        cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Abrir WhatsApp)',
+                        lambda m: '<a href="%s" target="_blank" rel="noopener"%s>%s%s'
+                        % (shell.WA_URGENTE, m.group(1), m.group(2), m.group(3)), cuerpo)
+        cuerpo = cuerpo.replace('<a href="#" data-wa',
+                                '<a href="%s" target="_blank" rel="noopener" data-wa' % shell.WA_GENERAL)
         cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Ver la línea|Ver los 21 productos)',
                         lambda m: '<a href="productos.html"%s>%s%s' % (m.group(1), m.group(2), m.group(3)), cuerpo)
         cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)(Registrarme como médico|Ya tengo cuenta|Registro médico|Ingresar)',
@@ -495,24 +816,49 @@ def main():
         cuerpo = cuerpo.replace('<a href="#" style="font-size: 13.5px; color: #A7A9AC;">Cementos</a>', '<a href="productos.html" style="font-size: 13.5px; color: #A7A9AC;">Cementos</a>')
         cuerpo = cuerpo.replace('<a href="#" style="font-size: 13.5px; color: #A7A9AC;">Representaciones</a>', '<a href="representaciones.html" style="font-size: 13.5px; color: #A7A9AC;">Representaciones</a>')
         cuerpo = re.sub(r'<a href="#"([^>]*?)>(\s*)Ver ficha', lambda m: '<a href="producto.html"%s>%sVer ficha' % (m.group(1), m.group(2)), cuerpo)
+        cuerpo = cuerpo.replace('<a href="#">políticas de privacidad</a>',
+                                '<a href="privacidad.html">políticas de privacidad</a>')
+
+        cuerpo = poner_armazon(cuerpo, src == "Main.dc.html")
+
+        ld = shell.jsonld_migas(MIGAS[dst])
+        if dst == "index.html":
+            ld = shell.jsonld_organizacion() + ld
+
+        js = extras.get(src, "")
+        js = (js.replace("__WA__", shell.WA_NUMERO)
+                .replace("__TEL__", shell.TEL_DISPLAY)
+                .replace("__MAPA_BA__", shell.SEDES[0]["mapa"])
+                .replace("__MAPA_ROS__", shell.SEDES[1]["mapa"]))
 
         html = (PLANTILLA
-                .replace("__TITLE__", title).replace("__DESC__", desc)
+                .replace("__META__", shell.meta(title, desc, dst))
                 .replace("__LINKS__", links).replace("__CSS__", css)
-                .replace("__BURGER__", BURGER_CSS + HERO3D_CSS).replace("__RESP__", RESPONSIVE)
+                .replace("__BURGER__", BURGER_CSS + HERO3D_CSS + A11Y_CSS + LEGIBILIDAD_CSS)
+                .replace("__SHELL__", shell.CSS).replace("__RESP__", RESPONSIVE)
+                .replace("__LD__", ld)
                 .replace("__BODY__", cuerpo)
-                .replace("__JS__", "<script>%s</script>" % extras[src] if src in extras else ""))
+                .replace("__MOV__", shell.MOVIMIENTO_JS)
+                .replace("__JS__", "<script>%s</script>" % js if js else ""))
         with open(os.path.join(OUT, dst), "w", encoding="utf-8") as f:
             f.write(html)
 
-    quedan = []
+    parchar_ficha()
+
+    quedan, pendientes = [], []
     for _, dst, _, _ in PAGES:
         t = open(os.path.join(OUT, dst), encoding="utf-8").read()
         h = re.findall(r"\{\{[^}]+\}\}", t)
         if h:
             quedan.append((dst, sorted(set(h))))
+        if "[COMPLETAR" in t.upper():
+            pendientes.append(dst)
+        # las paginas se publican desde la raiz: se copian solas
+        shutil.copyfile(os.path.join(OUT, dst), os.path.join(SRC, dst))
+
     print("paginas:", ", ".join(d for _, d, _, _ in PAGES))
     print("holes sin resolver:", quedan if quedan else "ninguno")
+    print("marcadores [COMPLETAR]:", pendientes if pendientes else "ninguno")
 
 
 if __name__ == "__main__":

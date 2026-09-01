@@ -6,7 +6,7 @@ window.PRODUCTOS = {
   "bajada": "Sistema de Cotilo No Cementado de Doble movilidad",
   "linea": "Cadera",
   "marca": "Waldemar Link",
-  "img": "assets/mobilelink.png",
+  "img": "assets/mobilelink.webp",
   "desc": [
    "El sistema de cotilo MobileLink se puede transformar en un sistema modular de movilidad dual, con el uso de insertos de movilidad dual fabricados con EndoDur. El inserto de movilidad dual está previsto para albergar revestimientos de movilidad dual fabricados con polietileno del Sistema de movilidad dual BiMobile. Sus características y ventajas son la movilidad dual favorece un riesgo reducido de dislocación y un incremento del margen de movilidad, la superficie interna pulida para minimizar el desgaste y prolongar la vida del implante y el revestimiento de autocentrado propicia patrones de desgaste homogéneos y aumenta la resistencia a la dislocación."
   ],
@@ -202,7 +202,7 @@ window.PRODUCTOS = {
   "bajada": "Sistema de Cotilo No Cementado",
   "linea": "Cadera",
   "marca": "Advita Ortho (Novation®)",
-  "img": "assets/crown-cup.png",
+  "img": "assets/crown-cup.webp",
   "desc": [
    "La amplia gama de opciones acetabulares permite la coincidencia de la anatomía del paciente, la estabilidad inicial para promover la fijación biológica y la restauración de la cinemática. El Novation ® Crown Cup ® cuenta con un diseño hemisférico de titanio que utiliza revestimientos acetabulares (Liner) mejorados con vitamina E altamente reticulados XLE, diseñados para",
    "proporcionar un bajo desgaste mientras mantienen la resistencia mecánica, reducen los radicales libres y la degradación oxidativa."
@@ -247,7 +247,7 @@ window.PRODUCTOS = {
   "bajada": "Vastago No Cementado",
   "linea": "Cadera",
   "marca": "Advita Ortho (Novation®)",
-  "img": "assets/element.png",
+  "img": "assets/element.webp",
   "desc": [
    "Diseño y técnicas quirúrgicas basadas en más de 25 años de uso clínico. Este sistema de conservación de hueso está diseñado para proporcionar estabilidad inicial y fijación biológica al mismo tiempo que proporciona a los cirujanos un sistema simple de uso que es lo suficientemente flexible para adaptarse a varios enfoques quirúrgicos."
   ],
@@ -333,7 +333,7 @@ window.PRODUCTOS = {
   "bajada": "Sistema de Cotilo Cementado Autorretentivo y Estandar",
   "linea": "Cadera",
   "marca": "Waldemar Link",
-  "img": "assets/lubinus-cup.png",
+  "img": "assets/lubinus-cup.webp",
   "desc": [
    "El cotilo de polietileno Lubinus® LINK® es un cotilo cementado fabricado con UHMWPE. La estabilidad directa del cotilo en el revestimiento de cemento permite una rápida movilización postoperatoria del paciente. Esto, a su vez, se traduce en tiempos de recuperación más cortos y en una hospitalización más breve para el paciente. Posee un revestimiento de cemento uniforme mediante espaciadores integrales, como es un cotilo profundo con efecto de encaje a presión contrarresta la tendencia a la luxación, su geometría excéntrica genera un grosor máximo del material en las zonas que soportan mayor carga y la elevada calidad del UHMWPE se traduce en menor abrasión."
   ],
@@ -377,7 +377,7 @@ window.PRODUCTOS = {
   "bajada": "Vástago de Revision Cementado",
   "linea": "Cadera",
   "marca": "Waldemar Link",
-  "img": "assets/lubinus-spii.png",
+  "img": "assets/lubinus-spii.webp",
   "desc": [
    "Vástago de cadera de revisión cementado el cual se utilizan después del aflojamiento de los implantes femorales de cadera, después de fracturas subprotésicas o periprotésicas o después de la",
    "reconstrucción para corregir defectos óseos proximales.",
@@ -451,7 +451,7 @@ window.PRODUCTOS = {
   "bajada": "Vástago modular de revisión de fijacion distal No Cementado con alternativa Cementada",
   "linea": "Cadera",
   "marca": "Waldemar Link",
-  "img": "assets/mp-link.png",
+  "img": "assets/mp-link.webp",
   "desc": [
    "El sistema de reconstrucción MP LINK ofrece al cirujano la flexibilidad y la seguridad intraoperatoria que es esencial para el éxito de una intervención de revisión con gran pérdida de hueso. El diseño único del sistema ha generado resultados extraordinarios durante décadas. Con solo tres bandejas de instrumental, el sistema MP permite una cirugía sencilla y rápida, así como un proceso sin complicaciones en cinco pasos. El sistema modular proporciona al cirujano un alto grado de flexibilidad en términos de adaptación de la longitud de la pierna, offset y anteversión, independientemente del anclaje distal cementado o no cementado del vástago. Esto permite una respuesta intraoperatoria rápida y sencilla a la anatomía y la lesión individuales de cada paciente. En las 4 longitudes (180 210 250 290mm), los vástagos tienen una angulación de 3°, lo que facilita el seguimiento de la curvatura anatómica del fémur. El vástago cónico en 2° con estrías",
    "longitudinales periféricas proporciona una estabilidad extraordinaria en el fémur, incluso en grandes lesiones proximales."
@@ -488,7 +488,7 @@ window.PRODUCTOS = {
   "bajada": "Prótesis modular de rodilla abisagrada, constreñida, rotatoria.",
   "linea": "Rodilla",
   "marca": "Waldemar Link",
-  "img": "assets/endomodel-mod.png",
+  "img": "assets/endomodel-mod.webp",
   "desc": [
    "Basado en el principio de baja fricción, el movimiento de rotación de esta prótesis pasa suavemente a través de un punto de pivote en la región fisiológica. La prótesis de articulación de rodilla con",
    "rotación Endo-Model® M permite la flexión de la articulación hasta 142°. Debido a la forma especial de las superficies de contacto tibiales y la rotación fisiológica, la cinemática de esta prótesis permite una transmisión amortiguada de la fuerza. La prótesis total de rodilla modular intracondílar, Endo-Model – M, es una evolución de la prótesis de rodilla estándar Endo-Model. Posee vástagos protésicos modulares que están disponibles en versiones cementadas y no cementadas (con superficie lisa o costillas longitudinales respectivamente). Para lograr una posición central dentro del canal medular, las puntas de los vástagos cementados se ajustan con tapas de UHMWPE en forma de estrella impidiendo el contacto directo del vástago metálico con la pared interior del hueso. Los vástagos cementados se suministran en longitudes de 50 a 280 mm. También están disponibles segmentos femorales especiales para cirugía de revisión de implantes de rodilla de superficie (reconstrucción de cóndilos) y para casos de tumores."
@@ -555,7 +555,7 @@ window.PRODUCTOS = {
   "bajada": "Prótesis modular de rodilla abisagrada, constreñida, bisagra simple",
   "linea": "Rodilla",
   "marca": "Waldemar Link",
-  "img": "assets/endomodel-hinged.png",
+  "img": "assets/endomodel-hinged.webp",
   "desc": [
    "Basado en el principio de baja fricción, la prótesis de rodilla en charnela permite sólo flexionar la articulación hasta 165°, sin rotación. El eje de compromiso se encuentra en la región del punto de pivot fisiológico.",
    "Posee vástagos protésicos modulares que están disponibles en versiones cementadas y no cementadas (con superficie lisa o costillas longitudinales respectivamente). Para lograr una posición central dentro del canal medular, las puntas de los vástagos cementados se ajustan con tapas de UHMWPE en forma de estrella impidiendo el contacto directo del vástago metálico con la pared",
@@ -614,7 +614,7 @@ window.PRODUCTOS = {
   "bajada": "Prótesis de rodilla abisagrada, constreñida, rotatoria.",
   "linea": "Rodilla",
   "marca": "Waldemar Link",
-  "img": "assets/endomodel-std.png",
+  "img": "assets/endomodel-std.webp",
   "desc": [
    "La Endo-Model se ha empleado durante más de 40 años como prótesis rotaria o de bisagra para artroplastias tanto primarias como de revisión. La prótesis rotacional Endo-Model le ofrece gran variedad de opciones.",
    "La técnica para implantar la Endo-Model es muy sencilla. Tanto por su fijación intracondílar y distal e intramedular proporciona un alto grado de estabilidad. Su fijación cementada ofrece protección antibacteriana. Para pacientes con hipersensibilidad a los metales, LINK también ofrece un tratamiento de modificación de superficies (LINK PorEx). Endo-Model puede presumir de una historia clínica de éxito sin parangón con excelentes resultados clínicos. Incluso después de 15 años, la Endo-Model presenta una tasa de supervivencia del 98,5 %. Permite una implantación rápida y sencilla, mientras que el diseño del implante garantiza una buena funcionalidad postoperatoria. Su excelente cinemática se traduce en que la Endo-Model proporciona un elevado grado de estabilidad, especialmente en extensión.El implante permite flexionar la articulación hasta 142° y tiene una hiperextensión de 2°. Endo-Model es un implante con estabilidad intrínseca. Las diversas opciones existentes (Endo-Model estándar, Endo-Model modular, Endo-Model SL, Endo-Model W) ofrecen un elevado grado de flexibilidad."
@@ -672,7 +672,7 @@ window.PRODUCTOS = {
   "bajada": "Prótesis de revisión de rodilla",
   "linea": "Rodilla",
   "marca": "Advita Ortho (Optetrak®)",
-  "img": "assets/optetrak-cc.png",
+  "img": "assets/optetrak-cc.webp",
   "desc": [
    "El sistema de rodilla de revisión OPTETRAK CC ofrece una cartera de implantes e instrumentos de alto rendimiento para obtener resultados reproducibles en un procedimiento de revisión simplificado. El completo sistema ofrece opciones de implantes que los cirujanos ortopédicos necesitan para enfrentar los desafíos únicos en la artroplastia total de rodilla de revisión. La instrumentación intuitiva proporciona modularidad y admite una técnica optimizada para preparar resecciones óseas de manera más rápida y eficiente. El sistema Optetrak CC Total Knee incluye lo siguiente:",
    "Componentes Femorales Condilares Constreñidos (CC) • Componentes Tibiales CC Modulares",
@@ -712,7 +712,7 @@ window.PRODUCTOS = {
   "bajada": "Sistema de prótesis primaria para reemplazo total de rodilla",
   "linea": "Rodilla",
   "marca": "Advita Ortho (Optetrak®)",
-  "img": "assets/optetrak-hiflex.png",
+  "img": "assets/optetrak-hiflex.webp",
   "desc": [
    "El diseño patentado de la prótesis total de rodilla Optetrak® Hi-Flex® se basa en el éxito clínico del sistema Optetrak a lo largo del tiempo. Las mejoras en el diseño permiten al paciente con un potencial alto de flexión beneficiarse de la excelente amplitud de movimientos y de la función rotuliana de Optetrak. El sistema Hi-Flex se ha desarrollado a partir del sistema de rodilla Optetrak estándar. Ligeras modificaciones de la leva y de la geometría de la quilla del inserto tibial, permiten mantener una congruencia y una presión de contacto excelentes en todo el rango de movimientos, incluidos grandes ángulos de flexión. El diseño del inserto tibial en la aleta permite un retroceso controlado con una flexión de hasta 145o sin un «pellizcamiento» posterior."
   ],
@@ -746,7 +746,7 @@ window.PRODUCTOS = {
   "bajada": "Sistema de prótesis primaria para reemplazo total de rodilla",
   "linea": "Rodilla",
   "marca": "Advita Ortho (Optetrak®)",
-  "img": "assets/optetrak-logic.png",
+  "img": "assets/optetrak-logic.webp",
   "desc": [
    "El sistema Optetrak Logic® constituye un enfoque avanzado de la cirugía de reemplazo total de rodilla, introduciendo características de diseño evolucionadas y un instrumental altamente intuitivo, basándose en los conocimientos adquiridos de una fuerte y dilatada línea de diseño. Advita Ortho desarrolló su Instrumentación de Bajo Perfil (Low Profile Instrumentation, LPI) para ofrecer un instrumental fácil de usar, que permita realizar la preparación ósea y la alineación de la extremidad de una manera reproducible, proporcionando una mejor visualización y mayor accesibilidad, con una perturbación mínima de las partes blandas. El Sistema Optetrak Logic PS reseca un 30% menos de hueso que una resección de cajón tradicional11 y ha sido diseñado para maximizar la estabilidad y el rango de movimiento, al mismo tiempo que se ofrece a los cirujanos una preparación de la escotadura más sencilla, rápida y más reproducible. Estrés por contacto mínimo",
    "Optetrak Logic mantiene la congruencia femoro-tibial de 0.96,7 que reduce el estrés por contacto y minimiza el potencial daño de la superficie articular y el desgaste, y en definitiva mejorar la supervivencia de la prótesis.",
@@ -803,7 +803,7 @@ window.PRODUCTOS = {
   "bajada": "Prótesis unicompartimental de rodilla.",
   "linea": "Rodilla",
   "marca": "Waldemar Link",
-  "img": "assets/uni-sled.png",
+  "img": "assets/uni-sled.webp",
   "desc": [
    "La prótesis unicondilar de LINK se implantó por primera vez en 1969. Se modificó por última vez en 1981 y desde entonces no ha cambiado este diseño de implante que tanto éxito ha cosechado.",
    "Longevidad demostrada",
@@ -850,7 +850,7 @@ window.PRODUCTOS = {
   "bajada": "Cemento óseo con gentamicina y clindamicyna",
   "linea": "Cementos",
   "marca": "Heraeus Medical",
-  "img": "assets/copal.png",
+  "img": "assets/copal.webp",
   "desc": [
    "COPAL G+C – Cemento óseo con gentamicina y clindamicina",
    "Amplio espectro de actividad altamente efectivo contra alrededor del 90 % de los patógenos clínicamente relevantes, incluidos los anaerobios mediante la adición de 1 g de gentamicina y 1 g de clindamicina",
@@ -891,7 +891,7 @@ window.PRODUCTOS = {
   "bajada": "Cemento óseo con gentamicina",
   "linea": "Cementos",
   "marca": "Heraeus Medical",
-  "img": "assets/palacos-mv.png",
+  "img": "assets/palacos-mv.webp",
   "desc": [
    "PALACOS® MV+G es un cemento óseo de viscosidad media con gentamicina añadida para la profilaxis antibiótica."
   ],
@@ -929,7 +929,7 @@ window.PRODUCTOS = {
   "bajada": "Cemento óseo ortopédico",
   "linea": "Cementos",
   "marca": "Heraeus Medical",
-  "img": "assets/palacos-r.png",
+  "img": "assets/palacos-r.webp",
   "desc": [
    "PALACOS® R es un cemento óseo de alta viscosidad. Con materias primas de alta calidad constante y una fórmula probada, los cementos PALACOS® han contribuido positivamente al éxito de las intervenciones quirúrgicas durante más de 50 años. De color verde característico, PALACOS® contrasta ópticamente con el tejido circundante y, por lo tanto, facilita el manejo durante la cirugía. PALACOS® R está indicado para:",
    "Fijación estable de endoprótesis articulares totales o parciales en hueso",
@@ -967,7 +967,7 @@ window.PRODUCTOS = {
   "bajada": "Aplicación segura y sin esfuerzo del cemento óseo.",
   "linea": "Cementos",
   "marca": "Heraeus Medical",
-  "img": "assets/palamix-gun.png",
+  "img": "assets/palamix-gun.webp",
   "desc": [
    "La pistola para cemento PALAMIX® está prevista para alojar los cartuchos de mezcla del sistema de mezcla al vacío PALAMIX® para asegurar una aplicación segura y sin esfuerzo del cemento óseo. El gatillo de la pistola para cemento PALAMIX® se acciona manualmente para que el cemento óseo salga del cartucho de mezcla.",
    "El accionamiento del gatillo hace que la varilla de avance se desplace hacia delante dentro del cartucho de mezcla y que el cemento óseo sea expulsado con una elevada presión. La pistola para cemento PALAMIX® se opera exclusivamente en combinación con el sistema de mezcla al vacío PALAMIX® ."
@@ -1026,7 +1026,7 @@ window.PRODUCTOS = {
   "bajada": "Sistema con mezclador al vacío de cemento óseo.",
   "linea": "Cementos",
   "marca": "Heraeus Medical",
-  "img": "assets/palamix-uno.png",
+  "img": "assets/palamix-uno.webp",
   "desc": [
    "Sistema de mezcla al vacío de cartucho PALAMIX ® para cemento óseo. El uso de técnicas de cementación modernas en la artroplastia es clave para garantizar tasas de supervivencia prolongadas para las endoprótesis y un bajo riesgo de revisión. Uno de sus factores cruciales de éxito es un cemento óseo mezclado homogéneamente.",
    "La mezcla al vacío mejora la homogeneidad del cemento óseo al reducir la porosidad y fortalece la interfaz de la prótesis de cemento óseo."

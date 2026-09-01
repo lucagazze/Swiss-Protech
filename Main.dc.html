@@ -18,55 +18,39 @@
     p { margin: 0; }
 
     /* ================= escenario de producto (claro) ================= */
-    .stage { position: relative; }
 
-    .orbit { position: absolute; left: 50%; top: 48%; border-radius: 50%;
-             border: 1px solid rgba(0,149,161,.20); pointer-events: none; }
-    .orbit.o1 { width: 430px; height: 430px; margin: -215px 0 0 -215px;
-                animation: orb 36s linear infinite; }
-    .orbit.o2 { width: 580px; height: 580px; margin: -290px 0 0 -290px;
-                border-color: rgba(0,149,161,.10); animation: orb 58s linear infinite reverse; }
-    .orbit::after { content: ""; position: absolute; top: -3px; left: 50%; margin-left: -3px;
-                    width: 6px; height: 6px; border-radius: 50%; background: #0095A1;
-                    box-shadow: 0 0 12px 3px rgba(0,149,161,.35); }
-    @keyframes orb { from { transform: rotateX(76deg) rotateZ(0deg); }
-                     to   { transform: rotateX(76deg) rotateZ(360deg); } }
-    .orbit.o1, .orbit.o2 { transform: rotateX(76deg); }
+    /* ---- pieza en video ---- */
+    .film { position: relative; border-radius: 12px; overflow: hidden; background: #0A171D;
+            box-shadow: 0 46px 90px -50px rgba(16,34,42,.62); }
+    .film video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover;
+                  background: #0A171D; }
+    .film-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+                 background: linear-gradient(180deg, rgba(10,23,29,.04) 0%, rgba(10,23,29,.20) 100%);
+                 border: 0; cursor: pointer; transition: opacity .4s; padding: 0; }
+    .film-play[hidden] { display: none; }
+    .film-play span { width: 92px; height: 92px; border-radius: 50%; background: rgba(255,255,255,.94);
+                      display: flex; align-items: center; justify-content: center;
+                      box-shadow: 0 18px 40px -16px rgba(16,34,42,.7); transition: transform .3s, background .3s; }
+    .film-play:hover span { transform: scale(1.07); background: #FFFFFF; }
+    .film-play svg { margin-left: 5px; }
+    .film-pie { display: flex; align-items: center; justify-content: space-between; gap: 20px;
+                flex-wrap: wrap; margin-top: 16px; }
+    @media (max-width: 720px) { .film-play span { width: 68px; height: 68px; } }
 
-    .aura { position: absolute; left: 50%; top: 46%; width: 640px; height: 640px;
-            margin: -320px 0 0 -320px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,149,161,.13), transparent 62%);
-            filter: blur(40px); animation: breathe 10s ease-in-out infinite; pointer-events: none; }
-    @keyframes breathe { 0%,100% { opacity: .7; } 50% { opacity: 1; } }
-
-    .floor { position: absolute; left: 50%; top: 65%; width: 520px; height: 1px;
-             margin-left: -260px; pointer-events: none;
-             background: linear-gradient(90deg, transparent, rgba(0,149,161,.26), transparent); }
-
-    .slot { position: absolute; inset: 0; display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1); }
-    .drift { animation: drift 10s ease-in-out infinite; }
-    @keyframes drift { 0%,100% { transform: translateY(-6px); } 50% { transform: translateY(6px); } }
-    .shot { width: 320px; height: 320px; object-fit: contain; display: block;
-            filter: drop-shadow(0 34px 34px rgba(16,34,42,.26)); }
-    .refl-box { width: 320px; height: 116px; overflow: hidden; margin-top: 2px;
-                -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.34), transparent 76%);
-                mask-image: linear-gradient(to bottom, rgba(0,0,0,.34), transparent 76%); }
-    .refl { width: 320px; height: 320px; object-fit: contain; display: block;
-            transform: scaleY(-1); opacity: .38; filter: blur(.7px); }
-
-    .scan { position: absolute; left: 50%; top: 48%; width: 380px; height: 1px;
-            margin-left: -190px; pointer-events: none;
-            background: linear-gradient(90deg, transparent, rgba(0,149,161,.45), transparent);
-            animation: scan 10s cubic-bezier(.6,0,.4,1) infinite; }
-    @keyframes scan { 0%, 64% { opacity: 0; transform: translateY(-150px); }
-                      68% { opacity: 1; }
-                      93% { opacity: 0; transform: translateY(150px); }
-                      100% { opacity: 0; transform: translateY(150px); } }
-
-    .thumb { cursor: pointer; transition: border-color .3s, background .3s; }
-    .thumb:hover { border-color: rgba(0,149,161,.55); }
+    /* ---- imagen del hero ---- */
+    .heroimg { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+    .heroimg-marco { position: relative; border-radius: 10px; overflow: hidden;
+                     background: linear-gradient(158deg, #FFFFFF 0%, #F1F7F8 58%, #E4EEF1 100%);
+                     border: 1px solid #E1E8EA; box-shadow: 0 34px 70px -40px rgba(16,34,42,.42); }
+    .heroimg-marco::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+                            box-shadow: inset 0 1px 0 rgba(255,255,255,.9); border-radius: 10px; }
+    .heroimg img { display: block; width: 100%; height: auto; }
+    .heroimg-cred { position: absolute; left: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 2px;
+                    background: rgba(255,255,255,.93); backdrop-filter: blur(6px);
+                    border: 1px solid #E1E8EA; border-radius: 6px; padding: 11px 16px; max-width: calc(100% - 40px); }
+    .heroimg-l1 { font-size: 13.5px; font-weight: 700; color: #10222A; letter-spacing: -0.01em; }
+    .heroimg-l2 { font-size: 11.5px; color: #69727D; }
+    .heroimg figcaption { font-size: 12px; color: #A7A9AC; letter-spacing: .02em; }
 
     /* ================= interacciones sobrias ================= */
     .card { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .35s; }
@@ -106,8 +90,8 @@
       mask-image: radial-gradient(circle at 62% 44%, #000 0%, transparent 74%); }
 
     @media (prefers-reduced-motion: reduce) {
-      .orbit, .aura, .drift, .scan { animation: none; }
-      .card, .card-img, .step, .btn-p, .btn-g, .slot { transition: none; }
+      
+      .card, .card-img, .step, .btn-p, .btn-g { transition: none; }
     }
   </style>
 </helmet>
@@ -134,8 +118,8 @@
   <!-- ================= NAVEGACIÓN ================= -->
   <div style="background: #FFFFFF; border-bottom: 1px solid #E3E7E9; position: relative; z-index: 5;">
     <div style="max-width: 1240px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; gap: 40px;">
-      <img src="logo.png" alt="Swiss Protech" style="height: 42px; width: auto; display: block;">
-      <div style="display: flex; align-items: center; gap: 34px; font-size: 14px; font-weight: 500; color: #10222A;">
+      <img src="logo.webp" alt="Swiss Protech" style="height: 42px; width: auto; display: block;">
+      <div style="display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 500; color: #10222A;">
         <a href="#" class="navlink" style="color: #10222A;">Institucional</a>
         <a href="#" class="navlink" style="color: #10222A;">Productos</a>
         <a href="#" class="navlink" style="color: #0095A1; font-weight: 600;">Nuestro proceso</a>
@@ -163,23 +147,23 @@
           Representantes exclusivos en Argentina
         </div>
 
-        <h1 style="font-size: 58px; font-weight: 800; color: #10222A; letter-spacing: -0.035em; line-height: 1.05; text-wrap: balance;">
-          Implantes ortopédicos<br>con trazabilidad<br>
-          <span style="color: {{accent}};">de punta a punta.</span>
+        <h1 style="font-size: 54px; font-weight: 800; color: #10222A; letter-spacing: -0.035em; line-height: 1.08; max-width: 15ch;">
+          Implantes ortopédicos con trazabilidad de
+          <span style="color: {{accent}};">punta a punta.</span>
         </h1>
 
         <p style="font-size: 17.5px; line-height: 1.68; color: #5A6570; max-width: 52ch; font-weight: 400;">
-          Más de 25 años importando prótesis de cadera y rodilla de origen alemán y
+          Más de 20 años importando prótesis de cadera y rodilla de origen alemán y
           norteamericano. Cada implante sale de nuestro depósito identificado, controlado
           y esterilizado, y llega acompañado hasta el quirófano.
         </p>
 
         <div style="display: flex; align-items: center; gap: 14px;">
-          <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #fff; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px;">
+          <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #fff; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px; white-space: nowrap;">
             Ver catálogo de productos
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
           </a>
-          <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 500; padding: 16px 28px; border-radius: 4px; background: #FFFFFF;">
+          <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 500; padding: 16px 28px; border-radius: 4px; background: #FFFFFF; white-space: nowrap;">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
             Cómo trabajamos
           </a>
@@ -187,62 +171,63 @@
 
         <div style="display: flex; align-items: center; gap: 18px; padding-top: 10px;">
           <span style="font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: #A7A9AC; font-weight: 700; white-space: nowrap;">Representamos a</span>
-          <img src="link.png" alt="LINK" class="brand-l" style="height: 20px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
-          <img src="advita.png" alt="Advita Ortho" class="brand-l" style="height: 22px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
-          <img src="heraeus.png" alt="Heraeus" class="brand-l" style="height: 18px; width: auto; filter: grayscale(1) contrast(1.6) brightness(.55); opacity: .8;">
+          <img src="link.webp" alt="LINK" class="brand-l" style="height: 20px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+          <img src="advita.webp" alt="Advita Ortho" class="brand-l" style="height: 22px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+          <img src="heraeus.webp" alt="Heraeus" class="brand-l" style="height: 18px; width: auto; filter: grayscale(1) contrast(1.6) brightness(.55); opacity: .8;">
         </div>
       </div>
 
-      <!-- presentación de producto -->
-      <div style="display: flex; flex-direction: column; gap: 26px;">
-        <div class="stage" id="hero-stage" style="position: relative; height: 460px;">
-          <div class="aura"></div>
-          <div class="orbit o2"></div>
-          <div class="orbit o1"></div>
-
-          <div class="slot" style="{{s0}}">
-            <div class="drift"><img src="mobilelink.png" alt="MobileLink Dual Mobility" class="shot"></div>
-            <div class="refl-box"><img src="mobilelink.png" alt="" class="refl"></div>
+      <!-- imagen: sistema Endo-Model implantado, material oficial del fabricante -->
+      <figure class="heroimg">
+        <div class="heroimg-marco">
+          <img src="hero-endomodel.webp" alt="Prótesis de rodilla Endo-Model implantada entre el fémur y la tibia"
+               srcset="hero-endomodel-sm.webp 594w, hero-endomodel.webp 1188w"
+               sizes="(max-width: 1240px) 92vw, 620px"
+               width="1188" height="1152" fetchpriority="high" decoding="async">
+          <div class="heroimg-cred">
+            <span class="heroimg-l1">Sistema Endo-Model</span>
+            <span class="heroimg-l2">Waldemar Link &middot; Hamburgo, Alemania</span>
           </div>
-          <div class="slot" style="{{s1}}">
-            <div class="drift"><img src="endomodel-mod.png" alt="Endomodel Modular" class="shot"></div>
-            <div class="refl-box"><img src="endomodel-mod.png" alt="" class="refl"></div>
-          </div>
-          <div class="slot" style="{{s2}}">
-            <div class="drift"><img src="lubinus-spii.png" alt="Lubinus SPII Revision" class="shot"></div>
-            <div class="refl-box"><img src="lubinus-spii.png" alt="" class="refl"></div>
-          </div>
-          <div class="slot" style="{{s3}}">
-            <div class="drift"><img src="optetrak-logic.png" alt="Optetrak Logic" class="shot"></div>
-            <div class="refl-box"><img src="optetrak-logic.png" alt="" class="refl"></div>
-          </div>
-          <div class="slot" style="{{s4}}">
-            <div class="drift"><img src="palamix-gun.png" alt="Palamix" class="shot"></div>
-            <div class="refl-box"><img src="palamix-gun.png" alt="" class="refl"></div>
-          </div>
-
-          <div class="floor"></div>
-          <div class="scan"></div>
         </div>
+        <figcaption>Imagen del fabricante. Uno de los 21 sistemas del cat&aacute;logo.</figcaption>
+      </figure>
 
-        <!-- rótulo y selector, centrados -->
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
-          <div id="hero-rotulo" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
-            <span id="hero-linea" style="font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: {{accent}};">{{linea}}</span>
-            <span id="hero-nombre" style="font-size: 18px; font-weight: 700; color: #10222A; letter-spacing: -0.025em;">{{nombre}}</span>
-            <span id="hero-marca" style="font-size: 12.5px; color: #8A929A;">{{marca}}</span>
-          </div>
+    </div>
+  </div>
 
-          <div id="hero-thumbs" style="display: flex; align-items: center; gap: 10px;">
-            <span class="thumb" onClick="{{v0}}" style="{{t0}}"><img src="mobilelink.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
-            <span class="thumb" onClick="{{v1}}" style="{{t1}}"><img src="endomodel-mod.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
-            <span class="thumb" onClick="{{v2}}" style="{{t2}}"><img src="lubinus-spii.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
-            <span class="thumb" onClick="{{v3}}" style="{{t3}}"><img src="optetrak-logic.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
-            <span class="thumb" onClick="{{v4}}" style="{{t4}}"><img src="palamix-gun.png" alt="" style="width: 38px; height: 38px; object-fit: contain;"></span>
-          </div>
 
-          <span id="hero-pie" style="font-size: 11.5px; color: #A7A9AC; letter-spacing: .07em;">21 productos en catálogo · 3 líneas</span>
+  <!-- ================= PIEZA EN VIDEO ================= -->
+  <div style="background: #F7F8F9; padding: 96px 0; border-top: 1px solid #E3E7E9; border-bottom: 1px solid #E3E7E9;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 34px;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;">
+        <div style="display: flex; flex-direction: column; gap: 13px; max-width: 60ch;">
+          <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">En un minuto</span>
+          <h2 style="font-size: 34px; color: #10222A; letter-spacing: -0.03em;">Qué implantamos, y de dónde viene cada pieza</h2>
+          <p style="font-size: 15.5px; color: #69727D; line-height: 1.62;">
+            Las tres líneas del catálogo y el circuito de trazabilidad, con el material
+            audiovisual oficial de los fabricantes que representamos.
+          </p>
         </div>
+        <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 500; padding: 15px 26px; border-radius: 4px; background: #FFFFFF; white-space: nowrap;">
+          Ver el catálogo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+      </div>
+
+      <div class="film">
+        <video id="film" poster="film-poster.webp" preload="none" playsinline
+               width="1920" height="1080" aria-label="Swiss Protech en un minuto">
+          <source src="media/swiss-protech.mp4" type="video/mp4">
+          Tu navegador no puede reproducir este video.
+        </video>
+        <button class="film-play" id="filmPlay" type="button" aria-label="Reproducir el video">
+          <span><svg width="30" height="30" viewBox="0 0 24 24" fill="{{accent}}"><polygon points="6 3 21 12 6 21 6 3"></polygon></svg></span>
+        </button>
+      </div>
+
+      <div class="film-pie">
+        <span style="font-size: 12.5px; color: #A7A9AC;">Material audiovisual de Waldemar Link GmbH &amp; Co. KG y Heraeus Medical.</span>
+        <span style="font-size: 12.5px; color: #A7A9AC;">1 min 6 s &middot; sin audio</span>
       </div>
     </div>
   </div>
@@ -251,12 +236,12 @@
   <div style="background: #FFFFFF; border-top: 1px solid #E3E7E9; border-bottom: 1px solid #E3E7E9;">
     <div style="max-width: 1240px; margin: 0 auto; padding: 44px 40px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px;">
       <div style="display: flex; flex-direction: column; gap: 6px; border-left: 3px solid {{accent}}; padding-left: 20px;">
-        <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">+25</span>
+        <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">+20</span>
         <span style="font-size: 13.5px; color: #69727D; line-height: 1.45;">años de trayectoria en el país</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 6px; border-left: 3px solid #E3E7E9; padding-left: 20px;">
-        <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">17</span>
-        <span style="font-size: 13.5px; color: #69727D; line-height: 1.45;">provincias con cobertura activa</span>
+        <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">2</span>
+        <span style="font-size: 13.5px; color: #69727D; line-height: 1.45;">sedes propias: Buenos Aires y Rosario</span>
       </div>
       <div style="display: flex; flex-direction: column; gap: 6px; border-left: 3px solid #E3E7E9; padding-left: 20px;">
         <span style="font-size: 40px; font-weight: 800; letter-spacing: -0.04em; color: #10222A; line-height: 1;">21</span>
@@ -294,7 +279,7 @@
           <div class="card" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
             <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
               <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">9 productos</span>
-              <img src="mobilelink.png" alt="Prótesis de cadera" class="card-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
+              <img src="mobilelink.webp" alt="Prótesis de cadera" class="card-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
             </div>
             <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
               <h3 style="font-size: 22px; color: #10222A;">Cadera</h3>
@@ -311,7 +296,7 @@
           <div class="card" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
             <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
               <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">7 productos</span>
-              <img src="uni-sled.png" alt="Prótesis de rodilla" class="card-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
+              <img src="uni-sled.webp" alt="Prótesis de rodilla" class="card-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
             </div>
             <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
               <h3 style="font-size: 22px; color: #10222A;">Rodilla</h3>
@@ -328,7 +313,7 @@
           <div class="card" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
             <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
               <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">5 productos</span>
-              <img src="palamix-gun.png" alt="Cementos óseos" class="card-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
+              <img src="palamix-gun.webp" alt="Cementos óseos" class="card-img" style="width: 172px; height: 172px; object-fit: contain; filter: drop-shadow(0 14px 22px rgba(16,34,42,.18));">
             </div>
             <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
               <h3 style="font-size: 22px; color: #10222A;">Cementos</h3>
@@ -432,7 +417,7 @@
           <div class="cardw">
             <div class="card" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
               <div style="height: 46px; display: flex; align-items: center;">
-                <img src="link.png" alt="LINK" style="height: 26px; width: auto; filter: invert(1) brightness(.28);">
+                <img src="link.webp" alt="LINK" style="height: 26px; width: auto; filter: invert(1) brightness(.28);">
               </div>
               <div style="display: flex; flex-direction: column; gap: 8px;">
                 <h3 style="font-size: 17px; color: #10222A;">Waldemar Link</h3>
@@ -447,7 +432,7 @@
           <div class="cardw">
             <div class="card" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
               <div style="height: 46px; display: flex; align-items: center;">
-                <img src="advita.png" alt="Advita Ortho" style="height: 30px; width: auto; filter: invert(1) brightness(.28);">
+                <img src="advita.webp" alt="Advita Ortho" style="height: 30px; width: auto; filter: invert(1) brightness(.28);">
               </div>
               <div style="display: flex; flex-direction: column; gap: 8px;">
                 <h3 style="font-size: 17px; color: #10222A;">Advita Ortho</h3>
@@ -462,7 +447,7 @@
           <div class="cardw">
             <div class="card" style="border: 1px solid #E3E7E9; border-radius: 6px; padding: 32px 26px; display: flex; flex-direction: column; gap: 18px; height: 100%; background: #FFFFFF;">
               <div style="height: 46px; display: flex; align-items: center;">
-                <img src="heraeus.png" alt="Heraeus" style="height: 24px; width: auto;">
+                <img src="heraeus.webp" alt="Heraeus" style="height: 24px; width: auto;">
               </div>
               <div style="display: flex; flex-direction: column; gap: 8px;">
                 <h3 style="font-size: 17px; color: #10222A;">Heraeus Medical</h3>
@@ -486,29 +471,22 @@
       <div style="background: #F7F8F9; border: 1px solid #E3E7E9; border-radius: 6px; padding: 44px 46px; display: flex; flex-direction: column; gap: 26px;">
         <div style="display: flex; flex-direction: column; gap: 13px;">
           <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">Cobertura</span>
-          <h2 style="font-size: 32px; color: #10222A; letter-spacing: -0.03em;">Presencia en todo el país</h2>
+          <h2 style="font-size: 32px; color: #10222A; letter-spacing: -0.03em;">Dos sedes, un mismo circuito</h2>
           <p style="font-size: 15.5px; color: #69727D; line-height: 1.62; max-width: 60ch;">
-            Sedes en CABA y Rosario, con entrega y acompañamiento técnico en 17 provincias.
+            Casa central en Buenos Aires y sede en Rosario. Desde cualquiera de las dos coordinamos la entrega y el acompañamiento técnico en el centro de salud donde se realiza la cirugía.
           </p>
         </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 9px;">
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">CABA</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Buenos Aires</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Rosario</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Santa Fe</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Córdoba</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Entre Ríos</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Corrientes</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Misiones</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Chaco</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Jujuy</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Salta</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Tucumán</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Mendoza</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">San Juan</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">San Luis</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Neuquén</span>
-          <span class="prov" style="font-size: 13px; color: #10222A; border: 1px solid #E3E7E9; background: #FFFFFF; padding: 8px 15px; border-radius: 4px; font-weight: 500;">Chubut</span>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; gap: 12px; align-items: flex-start; background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 5px; padding: 16px 18px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px;"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div><span style="font-size: 13.5px; font-weight: 700; color: #10222A; display: block;">Sede Buenos Aires</span>
+              <span style="font-size: 13px; color: #69727D; line-height: 1.6;">Av. Belgrano 863, CABA &middot; Lunes a viernes, 8 a 17 h</span></div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start; background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 5px; padding: 16px 18px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px;"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <div><span style="font-size: 13.5px; font-weight: 700; color: #10222A; display: block;">Sede Rosario</span>
+              <span style="font-size: 13px; color: #69727D; line-height: 1.6;">Pte. Roca 782, piso 1, Rosario &middot; Lunes a viernes, 8 a 17 h</span></div>
+          </div>
         </div>
       </div>
 
@@ -565,7 +543,7 @@
       <div style="display: grid; grid-template-columns: 320px repeat(3, minmax(0, 1fr)); gap: 44px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.09);">
 
         <div style="display: flex; flex-direction: column; gap: 18px;">
-          <img src="logo-blanco.png" alt="Swiss Protech" style="height: 40px; width: auto; align-self: flex-start;">
+          <img src="logo-blanco.webp" alt="Swiss Protech" style="height: 40px; width: auto; align-self: flex-start;">
           <p style="font-size: 13.5px; color: #69727D; line-height: 1.65;">
             Importación y comercialización de implantes ortopédicos de origen alemán
             y norteamericano. Habilitados por el Ministerio de Salud de la Nación y A.N.M.A.T.

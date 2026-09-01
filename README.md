@@ -5,20 +5,48 @@ importador y representante exclusivo en Argentina de implantes ortopédicos de o
 alemán y norteamericano.
 
 El sitio está en la raíz del repo: se abre directo desde la URL del deploy, o abriendo
-`index.html` en cualquier navegador. HTML y CSS puros, sin build ni dependencias.
+`index.html` en cualquier navegador. HTML, CSS y JS puros: no necesita servidor de aplicación.
 
 ## Páginas
 
 | Archivo | Página | Qué tiene |
 |---|---|---|
-| `index.html` | Home | Hero con carrusel 3D de implantes, credenciales, las tres líneas, el proceso, representaciones, cobertura nacional y portal médico |
-| `productos.html` | Catálogo | Los 21 productos con filtro por línea (todos / cadera / rodilla / cementos) |
+| `index.html` | Home | Hero con imagen del sistema Endo-Model, video institucional, credenciales, las tres líneas, el proceso, representaciones, sedes y portal médico |
+| `productos.html` | Catálogo | Los 21 productos con filtro cruzado por línea y por marca |
 | `proceso.html` | Nuestro proceso | Sección nueva: las cinco etapas de trazabilidad, de depósito a quirófano |
-| `producto.html` | Ficha de producto | MobileLink Dual Mobility, con visor 3D que rota arrastrando o con los botones |
-| `contacto.html` | Contacto | Selector de país y de tipo de público (médico / obra social / paciente), con formulario y sedes que cambian según la elección |
+| `producto.html` | Ficha de producto | Los 21 productos (`?p=slug`), con visor 3D, galería del fabricante y especificaciones |
+| `contacto.html` | Contacto | Selector de país y de tipo de público (médico / obra social / paciente), con formulario real que arma la consulta y la abre por WhatsApp |
+| `institucional.html` | Institucional | Trayectoria, hitos y las dos sedes |
+| `representaciones.html` | Representaciones | Link, Advita y Heraeus, con los productos de cada uno |
+| `educacion.html` | Educación médica | Técnicas quirúrgicas, fichas y webinars |
+| `multimedia.html` | Multimedia | Videos oficiales de los fabricantes |
+| `privacidad.html` | Privacidad | Política según la Ley 25.326 |
 
 Todo responsive: probado a 390, 768 y 1440 px, sin desborde horizontal, con menú
 desplegable en celular y botones de 48 px o más.
+
+## Video institucional
+
+`media/swiss-protech.mp4` — 1 min 6 s, 720p, sin audio, embebido en el home con
+póster y carga diferida (`preload="none"`). Montado en Remotion a partir del
+material oficial de los fabricantes.
+
+- Montaje: `videos-remotion/src/swipro/SwissProtechFilm.tsx` (composición `SwissProtechFilm`)
+- Segmentos ya cortados: `media/film/` · fuentes: `media/video/raw/`
+- Master 1080p: `media/swiss-protech-1080-master.mp4`
+
+```
+# recortar de nuevo un segmento y volver a montar
+cd videos-remotion
+rm -rf node_modules/.cache          # webpack cachea mal y rompe el bundle
+npx remotion render src/index.ts SwissProtechFilm out/SwissProtechFilm.mp4 --codec=h264 --crf=18
+```
+
+## Armazón compartido
+
+`shell.py` es la fuente única de la barra superior, el CTA de cierre, el pie, los
+datos de contacto y el JS de animaciones. Los tres builders lo consumen: si
+cambia un teléfono o una sede, se cambia ahí y se reconstruye todo.
 
 ## Identidad
 
@@ -53,13 +81,8 @@ Marcas representadas: **Waldemar Link** (Hamburgo, 1948), **Advita Ortho** y
 
 ## Pendiente de confirmar con el cliente
 
-- **Trayectoria:** el home del sitio actual dice "más de 20 años" y la página
-  institucional dice "más de 25". Acá se usó 25.
-- **Chile y Uruguay:** el selector de país está armado, pero el sitio actual solo
-  publica las dos sedes argentinas. Esos datos quedaron como `[COMPLETAR]`.
-- **Tres fotos faltantes:** MobileLink, Bimobile Cementado y LCU no tienen imagen en
-  el sitio actual; en el catálogo figuran con un marcador "foto a solicitar".
-- **Medidas por producto:** la ficha las tiene como `[COMPLETAR CON DATOS DEL FABRICANTE]`.
+Ver **[PENDIENTES.md](PENDIENTES.md)**. Nada de eso bloquea la publicación: el
+sitio no tiene marcadores `[COMPLETAR]` visibles ni enlaces muertos.
 
 ## Cómo se regenera
 
@@ -69,10 +92,15 @@ estilos, arma la navegación, agrega el menú de celular, las reglas responsive 
 JavaScript de los filtros, el visor 3D y el selector de contacto.
 
 ```
-python -u build_site.py
+python -u build_productos.py    # js/productos.js, el catálogo
+python -u build_paginas.py      # institucional, representaciones, educación, multimedia,
+                                # privacidad, sitemap.xml y robots.txt
+python -u build_site.py         # index, productos, proceso, contacto y la ficha
 ```
 
-Escribe todo en `site/`; después se copian los `.html` a la raíz.
+`build_site.py` escribe en `site/` y copia solo los `.html` a la raíz; también
+inyecta el armazón en `producto.html`, que se mantiene a mano. Es idempotente:
+se puede correr las veces que haga falta.
 
 ---
 

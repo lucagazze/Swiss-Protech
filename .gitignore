@@ -8,3 +8,10 @@ media/turn/
 productos_swipro.json
 _diag_*
 bash.exe.stackdump
+
+# fuentes y master del video: pesados y regenerables
+media/film/
+media/swiss-protech-1080-master.mp4
+
+__pycache__/
+.vscode/
