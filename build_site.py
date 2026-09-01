@@ -795,6 +795,9 @@ def main():
 
     for src, dst, title, desc in PAGES:
         css, links, cuerpo = extraer(leer(src))
+        # el color de marca tambien se resuelve en el CSS del helmet, no solo en
+        # el cuerpo: si no, una regla con {{accent}} queda invalida y no pinta
+        css = css.replace("{{accent}}", ACCENT)
         cuerpo = cuerpo.replace("{{accent}}", ACCENT).replace("{{ringCls}}", "")
         if src in trans:
             cuerpo = trans[src](cuerpo)

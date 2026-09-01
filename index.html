@@ -35,18 +35,23 @@
     /* Titular y bajada estan acotados a dos renglones en escritorio: el ancho
        maximo esta calculado para que el corte caiga solo, sin <br> a mano, que
        en celular rompe. */
-    .hero-h1 { font-size: clamp(26px, 5.4vw, 50px); max-width: 30ch; margin: 0 auto; text-wrap: balance; }
-    .hero-chip { display: inline-flex; align-items: center; gap: 11px; white-space: nowrap;
-                 border: 1px solid rgba(0,149,161,.28); background: rgba(0,149,161,.07);
-                 color: #007C87; font-weight: 700; text-transform: uppercase;
-                 font-size: clamp(9.5px, 1.05vw, 12px); letter-spacing: clamp(.05em, .12vw, .12em);
-                 padding: 9px clamp(12px, 1.4vw, 17px); border-radius: 99px; }
-    .hero-p  { font-size: clamp(15px, 1.35vw, 18px); max-width: 52ch; margin: 0 auto; text-wrap: pretty; }
+    .hero-h1 { font-size: clamp(25px, 4.6vw, 58px); max-width: 26ch; margin: 0 auto;
+               font-weight: 800; color: #10222A; line-height: 1.04;
+               letter-spacing: -0.042em; text-wrap: balance; }
+    .hero-h1 span { display: block; }
+    .hero-regla { display: block; width: 54px; height: 3px; background: #0095A1;
+                  border-radius: 2px; margin: 2px auto 0; }
+    .hero-p .nb { white-space: nowrap; }
+    .hero-p  { font-size: clamp(15px, 1.4vw, 18.5px); max-width: 54ch; margin: 0 auto;
+               line-height: 1.62; text-wrap: pretty; }
     .hero-v h1 { text-wrap: balance; }
     @media (max-width: 720px) {
       .hero-v { padding: 44px 20px 56px !important; gap: 30px !important; }
-      .hero-h1 { max-width: 100%; }
+      .hero-h1 { max-width: 100%; letter-spacing: -0.03em; }
+      /* en celular el corte fijo suma renglones: el titular fluye solo */
+      .hero-h1 span { display: inline; }
       .hero-p { max-width: 100%; }
+      .hero-regla { width: 42px; height: 2px; }
     }
 
     /* ---- pieza en video ---- */
@@ -363,7 +368,7 @@ html { scroll-behavior: smooth; }
 
   <!-- ================= NAVEGACIÓN ================= -->
 <div class="sp-topbar"><div class="sp-wrap">
-  <span class="sp-tb-l"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"></path></svg> Habilitado por ANMAT<span class="sp-tb-mas">&nbsp;y Ministerio de Salud de la Naci&oacute;n</span></span>
+  <span class="sp-tb-l"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"></path></svg><span>Habilitado por ANMAT<span class="sp-tb-mas"> y Ministerio de Salud de la Naci&oacute;n</span></span></span>
   <span class="sp-tb-r"><a href="educacion.html">Ingresar</a><span style="opacity:.32">|</span><a href="educacion.html" class="sp-reg">Registro m&eacute;dico</a></span>
 </div></div>
 
@@ -397,14 +402,16 @@ html { scroll-behavior: smooth; }
     <div class="hero-v" style="position: relative; max-width: 1160px; margin: 0 auto; padding: 56px 40px 76px; display: flex; flex-direction: column; align-items: center; gap: 34px;">
 
       <div style="display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center;">
-        <h1 class="hero-h1" style="font-weight: 800; color: #10222A; letter-spacing: -0.035em; line-height: 1.08;">
-          Cada implante llega al quirófano
-          <span style="color: #0095A1;">controlado y a tiempo.</span>
+        <h1 class="hero-h1">
+          <span style="color: #0095A1;">Implantes de cadera y rodilla</span>
+          con trazabilidad de punta a punta.
         </h1>
 
+        <span class="hero-regla"></span>
+
         <p class="hero-p" style="line-height: 1.66; color: #5A6570; font-weight: 400;">
-          Representantes exclusivos en Argentina de Waldemar Link,
-          Advita Ortho y Heraeus Medical.
+          Representantes exclusivos en Argentina de <span class="nb">Waldemar&nbsp;Link</span>,
+          <span class="nb">Advita&nbsp;Ortho</span> y <span class="nb">Heraeus&nbsp;Medical</span>.
         </p>
 
       </div>

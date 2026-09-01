@@ -159,7 +159,7 @@ REDES = [
 def topbar():
     return """
 <div class="sp-topbar"><div class="sp-wrap">
-  <span class="sp-tb-l">%s Habilitado por ANMAT<span class="sp-tb-mas">&nbsp;y Ministerio de Salud de la Naci&oacute;n</span></span>
+  <span class="sp-tb-l">%s<span>Habilitado por ANMAT<span class="sp-tb-mas"> y Ministerio de Salud de la Naci&oacute;n</span></span></span>
   <span class="sp-tb-r"><a href="educacion.html">Ingresar</a><span style="opacity:.32">|</span><a href="educacion.html" class="sp-reg">Registro m&eacute;dico</a></span>
 </div></div>
 """ % _ESCUDO
