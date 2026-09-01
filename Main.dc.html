@@ -19,38 +19,36 @@
 
     /* ================= escenario de producto (claro) ================= */
 
+    /* ---- hero vertical ---- */
+    .hero-v h1 { text-wrap: balance; }
+    @media (max-width: 720px) {
+      .hero-v { padding: 44px 20px 56px !important; gap: 30px !important; }
+      .hero-v h1 { font-size: 33px !important; }
+    }
+
     /* ---- pieza en video ---- */
     .film { position: relative; border-radius: 12px; overflow: hidden; background: #0A171D;
             box-shadow: 0 46px 90px -50px rgba(16,34,42,.62); }
     .film video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover;
                   background: #0A171D; }
-    .film-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-                 background: linear-gradient(180deg, rgba(10,23,29,.04) 0%, rgba(10,23,29,.20) 100%);
-                 border: 0; cursor: pointer; transition: opacity .4s; padding: 0; }
+    .film-play { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
+                 justify-content: center; gap: 16px; border: 0; cursor: pointer; padding: 0;
+                 background: linear-gradient(180deg, rgba(10,23,29,.04) 0%, rgba(10,23,29,.22) 100%);
+                 transition: opacity .4s; }
     .film-play[hidden] { display: none; }
     .film-play span { width: 92px; height: 92px; border-radius: 50%; background: rgba(255,255,255,.94);
                       display: flex; align-items: center; justify-content: center;
                       box-shadow: 0 18px 40px -16px rgba(16,34,42,.7); transition: transform .3s, background .3s; }
     .film-play:hover span { transform: scale(1.07); background: #FFFFFF; }
     .film-play svg { margin-left: 5px; }
-    .film-pie { display: flex; align-items: center; justify-content: space-between; gap: 20px;
-                flex-wrap: wrap; margin-top: 16px; }
-    @media (max-width: 720px) { .film-play span { width: 68px; height: 68px; } }
-
-    /* ---- imagen del hero ---- */
-    .heroimg { margin: 0; display: flex; flex-direction: column; gap: 14px; }
-    .heroimg-marco { position: relative; border-radius: 10px; overflow: hidden;
-                     background: linear-gradient(158deg, #FFFFFF 0%, #F1F7F8 58%, #E4EEF1 100%);
-                     border: 1px solid #E1E8EA; box-shadow: 0 34px 70px -40px rgba(16,34,42,.42); }
-    .heroimg-marco::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-                            box-shadow: inset 0 1px 0 rgba(255,255,255,.9); border-radius: 10px; }
-    .heroimg img { display: block; width: 100%; height: auto; }
-    .heroimg-cred { position: absolute; left: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 2px;
-                    background: rgba(255,255,255,.93); backdrop-filter: blur(6px);
-                    border: 1px solid #E1E8EA; border-radius: 6px; padding: 11px 16px; max-width: calc(100% - 40px); }
-    .heroimg-l1 { font-size: 13.5px; font-weight: 700; color: #10222A; letter-spacing: -0.01em; }
-    .heroimg-l2 { font-size: 11.5px; color: #69727D; }
-    .heroimg figcaption { font-size: 12px; color: #A7A9AC; letter-spacing: .02em; }
+    .film-rot { font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: .14em;
+                text-transform: uppercase; color: #FFFFFF; background: rgba(16,34,42,.55);
+                backdrop-filter: blur(8px); padding: 9px 18px; border-radius: 99px; }
+    .film-pie { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    @media (max-width: 720px) {
+      .film-play span { width: 66px; height: 66px; }
+      .film-rot { font-size: 11px; padding: 7px 14px; }
+    }
 
     /* ================= interacciones sobrias ================= */
     .card { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .35s; }
@@ -134,31 +132,33 @@
     </div>
   </div>
 
-  <!-- ================= HERO (claro) ================= -->
+  <!-- ================= HERO ================= -->
+  <!-- Vertical: primero la promesa, despues el video. La pieza es lo que mejor
+       explica el negocio, asi que no se manda al fondo de la pagina. -->
   <div style="position: relative; background:
        linear-gradient(168deg, #FFFFFF 0%, #F6FAFB 46%, #E8F1F3 100%); overflow: hidden;">
     <div class="mesh" style="position: absolute; inset: 0;"></div>
 
-    <div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 78px 40px 84px; display: grid; grid-template-columns: 1fr 620px; gap: 56px; align-items: center;">
+    <div class="hero-v" style="position: relative; max-width: 1160px; margin: 0 auto; padding: 56px 40px 76px; display: flex; flex-direction: column; align-items: center; gap: 34px;">
 
-      <div style="display: flex; flex-direction: column; gap: 28px;">
-        <div style="display: inline-flex; align-items: center; gap: 11px; align-self: flex-start; border: 1px solid rgba(0,149,161,.28); background: rgba(0,149,161,.07); color: #007C87; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 9px 17px; border-radius: 99px;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center;">
+        <div style="display: inline-flex; align-items: center; gap: 11px; border: 1px solid rgba(0,149,161,.28); background: rgba(0,149,161,.07); color: #007C87; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 9px 17px; border-radius: 99px;">
           <span style="width: 6px; height: 6px; border-radius: 50%; background: {{accent}}; display: block;"></span>
           Representantes exclusivos en Argentina
         </div>
 
-        <h1 style="font-size: 54px; font-weight: 800; color: #10222A; letter-spacing: -0.035em; line-height: 1.08; max-width: 15ch;">
+        <h1 style="font-size: 52px; font-weight: 800; color: #10222A; letter-spacing: -0.035em; line-height: 1.07; max-width: 17ch;">
           Implantes ortopédicos con trazabilidad de
           <span style="color: {{accent}};">punta a punta.</span>
         </h1>
 
-        <p style="font-size: 17.5px; line-height: 1.68; color: #5A6570; max-width: 52ch; font-weight: 400;">
+        <p style="font-size: 17.5px; line-height: 1.68; color: #5A6570; max-width: 60ch; font-weight: 400;">
           Más de 20 años importando prótesis de cadera y rodilla de origen alemán y
           norteamericano. Cada implante sale de nuestro depósito identificado, controlado
           y esterilizado, y llega acompañado hasta el quirófano.
         </p>
 
-        <div style="display: flex; align-items: center; gap: 14px;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;">
           <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #fff; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px; white-space: nowrap;">
             Ver catálogo de productos
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
@@ -168,66 +168,32 @@
             Cómo trabajamos
           </a>
         </div>
+      </div>
 
-        <div style="display: flex; align-items: center; gap: 18px; padding-top: 10px;">
-          <span style="font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: #A7A9AC; font-weight: 700; white-space: nowrap;">Representamos a</span>
-          <img src="link.webp" alt="LINK" class="brand-l" style="height: 20px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
-          <img src="advita.webp" alt="Advita Ortho" class="brand-l" style="height: 22px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
-          <img src="heraeus.webp" alt="Heraeus" class="brand-l" style="height: 18px; width: auto; filter: grayscale(1) contrast(1.6) brightness(.55); opacity: .8;">
+      <!-- la pieza: 1 min 6 s con las tres lineas y el circuito de trazabilidad -->
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 14px;">
+        <div class="film">
+          <video id="film" poster="film-poster.webp" preload="none" playsinline
+                 width="1920" height="1080" aria-label="Swiss Protech en un minuto">
+            <source src="media/swiss-protech.mp4" type="video/mp4">
+            Tu navegador no puede reproducir este video.
+          </video>
+          <button class="film-play" id="filmPlay" type="button" aria-label="Reproducir el video">
+            <span><svg width="30" height="30" viewBox="0 0 24 24" fill="{{accent}}"><polygon points="6 3 21 12 6 21 6 3"></polygon></svg></span>
+            <b class="film-rot">Ver la pieza &middot; 1 min 6 s</b>
+          </button>
+        </div>
+        <div class="film-pie">
+          <span style="font-size: 12.5px; color: #A7A9AC;">Material audiovisual de Waldemar Link GmbH &amp; Co. KG y Heraeus Medical.</span>
+          <span style="font-size: 12.5px; color: #A7A9AC;">Sin audio</span>
         </div>
       </div>
 
-      <!-- imagen: sistema Endo-Model implantado, material oficial del fabricante -->
-      <figure class="heroimg">
-        <div class="heroimg-marco">
-          <img src="hero-endomodel.webp" alt="Prótesis de rodilla Endo-Model implantada entre el fémur y la tibia"
-               srcset="hero-endomodel-sm.webp 594w, hero-endomodel.webp 1188w"
-               sizes="(max-width: 1240px) 92vw, 620px"
-               width="1188" height="1152" fetchpriority="high" decoding="async">
-          <div class="heroimg-cred">
-            <span class="heroimg-l1">Sistema Endo-Model</span>
-            <span class="heroimg-l2">Waldemar Link &middot; Hamburgo, Alemania</span>
-          </div>
-        </div>
-        <figcaption>Imagen del fabricante. Uno de los 21 sistemas del cat&aacute;logo.</figcaption>
-      </figure>
-
-    </div>
-  </div>
-
-
-  <!-- ================= PIEZA EN VIDEO ================= -->
-  <div style="background: #F7F8F9; padding: 96px 0; border-top: 1px solid #E3E7E9; border-bottom: 1px solid #E3E7E9;">
-    <div style="max-width: 1240px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 34px;">
-      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;">
-        <div style="display: flex; flex-direction: column; gap: 13px; max-width: 60ch;">
-          <span style="font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: {{accent}};">En un minuto</span>
-          <h2 style="font-size: 34px; color: #10222A; letter-spacing: -0.03em;">Qué implantamos, y de dónde viene cada pieza</h2>
-          <p style="font-size: 15.5px; color: #69727D; line-height: 1.62;">
-            Las tres líneas del catálogo y el circuito de trazabilidad, con el material
-            audiovisual oficial de los fabricantes que representamos.
-          </p>
-        </div>
-        <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 500; padding: 15px 26px; border-radius: 4px; background: #FFFFFF; white-space: nowrap;">
-          Ver el catálogo
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-        </a>
-      </div>
-
-      <div class="film">
-        <video id="film" poster="film-poster.webp" preload="none" playsinline
-               width="1920" height="1080" aria-label="Swiss Protech en un minuto">
-          <source src="media/swiss-protech.mp4" type="video/mp4">
-          Tu navegador no puede reproducir este video.
-        </video>
-        <button class="film-play" id="filmPlay" type="button" aria-label="Reproducir el video">
-          <span><svg width="30" height="30" viewBox="0 0 24 24" fill="{{accent}}"><polygon points="6 3 21 12 6 21 6 3"></polygon></svg></span>
-        </button>
-      </div>
-
-      <div class="film-pie">
-        <span style="font-size: 12.5px; color: #A7A9AC;">Material audiovisual de Waldemar Link GmbH &amp; Co. KG y Heraeus Medical.</span>
-        <span style="font-size: 12.5px; color: #A7A9AC;">1 min 6 s &middot; sin audio</span>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap;">
+        <span style="font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: #A7A9AC; font-weight: 700; white-space: nowrap;">Representamos a</span>
+        <img src="link.webp" alt="LINK" class="brand-l" style="height: 20px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+        <img src="advita.webp" alt="Advita Ortho" class="brand-l" style="height: 22px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+        <img src="heraeus.webp" alt="Heraeus" class="brand-l" style="height: 18px; width: auto; filter: grayscale(1) contrast(1.6) brightness(.55); opacity: .8;">
       </div>
     </div>
   </div>

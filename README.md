@@ -11,7 +11,7 @@ El sitio está en la raíz del repo: se abre directo desde la URL del deploy, o 
 
 | Archivo | Página | Qué tiene |
 |---|---|---|
-| `index.html` | Home | Hero con imagen del sistema Endo-Model, video institucional, credenciales, las tres líneas, el proceso, representaciones, sedes y portal médico |
+| `index.html` | Home | Hero vertical: título y el video institucional. Después credenciales, las tres líneas, el proceso, representaciones, sedes y portal médico |
 | `productos.html` | Catálogo | Los 21 productos con filtro cruzado por línea y por marca |
 | `proceso.html` | Nuestro proceso | Sección nueva: las cinco etapas de trazabilidad, de depósito a quirófano |
 | `producto.html` | Ficha de producto | Los 21 productos (`?p=slug`), con visor 3D, galería del fabricante y especificaciones |
@@ -27,9 +27,14 @@ desplegable en celular y botones de 48 px o más.
 
 ## Video institucional
 
-`media/swiss-protech.mp4` — 1 min 6 s, 720p, sin audio, embebido en el home con
-póster y carga diferida (`preload="none"`). Montado en Remotion a partir del
-material oficial de los fabricantes.
+`media/swiss-protech.mp4` — 1 min 6 s, 720p, sin audio, en el hero del home con
+póster y carga diferida (`preload="none"`): la página carga liviana y el video
+se baja recién al tocar play. Montado en Remotion a partir del material oficial
+de los fabricantes.
+
+Orden: apertura con la corredora, **Rodilla**, Cadera, Cementos, Trazabilidad y
+cierre de marca. Rodilla va primero para que el video entre por la misma imagen
+que el visitante ya está viendo en el póster.
 
 - Montaje: `videos-remotion/src/swipro/SwissProtechFilm.tsx` (composición `SwissProtechFilm`)
 - Segmentos ya cortados: `media/film/` · fuentes: `media/video/raw/`
