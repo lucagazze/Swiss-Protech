@@ -27,14 +27,21 @@ desplegable en celular y botones de 48 px o más.
 
 ## Video institucional
 
-`media/swiss-protech.mp4` — 1 min 6 s, 720p, sin audio, en el hero del home con
+`media/swiss-protech.mp4` — 1 min 2 s, 720p, con cama musical, en el hero del home con
 póster y carga diferida (`preload="none"`): la página carga liviana y el video
 se baja recién al tocar play. Montado en Remotion a partir del material oficial
 de los fabricantes.
 
-Orden: apertura con la corredora, **Rodilla**, Cadera, Cementos, Trazabilidad y
-cierre de marca. Rodilla va primero para que el video entre por la misma imagen
-que el visitante ya está viendo en el póster.
+Orden: apertura con la corredora (7 s), **Rodilla**, Cadera, Cementos,
+Trazabilidad y cierre de marca. Rodilla va primero para que el video entre por
+la misma imagen que el visitante ya está viendo en el póster.
+
+En el hero corre solo un bucle mudo de 6 s (`media/swiss-protech-loop.mp4`:
+2 s de la corredora y después el implante) y el botón cambia a la pieza
+completa, con audio.
+
+El audio se normaliza a **−18 LUFS en el encode**, no en Remotion: la cama de
+origen es muy baja y sin ese paso queda a −36 LUFS, es decir inaudible.
 
 - Montaje: `videos-remotion/src/swipro/SwissProtechFilm.tsx` (composición `SwissProtechFilm`)
 - Segmentos ya cortados: `media/film/` · fuentes: `media/video/raw/`
