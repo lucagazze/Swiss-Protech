@@ -66,11 +66,12 @@ CSS = """
 
 .sp-topbar { background: #10222A; color: #A7A9AC; font-size: 12.5px; letter-spacing: .04em; }
 .sp-topbar .sp-wrap { padding-top: 9px; padding-bottom: 9px; display: flex; align-items: center;
-                      justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+                      justify-content: space-between; gap: 14px; flex-wrap: nowrap; white-space: nowrap; }
 .sp-topbar a { color: #A7A9AC; text-decoration: none; }
 .sp-topbar a:hover { color: #FFFFFF; }
 .sp-topbar a.sp-reg { color: #72C5C2; font-weight: 600; }
-.sp-topbar .sp-tb-l { display: flex; align-items: center; gap: 7px; }
+.sp-topbar .sp-tb-l { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.sp-topbar .sp-tb-l svg { flex: none; }
 .sp-topbar .sp-tb-r { display: flex; align-items: center; gap: 16px; }
 
 .sp-cta { background: #0095A1; padding: 72px 0; }
@@ -105,6 +106,13 @@ CSS = """
 .sp-foot .sp-rs a:hover { border-color: #0095A1; background: rgba(0,149,161,.14); }
 
 @media (max-width: 1000px) { .sp-foot .sp-cols { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 30px; } }
+@media (max-width: 860px) {
+  /* en pantallas chicas queda la habilitacion corta: el renglon no se parte */
+  .sp-topbar { font-size: 10.5px; letter-spacing: .02em; }
+  .sp-topbar .sp-tb-mas { display: none; }
+  .sp-topbar .sp-wrap { gap: 10px; }
+  .sp-topbar .sp-tb-r { gap: 9px; }
+}
 @media (max-width: 720px) {
   .sp-wrap { padding: 0 20px; }
   .sp-cta { padding: 48px 0; }
@@ -151,7 +159,7 @@ REDES = [
 def topbar():
     return """
 <div class="sp-topbar"><div class="sp-wrap">
-  <span class="sp-tb-l">%s Habilitado por ANMAT y Ministerio de Salud de la Naci&oacute;n</span>
+  <span class="sp-tb-l">%s Habilitado por ANMAT<span class="sp-tb-mas">&nbsp;y Ministerio de Salud de la Naci&oacute;n</span></span>
   <span class="sp-tb-r"><a href="educacion.html">Ingresar</a><span style="opacity:.32">|</span><a href="educacion.html" class="sp-reg">Registro m&eacute;dico</a></span>
 </div></div>
 """ % _ESCUDO

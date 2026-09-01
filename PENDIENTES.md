@@ -86,8 +86,12 @@ dar la empresa. Si algún fabricante no lo permite, se recorta ese capítulo y e
 film se vuelve a armar: las fuentes quedan en `media/video/raw/` y el montaje en
 `videos-remotion/src/swipro/SwissProtechFilm.tsx`.
 
-El video no tiene música: no hay una pista licenciada. Si se quiere sumar,
-hace falta comprar una licencia y volver a renderizar.
+**Música:** la cama que sumé al montaje es `control-total/audio/music-bed.mp3`,
+la misma que Algoritmia usa en sus propias piezas y en Control Total. Antes de
+publicar hay que verificar que su licencia cubra el uso en un proyecto de otro
+cliente: muchas licencias de bibliotecas son por proyecto o por canal. Si no lo
+cubre, se compra una pista y se cambia en una línea de
+`SwissProtechFilm.tsx`.
 
 ---
 
