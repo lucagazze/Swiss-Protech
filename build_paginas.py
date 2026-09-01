@@ -51,6 +51,11 @@ CSS = """
   .head { position: relative; background: linear-gradient(168deg, #FFFFFF 0%, #F6FAFB 52%, #EAF1F3 100%); border-bottom: 1px solid var(--line); overflow: hidden; }
   .head .wrap { position: relative; padding-top: 58px; padding-bottom: 54px; display: flex; flex-direction: column; gap: 14px; }
   .crumbs { font-size: 12.5px; color: var(--mut); }
+  .crumbs a { display: inline-flex; align-items: center; min-height: 34px; }
+  /* enlaces de cierre de tarjeta y de bloque de marca: area tactil de 40 px */
+  .card > a, .marca > div > a, .cerrado .acts a,
+  .card p a[href^="tel"], .hito p a[href^="tel"] { display: inline-flex; align-items: center; min-height: 40px; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; }
   .head h1 { font-size: 44px; letter-spacing: -0.035em; max-width: 20ch; }
   .head .lead { max-width: 64ch; }
 
@@ -323,7 +328,7 @@ def representaciones():
   <div style="display:flex;flex-direction:column;gap:14px">
     <div><h3>%s</h3><span style="font-size:13px;color:var(--mut)">%s</span></div>
     %s
-    <div><span class="eyebrow" style="font-size:10.5px">Productos que representamos</span>
+    <div><span class="eyebrow">Productos que representamos</span>
       <div class="chips" style="margin-top:10px">%s</div></div>
     <a href="%s" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:600;margin-top:4px">%s &#8599;</a>
   </div></div>""" % (m["logo"], m["n"], m["alto"], m["filtro"], datos, m["n"], m["pais"], txt, prods, m["url"], m["web"]))

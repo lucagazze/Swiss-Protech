@@ -608,7 +608,9 @@ def transformar_productos(c):
     def rotulo(m):
         p = P[next(it2)]
         return '%s%s · %s</span>' % (m.group(1), p["linea"], marca_corta(p["marca"])[1])
-    c = re.sub(r'(<span style="font-size: 10\.5px; font-weight: 700; letter-spacing: \.13em; '
+    # se ubica por su papel, no por su tamano: si cambia la tipografia del
+    # rotulo, el reemplazo tiene que seguir funcionando igual
+    c = re.sub(r'(<span style="font-size: [\d.]+px; font-weight: 700; letter-spacing: \.\d+em; '
                r'text-transform: uppercase; color: #0095A1;">)[^<]*</span>', rotulo, c)
 
     # barra de marcas: de texto decorativo a filtro real

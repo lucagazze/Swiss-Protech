@@ -136,9 +136,10 @@ a[style*="color: #0095A1"]:hover { text-decoration: underline; text-underline-of
 .sp-wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
 
 .sp-topbar { background: #10222A; color: #A7A9AC; font-size: 12.5px; letter-spacing: .04em; }
-.sp-topbar .sp-wrap { padding-top: 9px; padding-bottom: 9px; display: flex; align-items: center;
+.sp-topbar .sp-wrap { padding-top: 1px; padding-bottom: 1px; display: flex; align-items: center;
                       justify-content: space-between; gap: 14px; flex-wrap: nowrap; white-space: nowrap; }
-.sp-topbar a { color: #A7A9AC; text-decoration: none; }
+.sp-topbar a { color: #A7A9AC; text-decoration: none; display: inline-flex; align-items: center;
+                min-height: 38px; }
 .sp-topbar a:hover { color: #FFFFFF; }
 .sp-topbar a.sp-reg { color: #72C5C2; font-weight: 600; }
 .sp-topbar .sp-tb-l { display: flex; align-items: center; gap: 7px; min-width: 0; }
@@ -162,6 +163,8 @@ a[style*="color: #0095A1"]:hover { text-decoration: underline; text-underline-of
 .sp-foot .sp-cols { display: grid; grid-template-columns: 320px repeat(3, minmax(0, 1fr)); gap: 44px;
                     padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.09); }
 .sp-foot .sp-col { display: flex; flex-direction: column; gap: 13px; }
+.sp-foot .sp-col a, .sp-foot .sp-legal a { display: inline-flex; align-items: center;
+                    min-height: 38px; align-self: flex-start; }
 .sp-foot p, .sp-foot a, .sp-foot span { font-size: 13.5px; color: #A7A9AC; line-height: 1.65; text-decoration: none; }
 .sp-foot p { margin: 0; color: #69727D; }
 .sp-foot a:hover { color: #72C5C2; }
@@ -172,7 +175,7 @@ a[style*="color: #0095A1"]:hover { text-decoration: underline; text-underline-of
 .sp-foot .sp-fin span, .sp-foot .sp-fin a { font-size: 12.5px; color: #69727D; }
 .sp-foot .sp-legal { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .sp-foot .sp-rs { display: flex; gap: 10px; margin-top: 4px; }
-.sp-foot .sp-rs a { width: 34px; height: 34px; border-radius: 4px; border: 1px solid rgba(255,255,255,.14);
+.sp-foot .sp-rs a { width: 42px; height: 42px; border-radius: 4px; border: 1px solid rgba(255,255,255,.14);
                     display: flex; align-items: center; justify-content: center; transition: border-color .28s, background .28s; }
 .sp-foot .sp-rs a:hover { border-color: #0095A1; background: rgba(0,149,161,.14); }
 
@@ -199,13 +202,16 @@ a[style*="color: #0095A1"]:hover { text-decoration: underline; text-underline-of
 @media (max-width: 1000px) { .sp-foot .sp-cols { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 30px; } }
 @media (max-width: 860px) {
   /* en pantallas chicas queda la habilitacion corta: el renglon no se parte */
-  .sp-topbar { font-size: 10.5px; letter-spacing: .02em; }
+  .sp-topbar { font-size: 11px; letter-spacing: .01em; }
   .sp-topbar .sp-tb-mas { display: none; }
   .sp-topbar .sp-wrap { gap: 10px; }
   .sp-topbar .sp-tb-r { gap: 9px; }
 }
 @media (max-width: 720px) {
   .sp-wrap { padding: 0 20px; }
+  /* en el pie apilado el gap ya separa: sin el, los enlaces quedan pegados */
+  .sp-foot .sp-col { gap: 4px; }
+  .sp-foot .sp-legal { gap: 14px; }
   .sp-cta { padding: 48px 0; }
   .sp-cta h2 { font-size: 26px; }
   .sp-cta .sp-acts { width: 100%; }
@@ -399,7 +405,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/mobilelink.webp" alt="MobileLink Dual Mobility" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">MOBILELINK DUAL MOBILITY</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Sistema de cotilo no cementado de doble movilidad.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -411,7 +417,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/crown-cup.webp" alt="Crown Cup" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cadera · ADVITA</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cadera · ADVITA</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">CROWN CUP</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Sistema de cotilo no cementado.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -423,7 +429,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/lubinus-cup.webp" alt="Lubinus Cup" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">LUBINUS CUP</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Sistema de cotilo cementado autorretentivo y estándar.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -435,7 +441,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/lubinus-spii.webp" alt="Lubinus SPII Revision" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">LUBINUS SPII REVISION</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Vástago de revisión cementado.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -447,7 +453,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/mp-link.webp" alt="MP Link" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">MP LINK</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Vástago modular de revisión, fijación distal.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -459,7 +465,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/element.webp" alt="Element" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cadera · ADVITA</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cadera · ADVITA</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">ELEMENT</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Vástago no cementado.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -469,10 +475,10 @@ html { scroll-behavior: smooth; }
           <a class="pc" href="producto.html?p=mobilelink" data-linea="cadera" data-marca="link"><div class="pc-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
             <div class="ph" style="height: 178px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;">
               <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A7A9AC" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
-              <span style="font-size: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;">FOTO A PEDIDO</span>
+              <span style="font-size: 11.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .05em;">FOTO A PEDIDO</span>
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">MOBILELINK</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Sistema de cotilo no cementado.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -482,10 +488,10 @@ html { scroll-behavior: smooth; }
           <a class="pc" href="producto.html?p=bimobile" data-linea="cadera" data-marca="link"><div class="pc-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
             <div class="ph" style="height: 178px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;">
               <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A7A9AC" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
-              <span style="font-size: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;">FOTO A PEDIDO</span>
+              <span style="font-size: 11.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .05em;">FOTO A PEDIDO</span>
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">BIMOBILE CEMENTADO</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Sistema de cotilo cementado de doble movilidad.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -495,10 +501,10 @@ html { scroll-behavior: smooth; }
           <a class="pc" href="producto.html?p=lcu" data-linea="cadera" data-marca="link"><div class="pc-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
             <div class="ph" style="height: 178px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;">
               <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A7A9AC" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
-              <span style="font-size: 10.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .06em;">FOTO A PEDIDO</span>
+              <span style="font-size: 11.5px; color: #A7A9AC; font-weight: 600; letter-spacing: .05em;">FOTO A PEDIDO</span>
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cadera · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">LCU CEMENTADO Y NO CEMENTADO</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Sistema de vástagos cementados y no cementados.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -525,7 +531,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/optetrak-logic.webp" alt="Optetrak Logic" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Rodilla · ADVITA</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Rodilla · ADVITA</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">OPTETRAK LOGIC</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Primaria de reemplazo total de rodilla.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -537,7 +543,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/optetrak-hiflex.webp" alt="Optetrak Hi-Flex" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Rodilla · ADVITA</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Rodilla · ADVITA</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">OPTETRAK HI-FLEX</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Primaria de reemplazo total de rodilla.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -549,7 +555,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/optetrak-cc.webp" alt="Optetrak CC" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Rodilla · ADVITA</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Rodilla · ADVITA</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">OPTETRAK CC — CONTR. CONDILAR</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Prótesis de revisión de rodilla.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -561,7 +567,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/uni-sled.webp" alt="Uni Sled" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Rodilla · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Rodilla · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">UNI SLED</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Prótesis unicompartimental de rodilla.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -573,7 +579,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/endomodel-mod.webp" alt="Endomodel Modular" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Rodilla · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Rodilla · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">ENDOMODEL MODULAR</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Modular abisagrada, rotatoria.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -585,7 +591,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/endomodel-hinged.webp" alt="Endomodel Hinged Modular" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Rodilla · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Rodilla · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">ENDOMODEL HINGED MODULAR</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Modular abisagrada, bisagra simple.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -597,7 +603,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/endomodel-std.webp" alt="Endomodel Standard" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Rodilla · LINK</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Rodilla · LINK</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">ENDOMODEL STANDARD</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Abisagrada, constreñida, rotatoria.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -624,7 +630,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/copal.webp" alt="Copal G+C" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">COPAL&reg; G+C</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Cemento óseo con gentamicina y clindamicina.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -636,7 +642,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/palacos-mv.webp" alt="Palacos MV" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">PALACOS&reg; MV y MV+G</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Cemento óseo con gentamicina.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -648,7 +654,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/palacos-r.webp" alt="Palacos R" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">PALACOS&reg; R</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Cemento óseo ortopédico.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -660,7 +666,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/palamix-gun.webp" alt="Palamix pistola" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">PALAMIX&reg; Pistola para cemento</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Aplicación segura y sin esfuerzo del cemento óseo.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
@@ -672,7 +678,7 @@ html { scroll-behavior: smooth; }
               <img src="assets/palamix-uno.webp" alt="Palamix Uno o Duo" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
             </div>
             <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
-              <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">Cementos · HERAEUS</span>
               <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">PALAMIX&reg; UNO o DUO</h3>
               <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">Sistema con mezclador al vacío de cemento óseo.</p>
               <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>

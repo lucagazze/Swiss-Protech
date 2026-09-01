@@ -196,9 +196,10 @@ a[style*="color: #0095A1"]:hover { text-decoration: underline; text-underline-of
 .sp-wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
 
 .sp-topbar { background: #10222A; color: #A7A9AC; font-size: 12.5px; letter-spacing: .04em; }
-.sp-topbar .sp-wrap { padding-top: 9px; padding-bottom: 9px; display: flex; align-items: center;
+.sp-topbar .sp-wrap { padding-top: 1px; padding-bottom: 1px; display: flex; align-items: center;
                       justify-content: space-between; gap: 14px; flex-wrap: nowrap; white-space: nowrap; }
-.sp-topbar a { color: #A7A9AC; text-decoration: none; }
+.sp-topbar a { color: #A7A9AC; text-decoration: none; display: inline-flex; align-items: center;
+                min-height: 38px; }
 .sp-topbar a:hover { color: #FFFFFF; }
 .sp-topbar a.sp-reg { color: #72C5C2; font-weight: 600; }
 .sp-topbar .sp-tb-l { display: flex; align-items: center; gap: 7px; min-width: 0; }
@@ -222,6 +223,8 @@ a[style*="color: #0095A1"]:hover { text-decoration: underline; text-underline-of
 .sp-foot .sp-cols { display: grid; grid-template-columns: 320px repeat(3, minmax(0, 1fr)); gap: 44px;
                     padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.09); }
 .sp-foot .sp-col { display: flex; flex-direction: column; gap: 13px; }
+.sp-foot .sp-col a, .sp-foot .sp-legal a { display: inline-flex; align-items: center;
+                    min-height: 38px; align-self: flex-start; }
 .sp-foot p, .sp-foot a, .sp-foot span { font-size: 13.5px; color: #A7A9AC; line-height: 1.65; text-decoration: none; }
 .sp-foot p { margin: 0; color: #69727D; }
 .sp-foot a:hover { color: #72C5C2; }
@@ -232,7 +235,7 @@ a[style*="color: #0095A1"]:hover { text-decoration: underline; text-underline-of
 .sp-foot .sp-fin span, .sp-foot .sp-fin a { font-size: 12.5px; color: #69727D; }
 .sp-foot .sp-legal { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .sp-foot .sp-rs { display: flex; gap: 10px; margin-top: 4px; }
-.sp-foot .sp-rs a { width: 34px; height: 34px; border-radius: 4px; border: 1px solid rgba(255,255,255,.14);
+.sp-foot .sp-rs a { width: 42px; height: 42px; border-radius: 4px; border: 1px solid rgba(255,255,255,.14);
                     display: flex; align-items: center; justify-content: center; transition: border-color .28s, background .28s; }
 .sp-foot .sp-rs a:hover { border-color: #0095A1; background: rgba(0,149,161,.14); }
 
@@ -259,13 +262,16 @@ a[style*="color: #0095A1"]:hover { text-decoration: underline; text-underline-of
 @media (max-width: 1000px) { .sp-foot .sp-cols { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 30px; } }
 @media (max-width: 860px) {
   /* en pantallas chicas queda la habilitacion corta: el renglon no se parte */
-  .sp-topbar { font-size: 10.5px; letter-spacing: .02em; }
+  .sp-topbar { font-size: 11px; letter-spacing: .01em; }
   .sp-topbar .sp-tb-mas { display: none; }
   .sp-topbar .sp-wrap { gap: 10px; }
   .sp-topbar .sp-tb-r { gap: 9px; }
 }
 @media (max-width: 720px) {
   .sp-wrap { padding: 0 20px; }
+  /* en el pie apilado el gap ya separa: sin el, los enlaces quedan pegados */
+  .sp-foot .sp-col { gap: 4px; }
+  .sp-foot .sp-legal { gap: 14px; }
   .sp-cta { padding: 48px 0; }
   .sp-cta h2 { font-size: 26px; }
   .sp-cta .sp-acts { width: 100%; }

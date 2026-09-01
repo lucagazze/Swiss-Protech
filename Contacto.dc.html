@@ -33,6 +33,9 @@
     .fld:focus { outline: none; border-color: #0095A1; box-shadow: 0 0 0 3px rgba(0,149,161,.16); }
     .fld.mal { border-color: #B3261E; box-shadow: 0 0 0 3px rgba(179,38,30,.12); }
 
+    /* enlaces de texto sueltos: area tactil de 38 px sin cambiar como se ven */
+    a[data-wa], #mapaLink, label a, .urg-a { display: inline-flex; align-items: center; min-height: 38px; }
+
     .btn-p { transition: background .28s, box-shadow .28s; }
     .btn-p:hover { background: #007C87; box-shadow: 0 12px 26px -12px rgba(0,149,161,.7); }
 
@@ -246,7 +249,7 @@
                 Si necesitás coordinar un implante para una cirugía en las próximas 48 horas,
                 escribinos por WhatsApp y marcá el mensaje como urgente.
               </p>
-              <a href="#" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: #72C5C2; padding-top: 4px;">
+              <a href="#" style="display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: #72C5C2; min-height: 38px;">
                 Abrir WhatsApp &rarr;
               </a>
             </div>
