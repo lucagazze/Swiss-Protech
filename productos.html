@@ -229,7 +229,7 @@ html { scroll-behavior: smooth; }
   [style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
   [style*="grid-template-columns: repeat(3"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
   [style*="grid-template-columns: repeat(5"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-  h1 { font-size: clamp(30px, 6.4vw, 52px) !important; }
+  h1:not(.hero-h1) { font-size: clamp(30px, 6.4vw, 52px) !important; }
   h2 { font-size: clamp(24px, 4.6vw, 40px) !important; }
   .viewer { height: 480px !important; }
   .filtbar { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }

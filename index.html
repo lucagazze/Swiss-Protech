@@ -32,10 +32,16 @@
     /* ================= escenario de producto (claro) ================= */
 
     /* ---- hero vertical ---- */
+    /* Titular y bajada estan acotados a dos renglones en escritorio: el ancho
+       maximo esta calculado para que el corte caiga solo, sin <br> a mano, que
+       en celular rompe. */
+    .hero-h1 { font-size: clamp(29px, 5.4vw, 50px); max-width: 30ch; margin: 0 auto; text-wrap: balance; }
+    .hero-p  { font-size: clamp(15px, 1.35vw, 18px); max-width: 76ch; margin: 0 auto; text-wrap: pretty; }
     .hero-v h1 { text-wrap: balance; }
     @media (max-width: 720px) {
       .hero-v { padding: 44px 20px 56px !important; gap: 30px !important; }
-      .hero-v h1 { font-size: 33px !important; }
+      .hero-h1 { max-width: 100%; }
+      .hero-p { max-width: 100%; }
     }
 
     /* ---- pieza en video ---- */
@@ -262,7 +268,7 @@ html { scroll-behavior: smooth; }
   [style*="grid-template-columns: repeat(4"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
   [style*="grid-template-columns: repeat(3"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
   [style*="grid-template-columns: repeat(5"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-  h1 { font-size: clamp(30px, 6.4vw, 52px) !important; }
+  h1:not(.hero-h1) { font-size: clamp(30px, 6.4vw, 52px) !important; }
   h2 { font-size: clamp(24px, 4.6vw, 40px) !important; }
   .viewer { height: 480px !important; }
   .filtbar { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
@@ -375,15 +381,14 @@ html { scroll-behavior: smooth; }
           Representantes exclusivos en Argentina
         </div>
 
-        <h1 style="font-size: 52px; font-weight: 800; color: #10222A; letter-spacing: -0.035em; line-height: 1.07; max-width: 17ch;">
+        <h1 class="hero-h1" style="font-weight: 800; color: #10222A; letter-spacing: -0.035em; line-height: 1.08;">
           Implantes ortopédicos con trazabilidad de
           <span style="color: #0095A1;">punta a punta.</span>
         </h1>
 
-        <p style="font-size: 17.5px; line-height: 1.68; color: #5A6570; max-width: 60ch; font-weight: 400;">
+        <p class="hero-p" style="line-height: 1.66; color: #5A6570; font-weight: 400;">
           Más de 20 años importando prótesis de cadera y rodilla de origen alemán y
-          norteamericano. Cada implante sale de nuestro depósito identificado, controlado
-          y esterilizado, y llega acompañado hasta el quirófano.
+          norteamericano. Cada implante llega al quirófano controlado y acompañado.
         </p>
 
         <div style="display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;">
