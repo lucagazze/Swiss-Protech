@@ -75,8 +75,9 @@ Link y Heraeus), acreditado como tal. Lo que más levantaría el sitio:
 
 El home tiene una pieza de 1 min 6 s (`media/swiss-protech.mp4`) montada con el
 material audiovisual oficial de **Waldemar Link** y **Heraeus Medical**, con
-rótulos, capítulos y cierre de marca propios. El crédito a ambos fabricantes está
-en el pie del video y en la placa final.
+rótulos, capítulos y cierre de marca propios. El crédito a los fabricantes ya no
+aparece en pantalla: sus logos siguen visibles en el material, que es la
+atribución que queda.
 
 **Antes de publicarlo hay que confirmar con Swiss Protech que los acuerdos de
 representación cubren el uso de ese material en una pieza de marca propia.** Es

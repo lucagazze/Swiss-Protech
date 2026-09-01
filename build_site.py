@@ -526,18 +526,42 @@ JS_CONTACTO = """
 
 JS_MAIN = """
 (function () {
-  var v = document.getElementById('film');
-  var b = document.getElementById('filmPlay');
-  if (!v || !b) return;
-  b.addEventListener('click', function () {
-    b.hidden = true;
-    v.controls = true;   // los controles nativos aparecen recien al reproducir
-    v.play();
+  var bucle  = document.getElementById('filmLoop');
+  var entero = document.getElementById('film');
+  var boton  = document.getElementById('filmPlay');
+  if (!bucle || !entero || !boton) return;
+
+  // Algunos navegadores bloquean incluso el autoplay mudo (modo ahorro de
+  // datos, iOS con poca bateria). Si el bucle no arranca, se queda el poster:
+  // el boton sigue siendo la unica via de entrada, asi que nada se rompe.
+  var arranque = bucle.play();
+  if (arranque && arranque.catch) arranque.catch(function () {});
+
+  boton.addEventListener('click', function () {
+    boton.hidden = true;
+    bucle.pause();
+    bucle.hidden = true;
+    entero.hidden = false;
+    entero.controls = true;
+    entero.currentTime = 0;
+    var p = entero.play();
+    if (p && p.catch) p.catch(function () { entero.controls = true; });
+    entero.focus({ preventScroll: true });
   });
-  v.addEventListener('pause', function () { if (v.currentTime === 0) b.hidden = false; });
-  v.addEventListener('ended', function () { v.currentTime = 0; b.hidden = false; });
+
+  // al terminar la pieza vuelve el bucle, para que el bloque no quede en negro
+  entero.addEventListener('ended', function () {
+    entero.controls = false;
+    entero.hidden = true;
+    bucle.hidden = false;
+    boton.hidden = false;
+    var p = bucle.play();
+    if (p && p.catch) p.catch(function () {});
+  });
 })();
 """
+
+
 
 
 def transformar_main(c):

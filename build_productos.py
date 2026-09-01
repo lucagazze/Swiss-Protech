@@ -66,7 +66,7 @@ P = [
   dict(slug="element", key="element", linea="Cadera", marca="Advita Ortho (Novation®)", img="assets/element.webp",
        specs=[["Tipo", "Vástago femoral"], ["Fijación", "No cementado"], ["Filosofía", "Conservación de hueso"]],
        destacados=["Más de 25 años de uso clínico", "Diseño que conserva hueso"]),
-  dict(slug="lcu", key=None, nombre="LCU CEMENTADO Y NO CEMENTADO", bajada="Sistema de vástagos cementados y no cementados", linea="Cadera", marca="Waldemar Link", img=None,
+  dict(slug="lcu", key=None, nombre="LCU CEMENTADO Y NO CEMENTADO", bajada="Vástagos cementados y no cementados", linea="Cadera", marca="Waldemar Link", img=None,
        clips=[CL("lcu_intro", "Vástago LCU")], stills=[ST("lcu_render", "Vástago LCU")],
        desc=["Sistema de vástagos femorales de LINK disponible en versión cementada y no cementada, con un mismo instrumental para ambas técnicas."],
        specs=[["Tipo", "Vástago femoral"], ["Fijación", "Cementado o no cementado"]],

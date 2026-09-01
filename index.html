@@ -35,8 +35,13 @@
     /* Titular y bajada estan acotados a dos renglones en escritorio: el ancho
        maximo esta calculado para que el corte caiga solo, sin <br> a mano, que
        en celular rompe. */
-    .hero-h1 { font-size: clamp(29px, 5.4vw, 50px); max-width: 30ch; margin: 0 auto; text-wrap: balance; }
-    .hero-p  { font-size: clamp(15px, 1.35vw, 18px); max-width: 76ch; margin: 0 auto; text-wrap: pretty; }
+    .hero-h1 { font-size: clamp(26px, 5.4vw, 50px); max-width: 30ch; margin: 0 auto; text-wrap: balance; }
+    .hero-chip { display: inline-flex; align-items: center; gap: 11px; white-space: nowrap;
+                 border: 1px solid rgba(0,149,161,.28); background: rgba(0,149,161,.07);
+                 color: #007C87; font-weight: 700; text-transform: uppercase;
+                 font-size: clamp(9.5px, 1.05vw, 12px); letter-spacing: clamp(.05em, .12vw, .12em);
+                 padding: 9px clamp(12px, 1.4vw, 17px); border-radius: 99px; }
+    .hero-p  { font-size: clamp(15px, 1.35vw, 18px); max-width: 52ch; margin: 0 auto; text-wrap: pretty; }
     .hero-v h1 { text-wrap: balance; }
     @media (max-width: 720px) {
       .hero-v { padding: 44px 20px 56px !important; gap: 30px !important; }
@@ -45,27 +50,35 @@
     }
 
     /* ---- pieza en video ---- */
+    /* Dos videos apilados: el de arriba es el bucle mudo que arranca solo, el
+       de abajo es la pieza completa y aparece al tocar el boton. */
     .film { position: relative; border-radius: 12px; overflow: hidden; background: #0A171D;
-            box-shadow: 0 46px 90px -50px rgba(16,34,42,.62); }
-    .film video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover;
-                  background: #0A171D; }
-    .film-play { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center;
-                 justify-content: center; gap: 16px; border: 0; cursor: pointer; padding: 0;
-                 background: linear-gradient(180deg, rgba(10,23,29,.04) 0%, rgba(10,23,29,.22) 100%);
-                 transition: opacity .4s; }
+            box-shadow: 0 46px 92px -50px rgba(16,34,42,.6); }
+    .film video { display: block; width: 100%; height: auto; aspect-ratio: 16/9;
+                  object-fit: cover; background: #0A171D; }
+    .film video[hidden] { display: none; }
+
+    .film-play { position: absolute; inset: 0; display: flex; flex-direction: column;
+                 align-items: center; justify-content: center; gap: 0; padding: 0;
+                 border: 0; cursor: pointer; font-family: inherit;
+                 background: radial-gradient(ellipse at center, rgba(10,23,29,.30) 0%, rgba(10,23,29,.10) 45%, rgba(10,23,29,.34) 100%);
+                 transition: background .35s; }
     .film-play[hidden] { display: none; }
-    .film-play span { width: 92px; height: 92px; border-radius: 50%; background: rgba(255,255,255,.94);
-                      display: flex; align-items: center; justify-content: center;
-                      box-shadow: 0 18px 40px -16px rgba(16,34,42,.7); transition: transform .3s, background .3s; }
-    .film-play:hover span { transform: scale(1.07); background: #FFFFFF; }
-    .film-play svg { margin-left: 5px; }
-    .film-rot { font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: .14em;
-                text-transform: uppercase; color: #FFFFFF; background: rgba(16,34,42,.55);
-                backdrop-filter: blur(8px); padding: 9px 18px; border-radius: 99px; }
-    .film-pie { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .film-play:hover { background: radial-gradient(ellipse at center, rgba(10,23,29,.40) 0%, rgba(10,23,29,.18) 45%, rgba(10,23,29,.42) 100%); }
+
+    .film-ico { width: 92px; height: 92px; border-radius: 50%; background: #FFFFFF;
+                display: flex; align-items: center; justify-content: center; margin-bottom: 22px;
+                box-shadow: 0 22px 50px -14px rgba(10,23,29,.8);
+                transition: transform .3s cubic-bezier(.4,0,.2,1); }
+    .film-ico svg { margin-left: 5px; }
+    .film-play:hover .film-ico { transform: scale(1.08); }
+
+    .film-rot { font-size: 15px; font-weight: 700; color: #FFFFFF; letter-spacing: .14em;
+                text-transform: uppercase; text-shadow: 0 2px 18px rgba(10,23,29,.7); }
+
     @media (max-width: 720px) {
-      .film-play span { width: 66px; height: 66px; }
-      .film-rot { font-size: 11px; padding: 7px 14px; }
+      .film-ico { width: 62px; height: 62px; margin-bottom: 14px; }
+      .film-rot { font-size: 12px; letter-spacing: .1em; }
     }
 
     /* ================= interacciones sobrias ================= */
@@ -376,49 +389,51 @@ html { scroll-behavior: smooth; }
     <div class="hero-v" style="position: relative; max-width: 1160px; margin: 0 auto; padding: 56px 40px 76px; display: flex; flex-direction: column; align-items: center; gap: 34px;">
 
       <div style="display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center;">
-        <div style="display: inline-flex; align-items: center; gap: 11px; border: 1px solid rgba(0,149,161,.28); background: rgba(0,149,161,.07); color: #007C87; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 9px 17px; border-radius: 99px;">
+        <div class="hero-chip">
           <span style="width: 6px; height: 6px; border-radius: 50%; background: #0095A1; display: block;"></span>
           Representantes exclusivos en Argentina
         </div>
 
         <h1 class="hero-h1" style="font-weight: 800; color: #10222A; letter-spacing: -0.035em; line-height: 1.08;">
-          Implantes ortopédicos con trazabilidad de
-          <span style="color: #0095A1;">punta a punta.</span>
+          <span style="color: #0095A1;">Implantes ortopédicos</span>
+          con trazabilidad de punta a punta.
         </h1>
 
         <p class="hero-p" style="line-height: 1.66; color: #5A6570; font-weight: 400;">
-          Más de 20 años importando prótesis de cadera y rodilla de origen alemán y
-          norteamericano. Cada implante llega al quirófano controlado y acompañado.
+          Prótesis de cadera y rodilla de origen alemán y norteamericano,
+          con trazabilidad hasta el quirófano.
         </p>
+
+      </div>
+
+      <!-- La pieza. Arranca sola, muda y en bucle con los primeros segundos;
+           el boton cambia al video completo. -->
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 26px;">
+        <div class="film">
+          <video id="filmLoop" poster="assets/film-poster.webp" autoplay muted loop playsinline
+                 preload="metadata" width="1920" height="1080" aria-hidden="true" tabindex="-1">
+            <source src="media/swiss-protech-loop.mp4" type="video/mp4">
+          </video>
+          <video id="film" preload="none" playsinline hidden
+                 width="1920" height="1080" aria-label="Swiss Protech en un minuto">
+            <source src="media/swiss-protech.mp4" type="video/mp4">
+            Tu navegador no puede reproducir este video.
+          </video>
+          <button class="film-play" id="filmPlay" type="button">
+            <span class="film-ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="#0095A1"><polygon points="6 3 21 12 6 21 6 3"></polygon></svg></span>
+            <b class="film-rot">Ver video completo</b>
+          </button>
+        </div>
 
         <div style="display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;">
           <a href="productos.html" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: #0095A1; color: #fff; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px; white-space: nowrap;">
             Ver catálogo de productos
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
           </a>
-          <a href="proceso.html" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 500; padding: 16px 28px; border-radius: 4px; background: #FFFFFF; white-space: nowrap;">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            Cómo trabajamos
+          <a href="https://wa.me/5491135935241?text=Hola%2C%20queria%20consultar%20disponibilidad%20y%20medidas%20de%20un%20producto%20del%20catalogo." target="_blank" rel="noopener" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 600; padding: 16px 28px; border-radius: 4px; background: #FFFFFF; white-space: nowrap;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 20.5l1.6-4.9A8.4 8.4 0 0 1 3.7 11 8.5 8.5 0 0 1 12 2.6a8.4 8.4 0 0 1 9 8.9z"></path></svg>
+            Consultar por WhatsApp
           </a>
-        </div>
-      </div>
-
-      <!-- la pieza: 1 min 6 s con las tres lineas y el circuito de trazabilidad -->
-      <div style="width: 100%; display: flex; flex-direction: column; gap: 14px;">
-        <div class="film">
-          <video id="film" poster="assets/film-poster.webp" preload="none" playsinline
-                 width="1920" height="1080" aria-label="Swiss Protech en un minuto">
-            <source src="media/swiss-protech.mp4" type="video/mp4">
-            Tu navegador no puede reproducir este video.
-          </video>
-          <button class="film-play" id="filmPlay" type="button" aria-label="Reproducir el video">
-            <span><svg width="30" height="30" viewBox="0 0 24 24" fill="#0095A1"><polygon points="6 3 21 12 6 21 6 3"></polygon></svg></span>
-            <b class="film-rot">Ver la pieza &middot; 1 min 6 s</b>
-          </button>
-        </div>
-        <div class="film-pie">
-          <span style="font-size: 12.5px; color: #A7A9AC;">Material audiovisual de Waldemar Link GmbH &amp; Co. KG y Heraeus Medical.</span>
-          <span style="font-size: 12.5px; color: #A7A9AC;">Sin audio</span>
         </div>
       </div>
 
@@ -483,8 +498,7 @@ html { scroll-behavior: smooth; }
             <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
               <h3 style="font-size: 22px; color: #10222A;">Cadera</h3>
               <p style="font-size: 14.5px; color: #69727D; line-height: 1.6;">
-                Cotilos cementados y no cementados, doble movilidad, vástagos primarios
-                y de revisión modular.
+                Cotilos y vástagos, primarios y de revisión.
               </p>
               <span style="font-size: 13px; color: #0095A1; font-weight: 600; padding-top: 6px;">Ver la línea &rarr;</span>
             </div>
@@ -500,8 +514,7 @@ html { scroll-behavior: smooth; }
             <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
               <h3 style="font-size: 22px; color: #10222A;">Rodilla</h3>
               <p style="font-size: 14.5px; color: #69727D; line-height: 1.6;">
-                Primarias de reemplazo total, unicompartimentales, abisagradas
-                constreñidas y sistemas de revisión.
+                Primarias, unicompartimentales y de revisión.
               </p>
               <span style="font-size: 13px; color: #0095A1; font-weight: 600; padding-top: 6px;">Ver la línea &rarr;</span>
             </div>
@@ -517,8 +530,7 @@ html { scroll-behavior: smooth; }
             <div style="padding: 26px 28px 30px; display: flex; flex-direction: column; gap: 11px;">
               <h3 style="font-size: 22px; color: #10222A;">Cementos</h3>
               <p style="font-size: 14.5px; color: #69727D; line-height: 1.6;">
-                Cementos óseos con y sin antibiótico, pistolas de aplicación
-                y sistemas de mezclado al vacío.
+                Con y sin antibiótico, y mezcla al vacío.
               </p>
               <span style="font-size: 13px; color: #0095A1; font-weight: 600; padding-top: 6px;">Ver la línea &rarr;</span>
             </div>
@@ -549,7 +561,7 @@ html { scroll-behavior: smooth; }
           <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: #0095A1; background: rgba(0,149,161,.09); padding: 6px 11px; border-radius: 3px; align-self: flex-start;">01</span>
           <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Depósito e identificación</h3>
           <p style="font-size: 13.5px; color: #69727D; line-height: 1.62;">
-            Cada pieza ingresa con su lote y su número de serie cargados en el sistema.
+            Ingresa con su lote y su número de serie.
           </p>
         </div>
 
@@ -557,7 +569,7 @@ html { scroll-behavior: smooth; }
           <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: #0095A1; background: rgba(0,149,161,.09); padding: 6px 11px; border-radius: 3px; align-self: flex-start;">02</span>
           <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Control y preparación</h3>
           <p style="font-size: 13.5px; color: #69727D; line-height: 1.62;">
-            Verificación de integridad, vencimiento y correspondencia con la cirugía programada.
+            Integridad, vencimiento y correspondencia.
           </p>
         </div>
 
@@ -565,7 +577,7 @@ html { scroll-behavior: smooth; }
           <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: #0095A1; background: rgba(0,149,161,.09); padding: 6px 11px; border-radius: 3px; align-self: flex-start;">03</span>
           <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Esterilización</h3>
           <p style="font-size: 13.5px; color: #69727D; line-height: 1.62;">
-            Protocolo con registro trazable de cada ciclo, según normativa ANMAT.
+            Registro trazable, según ANMAT.
           </p>
         </div>
 
@@ -573,15 +585,15 @@ html { scroll-behavior: smooth; }
           <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: #0095A1; background: rgba(0,149,161,.09); padding: 6px 11px; border-radius: 3px; align-self: flex-start;">04</span>
           <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Traslado controlado</h3>
           <p style="font-size: 13.5px; color: #69727D; line-height: 1.62;">
-            Logística propia hasta el centro, con seguimiento del envío en todo momento.
+            Logística propia, con seguimiento del envío.
           </p>
         </div>
 
-        <div class="step" style="border: 1px solid rgba(0,149,161,.42); background: rgba(0,149,161,.05); border-radius: 6px; padding: 28px 24px 26px; display: flex; flex-direction: column; gap: 13px; height: 100%;">
-          <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: #FFFFFF; background: #0095A1; padding: 6px 11px; border-radius: 3px; align-self: flex-start;">05</span>
+        <div class="step" style="border: 1px solid #E3E7E9; background: #FFFFFF; border-radius: 6px; padding: 28px 24px 26px; display: flex; flex-direction: column; gap: 13px; height: 100%;">
+          <span class="step-n" style="font-size: 12px; font-weight: 800; letter-spacing: .1em; color: #0095A1; background: rgba(0,149,161,.09); padding: 6px 11px; border-radius: 3px; align-self: flex-start;">05</span>
           <h3 style="font-size: 17px; color: #10222A; line-height: 1.28;">Entrega en quirófano</h3>
           <p style="font-size: 13.5px; color: #5A6570; line-height: 1.62;">
-            Acompañamiento técnico en el acto quirúrgico, con instrumental completo.
+            Técnico presente, con instrumental completo.
           </p>
         </div>
 
@@ -621,7 +633,7 @@ html { scroll-behavior: smooth; }
               <div style="display: flex; flex-direction: column; gap: 8px;">
                 <h3 style="font-size: 17px; color: #10222A;">Waldemar Link</h3>
                 <p style="font-size: 13.5px; color: #69727D; line-height: 1.6;">
-                  Hamburgo, Alemania. Fabricante de endoprótesis desde 1948, presente en más de 70 países.
+                  Endoprótesis alemanas desde 1948.
                 </p>
               </div>
               <span style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto;">link-ortho.com &#8599;</span>
@@ -636,7 +648,7 @@ html { scroll-behavior: smooth; }
               <div style="display: flex; flex-direction: column; gap: 8px;">
                 <h3 style="font-size: 17px; color: #10222A;">Advita Ortho</h3>
                 <p style="font-size: 13.5px; color: #69727D; line-height: 1.6;">
-                  Sistemas de reemplazo articular primario y de revisión para cadera y rodilla.
+                  Reemplazo articular primario y de revisión.
                 </p>
               </div>
               <span style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto;">advita.com &#8599;</span>
@@ -651,7 +663,7 @@ html { scroll-behavior: smooth; }
               <div style="display: flex; flex-direction: column; gap: 8px;">
                 <h3 style="font-size: 17px; color: #10222A;">Heraeus Medical</h3>
                 <p style="font-size: 13.5px; color: #69727D; line-height: 1.6;">
-                  Cementos óseos PALACOS y COPAL, y los sistemas de mezclado PALAMIX.
+                  PALACOS, COPAL y mezcla PALAMIX.
                 </p>
               </div>
               <span style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto;">heraeus-medical.com &#8599;</span>
@@ -757,16 +769,38 @@ document.addEventListener('click', function(e){
 </script>
 <script>
 (function () {
-  var v = document.getElementById('film');
-  var b = document.getElementById('filmPlay');
-  if (!v || !b) return;
-  b.addEventListener('click', function () {
-    b.hidden = true;
-    v.controls = true;   // los controles nativos aparecen recien al reproducir
-    v.play();
+  var bucle  = document.getElementById('filmLoop');
+  var entero = document.getElementById('film');
+  var boton  = document.getElementById('filmPlay');
+  if (!bucle || !entero || !boton) return;
+
+  // Algunos navegadores bloquean incluso el autoplay mudo (modo ahorro de
+  // datos, iOS con poca bateria). Si el bucle no arranca, se queda el poster:
+  // el boton sigue siendo la unica via de entrada, asi que nada se rompe.
+  var arranque = bucle.play();
+  if (arranque && arranque.catch) arranque.catch(function () {});
+
+  boton.addEventListener('click', function () {
+    boton.hidden = true;
+    bucle.pause();
+    bucle.hidden = true;
+    entero.hidden = false;
+    entero.controls = true;
+    entero.currentTime = 0;
+    var p = entero.play();
+    if (p && p.catch) p.catch(function () { entero.controls = true; });
+    entero.focus({ preventScroll: true });
   });
-  v.addEventListener('pause', function () { if (v.currentTime === 0) b.hidden = false; });
-  v.addEventListener('ended', function () { v.currentTime = 0; b.hidden = false; });
+
+  // al terminar la pieza vuelve el bucle, para que el bloque no quede en negro
+  entero.addEventListener('ended', function () {
+    entero.controls = false;
+    entero.hidden = true;
+    bucle.hidden = false;
+    boton.hidden = false;
+    var p = bucle.play();
+    if (p && p.catch) p.catch(function () {});
+  });
 })();
 </script>
 <script>

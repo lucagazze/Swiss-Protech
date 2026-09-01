@@ -255,9 +255,9 @@ def institucional():
     <h2>Soluciones para mejorar la calidad de vida del paciente</h2>
     <p class="lead">Mediante nuestros productos y servicios brindamos a pacientes, médicos, prestadores y financiadores del sistema de salud público y privado de todo el país soluciones superadoras para mejorar la calidad de vida de los pacientes.</p></div>
   <div class="g3">
-    <div class="card"><span class="ico">""" + I_RELOJ + """</span><h3>Experiencia</h3><p>Más de 20 años de trayectoria en la comercialización de prótesis de cadera y rodilla importadas.</p></div>
-    <div class="card"><span class="ico">""" + I_CAJA + """</span><h3>Calidad</h3><p>Trabajamos con productos de la más alta calidad, de fabricantes líderes en tecnología médica de Alemania y Estados Unidos.</p></div>
-    <div class="card"><span class="ico">""" + I_ESCUDO + """</span><h3>Certificación</h3><p>Contamos con todas las habilitaciones del Ministerio de Salud de la Nación y de A.N.M.A.T. para productos médicos implantables.</p></div>
+    <div class="card"><span class="ico">""" + I_RELOJ + """</span><h3>Experiencia</h3><p>Más de 20 años importando prótesis de cadera y rodilla.</p></div>
+    <div class="card"><span class="ico">""" + I_CAJA + """</span><h3>Calidad</h3><p>Fabricantes líderes de Alemania y Estados Unidos.</p></div>
+    <div class="card"><span class="ico">""" + I_ESCUDO + """</span><h3>Certificación</h3><p>Habilitados por el Ministerio de Salud y A.N.M.A.T.</p></div>
   </div>
 </div></section>
 
@@ -291,7 +291,7 @@ MARCAS = [
     dict(logo="assets/link.webp", filtro="filter: invert(1) brightness(.28);", alto="30px",
          n="Waldemar Link GmbH & Co. KG", pais="Hamburgo, Alemania",
          datos=["Fundada el 1 de enero de 1948", "Presente en más de 70 países", "Cinco décadas en endoprotética de grandes articulaciones"],
-         txt=["Fabricante alemán de endoprótesis articulares. Su catálogo cubre prótesis de cadera y rodilla, implantes de extremidad superior, soluciones para salvamento de miembros e implantes personalizados.",
+         txt=["Fabricante alemán de endoprótesis articulares: cadera, rodilla, extremidad superior e implantes personalizados.",
               "De Link provienen la mayoría de los sistemas que Swiss Protech comercializa en Argentina: los cotilos MobileLink y Lubinus, los vástagos LCU, Lubinus SP II y MP Link, y las prótesis de rodilla Endo-Model."],
          prods=["MobileLink", "MobileLink Dual Mobility", "Lubinus Cup", "Lubinus SPII Revision", "MP Link", "LCU", "Endomodel", "Uni Sled"],
          web="link-ortho.com", url="https://www.link-ortho.com/"),
@@ -338,9 +338,9 @@ def representaciones():
   <div class="st"><span class="eyebrow">Qué significa</span><h2>Representación exclusiva, no reventa</h2>
     <p class="lead">Ser representantes exclusivos implica acceso directo al fabricante: stock propio en el país, instrumental completo, soporte técnico de fábrica y trazabilidad desde el origen hasta el quirófano.</p></div>
   <div class="g3">
-    <div class="card"><span class="ico">""" + I_CAJA + """</span><h3>Stock local</h3><p>Los implantes están en nuestro depósito en el país, no se piden al exterior por cada cirugía.</p></div>
-    <div class="card"><span class="ico">""" + I_DOC + """</span><h3>Trazabilidad de origen</h3><p>Cada pieza conserva su lote y número de serie desde el fabricante hasta el acto quirúrgico.</p></div>
-    <div class="card"><span class="ico">""" + I_LIBRO + """</span><h3>Documentación oficial</h3><p>Técnicas quirúrgicas y material de formación provistos por el propio fabricante.</p></div>
+    <div class="card"><span class="ico">""" + I_CAJA + """</span><h3>Stock local</h3><p>Están en nuestro depósito, no se piden al exterior.</p></div>
+    <div class="card"><span class="ico">""" + I_DOC + """</span><h3>Trazabilidad de origen</h3><p>Lote y número de serie, del fabricante al quirófano.</p></div>
+    <div class="card"><span class="ico">""" + I_LIBRO + """</span><h3>Documentación oficial</h3><p>Técnicas y material del propio fabricante.</p></div>
   </div>
 </div></section>
 """ + PIE)
@@ -359,17 +359,17 @@ def educacion():
     <div style="display:flex;flex-direction:column;gap:24px">
       <div class="st" style="margin-bottom:0"><span class="eyebrow">Qué vas a encontrar</span><h2>Todo el material técnico, en un solo lugar</h2></div>
       <div class="g2">
-        <div class="card"><span class="ico">""" + I_LIBRO + """</span><h3>Técnicas quirúrgicas</h3><p>El documento oficial de cada sistema, con la secuencia de instrumental paso a paso. Organizado por producto y por línea.</p></div>
-        <div class="card"><span class="ico">""" + I_DOC + """</span><h3>Fichas técnicas</h3><p>Medidas, materiales, indicaciones y referencias de cada implante, en PDF descargable.</p></div>
-        <div class="card"><span class="ico">""" + I_PLAY + """</span><h3>Videos de procedimiento</h3><p>Material audiovisual de Waldemar Link y Heraeus Medical con la técnica completa.</p></div>
-        <div class="card"><span class="ico">""" + I_USER + """</span><h3>Webinars</h3><p>Sesiones de formación con especialistas, en vivo y grabadas.</p></div>
+        <div class="card"><span class="ico">""" + I_LIBRO + """</span><h3>Técnicas quirúrgicas</h3><p>El documento oficial, paso a paso.</p></div>
+        <div class="card"><span class="ico">""" + I_DOC + """</span><h3>Fichas técnicas</h3><p>Medidas, materiales e indicaciones, en PDF.</p></div>
+        <div class="card"><span class="ico">""" + I_PLAY + """</span><h3>Videos de procedimiento</h3><p>Videos con la técnica completa.</p></div>
+        <div class="card"><span class="ico">""" + I_USER + """</span><h3>Webinars</h3><p>Con especialistas, en vivo y grabadas.</p></div>
       </div>
     </div>
     <div class="cerrado"><div class="glow"></div>
       <div style="position:relative;display:flex;flex-direction:column;gap:16px">
         <span class="ico" style="background:rgba(0,149,161,.18);border:1px solid rgba(114,197,194,.34)">""" + I_LIBRO.replace('stroke-width="1.8"', 'stroke-width="1.8" stroke="#72C5C2"') + """</span>
         <h3>Acceso exclusivo para médicos</h3>
-        <p>Por tratarse de material técnico de productos médicos implantables, el acceso está restringido a profesionales de la salud. El registro se valida con la matrícula y se activa desde Swiss Protech.</p>
+        <p>Material técnico: el acceso se valida con la matrícula profesional.</p>
         <div class="acts"><a href="contacto.html?q=medico" class="btn-p">Registrarme como médico</a><a href="%s" target="_blank" rel="noopener" class="btn-g">Ya tengo cuenta</a></div>""" % shell.wa("Hola, ya tengo cuenta en el portal medico y necesito acceder al material tecnico.") + """
       </div></div>
   </div>
@@ -379,9 +379,9 @@ def educacion():
   <div class="st"><span class="eyebrow">Por línea</span><h2>Material disponible por familia de producto</h2>
     <p class="lead">Cada ficha de producto enlaza directo a su técnica quirúrgica. Los 21 productos del catálogo tienen material asociado.</p></div>
   <div class="g3">
-    <div class="card"><h3>Cadera</h3><p>Nueve sistemas entre cotilos y vástagos: MobileLink, Crown Cup, Lubinus, LCU, MP Link y Element.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de cadera &rarr;</a></div>
-    <div class="card"><h3>Rodilla</h3><p>Siete sistemas: la familia Endo-Model de Link y la familia Optetrak de Advita, primarias y de revisión.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de rodilla &rarr;</a></div>
-    <div class="card"><h3>Cementos</h3><p>Cinco productos de Heraeus Medical: cementos PALACOS y COPAL, y el sistema de mezcla y aplicación PALAMIX.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los cementos &rarr;</a></div>
+    <div class="card"><h3>Cadera</h3><p>Nueve sistemas entre cotilos y vástagos.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de cadera &rarr;</a></div>
+    <div class="card"><h3>Rodilla</h3><p>Siete sistemas: Endo-Model y Optetrak.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de rodilla &rarr;</a></div>
+    <div class="card"><h3>Cementos</h3><p>Cinco productos: PALACOS, COPAL y PALAMIX.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los cementos &rarr;</a></div>
   </div>
 </div></section>
 
@@ -423,9 +423,9 @@ def multimedia():
   <div class="st"><span class="eyebrow">Webinars</span><h2>Formación con especialistas</h2>
     <p class="lead">Sesiones en vivo y grabadas sobre técnica quirúrgica, selección de implante y manejo de complicaciones. El acceso al archivo completo es exclusivo para profesionales registrados.</p></div>
   <div class="g3">
-    <div class="card"><span class="ico">""" + I_PLAY + """</span><h3>Próximos webinars</h3><p>Las sesiones en vivo se anuncian por correo a los médicos registrados y se publican en esta página.</p><a href="contacto.html?q=medico" style="font-size:13.5px;font-weight:600;margin-top:auto">Avisame de la próxima &rarr;</a></div>
-    <div class="card"><span class="ico">""" + I_LIBRO + """</span><h3>Archivo grabado</h3><p>Sesiones anteriores disponibles a demanda, organizadas por línea de producto.</p><a href="educacion.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Acceder con mi cuenta &rarr;</a></div>
-    <div class="card"><span class="ico">""" + I_USER + """</span><h3>Solicitar una sesión</h3><p>Coordinamos capacitaciones a medida para servicios de traumatología y equipos quirúrgicos.</p><a href="contacto.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Coordinar una capacitación &rarr;</a></div>
+    <div class="card"><span class="ico">""" + I_PLAY + """</span><h3>Próximos webinars</h3><p>Se anuncian por correo a los médicos registrados.</p><a href="contacto.html?q=medico" style="font-size:13.5px;font-weight:600;margin-top:auto">Avisame de la próxima &rarr;</a></div>
+    <div class="card"><span class="ico">""" + I_LIBRO + """</span><h3>Archivo grabado</h3><p>A demanda, organizadas por línea de producto.</p><a href="educacion.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Acceder con mi cuenta &rarr;</a></div>
+    <div class="card"><span class="ico">""" + I_USER + """</span><h3>Solicitar una sesión</h3><p>A medida, para servicios y equipos quirúrgicos.</p><a href="contacto.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Coordinar una capacitación &rarr;</a></div>
   </div>
 </div></section>
 """ + PIE)

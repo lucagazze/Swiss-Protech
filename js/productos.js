@@ -283,7 +283,7 @@ window.PRODUCTOS = {
  "lcu": {
   "slug": "lcu",
   "nombre": "LCU CEMENTADO Y NO CEMENTADO",
-  "bajada": "Sistema de vástagos cementados y no cementados",
+  "bajada": "Vástagos cementados y no cementados",
   "linea": "Cadera",
   "marca": "Waldemar Link",
   "img": null,
