@@ -56,8 +56,8 @@ npx remotion render src/index.ts SwissProtechFilm out/SwissProtechFilm.mp4 --cod
 
 ## Armazón compartido
 
-`shell.py` es la fuente única de la barra superior, el CTA de cierre, el pie, los
-datos de contacto y el JS de animaciones. Los tres builders lo consumen: si
+`shell.py` es la fuente única de la barra superior, el CTA de cierre, el pie, el
+botón flotante de WhatsApp, los datos de contacto y el JS de animaciones. Los tres builders lo consumen: si
 cambia un teléfono o una sede, se cambia ahí y se reconstruye todo.
 
 ## Identidad
