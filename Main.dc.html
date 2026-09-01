@@ -72,6 +72,11 @@
       .film-rot { font-size: 12px; letter-spacing: .1em; }
     }
 
+    /* la tarjeta entera es el enlace: no hace falta apuntar al "Ver la linea" */
+    a.cardw { display: block; text-decoration: none; color: inherit; height: 100%; }
+    a.cardw:focus-visible { outline: 3px solid #0095A1; outline-offset: 4px; border-radius: 8px; }
+    a.cardw .card { cursor: pointer; }
+
     /* ================= interacciones sobrias ================= */
     .card { transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .35s; }
     .card:hover { transform: translateY(-5px); border-color: #0095A1;
@@ -259,7 +264,7 @@
 
       <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px;">
 
-        <div class="cardw">
+        <a class="cardw" href="productos.html#cadera">
           <div class="card" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
             <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
               <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">9 productos</span>
@@ -273,9 +278,9 @@
               <span style="font-size: 13px; color: {{accent}}; font-weight: 600; padding-top: 6px;">Ver la línea &rarr;</span>
             </div>
           </div>
-        </div>
+        </a>
 
-        <div class="cardw">
+        <a class="cardw" href="productos.html#rodilla">
           <div class="card" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
             <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
               <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">7 productos</span>
@@ -289,9 +294,9 @@
               <span style="font-size: 13px; color: {{accent}}; font-weight: 600; padding-top: 6px;">Ver la línea &rarr;</span>
             </div>
           </div>
-        </div>
+        </a>
 
-        <div class="cardw">
+        <a class="cardw" href="productos.html#cementos">
           <div class="card" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(16,34,42,.05);">
             <div style="height: 232px; background: linear-gradient(160deg, #F2F6F7 0%, #E6EDEF 100%); display: flex; align-items: center; justify-content: center; position: relative;">
               <span style="position: absolute; top: 16px; left: 18px; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; color: {{accent}}; background: rgba(0,149,161,.10); padding: 5px 11px; border-radius: 3px;">5 productos</span>
@@ -305,7 +310,7 @@
               <span style="font-size: 13px; color: {{accent}}; font-weight: 600; padding-top: 6px;">Ver la línea &rarr;</span>
             </div>
           </div>
-        </div>
+        </a>
 
       </div>
     </div>
