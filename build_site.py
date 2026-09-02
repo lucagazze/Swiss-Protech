@@ -900,7 +900,8 @@ PUBLICAR_HTML = ["index.html", "productos.html", "producto.html", "proceso.html"
                  "multimedia.html", "contacto.html", "privacidad.html"]
 PUBLICAR_DIRS = ["assets", "js", "vendor"]
 PUBLICAR_MEDIA = ["clips", "gifs", "stills", "views"]      # lo que referencia el sitio
-PUBLICAR_SUELTOS = ["sitemap.xml", "robots.txt", "media/swiss-protech.mp4"]
+PUBLICAR_SUELTOS = ["sitemap.xml", "robots.txt",
+                    "media/swiss-protech.mp4", "media/swiss-protech-loop.mp4"]
 
 
 def armar_publicable():

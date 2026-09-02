@@ -73,7 +73,7 @@ Link y Heraeus), acreditado como tal. Lo que más levantaría el sitio:
 
 ## 7. Video institucional — permiso de los fabricantes
 
-El home tiene una pieza de 1 min 6 s (`media/swiss-protech.mp4`) montada con el
+El home tiene una pieza de 1 min 2 s (`media/swiss-protech.mp4`) montada con el
 material audiovisual oficial de **Waldemar Link** y **Heraeus Medical**, con
 rótulos, capítulos y cierre de marca propios. El crédito a los fabricantes ya no
 aparece en pantalla: sus logos siguen visibles en el material, que es la

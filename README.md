@@ -110,6 +110,16 @@ python -u build_paginas.py      # institucional, representaciones, educación, m
 python -u build_site.py         # index, productos, proceso, contacto y la ficha
 ```
 
+### Comprobaciones
+
+```
+python -u qa_sitio.py
+```
+
+Levanta `site/` y la revisa entera: armazón y `<head>` de las diez páginas,
+filtros del catálogo, formulario de contacto, visor 3D, menú de celular, y
+tipografía y áreas táctiles en siete anchos. Sale con código 1 si algo falla.
+
 `build_site.py` copia los `.html` a la raíz, inyecta el armazón en
 `producto.html` (que se mantiene a mano) y deja en `site/` una copia completa
 lista para subir: las 10 páginas más `assets/`, `js/`, `vendor/`, `media/`,
