@@ -73,6 +73,11 @@
 
     /* la tarjeta entera es el enlace: no hace falta apuntar al "Ver la linea" */
     a.cardw { display: block; text-decoration: none; color: inherit; height: 100%; }
+    /* las tres quedan del mismo alto aunque una bajada ocupe dos renglones:
+       la tarjeta llena el enlace y el "Ver la linea" se apoya abajo */
+    a.cardw .card { height: 100%; display: flex; flex-direction: column; }
+    a.cardw .card > div:last-child { flex: 1 1 auto; }
+    a.cardw .card .pc-go, a.cardw .card > div:last-child > span:last-child { margin-top: auto; }
     a.cardw:focus-visible { outline: 3px solid #0095A1; outline-offset: 4px; border-radius: 8px; }
     a.cardw .card { cursor: pointer; }
 
