@@ -19,23 +19,46 @@
 
     /* ================= escenario de producto (claro) ================= */
 
-    /* ---- hero vertical ---- */
-    /* Titular y bajada estan acotados a dos renglones en escritorio: el ancho
-       maximo esta calculado para que el corte caiga solo, sin <br> a mano, que
-       en celular rompe. */
-    .hero-h1 { font-size: clamp(25px, 4.1vw, 50px); max-width: 26ch; margin: 0 auto;
-               font-weight: 800; color: #10222A; line-height: 1.04;
-               letter-spacing: -0.042em; text-wrap: balance; }
-    .hero-h1 span { display: block; }
+    /* ---- hero ---- */
+    /* Dos columnas desde 980 px: el texto manda a la izquierda y la pieza
+       acompana a la derecha. Debajo de eso se apila y se centra. */
+    .hero-v { position: relative; max-width: 1240px; margin: 0 auto;
+              padding: 64px 40px 74px;
+              display: grid; grid-template-columns: minmax(0, 1.06fr) minmax(0, 1fr);
+              gap: 52px; align-items: center; }
+    .hero-txt { display: flex; flex-direction: column; align-items: flex-start;
+                gap: 24px; text-align: left; }
+    .hero-h1 { font-size: clamp(25px, 3.35vw, 46px); max-width: 22ch; margin: 0;
+               font-weight: 800; color: #10222A; line-height: 1.06;
+               letter-spacing: -0.038em; text-wrap: balance; }
+    .hero-h1 span { display: inline; }
+    .hero-p { font-size: clamp(15px, 1.25vw, 17.5px); max-width: 44ch; margin: 0;
+              line-height: 1.62; color: #5A6570; font-weight: 400; text-wrap: pretty; }
     .hero-p .nb { white-space: nowrap; }
-    .hero-p  { font-size: clamp(15px, 1.4vw, 18.5px); max-width: 72ch; margin: 0 auto;
-               line-height: 1.62; text-wrap: pretty; }
-    .hero-v h1 { text-wrap: balance; }
+    .hero-btns { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    /* se reparten el renglon en partes iguales; si no entran, cada uno toma
+       el ancho completo en vez de quedar desparejos */
+    .hero-btns a { flex: 1 1 250px; justify-content: center;
+                    padding-left: 20px !important; padding-right: 20px !important;
+                    min-height: 56px; box-sizing: border-box; }
+    .hero-marcas { display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+                   padding-top: 6px; }
+    .hero-marcas span { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase;
+                        color: #A7A9AC; font-weight: 700; white-space: nowrap; }
+    .hero-media { min-width: 0; }
+
+    @media (max-width: 980px) {
+      .hero-v { grid-template-columns: minmax(0, 1fr); gap: 34px;
+                justify-items: center; padding: 48px 40px 62px; }
+      .hero-txt { align-items: center; text-align: center; }
+      .hero-h1 { max-width: 22ch; font-size: clamp(28px, 5.4vw, 44px); }
+      .hero-p { max-width: 52ch; }
+      .hero-btns, .hero-marcas { justify-content: center; }
+      .hero-media { width: 100%; }
+    }
     @media (max-width: 720px) {
-      .hero-v { padding: 44px 20px 56px !important; gap: 30px !important; }
+      .hero-v { padding: 40px 20px 54px; gap: 28px; }
       .hero-h1 { max-width: 100%; letter-spacing: -0.03em; }
-      /* en celular el corte fijo suma renglones: el titular fluye solo */
-      .hero-h1 span { display: inline; }
       .hero-p { max-width: 34ch; }
     }
 
@@ -164,30 +187,47 @@
   </div>
 
   <!-- ================= HERO ================= -->
-  <!-- Vertical: primero la promesa, despues el video. La pieza es lo que mejor
-       explica el negocio, asi que no se manda al fondo de la pagina. -->
+  <!-- Dos columnas en escritorio: la promesa a la izquierda y la pieza a la
+       derecha. En pantallas chicas se apila y se centra. -->
   <div style="position: relative; background:
        linear-gradient(168deg, #FFFFFF 0%, #F6FAFB 46%, #E8F1F3 100%); overflow: hidden;">
     <div class="mesh" style="position: absolute; inset: 0;"></div>
 
-    <div class="hero-v" style="position: relative; max-width: 1160px; margin: 0 auto; padding: 56px 40px 76px; display: flex; flex-direction: column; align-items: center; gap: 34px;">
+    <div class="hero-v">
 
-      <div style="display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center;">
+      <div class="hero-txt">
         <h1 class="hero-h1">
           <span style="color: {{accent}};">Implantes de cadera y rodilla</span>
           con trazabilidad de punta a punta.
         </h1>
 
-        <p class="hero-p" style="line-height: 1.66; color: #5A6570; font-weight: 400;">
-          Representantes exclusivos en Argentina de <span class="nb">Link</span>,
-          <span class="nb">Advita</span> y <span class="nb">Heraeus</span>.
+        <p class="hero-p">
+          Representantes exclusivos en Argentina de <span class="nb">Waldemar&nbsp;Link</span>,
+          <span class="nb">Advita&nbsp;Ortho</span> y <span class="nb">Heraeus&nbsp;Medical</span>.
         </p>
 
+        <div class="hero-btns">
+          <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #fff; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px; white-space: nowrap;">
+            Ver catálogo de productos
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+          <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 600; padding: 16px 28px; border-radius: 4px; background: #FFFFFF; white-space: nowrap;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 20.5l1.6-4.9A8.4 8.4 0 0 1 3.7 11 8.5 8.5 0 0 1 12 2.6a8.4 8.4 0 0 1 9 8.9z"></path></svg>
+            Consultar por WhatsApp
+          </a>
+        </div>
+
+        <div class="hero-marcas">
+          <span>Representamos a</span>
+          <img src="link.webp" alt="LINK" class="brand-l" style="height: 20px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+          <img src="advita.webp" alt="Advita Ortho" class="brand-l" style="height: 22px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+          <img src="heraeus.webp" alt="Heraeus" class="brand-l" style="height: 18px; width: auto; filter: grayscale(1) contrast(1.6) brightness(.55); opacity: .8;">
+        </div>
       </div>
 
       <!-- La pieza. Arranca sola, muda y en bucle con los primeros segundos;
            el boton cambia al video completo. -->
-      <div style="width: 100%; display: flex; flex-direction: column; gap: 26px;">
+      <div class="hero-media">
         <div class="film">
           <video id="filmLoop" poster="film-poster.webp" autoplay muted loop playsinline
                  preload="metadata" width="1920" height="1080" aria-hidden="true" tabindex="-1">
@@ -203,24 +243,6 @@
             <b class="film-rot">Ver video completo</b>
           </button>
         </div>
-
-        <div style="display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;">
-          <a href="#" class="btn-p" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #fff; font-size: 15px; font-weight: 600; padding: 16px 30px; border-radius: 4px; white-space: nowrap;">
-            Ver catálogo de productos
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-          </a>
-          <a href="#" class="btn-g" style="display: inline-flex; align-items: center; gap: 10px; border: 1px solid #CBD2D6; color: #10222A; font-size: 15px; font-weight: 600; padding: 16px 28px; border-radius: 4px; background: #FFFFFF; white-space: nowrap;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0095A1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 20.5l1.6-4.9A8.4 8.4 0 0 1 3.7 11 8.5 8.5 0 0 1 12 2.6a8.4 8.4 0 0 1 9 8.9z"></path></svg>
-            Consultar por WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <div style="display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap;">
-        <span style="font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: #A7A9AC; font-weight: 700; white-space: nowrap;">Representamos a</span>
-        <img src="link.webp" alt="LINK" class="brand-l" style="height: 20px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
-        <img src="advita.webp" alt="Advita Ortho" class="brand-l" style="height: 22px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
-        <img src="heraeus.webp" alt="Heraeus" class="brand-l" style="height: 18px; width: auto; filter: grayscale(1) contrast(1.6) brightness(.55); opacity: .8;">
       </div>
     </div>
   </div>

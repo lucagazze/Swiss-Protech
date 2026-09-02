@@ -11,7 +11,7 @@ El sitio está en la raíz del repo: se abre directo desde la URL del deploy, o 
 
 | Archivo | Página | Qué tiene |
 |---|---|---|
-| `index.html` | Home | Hero vertical: título y el video institucional. Después credenciales, las tres líneas, el proceso, representaciones, sedes y portal médico |
+| `index.html` | Home | Hero a dos columnas: promesa a la izquierda, video a la derecha. Después credenciales, las tres líneas, el proceso, representaciones, sedes y portal médico |
 | `productos.html` | Catálogo | Los 21 productos con filtro cruzado por línea y por marca |
 | `proceso.html` | Nuestro proceso | Sección nueva: las cinco etapas de trazabilidad, de depósito a quirófano |
 | `producto.html` | Ficha de producto | Los 21 productos (`?p=slug`), con visor 3D, galería del fabricante y especificaciones |
