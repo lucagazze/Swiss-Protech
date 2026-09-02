@@ -54,6 +54,13 @@ rm -rf node_modules/.cache          # webpack cachea mal y rompe el bundle
 npx remotion render src/index.ts SwissProtechFilm out/SwissProtechFilm.mp4 --codec=h264 --crf=18
 ```
 
+## Ancho del contenedor
+
+1400 px con 40 px de margen lateral. Vive en tres lugares que tienen que
+coincidir: `shell.py` (`.sp-wrap`), `build_paginas.py` (`.wrap`) y el
+`max-width` en línea de los artboards. La barra de navegación se apila a
+partir de los 1180 px, que es donde los siete items dejan de entrar.
+
 ## Armazón compartido
 
 `shell.py` es la fuente única de la barra superior, el CTA de cierre, el pie, el

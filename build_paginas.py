@@ -22,7 +22,7 @@ CSS = """
   a { color: var(--teal); text-decoration: none; } a:hover { color: var(--teal-d); }
   h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.14; }
   p { margin: 0; } img { max-width: 100%; }
-  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
   .eyebrow { font-size: 11.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--teal); }
   .lead { font-size: 16.5px; color: var(--txt); line-height: 1.68; }
 
@@ -124,7 +124,7 @@ CSS = """
   footer .fin { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 24px; flex-wrap: wrap; }
   footer .fin span, footer .fin a { font-size: 12.5px; color: #69727D; }
 
-  @media (max-width: 1240px) { .navlinks, .nav .btn-p { display: none; } .burger { display: flex; } }
+  @media (max-width: 1180px) { .navlinks, .nav .btn-p { display: none; } .burger { display: flex; } }
   @media (max-width: 1000px) { .g4 { grid-template-columns: repeat(2, minmax(0,1fr)); } .g3 { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .marca { grid-template-columns: 1fr; gap: 20px; } footer .cols { grid-template-columns: repeat(2, minmax(0,1fr)); } }
   @media (max-width: 720px) { .wrap { padding: 0 20px; } section { padding: 52px 0; } .head .wrap { padding-top: 38px; padding-bottom: 36px; }
@@ -150,7 +150,7 @@ I_USER   = SVG('<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circ
 
 A11Y = """
   .navlinks a { white-space: nowrap; }
-  @media (max-width: 1330px) { .navlinks { gap: 20px; font-size: 13.5px; } }
+  @media (max-width: 1180px) { .navlinks { gap: 20px; font-size: 13.5px; } }
   body { font-size: 16px; line-height: 1.6; text-rendering: optimizeLegibility; }
   p { text-wrap: pretty; } h1, h2, h3 { text-wrap: balance; }
   .lead { font-size: 17px; line-height: 1.7; max-width: 62ch; }

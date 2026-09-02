@@ -62,7 +62,7 @@ WA_CATALOGO  = wa("Hola, queria consultar disponibilidad y medidas de un product
 # que tiene el sitio (los artboards con estilos en linea y las paginas nuevas).
 CSS = """
 /* ================= armazon compartido (shell.py) ================= */
-.sp-wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.sp-wrap { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
 
 .sp-topbar { background: #10222A; color: #A7A9AC; font-size: 12.5px; letter-spacing: .04em; }
 .sp-topbar .sp-wrap { padding-top: 1px; padding-bottom: 1px; display: flex; align-items: center;

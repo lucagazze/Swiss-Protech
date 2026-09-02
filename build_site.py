@@ -65,7 +65,7 @@ html, body { overflow-x: hidden; }
 html { scroll-behavior: smooth; }
 .navwrap { overflow-x: auto; }
 
-@media (max-width: 1240px) {
+@media (max-width: 1180px) {
   [style*="grid-template-columns: 1fr 620px"] { grid-template-columns: minmax(0,1fr) !important; }
   [style*="grid-template-columns: 700px 1fr"] { grid-template-columns: minmax(0,1fr) !important; }
   [style*="grid-template-columns: 400px 1fr"] { grid-template-columns: minmax(0,1fr) !important; }
@@ -703,7 +703,7 @@ __JS__
 LEGIBILIDAD_CSS = """
 /* ---- navegacion: siete items no pueden partirse en dos renglones ---- */
 .navlinks a { white-space: nowrap; }
-@media (max-width: 1330px) { .navlinks { gap: 20px !important; font-size: 13.5px !important; } }
+@media (max-width: 1180px) { .navlinks { gap: 20px !important; font-size: 13.5px !important; } }
 
 /* ---- ritmo y legibilidad ----
    El maquetado venia con cuerpos de 12,5-13,5 px y lineas de hasta 75 caracteres.
