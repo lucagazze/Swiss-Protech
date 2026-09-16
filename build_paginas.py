@@ -89,6 +89,12 @@ CSS = """
   .prov { font-size: 13px; color: var(--ink); border: 1px solid var(--line); background: #fff; padding: 8px 15px; border-radius: 4px; font-weight: 500; transition: border-color .3s, color .3s, background .3s; }
   .prov:hover { background: rgba(0,149,161,.07); border-color: var(--teal); color: var(--teal); }
   .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+  .paises { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border: 1px solid var(--line); border-radius: 8px; background: #fff; overflow: hidden; }
+  .pais { display: flex; flex-direction: column; gap: 6px; padding: 26px 28px; border-left: 1px solid var(--line); }
+  .pais:first-child { border-left: 0; }
+  .pais-n { font-size: 24px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
+  .pais-d { font-size: 14px; color: var(--txt); line-height: 1.5; }
+  @media (max-width: 720px) { .paises { grid-template-columns: 1fr; } .pais { border-left: 0; border-top: 1px solid var(--line); } .pais:first-child { border-top: 0; } }
 
   .marca { display: grid; grid-template-columns: 260px 1fr; gap: 34px; align-items: start; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 34px 36px; }
   .marca .logo { height: 54px; display: flex; align-items: center; }
@@ -232,8 +238,8 @@ HITOS = [
      "La empresa cuenta con todas las habilitaciones que exige la normativa argentina para importar y comercializar productos médicos implantables."),
     ("Representaciones", "Acuerdos de exclusividad",
      "Swiss Protech es representante exclusivo en Argentina de Waldemar Link, Advita Ortho y Heraeus Medical."),
-    ("Sedes", "Buenos Aires y Rosario",
-     "Dos sedes propias con depósito e instrumental, desde donde sale cada implante hacia el centro de salud donde se realiza la cirugía."),
+    ("Región", "Argentina, Chile y Uruguay",
+     "Sedes en los tres países, con el mismo circuito para cada implante: del depósito al centro de salud donde se realiza la cirugía."),
     ("Hoy", "Más de 20 años de trayectoria",
      "Veintiún productos en catálogo entre cadera, rodilla y cementos óseos, y un circuito de trazabilidad documentado en cada implante."),
 ]
@@ -241,7 +247,7 @@ HITOS = [
 def institucional():
     hitos = "".join("""<div class="hito"><div class="a">%s</div><div><h3>%s</h3><p>%s</p></div></div>""" % h for h in HITOS)
     return (cabecera("institucional.html", "Institucional — Swiss Protech",
-                     "Más de 20 años importando implantes ortopédicos de origen alemán y norteamericano. Habilitados por ANMAT y el Ministerio de Salud de la Nación.",
+                     "Más de 20 años importando implantes ortopédicos de origen alemán y norteamericano, con sedes en Argentina, Chile y Uruguay.",
                      [("Home", "index.html"), ("Institucional", "institucional.html")])
     + head("Institucional", "Más de 20 años de trayectoria en implantes ortopédicos",
            "Importamos y comercializamos implantes de cadera y rodilla de la más alta calidad, de origen alemán y norteamericano, con todas las habilitaciones que exige la normativa argentina.")
@@ -251,7 +257,7 @@ def institucional():
     <div><b>+20</b><span>años de trayectoria en el país</span></div>
     <div><b>21</b><span>productos entre cadera, rodilla y cementos</span></div>
     <div><b>3</b><span>marcas internacionales representadas</span></div>
-    <div><b>2</b><span>sedes propias: Buenos Aires y Rosario</span></div>
+    <div><b>3</b><span>países: Argentina, Chile y Uruguay</span></div>
   </div>
 </div></section>
 
@@ -272,13 +278,21 @@ def institucional():
 </div></section>
 
 <section class="alt"><div class="wrap">
-  <div class="st"><span class="eyebrow">Dónde estamos</span><h2>Dos sedes, un mismo circuito</h2>
-    <p class="lead">Casa central en Buenos Aires y sede en Rosario. Desde cualquiera de las dos coordinamos la entrega y el acompañamiento técnico en el centro de salud donde se realiza la cirugía.</p></div>
-  <div class="g2">
+  <div class="st"><span class="eyebrow">Dónde estamos</span><h2>Presentes en Argentina, Chile y Uruguay</h2>
+    <p class="lead">Una misma empresa y un mismo circuito de trazabilidad en los tres países. Desde cada sede coordinamos la entrega y el acompañamiento técnico en el centro de salud donde se realiza la cirugía.</p></div>
+  <div class="paises">
+    <div class="pais"><span class="pais-n">Argentina</span><span class="pais-d">Casa central en Buenos Aires y sede en Rosario</span></div>
+    <div class="pais"><span class="pais-n">Chile</span><span class="pais-d">Sede propia</span></div>
+    <div class="pais"><span class="pais-n">Uruguay</span><span class="pais-d">Sede propia</span></div>
+  </div>
+  <div class="g3" style="margin-top: 26px;">
     <div class="card"><span class="ico">""" + I_MAPA + """</span><h3>Sede Buenos Aires</h3>
       <p>Av. Belgrano 863, CABA<br><a href="tel:""" + shell.TEL_LINK + """">""" + shell.TEL_DISPLAY + """</a><br>Lunes a viernes, 8 a 17 h</p></div>
     <div class="card"><span class="ico">""" + I_MAPA + """</span><h3>Sede Rosario</h3>
       <p>Pte. Roca 782, piso 1, Rosario<br><a href="tel:""" + shell.TEL_LINK + """">""" + shell.TEL_DISPLAY + """</a><br>Lunes a viernes, 8 a 17 h</p></div>
+    <div class="card"><span class="ico">""" + I_MAPA + """</span><h3>Sedes en Chile y Uruguay</h3>
+      <p>Para consultas desde cualquiera de los dos países, escribinos y te derivamos a la sede que corresponde.</p>
+      <a href="contacto.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Contactar &rarr;</a></div>
   </div>
 </div></section>
 

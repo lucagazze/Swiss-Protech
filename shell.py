@@ -12,6 +12,10 @@ Verificado en swipro.com.ar el 01-09-2026:
   - Tel: 1135935241 en ambas sedes
   - No publica correo de contacto.
   - No publica cobertura por provincias ni menciona Chile ni Uruguay.
+
+Confirmado por el cliente (audios de Mariano, 18-08 y 16-09-2026):
+  - Tienen sede en Argentina, Chile y Uruguay.
+  - Falta: direccion, telefono y razon social de las sedes de Chile y Uruguay.
 """
 
 BASE_URL = "https://swipro.com.ar"
@@ -43,7 +47,8 @@ SEDES = [
 ]
 
 DESC_EMPRESA = ("Importaci&oacute;n y comercializaci&oacute;n de implantes ortop&eacute;dicos de origen alem&aacute;n "
-                "y norteamericano. Habilitados por el Ministerio de Salud de la Naci&oacute;n y A.N.M.A.T.")
+                "y norteamericano. Sedes en Argentina, Chile y Uruguay. Habilitados por el Ministerio "
+                "de Salud de la Naci&oacute;n y A.N.M.A.T.")
 
 
 def wa(texto="Hola, quisiera hacer una consulta."):
@@ -282,7 +287,7 @@ def jsonld_organizacion():
         "description": ("Importación y comercialización de implantes ortopédicos de cadera y rodilla. "
                         "Representantes exclusivos en Argentina de Waldemar Link, Advita Ortho y Heraeus Medical."),
         "telephone": TEL_LINK,
-        "areaServed": ["AR"],
+        "areaServed": ["AR", "CL", "UY"],
         "sameAs": [r[0] for r in REDES],
         "address": [{
             "@type": "PostalAddress",

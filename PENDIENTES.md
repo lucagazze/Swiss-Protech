@@ -27,15 +27,20 @@ poner el dato con el número real.
 
 ## 3. Chile y Uruguay
 
-Mariano mencionó que venden a Chile y Uruguay. El selector de país en Contacto
-funciona, y para esos dos países dice la verdad: **la consulta la toma el equipo
-comercial de Buenos Aires**. No inventé oficinas ni teléfonos locales.
+Confirmado por Mariano (audios del 18-08 y del 16-09): **tienen sede en Chile y
+en Uruguay**, y quieren que se vea en Institucional. El sitio ya lo muestra en
+el home (banda de datos y bloque "Presencia regional"), en Institucional (los
+tres países) y en el pie.
 
-Falta confirmar:
-- ¿Hay sede física o representante local en alguno de los dos?
-- ¿Teléfono o WhatsApp local?
+Lo que falta para completarlo — no se inventó nada de esto:
+- **Dirección** de la sede de Chile y de la de Uruguay.
+- **Teléfono o WhatsApp local** de cada una. Hoy las consultas de esos países van
+  al WhatsApp de Argentina.
+- **Nombre con el que operan en cada país.** Mariano comentó que "el nombre de
+  ellos" es distinto allá: si la razón social cambia, hay que ponerla.
 
-Con eso, en `build_site.py` → `JS_CONTACTO` → objeto `P` se completan `cl` y `uy`.
+Con eso se completan las fichas de país en `build_paginas.py` (Institucional) y
+en `build_site.py` → `JS_CONTACTO` (Contacto), y se suma el mapa de cada sede.
 
 ## 4. Fotos que faltan
 

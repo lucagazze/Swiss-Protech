@@ -21,7 +21,7 @@ PAGES = [
     ("Proceso.dc.html",   "proceso.html",   "Nuestro proceso — Swiss Protech",
      "Las cinco etapas de trazabilidad: depósito, control, esterilización, traslado y entrega en quirófano."),
     ("Contacto.dc.html",  "contacto.html",  "Contacto — Swiss Protech",
-     "Sedes en CABA y Rosario. Consultas de médicos, obras sociales, prepagas y pacientes."),
+     "Sedes en Argentina, Chile y Uruguay. Consultas de médicos, obras sociales, prepagas y pacientes."),
 ]
 
 MIGAS = {
@@ -422,12 +422,12 @@ JS_CONTACTO = """
     ar: { s1:['Sede Buenos Aires','Casa central','Av. Belgrano 863, CABA', TEL],
           s2:['Sede Rosario','Rosario, Santa Fe','Pte. Roca 782, piso 1, Rosario', TEL],
           tel:'+54 9 11 0000-0000', mapa: MAPA_BA, link: LINK_BA },
-    cl: { s1:['Chile','Atención desde casa central','Las consultas desde Chile las toma el equipo comercial en Buenos Aires.', TEL],
-          s2:['Chile','Cómo trabajamos allá','Coordinamos la entrega y el acompañamiento técnico con el centro de salud para cada cirugía.', TEL],
-          tel:'+56 9 0000 0000', mapa: MAPA_BA, link: LINK_BA },
-    uy: { s1:['Uruguay','Atención desde casa central','Las consultas desde Uruguay las toma el equipo comercial en Buenos Aires.', TEL],
-          s2:['Uruguay','Cómo trabajamos allá','Coordinamos la entrega y el acompañamiento técnico con el centro de salud para cada cirugía.', TEL],
-          tel:'+598 00 000 000', mapa: MAPA_BA, link: LINK_BA }
+    cl: { s1:['Sede Chile','Sede propia en Chile','Escribinos y te derivamos a la sede de Chile.', 'Consultas por WhatsApp'],
+          s2:['Chile','Cómo trabajamos','Coordinamos la entrega y el acompañamiento técnico con el centro de salud para cada cirugía.', 'Mismo circuito de trazabilidad'],
+          tel:'+56 9 0000 0000', mapa: '', link: '' },
+    uy: { s1:['Sede Uruguay','Sede propia en Uruguay','Escribinos y te derivamos a la sede de Uruguay.', 'Consultas por WhatsApp'],
+          s2:['Uruguay','Cómo trabajamos','Coordinamos la entrega y el acompañamiento técnico con el centro de salud para cada cirugía.', 'Mismo circuito de trazabilidad'],
+          tel:'+598 00 000 000', mapa: '', link: '' }
   };
   var Q = {
     medico:['Médico','Matrícula profesional','MN / MP','Contanos qué producto necesitás, para qué fecha está programada la cirugía y en qué centro.'],
@@ -458,9 +458,13 @@ JS_CONTACTO = """
     set('sede1Tag', p.s1[0]); set('sede1Nom', p.s1[1]); set('sede1Dir', p.s1[2]); set('sede1Tel', p.s1[3]);
     set('sede2Tag', p.s2[0]); set('sede2Nom', p.s2[1]); set('sede2Dir', p.s2[2]); set('sede2Tel', p.s2[3]);
     ph('fCampo2', q[2]); ph('fMsg', q[3]); ph('fTel', p.tel);
-    var f = document.getElementById('mapa'), a = document.getElementById('mapaLink');
-    if (f && f.getAttribute('src') !== p.mapa) f.setAttribute('src', p.mapa);
-    if (a) a.setAttribute('href', p.link);
+    var f = document.getElementById('mapa'), a = document.getElementById('mapaLink'),
+        caja = document.getElementById('mapaBox');
+    if (caja) caja.style.display = p.mapa ? '' : 'none';
+    // el horario publicado es el de las sedes argentinas
+    document.querySelectorAll('.horario').forEach(function(h){ h.style.display = pais === 'ar' ? '' : 'none'; });
+    if (p.mapa && f && f.getAttribute('src') !== p.mapa) f.setAttribute('src', p.mapa);
+    if (a && p.link) a.setAttribute('href', p.link);
   }
   function ph(id, txt){ var e = document.getElementById(id); if (e) e.setAttribute('placeholder', txt); }
 
