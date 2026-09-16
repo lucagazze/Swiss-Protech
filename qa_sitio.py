@@ -96,6 +96,9 @@ async def main():
             chk(d["muertos"] == 0, f"{n}: sin enlaces muertos ({d['muertos']})")
             chk(d["sinAlt"] == 0, f"{n}: todas las imagenes con alt")
             chk(not d["completar"], f"{n}: sin marcadores [COMPLETAR]")
+            txt = await pg.evaluate("document.body.innerText.toLowerCase()")
+            chk("provincias" not in txt and "25 años" not in txt,
+                f"{n}: sin datos no verificados (provincias, 25 anos)")
             chk(not errs, f"{n}: sin errores de JS ({errs[:1]})")
 
         # ---------------------------------------------- home: tarjetas de linea
@@ -170,6 +173,11 @@ async def main():
         chk(v["min"] > 25, f"visor 3D: marcadores separados (min {v['min']:.0f} px)")
         chk(v["dup"] == 0, "visor 3D: sin puntos duplicados")
         chk(v["enCanvas"] == 0 and v["barra"], "visor 3D: los controles no tapan el modelo")
+        cols = await pg.evaluate("""() => { const g = document.querySelector('.grid');
+            const h = [...g.children]; return h.length === 2 &&
+              Math.abs(h[0].getBoundingClientRect().top - h[1].getBoundingClientRect().top) < 4; }""")
+        chk(cols, "ficha: visor y panel lateral en dos columnas")
+        texto = await pg.evaluate("document.body.innerText")
 
         # ---------------------------------------------- celular
         pg2 = await (await b.new_context(viewport={"width": 390, "height": 800})).new_page()
