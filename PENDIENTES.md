@@ -32,15 +32,13 @@ en Uruguay**, y quieren que se vea en Institucional. El sitio ya lo muestra en
 el home (banda de datos y bloque "Presencia regional"), en Institucional (los
 tres países) y en el pie.
 
-Lo que falta para completarlo — no se inventó nada de esto:
-- **Dirección** de la sede de Chile y de la de Uruguay.
-- **Teléfono o WhatsApp local** de cada una. Hoy las consultas de esos países van
-  al WhatsApp de Argentina.
-- **Nombre con el que operan en cada país.** Mariano comentó que "el nombre de
-  ellos" es distinto allá: si la razón social cambia, hay que ponerla.
+Confirmado también (16-09): **operan con el mismo nombre, Swiss Protech**, y no
+hace falta publicar la dirección.
 
-Con eso se completan las fichas de país en `build_paginas.py` (Institucional) y
-en `build_site.py` → `JS_CONTACTO` (Contacto), y se suma el mapa de cada sede.
+Lo único que falta son **los teléfonos de Chile y de Uruguay**. Hoy el sitio
+muestra números de ejemplo en ceros (`+56 9 0000 0000` y `+598 00 000 000`),
+sin enlace para marcar. Se cambian en `shell.py` → `TEL_CL` y `TEL_UY`, se pone
+`TEL_PAISES_PROVISORIO = False` y se reconstruye.
 
 ## 4. Fotos que faltan
 

@@ -282,8 +282,8 @@ def institucional():
     <p class="lead">Una misma empresa y un mismo circuito de trazabilidad en los tres países. Desde cada sede coordinamos la entrega y el acompañamiento técnico en el centro de salud donde se realiza la cirugía.</p></div>
   <div class="paises">
     <div class="pais"><span class="pais-n">Argentina</span><span class="pais-d">Casa central en Buenos Aires y sede en Rosario</span></div>
-    <div class="pais"><span class="pais-n">Chile</span><span class="pais-d">Sede propia</span></div>
-    <div class="pais"><span class="pais-n">Uruguay</span><span class="pais-d">Sede propia</span></div>
+    <div class="pais"><span class="pais-n">Chile</span><span class="pais-d">Sede propia &middot; """ + shell.TEL_CL + """</span></div>
+    <div class="pais"><span class="pais-n">Uruguay</span><span class="pais-d">Sede propia &middot; """ + shell.TEL_UY + """</span></div>
   </div>
   <div class="g3" style="margin-top: 26px;">
     <div class="card"><span class="ico">""" + I_MAPA + """</span><h3>Sede Buenos Aires</h3>
@@ -291,7 +291,7 @@ def institucional():
     <div class="card"><span class="ico">""" + I_MAPA + """</span><h3>Sede Rosario</h3>
       <p>Pte. Roca 782, piso 1, Rosario<br><a href="tel:""" + shell.TEL_LINK + """">""" + shell.TEL_DISPLAY + """</a><br>Lunes a viernes, 8 a 17 h</p></div>
     <div class="card"><span class="ico">""" + I_MAPA + """</span><h3>Sedes en Chile y Uruguay</h3>
-      <p>Para consultas desde cualquiera de los dos países, escribinos y te derivamos a la sede que corresponde.</p>
+      <p>Swiss Protech Chile<br>""" + shell.TEL_CL + """<br><br>Swiss Protech Uruguay<br>""" + shell.TEL_UY + """</p>
       <a href="contacto.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Contactar &rarr;</a></div>
   </div>
 </div></section>

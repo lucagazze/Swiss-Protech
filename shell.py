@@ -15,7 +15,8 @@ Verificado en swipro.com.ar el 01-09-2026:
 
 Confirmado por el cliente (audios de Mariano, 18-08 y 16-09-2026):
   - Tienen sede en Argentina, Chile y Uruguay.
-  - Falta: direccion, telefono y razon social de las sedes de Chile y Uruguay.
+  - Operan con el mismo nombre (Swiss Protech). No hace falta publicar direccion.
+  - Falta: telefono de las sedes de Chile y Uruguay (hoy van numeros de ejemplo).
 """
 
 BASE_URL = "https://swipro.com.ar"
@@ -25,6 +26,14 @@ TRAYECTORIA = "20"          # "mas de 20 anos", textual del sitio del cliente
 N_PRODUCTOS = "21"
 N_MARCAS    = "3"
 N_SEDES     = "2"
+
+# Chile y Uruguay: numeros DE EJEMPLO hasta que el cliente pase los reales.
+# Van en ceros para que nadie pueda marcarlos por error, y sin enlace tel:.
+# Cuando lleguen, se cambian aca, se pone TEL_PAISES_PROVISORIO = False y se
+# reconstruye el sitio.
+TEL_CL = "+56 9 0000 0000"
+TEL_UY = "+598 00 000 000"
+TEL_PAISES_PROVISORIO = True
 
 TEL_DISPLAY = "11 3593 5241"
 TEL_LINK    = "+541135935241"

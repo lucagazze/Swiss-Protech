@@ -422,10 +422,10 @@ JS_CONTACTO = """
     ar: { s1:['Sede Buenos Aires','Casa central','Av. Belgrano 863, CABA', TEL],
           s2:['Sede Rosario','Rosario, Santa Fe','Pte. Roca 782, piso 1, Rosario', TEL],
           tel:'+54 9 11 0000-0000', mapa: MAPA_BA, link: LINK_BA },
-    cl: { s1:['Sede Chile','Sede propia en Chile','Escribinos y te derivamos a la sede de Chile.', 'Consultas por WhatsApp'],
+    cl: { s1:['Sede Chile','Swiss Protech Chile','Consultas y coordinación de cirugías en Chile.', '__TEL_CL__'],
           s2:['Chile','Cómo trabajamos','Coordinamos la entrega y el acompañamiento técnico con el centro de salud para cada cirugía.', 'Mismo circuito de trazabilidad'],
           tel:'+56 9 0000 0000', mapa: '', link: '' },
-    uy: { s1:['Sede Uruguay','Sede propia en Uruguay','Escribinos y te derivamos a la sede de Uruguay.', 'Consultas por WhatsApp'],
+    uy: { s1:['Sede Uruguay','Swiss Protech Uruguay','Consultas y coordinación de cirugías en Uruguay.', '__TEL_UY__'],
           s2:['Uruguay','Cómo trabajamos','Coordinamos la entrega y el acompañamiento técnico con el centro de salud para cada cirugía.', 'Mismo circuito de trazabilidad'],
           tel:'+598 00 000 000', mapa: '', link: '' }
   };
@@ -852,6 +852,7 @@ def main():
         cuerpo = cuerpo.replace('<a href="#">políticas de privacidad</a>',
                                 '<a href="privacidad.html">políticas de privacidad</a>')
 
+        cuerpo = cuerpo.replace("__TEL_CL__", shell.TEL_CL).replace("__TEL_UY__", shell.TEL_UY)
         cuerpo = poner_armazon(cuerpo, src == "Main.dc.html")
 
         ld = shell.jsonld_migas(MIGAS[dst])
@@ -859,7 +860,7 @@ def main():
             ld = shell.jsonld_organizacion() + ld
 
         js = extras.get(src, "")
-        js = (js.replace("__WA__", shell.WA_NUMERO)
+        js = (js.replace("__WA__", shell.WA_NUMERO).replace("__TEL_CL__", shell.TEL_CL).replace("__TEL_UY__", shell.TEL_UY)
                 .replace("__TEL__", shell.TEL_DISPLAY)
                 .replace("__MAPA_BA__", shell.SEDES[0]["mapa"])
                 .replace("__MAPA_ROS__", shell.SEDES[1]["mapa"]))
