@@ -41,8 +41,10 @@
     .hero-btns a { flex: 1 1 250px; justify-content: center;
                     padding-left: 20px !important; padding-right: 20px !important;
                     min-height: 56px; box-sizing: border-box; }
-    .hero-marcas { display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-                   padding-top: 6px; }
+    /* siempre en un renglon: en pantallas chicas se achica, no se parte */
+    .hero-marcas { display: flex; align-items: center; justify-content: center; gap: 18px;
+                   flex-wrap: nowrap; margin-top: 20px; white-space: nowrap; }
+    .hero-marcas img { flex: none; }
     .hero-marcas span { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase;
                         color: #A7A9AC; font-weight: 700; white-space: nowrap; }
     .hero-media { min-width: 0; }
@@ -53,13 +55,18 @@
       .hero-txt { align-items: center; text-align: center; }
       .hero-h1 { max-width: 22ch; font-size: clamp(26px, 5.4vw, 44px); }
       .hero-p { max-width: 52ch; }
-      .hero-btns, .hero-marcas { justify-content: center; }
+      .hero-btns { justify-content: center; }
       .hero-media { width: 100%; }
     }
     @media (max-width: 720px) {
       .hero-v { padding: 48px 20px 60px; gap: 30px; }
       .hero-h1 { max-width: 100%; letter-spacing: -0.03em; }
       .hero-p { max-width: 34ch; }
+      .hero-marcas { gap: 12px; margin-top: 16px; }
+      .hero-marcas span { font-size: 10px; letter-spacing: .08em; }
+      .hero-marcas img[alt="LINK"] { height: 15px !important; }
+      .hero-marcas img[alt="Advita Ortho"] { height: 17px !important; }
+      .hero-marcas img[alt="Heraeus"] { height: 13px !important; }
     }
 
     /* ---- pieza en video ---- */
@@ -217,12 +224,6 @@
           </a>
         </div>
 
-        <div class="hero-marcas">
-          <span>Representamos a</span>
-          <img src="link.webp" alt="LINK" class="brand-l" style="height: 20px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
-          <img src="advita.webp" alt="Advita Ortho" class="brand-l" style="height: 22px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
-          <img src="heraeus.webp" alt="Heraeus" class="brand-l" style="height: 18px; width: auto; filter: grayscale(1) contrast(1.6) brightness(.55); opacity: .8;">
-        </div>
       </div>
 
       <!-- La pieza. Arranca sola, muda y en bucle con los primeros segundos;
@@ -242,6 +243,12 @@
             <span class="film-ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="{{accent}}"><polygon points="6 3 21 12 6 21 6 3"></polygon></svg></span>
             <b class="film-rot">Ver video completo</b>
           </button>
+        </div>
+        <div class="hero-marcas">
+          <span>Representamos a</span>
+          <img src="link.webp" alt="LINK" class="brand-l" style="height: 20px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+          <img src="advita.webp" alt="Advita Ortho" class="brand-l" style="height: 22px; width: auto; filter: invert(1) brightness(.3); opacity: .7;">
+          <img src="heraeus.webp" alt="Heraeus" class="brand-l" style="height: 18px; width: auto; filter: grayscale(1) contrast(1.6) brightness(.55); opacity: .8;">
         </div>
       </div>
     </div>
