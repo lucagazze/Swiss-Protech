@@ -11,6 +11,9 @@ tipografia y las areas tactiles en siete anchos. Sale con codigo 1 si algo
 falla, para poder encadenarlo.
 """
 import asyncio, os, subprocess, sys, threading, time
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import shell
+N = shell.conteos()
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 from playwright.async_api import async_playwright
@@ -97,12 +100,12 @@ async def main():
             chk(d["sinAlt"] == 0, f"{n}: todas las imagenes con alt")
             chk(not d["completar"], f"{n}: sin marcadores [COMPLETAR]")
             txt = await pg.evaluate("document.body.innerText.toLowerCase()")
-            chk("provincias" not in txt and "25 años" not in txt,
-                f"{n}: sin datos no verificados (provincias, 25 anos)")
+            chk("provincias" not in txt and "más de 20 años" not in txt and "+20" not in txt,
+                f"{n}: sin datos viejos (provincias, 20 anos)")
             chk(not errs, f"{n}: sin errores de JS ({errs[:1]})")
 
         # ---------------------------------------------- home: tarjetas de linea
-        for slug, esp in [("cadera", 9), ("rodilla", 7), ("cementos", 5)]:
+        for slug, esp in [("cadera", N["cad"]), ("rodilla", N["rod"]), ("cementos", N["cem"])]:
             await pg.goto(U + "index.html"); await pg.wait_for_timeout(500)
             await pg.click(f"a.cardw[href*='{slug}']"); await pg.wait_for_timeout(900)
             v = await pg.evaluate("Array.from(document.querySelectorAll('.pc')).filter(e=>e.offsetParent).length")
@@ -112,12 +115,12 @@ async def main():
         await pg.goto(U + "productos.html"); await pg.wait_for_timeout(700)
         async def visibles():
             return await pg.evaluate("Array.from(document.querySelectorAll('.pc')).filter(e=>e.offsetParent).length")
-        chk(await visibles() == 21, "catalogo: 21 productos al entrar")
-        for lbl, esp in [("cadera", 9), ("rodilla", 7), ("cementos", 5)]:
+        chk(await visibles() == N["tot"], "catalogo: %d productos al entrar" % N["tot"])
+        for lbl, esp in [("cadera", N["cad"]), ("rodilla", N["rod"]), ("cementos", N["cem"])]:
             await pg.click(f"[data-filter='{lbl}']"); await pg.wait_for_timeout(300)
             chk(await visibles() == esp, f"catalogo: linea {lbl} = {esp}")
         await pg.click("[data-filter='todos']"); await pg.wait_for_timeout(300)
-        for m, esp in [("link", 11), ("advita", 5), ("heraeus", 5)]:
+        for m, esp in [("link", N["link"]), ("advita", N["advita"]), ("heraeus", N["heraeus"])]:
             await pg.click(f"[data-marca-f='{m}']"); await pg.wait_for_timeout(300)
             chk(await visibles() == esp, f"catalogo: marca {m} = {esp}")
             await pg.click(f"[data-marca-f='{m}']"); await pg.wait_for_timeout(200)

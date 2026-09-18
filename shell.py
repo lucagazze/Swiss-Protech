@@ -22,7 +22,7 @@ Confirmado por el cliente (audios de Mariano, 18-08 y 16-09-2026):
 BASE_URL = "https://swipro.com.ar"
 
 # --------------------------------------------------------------------- datos
-TRAYECTORIA = "20"          # "mas de 20 anos", textual del sitio del cliente
+TRAYECTORIA = "25"          # confirmado por el cliente en la reunion del 17-09-2026 (su web vieja decia 20)
 N_PRODUCTOS = "21"
 N_MARCAS    = "3"
 N_SEDES     = "2"
@@ -390,3 +390,51 @@ MOVIMIENTO_JS = """
   }, 4000);
 })();
 """
+
+
+# ---------------------------------------------------------------- conteos
+_UNIDADES = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve",
+             "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete",
+             "dieciocho", "diecinueve", "veinte", "veintiún", "veintidós", "veintitrés",
+             "veinticuatro", "veinticinco", "veintiséis", "veintisiete", "veintiocho",
+             "veintinueve", "treinta"]
+
+
+def palabra(n):
+    return _UNIDADES[n] if 0 <= n < len(_UNIDADES) else str(n)
+
+
+def conteos():
+    """Cuantos productos hay por linea, leido de js/productos.js.
+
+    Todo numero de productos que aparece en el sitio sale de aca: si el cliente
+    saca o suma un producto en build_productos.py, los textos se ajustan solos.
+    """
+    import json, os
+    t = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "js", "productos.js"),
+             encoding="utf-8").read()
+    i, j = t.index("window.PRODUCTOS = "), t.index(";\nwindow.ORDEN")
+    P = json.loads(t[i + len("window.PRODUCTOS = "):j])
+    n = {"tot": len(P)}
+    for clave, linea in [("cad", "Cadera"), ("rod", "Rodilla"), ("cem", "Cementos")]:
+        n[clave] = sum(1 for p in P.values() if p["linea"] == linea)
+    for marca in ["link", "advita", "heraeus"]:
+        n[marca] = sum(1 for p in P.values() if marca in p["marca"].lower())
+    for clave in ["tot", "cad", "rod", "cem"]:
+        n[clave + "Pal"] = palabra(n[clave])
+        n[clave + "PalMay"] = palabra(n[clave]).capitalize()
+    return n
+
+
+def poner_conteos(texto, n=None):
+    n = n or conteos()
+    for k, tok in [("tot", "nTot"), ("cad", "nCad"), ("rod", "nRod"), ("cem", "nCem")]:
+        texto = (texto.replace("{{%sPalMay}}" % tok, n[k + "PalMay"])
+                      .replace("{{%sPal}}" % tok, n[k + "Pal"])
+                      .replace("{{%s}}" % tok, str(n[k])))
+    return texto
+
+
+# Medical Practice: otra marca de la empresa, en Bariloche (reunion 17-09-2026).
+# Sin sitio confirmado: mientras este vacio no se muestra el enlace.
+MEDICAL_PRACTICE_URL = ""

@@ -86,7 +86,7 @@
       <span style="font-size: 12.5px; color: #8A929A;">Home &nbsp;/&nbsp; <span style="color: {{accent}};">Productos</span></span>
       <h1 style="font-size: 46px; color: #10222A; letter-spacing: -0.035em;">Catálogo de productos</h1>
       <p style="font-size: 16.5px; color: #5A6570; max-width: 66ch; line-height: 1.65;">
-        Veintiún soluciones entre cadera, rodilla y cementos óseos. Cada ficha incluye
+        {{nTotPalMay}} soluciones entre cadera, rodilla y cementos óseos. Cada ficha incluye
         tipo de fijación, indicaciones y marca de origen.
       </p>
     </div>
@@ -97,10 +97,10 @@
     <div style="max-width: 1400px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
       <div style="display: flex; align-items: center; gap: 10px;">
         <span style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #69727D; margin-right: 6px;">Línea</span>
-        <span class="fbtn" onClick="{{verTodos}}" style="{{sTodos}}">Todos <span style="opacity: .55;">21</span></span>
-        <span class="fbtn" onClick="{{verCadera}}" style="{{sCadera}}">Cadera <span style="opacity: .55;">9</span></span>
-        <span class="fbtn" onClick="{{verRodilla}}" style="{{sRodilla}}">Rodilla <span style="opacity: .55;">7</span></span>
-        <span class="fbtn" onClick="{{verCementos}}" style="{{sCementos}}">Cementos <span style="opacity: .55;">5</span></span>
+        <span class="fbtn" onClick="{{verTodos}}" style="{{sTodos}}">Todos <span style="opacity: .55;">{{nTot}}</span></span>
+        <span class="fbtn" onClick="{{verCadera}}" style="{{sCadera}}">Cadera <span style="opacity: .55;">{{nCad}}</span></span>
+        <span class="fbtn" onClick="{{verRodilla}}" style="{{sRodilla}}">Rodilla <span style="opacity: .55;">{{nRod}}</span></span>
+        <span class="fbtn" onClick="{{verCementos}}" style="{{sCementos}}">Cementos <span style="opacity: .55;">{{nCem}}</span></span>
       </div>
       <div style="display: flex; align-items: center; gap: 16px;">
         <span style="font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #A7A9AC;">Marca</span>

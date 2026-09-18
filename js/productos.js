@@ -666,6 +666,54 @@ window.PRODUCTOS = {
   "vistas": [],
   "url": "https://swipro.com.ar/producto/endomodel/"
  },
+ "linksymphoknee": {
+  "slug": "linksymphoknee",
+  "nombre": "LINKSYMPHOKNEE",
+  "bajada": "Sistema de rodilla primario y de revisión",
+  "linea": "Rodilla",
+  "marca": "Waldemar Link",
+  "img": "assets/linksymphoknee.webp",
+  "desc": [
+   "Sistema completo de artroplastia de rodilla de Waldemar Link, desde casos primarios hasta revisión. Es un sistema de plataforma fija con distintos niveles de constricción: conservador del ligamento cruzado (CR), posteroestabilizado (PS y PS+) y de revisión (CCK). La modularidad entre sus componentes da flexibilidad durante la cirugía."
+  ],
+  "specs": [
+   [
+    "Tipo",
+    "Prótesis total de rodilla, primaria y de revisión"
+   ],
+   [
+    "Versiones",
+    "CR, PS, PS+ y CCK"
+   ],
+   [
+    "Tamaños",
+    "14 femorales y 10 tibiales"
+   ],
+   [
+    "Compatibilidad",
+    "2 tamaños arriba y 2 abajo entre fémur y tibia"
+   ],
+   [
+    "Materiales",
+    "LINK PorEx y polietileno E-Dur con vitamina E"
+   ]
+  ],
+  "destacados": [
+   "Un mismo sistema de la primaria a la revisión",
+   "Amplio rango de tamaños",
+   "Componentes modulares"
+  ],
+  "visor3d": true,
+  "modelo3d": "rodilla",
+  "config3d": {
+   "bisagra": false,
+   "vastagos": false
+  },
+  "clips": [],
+  "stills": [],
+  "vistas": [],
+  "url": null
+ },
  "optetrak-cc": {
   "slug": "optetrak-cc",
   "nombre": "OPTETRAK CC – CONTR. CONDILAR",
@@ -1074,4 +1122,4 @@ window.PRODUCTOS = {
   "url": "https://swipro.com.ar/producto/palamix-uno-o-duo/"
  }
 };
-window.ORDEN = ["mobilelink-dual-mobility", "mobilelink", "bimobile", "crown-cup", "element", "lcu", "lubinus-cup", "lubinus-spii", "mp-link", "endomodel-modular", "endomodel-hinged", "endomodel-standard", "optetrak-cc", "optetrak-hiflex", "optetrak-logic", "uni-sled", "copal", "palacos-mv", "palacos-r", "palamix-gun", "palamix-uno"];
+window.ORDEN = ["mobilelink-dual-mobility", "mobilelink", "bimobile", "crown-cup", "element", "lcu", "lubinus-cup", "lubinus-spii", "mp-link", "endomodel-modular", "endomodel-hinged", "endomodel-standard", "linksymphoknee", "optetrak-cc", "optetrak-hiflex", "optetrak-logic", "uni-sled", "copal", "palacos-mv", "palacos-r", "palamix-gun", "palamix-uno"];

@@ -9,6 +9,7 @@ import os
 import shell
 
 SRC = os.path.dirname(os.path.abspath(__file__))
+N = shell.conteos()   # cuantos productos hay por linea
 
 NAV = [("Inicio", "index.html"), ("Institucional", "institucional.html"), ("Productos", "productos.html"),
        ("Nuestro proceso", "proceso.html"), ("Educación médica", "educacion.html"),
@@ -89,6 +90,10 @@ CSS = """
   .prov { font-size: 13px; color: var(--ink); border: 1px solid var(--line); background: #fff; padding: 8px 15px; border-radius: 4px; font-weight: 500; transition: border-color .3s, color .3s, background .3s; }
   .prov:hover { background: rgba(0,149,161,.07); border-color: var(--teal); color: var(--teal); }
   .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+  .grupo { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+           background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 30px 36px; }
+  .grupo h3 { font-size: 24px; letter-spacing: -0.025em; margin: 8px 0 6px; }
+  .grupo p { font-size: 15px; color: var(--txt); line-height: 1.6; }
   .paises { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border: 1px solid var(--line); border-radius: 8px; background: #fff; overflow: hidden; }
   .pais { display: flex; flex-direction: column; gap: 6px; padding: 26px 28px; border-left: 1px solid var(--line); }
   .pais:first-child { border-left: 0; }
@@ -240,22 +245,22 @@ HITOS = [
      "Swiss Protech es representante exclusivo en Argentina de Waldemar Link, Advita Ortho y Heraeus Medical."),
     ("Región", "Argentina, Chile y Uruguay",
      "Sedes en los tres países, con el mismo circuito para cada implante: del depósito al centro de salud donde se realiza la cirugía."),
-    ("Hoy", "Más de 20 años de trayectoria",
-     "Veintiún productos en catálogo entre cadera, rodilla y cementos óseos, y un circuito de trazabilidad documentado en cada implante."),
+    ("Hoy", "Más de 25 años de trayectoria",
+     "%s productos en catálogo entre cadera" % N["totPalMay"] + ", rodilla y cementos óseos, y un circuito de trazabilidad documentado en cada implante."),
 ]
 
 def institucional():
     hitos = "".join("""<div class="hito"><div class="a">%s</div><div><h3>%s</h3><p>%s</p></div></div>""" % h for h in HITOS)
     return (cabecera("institucional.html", "Institucional — Swiss Protech",
-                     "Más de 20 años importando implantes ortopédicos de origen alemán y norteamericano, con sedes en Argentina, Chile y Uruguay.",
+                     "Más de 25 años importando implantes ortopédicos de origen alemán y norteamericano, con sedes en Argentina, Chile y Uruguay.",
                      [("Home", "index.html"), ("Institucional", "institucional.html")])
-    + head("Institucional", "Más de 20 años de trayectoria en implantes ortopédicos",
+    + head("Institucional", "Más de 25 años de trayectoria en implantes ortopédicos",
            "Importamos y comercializamos implantes de cadera y rodilla de la más alta calidad, de origen alemán y norteamericano, con todas las habilitaciones que exige la normativa argentina.")
     + """
 <section><div class="wrap">
   <div class="kpi">
-    <div><b>+20</b><span>años de trayectoria en el país</span></div>
-    <div><b>21</b><span>productos entre cadera, rodilla y cementos</span></div>
+    <div><b>+25</b><span>años de trayectoria en el país</span></div>
+    <div><b>""" + str(N["tot"]) + """</b><span>productos entre cadera, rodilla y cementos</span></div>
     <div><b>3</b><span>marcas internacionales representadas</span></div>
     <div><b>3</b><span>países: Argentina, Chile y Uruguay</span></div>
   </div>
@@ -266,7 +271,7 @@ def institucional():
     <h2>Soluciones para mejorar la calidad de vida del paciente</h2>
     <p class="lead">Mediante nuestros productos y servicios brindamos a pacientes, médicos, prestadores y financiadores del sistema de salud público y privado de todo el país soluciones superadoras para mejorar la calidad de vida de los pacientes.</p></div>
   <div class="g3">
-    <div class="card"><span class="ico">""" + I_RELOJ + """</span><h3>Experiencia</h3><p>Más de 20 años importando prótesis de cadera y rodilla.</p></div>
+    <div class="card"><span class="ico">""" + I_RELOJ + """</span><h3>Experiencia</h3><p>Más de 25 años importando prótesis de cadera y rodilla.</p></div>
     <div class="card"><span class="ico">""" + I_CAJA + """</span><h3>Calidad</h3><p>Fabricantes líderes de Alemania y Estados Unidos.</p></div>
     <div class="card"><span class="ico">""" + I_ESCUDO + """</span><h3>Certificación</h3><p>Habilitados por el Ministerio de Salud y A.N.M.A.T.</p></div>
   </div>
@@ -311,8 +316,8 @@ MARCAS = [
          n="Waldemar Link GmbH & Co. KG", pais="Hamburgo, Alemania",
          datos=["Fundada el 1 de enero de 1948", "Presente en más de 70 países", "Cinco décadas en endoprotética de grandes articulaciones"],
          txt=["Fabricante alemán de endoprótesis articulares: cadera, rodilla, extremidad superior e implantes personalizados.",
-              "De Link provienen la mayoría de los sistemas que Swiss Protech comercializa en Argentina: los cotilos MobileLink y Lubinus, los vástagos LCU, Lubinus SP II y MP Link, y las prótesis de rodilla Endo-Model."],
-         prods=["MobileLink", "MobileLink Dual Mobility", "Lubinus Cup", "Lubinus SPII Revision", "MP Link", "LCU", "Endomodel", "Uni Sled"],
+              "De Link provienen la mayoría de los sistemas que Swiss Protech comercializa en Argentina: los cotilos MobileLink y Lubinus, los vástagos LCU, Lubinus SP II y MP Link, y las prótesis de rodilla LinkSymphoKnee y Endo-Model."],
+         prods=["MobileLink", "MobileLink Dual Mobility", "Lubinus Cup", "Lubinus SPII Revision", "MP Link", "LCU", "LinkSymphoKnee", "Endomodel", "Uni Sled"],
          web="link-ortho.com", url="https://www.link-ortho.com/"),
     dict(logo="assets/advita.webp", filtro="filter: invert(1) brightness(.28);", alto="34px",
          n="Advita Ortho", pais="Estados Unidos",
@@ -352,6 +357,17 @@ def representaciones():
     + head("Representaciones", "Los fabricantes que representamos",
            "Somos representantes exclusivos en Argentina de compañías líderes en tecnología médica de origen alemán y norteamericano. Cada producto de nuestro catálogo viene de una de estas tres casas.")
     + '<section><div class="wrap" style="display:flex;flex-direction:column;gap:24px">' + "".join(bloques) + '</div></section>'
+    + """
+<section style="padding-top:0"><div class="wrap">
+  <div class="grupo">
+    <div><span class="eyebrow">También de la empresa</span>
+      <h3>Medical Practice</h3>
+      <p>La otra marca de Swiss Protech, con presencia en San Carlos de Bariloche.</p></div>
+    """ + ('<a href="%s" target="_blank" rel="noopener" class="btn-g">Ir al sitio &#8599;</a>' % shell.MEDICAL_PRACTICE_URL
+          if shell.MEDICAL_PRACTICE_URL else '') + """
+  </div>
+</div></section>
+"""
     + """
 <section class="alt"><div class="wrap">
   <div class="st"><span class="eyebrow">Qué significa</span><h2>Representación exclusiva, no reventa</h2>
@@ -396,11 +412,11 @@ def educacion():
 
 <section class="alt"><div class="wrap">
   <div class="st"><span class="eyebrow">Por línea</span><h2>Material disponible por familia de producto</h2>
-    <p class="lead">Cada ficha de producto enlaza directo a su técnica quirúrgica. Los 21 productos del catálogo tienen material asociado.</p></div>
+    <p class="lead">Cada ficha de producto enlaza directo a su técnica quirúrgica. Los """ + str(N["tot"]) + """ productos del catálogo tienen material asociado.</p></div>
   <div class="g3">
-    <div class="card"><h3>Cadera</h3><p>Nueve sistemas entre cotilos y vástagos.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de cadera &rarr;</a></div>
-    <div class="card"><h3>Rodilla</h3><p>Siete sistemas: Endo-Model y Optetrak.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de rodilla &rarr;</a></div>
-    <div class="card"><h3>Cementos</h3><p>Cinco productos: PALACOS, COPAL y PALAMIX.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los cementos &rarr;</a></div>
+    <div class="card"><h3>Cadera</h3><p>""" + N["cadPalMay"] + """ sistemas entre cotilos y vástagos.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de cadera &rarr;</a></div>
+    <div class="card"><h3>Rodilla</h3><p>""" + N["rodPalMay"] + """ sistemas: Endo-Model, LinkSymphoKnee y Optetrak.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los productos de rodilla &rarr;</a></div>
+    <div class="card"><h3>Cementos</h3><p>""" + N["cemPalMay"] + """ productos: PALACOS, COPAL y PALAMIX.</p><a href="productos.html" style="font-size:13.5px;font-weight:600;margin-top:auto">Ver los cementos &rarr;</a></div>
   </div>
 </div></section>
 

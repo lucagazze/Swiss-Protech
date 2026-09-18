@@ -10,7 +10,6 @@ que dependen de información que sólo puede dar la empresa.
 
 | Dato | Qué hay hoy | Por qué |
 |---|---|---|
-| **Años de trayectoria** | **"más de 20"** | Es lo que dice hoy swipro.com.ar textual. La página institucional del sitio viejo decía 25. Si son 25, se cambia `TRAYECTORIA` en `shell.py` y las tres menciones del home/institucional. |
 | **WhatsApp** | `+54 9 11 3593 5241` | Derivado del teléfono publicado (11 3593 5241). El sitio viejo tiene el widget pero no muestra el número. **Hay que probar que el número reciba.** Se cambia en `shell.py` → `WA_NUMERO`. |
 | **Correo de contacto** | no hay | El sitio viejo no publica ninguno. Si tienen uno comercial conviene sumarlo: hoy el único canal escrito es WhatsApp. |
 | **Formulario AFIP F960** | oculto | Necesita el CUIT para armar el link de Data Fiscal. Se carga en `shell.py` → `AFIP_URL` y el ítem aparece solo en el pie. |
@@ -39,6 +38,20 @@ Lo único que falta son **los teléfonos de Chile y de Uruguay**. Hoy el sitio
 muestra números de ejemplo en ceros (`+56 9 0000 0000` y `+598 00 000 000`),
 sin enlace para marcar. Se cambian en `shell.py` → `TEL_CL` y `TEL_UY`, se pone
 `TEL_PAISES_PROVISORIO = False` y se reconstruye.
+
+## 3b. Reunión del 17-09 (Mariano con el cliente)
+
+Hecho:
+- **"Más de 25 años"** en todo el sitio y en el video (confirmado por el cliente).
+- **LinkSymphoKnee** sumado al catálogo (rodilla, Waldemar Link), con foto oficial de Link.
+- **Medical Practice** sumado en Representaciones como la otra marca de la empresa, en Bariloche.
+
+Falta:
+- **Sitio web y logo de Medical Practice.** Con la URL se carga en `shell.py` → `MEDICAL_PRACTICE_URL` y aparece el botón.
+- **Las tres prótesis "viejas" que hay que sacar.** No quedó claro cuáles son.
+  Lo mejor es que el cliente mande **la lista completa corregida de una vez**.
+  El catálogo se edita en un solo lugar (`build_productos.py`): tarjetas, filtros,
+  contadores y textos ("22 productos", "ocho de rodilla"…) se ajustan solos.
 
 ## 4. Fotos que faltan
 
@@ -100,10 +113,10 @@ cubre, se compra una pista y se cambia en una línea de
 
 ## Lo que quedó fuera de alcance
 
-- **Modelos 3D por producto.** Los 21 productos usan cuatro modelos
+- **Modelos 3D por producto.** Los productos usan cuatro modelos
   paramétricos (cotilo, vástago, rodilla, cemento) que se configuran por
   producto: cambian agujeros, doble movilidad, cementado, largo, bisagra. Son
-  representativos, no son escaneos de cada pieza. Modelar los 21 sistemas reales
+  representativos, no son escaneos de cada pieza. Modelar cada sistema reales
   es un proyecto aparte.
 - **Traducción a otro idioma.** No estaba en el presupuesto.
 - **Producción de fotos y video en las instalaciones.** No estaba en el

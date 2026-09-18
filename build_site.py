@@ -15,9 +15,9 @@ ACCENT = "#0095A1"
 
 PAGES = [
     ("Main.dc.html",      "index.html",     "Swiss Protech — Implantes ortopédicos con trazabilidad de punta a punta",
-     "Representantes exclusivos en Argentina de prótesis de cadera y rodilla de Waldemar Link, Advita Ortho y Heraeus Medical. Más de 20 años de trayectoria."),
+     "Representantes exclusivos en Argentina de prótesis de cadera y rodilla de Waldemar Link, Advita Ortho y Heraeus Medical. Más de 25 años de trayectoria."),
     ("Productos.dc.html", "productos.html", "Catálogo de productos — Swiss Protech",
-     "21 productos entre prótesis de cadera, rodilla y cementos óseos. Marcas Link, Advita Ortho y Heraeus."),
+     "{{nTot}} productos entre prótesis de cadera, rodilla y cementos óseos. Marcas Link, Advita Ortho y Heraeus."),
     ("Proceso.dc.html",   "proceso.html",   "Nuestro proceso — Swiss Protech",
      "Las cinco etapas de trazabilidad: depósito, control, esterilización, traslado y entrega en quirófano."),
     ("Contacto.dc.html",  "contacto.html",  "Contacto — Swiss Protech",
@@ -247,11 +247,13 @@ def rutear_botones(cuerpo):
         txt = re.sub(r"\s+", " ", txt).replace("→", "").replace("&rarr;", "").strip().lower().rstrip(".")
         if not txt:
             return m.group(0)
+        txtn = re.sub(r"\d+", "#", txt)
         for clave, msg in WHATSAPP.items():
             if txt == clave:
                 return '<a href="%s" target="_blank" rel="noopener"%s>%s</a>' % (shell.wa(msg), attrs, interior)
         for clave, destino in DESTINOS:
-            if txt == clave or txt.startswith(clave + " "):
+            clave = re.sub(r"\d+", "#", clave)
+            if txtn == clave or txtn.startswith(clave + " "):
                 return '<a href="%s"%s>%s</a>' % (destino, attrs, interior)
         return m.group(0)
     return re.sub(r'<a href="#"([^>]*)>(.*?)</a>', resolver, cuerpo, flags=re.S)
@@ -596,8 +598,10 @@ def transformar_productos(c):
     c = re.sub(r'<span style="font-size: 13.5px; color: #69727D;">(\d+) productos</span>',
                lambda m: '<span data-cuenta style="font-size: 13.5px; color: #69727D;">%s productos</span>' % m.group(1), c)
 
+    c, orden = sincronizar_catalogo(c, P)
+
     # cada tarjeta lleva a su ficha y declara línea y marca para el filtro
-    it = iter(SLUGS)
+    it = iter(orden)
     def abrir(_m):
         s = next(it)
         p = P[s]
@@ -608,7 +612,7 @@ def transformar_productos(c):
 
     # el rótulo "Línea · MARCA" sale del catálogo, no del maquetado: así no se
     # puede volver a desincronizar de js/productos.js
-    it2 = iter(SLUGS)
+    it2 = iter(orden)
     def rotulo(m):
         p = P[next(it2)]
         return '%s%s · %s</span>' % (m.group(1), p["linea"], marca_corta(p["marca"])[1])
@@ -624,6 +628,62 @@ def transformar_productos(c):
     # que decir cuando el cruce de filtros no deja nada
     c = c.replace("<!-- AYUDA -->", VACIO_HTML + "<!-- AYUDA -->", 1)
     return c
+
+
+TARJETA = """
+          <div class="pc"><div class="pc-in" style="background: #FFFFFF; border: 1px solid #E3E7E9; border-radius: 6px; overflow: hidden; height: 100%; display: flex; flex-direction: column;">
+            <div style="height: 208px; background: linear-gradient(160deg, #F4F7F8, #E9EFF1); display: flex; align-items: center; justify-content: center;">
+              <img src="__IMG__" alt="__ALT__" class="pc-img" style="width: 152px; height: 152px; object-fit: contain; filter: drop-shadow(0 10px 16px rgba(16,34,42,.16));">
+            </div>
+            <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1;">
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; color: #0095A1;">x</span>
+              <h3 style="font-size: 15.5px; color: #10222A; line-height: 1.3;">__NOMBRE__</h3>
+              <p style="font-size: 12.5px; color: #69727D; line-height: 1.55;">__BAJADA__</p>
+              <span class="pc-go" style="font-size: 12.5px; color: #0095A1; font-weight: 600; margin-top: auto; padding-top: 10px;">Ver ficha &rarr;</span>
+            </div>
+          </div></div>
+"""
+
+# primera tarjeta de cada linea, para saber donde van las nuevas
+DONDE_VAN = {"Rodilla": "optetrak-logic", "Cadera": "mobilelink-dual-mobility", "Cementos": "copal"}
+
+
+def sincronizar_catalogo(c, P):
+    """El maquetado trae 21 tarjetas escritas a mano (SLUGS, en su orden).
+
+    - Las que ya no estan en js/productos.js se sacan.
+    - Las que estan en el catalogo y no en el maquetado se suman al principio
+      de su linea.
+    Devuelve el cuerpo y el orden final de las tarjetas.
+    """
+    bloques = list(re.finditer(r'\n?\s*<div class="pc">.*?</div></div>\n', c, re.S))
+    assert len(bloques) == len(SLUGS), "el maquetado no tiene %d tarjetas" % len(SLUGS)
+    nuevos = [s for s in P if s not in SLUGS]
+    salida, ultimo, orden = [], 0, []
+    for m, slug in zip(bloques, SLUGS):
+        salida.append(c[ultimo:m.start()])
+        for s in nuevos:
+            if DONDE_VAN.get(P[s]["linea"]) == slug:
+                p = P[s]
+                salida.append("\n" + TARJETA
+                              .replace("__IMG__", (p["img"] or "").replace("assets/", ""))
+                              .replace("__ALT__", p["nombre"].title())
+                              .replace("__NOMBRE__", p["nombre"])
+                              .replace("__BAJADA__", p["bajada"].rstrip(".") + "."))
+                orden.append(s)
+        if slug in P:
+            salida.append(m.group(0))
+            orden.append(slug)
+        ultimo = m.end()
+    salida.append(c[ultimo:])
+    c = "".join(salida)
+
+    # el numero de cada linea, tambien sin JS
+    n = shell.conteos()
+    lineas = iter(["cad", "rod", "cem"])
+    c = re.sub(r'(<span (?:data-cuenta )?style="font-size: 13.5px; color: #69727D;">)\d+ productos',
+               lambda m: "%s%d productos" % (m.group(1), n[next(lineas)]), c)
+    return c, orden
 
 
 VACIO_HTML = """
@@ -805,6 +865,8 @@ def main():
         # el cuerpo: si no, una regla con {{accent}} queda invalida y no pinta
         css = css.replace("{{accent}}", ACCENT)
         cuerpo = cuerpo.replace("{{accent}}", ACCENT).replace("{{ringCls}}", "")
+        cuerpo = shell.poner_conteos(cuerpo)
+        desc = shell.poner_conteos(desc)
         if src in trans:
             cuerpo = trans[src](cuerpo)
         cuerpo = raiz_fluida(cuerpo)
